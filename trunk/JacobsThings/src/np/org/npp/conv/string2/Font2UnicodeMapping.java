@@ -40,6 +40,7 @@ public class Font2UnicodeMapping {
 
   public void checkOkAllChars() {
     for (char c=33; c<255; c++) {
+      /*
       if (c == 'l') continue; // ि
       if (c == 109) continue; // ्क
       if (c >= 128 && c<=159) continue;
@@ -48,8 +49,9 @@ public class Font2UnicodeMapping {
       if (c == 176 ) continue; //
       if (c == 212 ) continue; //
       if (c == 216 ) continue; //
+      */
       if (f2u.get(""+c)==null) {
-        System.out.println("Hmm... char missing: "+c);
+        System.out.println("Hmm... char missing: \t"+c+"\t"+c+"\tChar "+c+" "+(int)c+" "+Integer.toHexString(c));
       }
     }
   }
@@ -62,6 +64,11 @@ public class Font2UnicodeMapping {
     int i=0;
     while (i<input.length()) {
       Element e=null;
+
+      if (input.charAt(i)=='<') {
+        System.err.println("XXX");
+      }
+
       for (int j=1; j<maxfontLetter && j+i<=input.length(); j++) {
         Element e2 = f2u.get( input.substring(i, i+j) );
         if (e2 != null) {
@@ -95,6 +102,9 @@ public class Font2UnicodeMapping {
     // remove all duplicate flags
     String nonspac = Devanagari.types[Character.NON_SPACING_MARK];
     for (int j=0; j<nonspac.length(); j++) s = s.replaceAll(nonspac.charAt(j)+"+",nonspac.substring(j,j+1));
+
+    // replace aa + e flags with o
+    s = s.replaceAll("ाे","ो");
 
     return s;
   }

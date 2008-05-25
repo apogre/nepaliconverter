@@ -20,17 +20,17 @@ public class Font2UnicodeMappingFactory {
     f2u.checkOkAllChars();
 
     test(f2u, // namaste saathi, tapaai dherai din pachhi aaunubhayo kina?
-         "gd:t] ;fyL, tkfO{ w]/} lbg kl5 cfpg' eof] lsg <",
+         "gd:t] ;fyL, tkfO{ w]/} lbg kl5 cfpg' eof] lsg<  ",
          "नमस्ते साथी, तपाई धेरै दिन पछि आउनु भयो किन?");
 
 
     test(f2u, // ma aaphno saajhedaar sansthaa herna gaeko thie
-         "d cfˆgf] ;fem]bf/ ;+:yf x]g{ uPsf] lyPF .",
+         "d cfˆgf] ;fem]bf/ ;+:yf x]g{ uPsf] lyPF.",
          "म आफ्नो साझेदार संस्था हेर्न गएको थिएँ।");
 
 
     test(f2u, // tapaai laai aaphno kaam garne Thaau kasto laagyo ?
-         "tkfO{nfO{ cfˆgf] sfd ug]{ 7fpF s:tf] nfUof] <",
+         "tkfO{nfO{ cfˆgf] sfd ug]{ 7fpF s:tf] nfUof]<",
          "तपाईलाई आफ्नो काम गर्ने ठाउँ कस्तो लाग्यो?");
 
 
@@ -118,9 +118,11 @@ public class Font2UnicodeMappingFactory {
     esp = esp.replaceAll("</text:.*?>","");
     esp = esp.replaceAll("&amp;","&");
     esp = esp.replaceAll("&quot;","\"");
+    esp = esp.replaceAll("&lt;","<");
+    esp = esp.replaceAll("&gt;",">");
 
     if (!esp.replaceAll("&.*?;","").equals(esp)) {
-      new IllegalStateException("Incomplete translation: "+esp);
+      new IllegalStateException("Incomplete translation: "+esp).printStackTrace();
     }
     return esp.trim();
   }
