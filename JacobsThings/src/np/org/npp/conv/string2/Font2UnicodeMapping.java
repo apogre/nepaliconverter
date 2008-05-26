@@ -66,7 +66,7 @@ public class Font2UnicodeMapping {
       Element e=null;
 
       if (input.charAt(i)=='<') {
-        System.err.println("XXX");
+        //System.err.println("XXX");
       }
 
       for (int j=1; j<maxfontLetter && j+i<=input.length(); j++) {
@@ -104,9 +104,9 @@ public class Font2UnicodeMapping {
     for (int j=0; j<nonspac.length(); j++) s = s.replaceAll(nonspac.charAt(j)+"+",nonspac.substring(j,j+1));
 
     // replace aa + e flags with o
+    // This could also be done in the mapping file.
     s = s.replaceAll("ाे","ो");
 
     return s;
   }
-
 }
