@@ -90,18 +90,37 @@ public class Font2UnicodeMappingFactory {
 
     // find table
     Matcher m = Pattern.compile("<table:table-row>" // row start
-                                +".*?<table:table-cell.*?>.*?<text:p.*?>(.*?)</text:p>.*?</table:table-cell>" // first cell
-                                +".*?<table:table-cell.*?>.*?<text:p.*?>(.*?)</text:p>.*?</table:table-cell>" // 2nd cell
+                                //+".*?<table:table-cell.*?>.*?<text:p.*?>(.*?)</text:p>.*?</table:table-cell>" // first cell
+                                //+".*?<table:table-cell.*?>.*?<text:p.*?>(.*?)</text:p>.*?</table:table-cell>" // 2nd cell
+                                +".*?<table:table-cell.*?>(.*?)</table:table-cell>" // first cell
+                                +".*?<table:table-cell.*?>(.*?)</table:table-cell>" // 2nd cell
                                 +".*?" // rest of rows are ignored
                                 +"</table:table-row>" // row end
         , Pattern.UNIX_LINES & Pattern.DOTALL & Pattern.MULTILINE ).matcher(tuto);
 
 
     while (m.find()) {
-      String col1 = foriguLigojnKajSpacojn(m.group(1));
-      String col2 = foriguLigojnKajSpacojn(m.group(2));
 
-      System.out.println(col1 + "  -> "+col2);
+      // col1 is Preeti. Any superflous spaces should be removed
+      String col1 = m.group(1);
+      String col1text = col1.replaceAll( ".*?<text:p.*?>(.*?)</text:p>.*?", "$1");
+      col1 = foriguLigojnKajSpacojn(col1text);
+      col1 = col1.trim();
+
+      // col2 is Unicode. One space is OK, all other superflous spaces should be removed
+      String col2 = m.group(2);
+      String col2text = col2.replaceAll( ".*?<text:p.*?>(.*?)</text:p>.*?", "$1");
+      if (col2.equals(col2text)) {
+        col2 = ""; // no text paragraph. <text:p.*?>
+      } else {
+        col2 = foriguLigojnKajSpacojn(col2text);
+        String trimmed = col2.trim();
+        if (trimmed.length()==0 && col2.length()!=0) trimmed = " "; // One space is OK
+        col2 = trimmed;
+      }
+
+
+      //System.out.println(col1 + "  -> "+col2);
       f2u.addLetter(col1, col2);
     }
 
@@ -122,9 +141,11 @@ public class Font2UnicodeMappingFactory {
     esp = esp.replaceAll("&gt;",">");
 
     if (!esp.replaceAll("&.*?;","").equals(esp)) {
-      new IllegalStateException("Incomplete translation: "+esp).printStackTrace();
+      IllegalStateException e = new IllegalStateException("Incomplete translation: "+esp);
+      //e.printStackTrace();
+      throw e;
     }
-    return esp.trim();
+    return esp;
   }
 
 }
