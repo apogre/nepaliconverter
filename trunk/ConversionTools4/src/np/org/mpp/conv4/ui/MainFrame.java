@@ -17,11 +17,11 @@ public class MainFrame extends JFrame {
     JMenuItem jMenuFileExit = new JMenuItem();
     JMenu jMenuHelp = new JMenu();
     JMenuItem jMenuHelpAbout = new JMenuItem();
-    ImageIcon image1 = new ImageIcon(np.org.mpp.conv4.ui.MainFrame.class.
-                                     getResource("openFile.png"));
-    ImageIcon image2 = new ImageIcon(np.org.mpp.conv4.ui.MainFrame.class.
-                                     getResource("closeFile.png"));
-    ImageIcon image3 = new ImageIcon(np.org.mpp.conv4.ui.MainFrame.class.
+    ImageIcon image_f2u = new ImageIcon(np.org.mpp.conv4.ui.MainFrame.class.
+                                     getResource("f2u.png"));
+    ImageIcon image_u2f = new ImageIcon(np.org.mpp.conv4.ui.MainFrame.class.
+                                     getResource("u2f.png"));
+    ImageIcon image_tranlit = new ImageIcon(np.org.mpp.conv4.ui.MainFrame.class.
                                      getResource("help.png"));
     JLabel statusBar = new JLabel();
     JPanel jPanelCards = new JPanel();
@@ -54,16 +54,16 @@ public class MainFrame extends JFrame {
         jTextPane1.setText(
                 "<html><body>Welcome to MPP\'s converter.<br>Please choose which type " +
                 "of conversion you would like to to:");
-        jButtonConvUnic.setIcon(image1);
+        jButtonConvUnic.setIcon(image_f2u);
         jButtonConvUnic.setText("<html><body>Convert from<br>non-Unicode font<br>to <b>Unicode</b>");
         jButtonConvUnic.addActionListener(new
                                           Frame_jButtonConvUnic_actionAdapter(this));
-        jButtonConvFont.setIcon(image2);
+        jButtonConvFont.setIcon(image_u2f);
         jButtonConvFont.setText(
                 "<html><body>Convert from Unicode<br>to non-Unicode<br><b>font</b> (like Preeti)");
         jButtonConvFont.addActionListener(new
                                           Frame_jButtonConvFont_actionAdapter(this));
-        jButtonTranslit.setIcon(image3);
+        jButtonTranslit.setIcon(image_tranlit);
         jButtonTranslit.setText(
                 "<html><body>Convert from<br>devanagari to <br><b>roman</b> transliteration");
         jButtonTranslit.addActionListener(new
