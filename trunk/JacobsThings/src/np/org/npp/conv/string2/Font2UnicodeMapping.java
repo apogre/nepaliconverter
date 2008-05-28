@@ -93,11 +93,11 @@ public class Font2UnicodeMapping {
 
     // put the ii ि  after the following consonant
     String ii = "ि";
-    String allConsonantsWithPunct = "([" + Devanagari.types[Devanagari.NAZALIZATIONS] +"]*["+ Devanagari.types[Devanagari.CONSONANTS]+"])";
+    String allConsonantsWithPunct = "([" + Devanagari.types[Devanagari.TNAZALIZATIONS] +"]*["+ Devanagari.types[Devanagari.TCONSONANTS]+"])";
     s = s.replaceAll( ii + allConsonantsWithPunct, "$1"+ii );
 
     // put all nazalizations after the vocal flags
-    s = s.replaceAll( "([" + Devanagari.types[Devanagari.NAZALIZATIONS] +"]+)(["+ Devanagari.types[Devanagari.VOCALFLAGS]+"]+)", "$2$1" );
+    s = s.replaceAll( "([" + Devanagari.types[Devanagari.TNAZALIZATIONS] +"]+)(["+ Devanagari.types[Devanagari.TVOCALFLAGS]+"]+)", "$2$1" );
 
     // remove all duplicate flags
     String nonspac = Devanagari.types[Character.NON_SPACING_MARK];

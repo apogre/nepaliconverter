@@ -17,13 +17,14 @@ import np.org.mpp.cd.ui.lnf.LnF;
 
 /**
  * The file containing the main function.
- * 
+ *
  * @author Abhishek Shrestha
- * 
+ *
  */
 public class ConversionTools {
 	public ConversionTools() {
-		File file = new File(".res/lnf/config.lnf");
+		File file = new File("res/lnf/config.lnf");
+                System.out.println(file.getAbsolutePath());
 		String storedTheme = null;
 		try {
 			Scanner scanner = new Scanner(file);

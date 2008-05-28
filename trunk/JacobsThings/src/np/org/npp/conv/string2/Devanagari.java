@@ -17,12 +17,17 @@ public class Devanagari {
    */
   public static String[] types = new String[40];
 
-  public static final int CONSONANTS = 31;
-  public static final int VOCALFLAGS = 32;
-  public static final int NAZALIZATIONS = 33;
+  public static final int TCONSONANTS = 31;
+  public static final int TVOCALFLAGS = 32;
+  public static final int TNAZALIZATIONS = 33;
+  public static final int TALL = 34;
 
 
   static {
+    types[TALL]="";
+
+    karaktro(8205, "",        '‍' );    // zero-width separator to avoid combining characters
+
     karaktro(2305, "~",        'ँ' );    // ँ   - n-eca (naza)
     karaktro(2306, "~",        'ं' );    // ं  imoete    m-eca
     karaktro(2307, "~",        'ः' );    // ः    m-eca
@@ -73,15 +78,15 @@ public class Devanagari {
     karaktro(2352, "ra",        'र' );    // र
     karaktro(2353, "ŕa",        'ऱ' );    // ऱ
     karaktro(2354, "la",        'ल' );    // ल
-//    karaktro(2355, "Z",        'ळ' );    // ळ
-//    karaktro(2356, "Z",        'ऴ' );    // ऴ
+    karaktro(2355, "Z",        'ळ' );    // ळ
+    karaktro(2356, "Z",        'ऴ' );    // ऴ
     karaktro(2357, "va",        'व' );    // व
     karaktro(2358, "sha",        'श' );    // श
     karaktro(2359, "sha",        'ष' );    // ष
     karaktro(2360, "sa",        'स' );    // स
     karaktro(2361, "ha",        'ह' );    // ह
     karaktro(2362, "chha",        'ऺ' );    // ऺ
-//    karaktro(2363, "ri",        'ऻ' );    // ऻ
+    karaktro(2363, "ri",        'ऻ' );    // ऻ
     karaktro(2364, "a/",        '़' );    // ़
     karaktro(2365, ".",        'ऽ' );    // ऽ
     karaktro(2366, "a",        'ा' );    // ा
@@ -143,23 +148,33 @@ public class Devanagari {
     // and from karaktro(2392, "ka",        'क़' );    // क़ि
     // to karaktro(2399, "ya",        'य़' );    // य़ि
 
-    types[CONSONANTS] = "";
+    types[TCONSONANTS] = "";
     for (char c='क'; c<'ह'; c++)
-      types[CONSONANTS] += c;
+      types[TCONSONANTS] += c;
     for (char c='क़'; c<'य़'; c++)
-      types[CONSONANTS] += c;
+      types[TCONSONANTS] += c;
 
 
-    types[VOCALFLAGS] = types[Character.COMBINING_SPACING_MARK] + "िीुूृॄेै"; // i ii u uu e ai
+    types[TVOCALFLAGS] = "ः ि  ी ु ू ृ ॄ े ै ः ा ि ी ॉ ॊ ो ौ " .replaceAll(" ",""); // i ii u uu e ai
 
-    types[NAZALIZATIONS] = types[Character.NON_SPACING_MARK].replaceAll("["+types[VOCALFLAGS]+"]",""); // remove VOCALFLAGS
+    types[TNAZALIZATIONS] = types[Character.NON_SPACING_MARK].replaceAll("[्"+types[TVOCALFLAGS]+"]",""); // remove VOCALFLAGS
 
 
-
-    System.out.println("types[CONSONANTS]="+types[CONSONANTS]);
-    System.out.println("types[VOCALFLAGS]="+types[VOCALFLAGS]);
-    System.out.println("types[NAZALIZATIONS]="+types[NAZALIZATIONS]);
+    System.out.println("types[COMBINING_SPACING_MARK]="+types[Character.COMBINING_SPACING_MARK]);
+    System.out.println("types[NON_SPACING_MARK]="+types[Character.NON_SPACING_MARK]);
+    System.out.println("types[CONSONANTS]="+types[TCONSONANTS]);
+    System.out.println("types[VOCALFLAGS]="+types[TVOCALFLAGS]);
+    System.out.println("types[NAZALIZATIONS]="+types[TNAZALIZATIONS]);
+    System.out.println("types[ALL]="+types[TALL]);
   }
+
+
+  public static final String HALANTA = "्";
+  public static final String CONSONANTS = types[TCONSONANTS];
+  public static final String VOCALFLAGS = types[TVOCALFLAGS];
+  public static final String NAZALIZATIONS = types[TNAZALIZATIONS];
+  public static final String ALL = types[TALL];
+
 
 
 
@@ -171,12 +186,12 @@ public class Devanagari {
 
   private static void karaktro(int i, String rom, char c) {
     if (i != c) throw new InternalError("");
-    int t = Character.getType(c);
+    types[TALL]=types[TALL]+c;
 
+    int t = Character.getType(c);
     if (types[t]==null) types[t]=""+c;
     else types[t]=types[t]+c;
 
-
-    System.out.println(t+" "+c);
+    //System.out.println(t+" "+c);
   }
 }

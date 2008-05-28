@@ -30,7 +30,7 @@ import np.org.mpp.cd.ui.lnf.LnFSelector;
 
 /**
  * @author Abhishek
- * 
+ *
  */
 public class Menu extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 4202328775681932050L;
@@ -67,6 +67,7 @@ public class Menu extends JFrame implements ActionListener {
 		// .getSystemResource("res/images/icon.png")).getImage());
 		setIconImage(new ImageIcon("res/images/icon.png").getImage());
 		setLocation(0, 0);
+                pack(); // Ubuntu compiz bug workaround
 		setSize(WIDTH, HEIGHT);
 		setMinimumSize(new Dimension(550, 250));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
