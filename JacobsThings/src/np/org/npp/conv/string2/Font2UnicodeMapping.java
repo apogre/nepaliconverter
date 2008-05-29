@@ -40,28 +40,22 @@ public class Font2UnicodeMapping {
     maxfontLetter = Math.max(maxfontLetter, fontLetter.length());
   }
 
+  /**
+   * Check table for and fix obvious errors, like missing and totally overruled entries and
+   */
   public void checkConsistency() {
     for (char c=33; c<255; c++) {
-      /*
-      if (c == 'l') continue; // ि
-      if (c == 109) continue; // ्क
-      if (c >= 128 && c<=159) continue;
-      if (c == 165 ) continue; //
-      if (c == 171 ) continue; //
-      if (c == 176 ) continue; //
-      if (c == 212 ) continue; //
-      if (c == 216 ) continue; //
-      */
       if (f2u.get(""+c)==null) {
         System.out.println("WARNING: Character missing in table: \t"+c+"\t"+c+"\tChar "+c+" "+(int)c+" "+Integer.toHexString(c));
+        addLetter(""+c,"MISSING CHARACTER");
       }
     }
 
     for (Element e : f2u.values()) {
       if (e.fontLetter.length()>1) {
         Element eSingleLetter = f2u.get(e.fontLetter.substring(0,1));
-        if (eSingleLetter.elemNr > e.elemNr) {
-          System.out.println("WARNING: Rule "+e+" will never be used as it is before general rule "+eSingleLetter);
+        if (eSingleLetter!=null && eSingleLetter.elemNr > e.elemNr) {
+          System.out.println("WARNING: Rule "+e+" would never be used as it has lower priority than rule "+eSingleLetter);
           e.elemNr = 999;
           System.out.println("         Changed to "+e+" to repair this");
         }
@@ -103,7 +97,6 @@ public class Font2UnicodeMapping {
       }
     }
 
-
     String s = sb.toString();
 
     // put the ii ि  after the following consonant
@@ -113,8 +106,6 @@ public class Font2UnicodeMapping {
 
     // put all nazalizations after the vocal flags
     s = s.replaceAll( "([" + Devanagari.NAZALIZATIONS +"]+)(["+ Devanagari.VOCALFLAGS+"]+)", "$2$1" );
-
-
 
     // remove all duplicate flags and other non-spacing signs
     for (int j=0; j<NONSPAC.length(); j++) s = s.replaceAll(NONSPAC.charAt(j)+"+",NONSPAC.substring(j,j+1));
