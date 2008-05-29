@@ -17,7 +17,7 @@ public class Font2UnicodeMappingFactory {
     Font2UnicodeMappingFactory fc = new Font2UnicodeMappingFactory();
     Font2UnicodeMapping f2u = fc.getMapping("preeti");
 
-    f2u.checkOkAllChars();
+    f2u.checkConsistency();
 
     test(f2u, // namaste saathi, tapaai dherai din pachhi aaunubhayo kina?
          "gd:t] ;fyL, tkfO{ w]/} lbg kl5 cfpg' eof] lsg<  ",
@@ -25,7 +25,7 @@ public class Font2UnicodeMappingFactory {
 
 
     test(f2u, // ma aaphno saajhedaar sansthaa herna gaeko thie
-         "d cfˆgf] ;fem]bf/ ;+:yf x]g{ uPsf] lyPF.",
+         "d cfˆgf] ;fem]bf/ ;+:yf x]g{ uPsf] lyPF",
          "म आफ्नो साझेदार संस्था हेर्न गएको थिएँ।");
 
 
@@ -41,10 +41,15 @@ public class Font2UnicodeMappingFactory {
   }
 
   private static void test(Font2UnicodeMapping f2u, String f, String u) {
-    String u2 = f2u.toUnicode(f);
     System.out.println("-----------");
-    System.out.println(u2);
-    System.out.println(u);
+    System.out.println("FONT:    "+f);
+    String ures = f2u.toUnicode(f);
+    System.out.println("RESULT:  "+ures);
+    if (ures.equals(u))
+      System.out.println("OK");
+    else
+      System.out.println("CORRECT: "+u);
+
   }
 
   public Font2UnicodeMapping getMapping(String name) throws Exception {
@@ -84,9 +89,10 @@ public class Font2UnicodeMappingFactory {
     StringWriter sw = new StringWriter();
     new XMLSerializer(sw, format).serialize(content);
 
-    String tuto = sw.toString();
 
-    //System.out.println(tuto.substring(15000,16000));
+    String tuto = sw.toString().replace('\n',' '); // Pattern.DOTALL doesent always work, so replace \n!
+
+    System.out.println(tuto.substring(18000,18500));
 
     // find table
     Matcher m = Pattern.compile("<table:table-row>" // row start
@@ -96,10 +102,12 @@ public class Font2UnicodeMappingFactory {
                                 +".*?<table:table-cell.*?>(.*?)</table:table-cell>" // 2nd cell
                                 +".*?" // rest of rows are ignored
                                 +"</table:table-row>" // row end
-        , Pattern.UNIX_LINES & Pattern.DOTALL & Pattern.MULTILINE ).matcher(tuto);
+  //      , Pattern.UNIX_LINES & Pattern.DOTALL & Pattern.MULTILINE ).matcher(tuto);
+  ).matcher(tuto);
 
 
     while (m.find()) {
+      //System.out.println("XXX");
 
       // col1 is Preeti. Any superflous spaces should be removed
       String col1 = m.group(1);
@@ -109,6 +117,8 @@ public class Font2UnicodeMappingFactory {
 
       // col2 is Unicode. One space is OK, all other superflous spaces should be removed
       String col2 = m.group(2);
+
+
       String col2text = col2.replaceAll( ".*?<text:p.*?>(.*?)</text:p>.*?", "$1");
       if (col2.equals(col2text)) {
         col2 = ""; // no text paragraph. <text:p.*?>
@@ -119,11 +129,10 @@ public class Font2UnicodeMappingFactory {
         col2 = trimmed;
       }
 
-
       //System.out.println(col1 + "  -> "+col2);
+
       f2u.addLetter(col1, col2);
     }
-
   }
 
 

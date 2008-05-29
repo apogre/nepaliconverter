@@ -9,42 +9,54 @@ public class DevAlRomana {
     /* Rigardu
     http://en.wikipedia.org/wiki/Devanagari_transliteration
     */
+/*
+   <char trans="ṃ">ं</char>
+   <char trans="ḥ">ः </char>
+*/
 
+/*
     karaktro(2305, "~",        'ँ' );    // ँ   - n-eca (naza)
     karaktro(2306, "~",        'ं' );    // ं  imoete    m-eca
     karaktro(2307, "~",        'ः' );    // ः    m-eca
+ */
+
+    karaktro(8205, "",        '‍' );    // zero-width separator to avoid combining characters
+
+    karaktro(2305, "",        'ँ' );    // ँ   - n-eca (naza)
+    karaktro(2306, "",        'ं' );    // ं  imoete    m-eca
+    karaktro(2307, "/ḥ",        'ः' );    // ः    m-eca
     karaktro(2308, "",        'ऄ' );    // ऄ
     karaktro(2309, "a",        'अ' );    // अ
-    karaktro(2310, "aa",        'आ' );    // आ
+    karaktro(2310, "ā",        'आ' );    // आ
     karaktro(2311, "i",        'इ' );    // इ
-    karaktro(2312, "ii",        'ई' );    // ई
+    karaktro(2312, "ī",        'ई' );    // ई
     karaktro(2313, "u",        'उ' );    // उ
-    karaktro(2314, "uu",        'ऊ' );    // ऊ
-    karaktro(2315, "rhi",        'ऋ' );    // ऋ
+    karaktro(2314, "ū",        'ऊ' );    // ऊ
+    karaktro(2315, "ṛi",        'ऋ' );    // ऋ
     karaktro(2316, "lri",        'ऌ' );    // ऌ
     karaktro(2317, "en",        'ऍ' );    // ऍ
     karaktro(2318, "en",        'ऎ' );    // ऎ
     karaktro(2319, "e",        'ए' );    // ए
     karaktro(2320, "ai",        'ऐ' );    // ऐ
-    karaktro(2321, "aan",        'ऑ' );    // ऑ
-    karaktro(2322, "aan",        'ऒ' );    // ऒ
+    karaktro(2321, "ān",        'ऑ' );    // ऑ
+    karaktro(2322, "ān",        'ऒ' );    // ऒ
     karaktro(2323, "o",        'ओ' );    // ओ
     karaktro(2324, "au",        'औ' );    // औ
     karaktro(2325, "ka",        'क' );    // क
     karaktro(2326, "kha",        'ख' );    // ख
     karaktro(2327, "ga",        'ग' );    // ग
     karaktro(2328, "gha",        'घ' );    // घ
-    karaktro(2329, "nga",        'ङ' );    // ङ
+    karaktro(2329, "ṅa",        'ङ' );    // ङ
     karaktro(2330, "cha",        'च' );    // च
     karaktro(2331, "chha",        'छ' );    // छ
     karaktro(2332, "ja",        'ज' );    // ज
     karaktro(2333, "jha",        'झ' );    // झ
     karaktro(2334, "ỹa",        'ञ' );    // ञ
-    karaktro(2335, "Ta",        'ट' );    // ट
-    karaktro(2336, "Tha",        'ठ' );    // ठ
-    karaktro(2337, "Da",        'ड' );    // ड
-    karaktro(2338, "Dha",        'ढ' );    // ढ
-    karaktro(2339, "ña",        'ण' );    // ण
+    karaktro(2335, "ṭa",        'ट' );    // ट
+    karaktro(2336, "ṭha",        'ठ' );    // ठ
+    karaktro(2337, "ḍa",        'ड' );    // ड
+    karaktro(2338, "ḍha",        'ढ' );    // ढ
+    karaktro(2339, "ṇa",        'ण' );    // ण
     karaktro(2340, "ta",        'त' );    // त
     karaktro(2341, "tha",        'थ' );    // थ
     karaktro(2342, "da",        'द' );    // द
@@ -62,22 +74,22 @@ public class DevAlRomana {
     karaktro(2354, "la",        'ल' );    // ल
 //    karaktro(2355, "Z",        'ळ' );    // ळ
 //    karaktro(2356, "Z",        'ऴ' );    // ऴ
-    karaktro(2357, "va",        'व' );    // व
-    karaktro(2358, "sha",        'श' );    // श
+    karaktro(2357, "wa",        'व' );    // व
+    karaktro(2358, "śa",        'श' );    // श
     karaktro(2359, "sha",        'ष' );    // ष
     karaktro(2360, "sa",        'स' );    // स
     karaktro(2361, "ha",        'ह' );    // ह
     karaktro(2362, "chha",        'ऺ' );    // ऺ
 //    karaktro(2363, "ri",        'ऻ' );    // ऻ
-    karaktro(2364, "a/",        '़' );    // ़
+    karaktro(2364, "",        '़' );    // ़
     karaktro(2365, ".",        'ऽ' );    // ऽ
-    karaktro(2366, "a",        'ा' );    // ा
+    karaktro(2366, "/ā",        'ा' );    // ा
     karaktro(2367, "/i",        'ि' );    // ि
-    karaktro(2368, "/ii",        'ी' );    // ी
+    karaktro(2368, "/ī",        'ी' );    // ी
     karaktro(2369, "/u",        'ु' );    // ु
-    karaktro(2370, "/uu",        'ू' );    // ू
-    karaktro(2371, "/rhi",        'ृ' );    // ृ
-    karaktro(2372, "/rhii",        'ॄ' );    // ॄ
+    karaktro(2370, "/ū",        'ू' );    // ू
+    karaktro(2371, "/ṛi",        'ृ' );    // ृ
+    karaktro(2372, "/rị̄",        'ॄ' );    // ॄ
     karaktro(2373, "~",        'ॅ' );    // ॅ
     karaktro(2374, "~",        'ॆ' );    // ॆ
     karaktro(2375, "/e",        'े' );    // े
@@ -125,15 +137,21 @@ public class DevAlRomana {
 
   }
 
-  HashMap m = new HashMap();
+  static public HashMap m = new HashMap();
 
   private void karaktro(int numero, String romana, char karaktro) {
-    if (romana.length()==0) romana="Z"+numero;
+    if (karaktro != numero) throw new IllegalStateException(""+((int)karaktro +"!="+ numero));
+    //if (romana.length()==0) romana="Z"+numero;
     String k = ""+((char) numero);
     m.put(k, romana);
   }
 
   public String alRomana(String dev) {
+
+    if (dev.equals("चमेना गृह")) {
+      System.err.println("XXX3");
+    }
+
     StringBuffer rom = new StringBuffer(dev.length()*3);
     for (int i=0; i<dev.length(); i++) {
       String d = dev.substring(i,i+1);
@@ -149,17 +167,18 @@ public class DevAlRomana {
 
     r=r.replaceAll("a/","");
 
-    r=r.replaceAll("a~","ã");
+    //r=r.replaceAll("a~","ã");
+    r=r.replaceAll("a~","a");
     r=r.replaceAll("u~","ũ");
     r=r.replaceAll("i~","i");
 
+    /*
 
     // forigu a fine de vortoj (sed ne aa)
     r=r.replaceAll("([^a])a ","$1 ");
 
     // kelkaj vortoj bezonas la lastan a por esti prononceblaj
     // v.d. http://en.wikipedia.org/wiki/Devanagari_transliteration#Pronunciation_of_the_final_.22a.22
-
 
     String[] tenuAVortoj = new String [] {
       "aba", "kaba", "jaba", "taba",
@@ -174,8 +193,9 @@ public class DevAlRomana {
       s = s.substring(0,s.length()-1); // forpr a
       r=r.replaceAll(" "+s+" ", " "+s+"a ");
     }
+*/
 
-
+/*
     String[] tenuAFinajxoj = new String [] {
         "mb",
         "mbh",
@@ -197,12 +217,12 @@ public class DevAlRomana {
 	"rv", "hv", "jv", "tv", "kv",
     };
 
-
     //System.out.println(new TreeSet(Arrays.asList(tenuAFinajxoj)));
 
     for (String s : tenuAFinajxoj) {
       r=r.replaceAll(s+" ", s+"a ");
     }
+ */
 
 
     /*  tenu A cxe: pokhta  praphulla  preta   banda  balla
@@ -238,6 +258,9 @@ public class DevAlRomana {
 
 */
 
+
+
+    r=r.replaceAll("/","");
 
     // forprenu spacojn komence kaj fine denove
     if (r.endsWith(" ")) r=r.substring(0,r.length()-1);

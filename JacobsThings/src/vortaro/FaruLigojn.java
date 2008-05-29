@@ -41,15 +41,23 @@ static String[] tst= {
 
       if (vorto.length()>=4 || vorto.length()>=3 && tuto.trim().length()<5) {
 
-      String revo = AliajVortaroj.revo.get(vorto);
-      //System.out.println(vorto + " (revo) => " + revo);
+        String revo = AliajVortaroj.revoext.get(vorto);
+        if (revo != null) {
+          rezulto.append("<text:a xlink:href=\"" + revo + "\" xlink:type=\"simple\"> r</text:a>");
+          rezulto.append("<text:a xlink:href=\"" + AliajVortaroj.revoint.get(vorto) + "\" xlink:type=\"simple\">i</text:a>");
+        }
 
-      //rezulto.append("<text:a xlink:href=\"http://reta-vortaro.de/revo/art/auxtom.html\" xlink:type=\"simple\">r</text:a>");
-      if (revo != null) rezulto.append("<text:a xlink:href=\""+revo+"\" xlink:type=\"simple\"> r</text:a>");
+        //System.out.println(vorto + " (revo) => " + revo);
 
-      String viki = AliajVortaroj.viki.get(vorto);
-      if (viki != null) rezulto.append("<text:a xlink:href=\""+viki+"\" xlink:type=\"simple\"> v</text:a>");
-      //if (viki != null) System.out.println(viki);
+        //rezulto.append("<text:a xlink:href=\"http://reta-vortaro.de/revo/art/auxtom.html\" xlink:type=\"simple\">r</text:a>");
+
+
+        String viki = AliajVortaroj.vikiext.get(vorto);
+        if (viki != null) {
+          rezulto.append("<text:a xlink:href=\"" + viki + "\" xlink:type=\"simple\"> v</text:a>");
+          rezulto.append("<text:a xlink:href=\"" + AliajVortaroj.vikiint.get(vorto) + "\" xlink:type=\"simple\">i</text:a>");
+          System.out.println(viki);
+        }
       }
 
 
@@ -95,14 +103,18 @@ static String[] tst= {
       if (vorto.length()>=4) {
 
       String viki = AliajVortaroj.npviki.get(vorto);
-      if (viki != null) System.out.println("vorto="+ vorto+ " " + viki);
-      if (viki != null) rezulto.append("<text:a xlink:href=\""+viki+"\" xlink:type=\"simple\"> v</text:a>");
+      if (viki != null) {
+        rezulto.append("<text:a xlink:href=\""+viki+"\" xlink:type=\"simple\"> v</text:a>");
+        System.out.println("vorto=" + vorto + " " + viki);
+      }
       //if (viki != null) System.out.println(viki);
 
       String sab = AliajVortaroj.nepalisabdakos.get(vorto);
-      if (sab != null) System.out.println("vorto="+ vorto+ " " + sab);
+      //if (sab != null) System.out.println("vorto="+ vorto+ " " + sab);
 
-      if (sab != null) rezulto.append("<text:a xlink:href=\""+sab+"\" xlink:type=\"simple\"> s</text:a>");
+      if (sab != null) {
+        rezulto.append("<text:a xlink:href=\"" + sab + "\" xlink:type=\"simple\"> s</text:a>");
+      }
 
       }
 
