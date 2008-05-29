@@ -47,32 +47,37 @@ public class NepaliTransliterationJacob implements Transliterator {
     while (m.find()) {
       rezulto.append(dev.substring(pos, m.start())); // append before match
       String word = m.group(); // the mached Dev word
+      String orgWord = word;
 
       // General rule for word ending:
       // Explicit mention in translit table
 
+      if (word.equals("उष्ण")) {
+        System.out.println("XXX7");
+      }
 
-      /*
+      String log = "";
+
       if (!word.matches(".*["+CON+"]")) {
-        // Not ending on a consonant -> do nothing
+        log = "Not ending on a consonant -> do nothing";
         // This includes ending on a nazalization ["+NAZ+"]*, as it seems you cant put halanta on a consonant with nazalization??!
       } else
       if (!word.matches(".*[\\"+CON+"].*[\\"+CON+"].*")) {
-        // One consonant only -> ending a (do nothing)
+        log = "One consonant only -> ending a (do nothing)";
       } else
       if (word.endsWith(HAL)) {
-        // Already ends on halanta (so do nothing)
+        log="Already ends on halanta (so do nothing)";
       } else
-      if (!word.matches(".*["+CON+"]"+HAL+"["+CON+"]")) {
-        // Last syllable consists of half consonant and whole consonant -> ending a  (do nothing)
+      if (word.matches(".*["+CON+"]"+HAL+"["+CON+"]")) {
+         log="Last syllable consists of half consonant and whole consonant -> ending a  (do nothing)";
       } else {
-        // Three or more consonants -> NO ending a, so append halanta
+        log="Three or more consonants -> NO ending a, so append halanta";
         word = word + HAL;
       }
-*/
-
 
       word = simpleTransliterate(word);
+
+      System.out.println(orgWord+" -> "+word+" - "+log);
 
       rezulto.append(word);
       pos = m.end(); // pos just after this matched Dev word
