@@ -14,7 +14,7 @@ public class Font2UnicodeMapping {
     int elemNr;
 
     public String toString() {
-      return elemNr+":'"+fontLetter + "'->"+unicLetter;
+      return "r"+elemNr+":'"+fontLetter + "'->"+unicLetter;
     }
   }
 
@@ -24,21 +24,23 @@ public class Font2UnicodeMapping {
   int maxfontLetter = 0;
 
   public void addLetter(String fontLetter, String unicLetter) {
+    if (fontLetter.length()==0) return;
     Element e = new Element();
     e.fontLetter = fontLetter;
     e.unicLetter = unicLetter;
 
-    f2u.put(fontLetter,e);
-
     e.elemNr = elem.size();
     elem.add(e);
 
-    System.out.println(e);
+    Element old = f2u.put(fontLetter,e);
+    if (old != null) System.out.println("WARNING: Duplicate keys. Replacing "+old+" with "+e);
+
+    //System.out.println(e);
 
     maxfontLetter = Math.max(maxfontLetter, fontLetter.length());
   }
 
-  public void checkOkAllChars() {
+  public void checkConsistency() {
     for (char c=33; c<255; c++) {
       /*
       if (c == 'l') continue; // ि
@@ -51,11 +53,24 @@ public class Font2UnicodeMapping {
       if (c == 216 ) continue; //
       */
       if (f2u.get(""+c)==null) {
-        System.out.println("Hmm... char missing: \t"+c+"\t"+c+"\tChar "+c+" "+(int)c+" "+Integer.toHexString(c));
+        System.out.println("WARNING: Character missing in table: \t"+c+"\t"+c+"\tChar "+c+" "+(int)c+" "+Integer.toHexString(c));
+      }
+    }
+
+    for (Element e : f2u.values()) {
+      if (e.fontLetter.length()>1) {
+        Element eSingleLetter = f2u.get(e.fontLetter.substring(0,1));
+        if (eSingleLetter.elemNr > e.elemNr) {
+          System.out.println("WARNING: Rule "+e+" will never be used as it is before general rule "+eSingleLetter);
+          e.elemNr = 999;
+          System.out.println("         Changed to "+e+" to repair this");
+        }
       }
     }
   }
 
+
+  String NONSPAC = Devanagari.types[Character.NON_SPACING_MARK];
 
   public String toUnicode(String input) {
     StringBuffer sb = new StringBuffer(input.length());
@@ -93,15 +108,16 @@ public class Font2UnicodeMapping {
 
     // put the ii ि  after the following consonant
     String ii = "ि";
-    String allConsonantsWithPunct = "([" + Devanagari.types[Devanagari.TNAZALIZATIONS] +"]*["+ Devanagari.types[Devanagari.TCONSONANTS]+"])";
+    String allConsonantsWithPunct = "([" + Devanagari.NAZALIZATIONS +"]*["+ Devanagari.CONSONANTS+"])";
     s = s.replaceAll( ii + allConsonantsWithPunct, "$1"+ii );
 
     // put all nazalizations after the vocal flags
-    s = s.replaceAll( "([" + Devanagari.types[Devanagari.TNAZALIZATIONS] +"]+)(["+ Devanagari.types[Devanagari.TVOCALFLAGS]+"]+)", "$2$1" );
+    s = s.replaceAll( "([" + Devanagari.NAZALIZATIONS +"]+)(["+ Devanagari.VOCALFLAGS+"]+)", "$2$1" );
 
-    // remove all duplicate flags
-    String nonspac = Devanagari.types[Character.NON_SPACING_MARK];
-    for (int j=0; j<nonspac.length(); j++) s = s.replaceAll(nonspac.charAt(j)+"+",nonspac.substring(j,j+1));
+
+
+    // remove all duplicate flags and other non-spacing signs
+    for (int j=0; j<NONSPAC.length(); j++) s = s.replaceAll(NONSPAC.charAt(j)+"+",NONSPAC.substring(j,j+1));
 
     // replace aa + e flags with o
     // This could also be done in the mapping file.

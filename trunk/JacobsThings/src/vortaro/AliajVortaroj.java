@@ -7,14 +7,14 @@ import java.net.*;
 
 public class AliajVortaroj {
 
-  static boolean liguAlLokajKopioj = false;
-
-  static HashMap<String,String> revo  = new HashMap<String,String>(40000);
-  static HashMap<String,String> viki  = new HashMap<String,String>(40000);
+  static HashMap<String,String> revoext  = new HashMap<String,String>(40000);
+  static HashMap<String,String> vikiext  = new HashMap<String,String>(40000);
+  static HashMap<String,String> revoint  = new HashMap<String,String>(40000);
+  static HashMap<String,String> vikiint  = new HashMap<String,String>(40000);
   static HashMap<String,String> npviki  = new HashMap<String,String>(40000);
   static HashMap<String,String> nepalisabdakos  = new HashMap<String,String>(40000);
 
-  static File aliaj_vortaroj = new File("../aliaj_vortaroj/");
+  static File aliaj_vortaroj = new File("/home/j/esperanto/nepala vortaro/aliaj_vortaroj/");
 
   static {
     try {
@@ -44,7 +44,8 @@ public class AliajVortaroj {
         if (i2==-1) continue;
         String vorto = linio.substring(i1+4,i2).trim();
         //String adreso = "http://nepalisabdakos.com/index.php?srch_word="+vorto+"&dictionary=VF";
-        String adreso = "http://nepalisabdakos.com/index.php?srch_word="+vorto+"&amp;dictionary=VF";
+        //String adreso = "http://nepalisabdakos.com/index.php?srch_word="+vorto+"&amp;dictionary=VF";
+        String adreso = "http://nepalisabdakos.com/index.php?srch_word="+vorto+"&amp;dictionary=HW";
 
         nepalisabdakos.put(vorto, adreso);
         //System.out.println(vorto+" -> "+adreso);
@@ -125,7 +126,7 @@ public class AliajVortaroj {
 
 
     // wget -O revo-vortoj.txt "http://www.reta-vortaro.de/cgi-bin/sercxu.pl?sercxata=%%&kadroj=0&formato=txt"
-    br = new BufferedReader(new InputStreamReader(new GZIPInputStream(new FileInputStream(aliaj_vortaroj+"revo-vortoj.txt.gz"))));
+    br = new BufferedReader(new InputStreamReader(new GZIPInputStream(new FileInputStream(aliaj_vortaroj+"/revo-vortoj.txt.gz"))));
     //br = new BufferedReader(new InputStreamReader(new FileInputStream("../revo_kaj_vikipedio/revo-vortoj.txt")));
     //br = new BufferedReader( new InputStreamReader(Runtime.getRuntime().exec("zcat ../revo_kaj_vikipedio/revo-vortoj.txt.gz").getInputStream()));
     while ( (linio=br.readLine()) != null) {
@@ -133,23 +134,23 @@ public class AliajVortaroj {
 
 
       String adreso = "http://reta-vortaro.de"+linio.split(" ")[1];
+      revoext.put(vorto, adreso);
+
       // LOKA VERSIO
-      if (liguAlLokajKopioj) {
-	adreso = "file://"+aliaj_vortaroj + linio.split(" ")[1];
-      }
+      adreso = "file://"+aliaj_vortaroj + linio.split(" ")[1];
+      revoint.put(vorto, adreso);
 
       //System.out.println(linio + " //////" + vorto+ " xXXX " + adreso);
 
 
 
-      revo.put(vorto, adreso);
       //System.out.println(vorto+" -> "+adreso);
       //if (revo.size()>100) break;
     }
     br.close();
     System.out.println("revo-vortoj.txt.gz legita");
 
-    br = new BufferedReader(new InputStreamReader(new GZIPInputStream(new FileInputStream(aliaj_vortaroj+"eowiki-latest-all-titles-in-ns0.gz"))));
+    br = new BufferedReader(new InputStreamReader(new GZIPInputStream(new FileInputStream(aliaj_vortaroj+"/eowiki-latest-all-titles-in-ns0.gz"))));
     while ( (linio=br.readLine()) != null) {
       if (linio.contains("_")) continue;
       if (linio.contains("(")) continue;
@@ -159,15 +160,10 @@ public class AliajVortaroj {
       //linio = URLEncoder.encode(linio, "UTF-8");
       //if (linio.contains("%")) continue;
       String adreso = "http://eo.wikipedia.org/wiki/"+linio;
+      vikiext.put(vorto.toLowerCase(), adreso);
+      adreso = "http://localhost:8000/article/"+linio;
+      vikiint.put(vorto.toLowerCase(), adreso);
 
-
-      if (liguAlLokajKopioj && linio.length()>2) {
-	//adreso = "file://"+revo_kaj_vikipedio+"/vikipedio/eo/"+linio.charAt(0)+'/'+linio.charAt(1)+'/'+linio.charAt(2)+'/'+linio+".html";
-	adreso = "http://localhost:8000/article/"+linio;
-      }
-
-
-      viki.put(vorto.toLowerCase(), adreso);
       //System.out.println(vorto+" -> "+adreso);
       //if (viki.size()>44000) break;
     }
