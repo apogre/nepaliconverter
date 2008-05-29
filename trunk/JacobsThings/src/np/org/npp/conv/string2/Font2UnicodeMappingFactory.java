@@ -20,7 +20,7 @@ public class Font2UnicodeMappingFactory {
     f2u.checkConsistency();
 
     test(f2u, // namaste saathi, tapaai dherai din pachhi aaunubhayo kina?
-         "gd:t] ;fyL, tkfO{ w]/} lbg kl5 cfpg' eof] lsg<  ",
+         "gd:t] ;fyL, tkfO{ w]/} lbg kl5 cfpg' eof] lsg<",
          "नमस्ते साथी, तपाई धेरै दिन पछि आउनु भयो किन?");
 
 
@@ -55,7 +55,7 @@ public class Font2UnicodeMappingFactory {
   public Font2UnicodeMapping getMapping(String name) throws Exception {
     Font2UnicodeMapping f2u = new Font2UnicodeMapping(name);
 
-    Document content = readOdtContent(name+"_unicode.odt");
+    Document content = readOdtContent(name+"_unicode.ods");
 
     readOdtTable(content, f2u);
 
@@ -90,16 +90,19 @@ public class Font2UnicodeMappingFactory {
     new XMLSerializer(sw, format).serialize(content);
 
 
-    String tuto = sw.toString().replace('\n',' '); // Pattern.DOTALL doesent always work, so replace \n!
+    String tuto = sw.toString();
 
-    System.out.println(tuto.substring(18000,18500));
+    //System.out.println(tuto.substring(40000,50000));
+
+    tuto = tuto.replace('\n',' '); // Pattern.DOTALL doesent always work, so replace \n!
+
 
     // find table
-    Matcher m = Pattern.compile("<table:table-row>" // row start
+    Matcher m = Pattern.compile("<table:table-row.*?>" // row start
                                 //+".*?<table:table-cell.*?>.*?<text:p.*?>(.*?)</text:p>.*?</table:table-cell>" // first cell
                                 //+".*?<table:table-cell.*?>.*?<text:p.*?>(.*?)</text:p>.*?</table:table-cell>" // 2nd cell
-                                +".*?<table:table-cell.*?>(.*?)</table:table-cell>" // first cell
-                                +".*?<table:table-cell.*?>(.*?)</table:table-cell>" // 2nd cell
+                                +".*?((<table:table-cell/>)|<table:table-cell.*?>(.*?)</table:table-cell>)" // first cell
+                                +".*?((<table:table-cell/>)|<table:table-cell.*?>(.*?)</table:table-cell>)" // first cell
                                 +".*?" // rest of rows are ignored
                                 +"</table:table-row>" // row end
   //      , Pattern.UNIX_LINES & Pattern.DOTALL & Pattern.MULTILINE ).matcher(tuto);
@@ -107,16 +110,19 @@ public class Font2UnicodeMappingFactory {
 
 
     while (m.find()) {
-      //System.out.println("XXX");
+
+      String col1 = m.group(3);
+      String col2 = m.group(6);
+      //System.out.println(m.groupCount() + " "+ col1 + "  -> "+col2);
+      if (col1 == null) continue;
+      if (col2 == null) col2="";
 
       // col1 is Preeti. Any superflous spaces should be removed
-      String col1 = m.group(1);
       String col1text = col1.replaceAll( ".*?<text:p.*?>(.*?)</text:p>.*?", "$1");
       col1 = foriguLigojnKajSpacojn(col1text);
       col1 = col1.trim();
 
       // col2 is Unicode. One space is OK, all other superflous spaces should be removed
-      String col2 = m.group(2);
 
 
       String col2text = col2.replaceAll( ".*?<text:p.*?>(.*?)</text:p>.*?", "$1");
@@ -129,10 +135,12 @@ public class Font2UnicodeMappingFactory {
         col2 = trimmed;
       }
 
-      //System.out.println(col1 + "  -> "+col2);
+      System.out.println(col1 + "  -> "+col2);
 
       f2u.addLetter(col1, col2);
     }
+
+   // System.exit(0);
   }
 
 
