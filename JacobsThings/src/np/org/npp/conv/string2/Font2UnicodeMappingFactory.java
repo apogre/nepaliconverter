@@ -135,7 +135,7 @@ public class Font2UnicodeMappingFactory {
         col2 = trimmed;
       }
 
-      System.out.println(col1 + "  -> "+col2);
+      //System.out.println(col1 + "  -> "+col2);
 
       f2u.addLetter(col1, col2);
     }
