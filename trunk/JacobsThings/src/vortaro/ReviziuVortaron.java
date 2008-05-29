@@ -21,8 +21,8 @@ public class ReviziuVortaron {
     ReviziuVortaron r;
 
     r = new ReviziuVortaron();
-    r.nurMppRomDiff = true;
-    r.faruLigojn = false;
+    //r.nurMppRomDiff = true;
+    //r.faruLigojn = false;
     r.reviziu();
 
     /*
@@ -47,7 +47,7 @@ public class ReviziuVortaron {
   boolean ordiguLauxRom = false;
   boolean faruEoNeDirekto = false;
   boolean nurProblemaj = false;
-  boolean nurMppRomDiff = true;
+  boolean nurMppRomDiff = false;
 
   public void reviziu() throws Exception {
 
@@ -166,7 +166,7 @@ public class ReviziuVortaron {
       esp = foriguLigojnKajSpacojn(esp);
 
       if (esp.startsWith("krur")) {
-        System.err.println("XXX5 "+esp);
+        //System.err.println("XXX5 "+esp);
       }
 
       //System.out.println(rom + " / " + dev + " / " + esp + "   / "+m.start(2)+" " +m.end(2));

@@ -172,8 +172,6 @@ public class DevAlRomana {
     r=r.replaceAll("u~","ũ");
     r=r.replaceAll("i~","i");
 
-    /*
-
     // forigu a fine de vortoj (sed ne aa)
     r=r.replaceAll("([^a])a ","$1 ");
 
@@ -193,9 +191,7 @@ public class DevAlRomana {
       s = s.substring(0,s.length()-1); // forpr a
       r=r.replaceAll(" "+s+" ", " "+s+"a ");
     }
-*/
 
-/*
     String[] tenuAFinajxoj = new String [] {
         "mb",
         "mbh",
@@ -208,7 +204,7 @@ public class DevAlRomana {
         "ll",
         "rm", "sm",
         "rn", "hn", "jn", "tn", "mn", "nn", "gn", "hñ",
-        "shp",
+        "shp", "śp",
         "tt", "nt", "pt", "st", "kht",
         "shT", "shTh",
 	"tr", "jr", "jr", "hr", "dr",
@@ -222,7 +218,6 @@ public class DevAlRomana {
     for (String s : tenuAFinajxoj) {
       r=r.replaceAll(s+" ", s+"a ");
     }
- */
 
 
     /*  tenu A cxe: pokhta  praphulla  preta   banda  balla
