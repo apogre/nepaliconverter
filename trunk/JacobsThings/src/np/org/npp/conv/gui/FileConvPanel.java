@@ -27,7 +27,8 @@ public class FileConvPanel extends JPanel {
 
 
   JFileChooser jFileChooserSelectInput;
-  Preferences prefs = Preferences.userNodeForPackage(this.getClass());
+
+  Preferences prefs = Preferences.userRoot().node("myProgram");
 
 
 
