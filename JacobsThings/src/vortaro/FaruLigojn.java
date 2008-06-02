@@ -56,7 +56,7 @@ static String[] tst= {
         if (viki != null) {
           rezulto.append("<text:a xlink:href=\"" + viki + "\" xlink:type=\"simple\"> v</text:a>");
           rezulto.append("<text:a xlink:href=\"" + AliajVortaroj.vikiint.get(vorto) + "\" xlink:type=\"simple\">i</text:a>");
-          System.out.println(viki);
+          //System.out.println(viki);
         }
       }
 
@@ -105,7 +105,7 @@ static String[] tst= {
       String viki = AliajVortaroj.npviki.get(vorto);
       if (viki != null) {
         rezulto.append("<text:a xlink:href=\""+viki+"\" xlink:type=\"simple\"> v</text:a>");
-        System.out.println("vorto=" + vorto + " " + viki);
+        //System.out.println("vorto=" + vorto + " " + viki);
       }
       //if (viki != null) System.out.println(viki);
 
