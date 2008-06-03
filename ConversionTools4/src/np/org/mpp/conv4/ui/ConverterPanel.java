@@ -11,6 +11,11 @@ import java.util.List;
 import java.io.*;
 import java.awt.datatransfer.*;
 import java.awt.event.*;
+import java.nio.*;
+import java.net.URL;
+import java.net.MalformedURLException;
+import java.util.Iterator;
+import java.util.Vector;
 
 public class ConverterPanel extends JPanel {
   BorderLayout borderLayout1 = new BorderLayout();
@@ -69,6 +74,7 @@ public class ConverterPanel extends JPanel {
     jButton2.setActionCommand("jButtonSelectFile");
     jButton2.setText("Select file...");
     jCheckBoxAutoconvert.setText("Automatically convert all clipboard text");
+    jCheckBoxAutoconvert.addActionListener(new ConverterPanel_jCheckBoxAutoconvert_actionAdapter(this));
     statusText.setEditable(false);
     statusText.setText("Status text comes here");
     jButtonBack.setIcon(imageBack);
@@ -100,34 +106,28 @@ public class ConverterPanel extends JPanel {
   }
 
 
-  private TransferHandler transferhandler = new TransferHandler() {
-    public boolean canImport(TransferHandler.TransferSupport support) {
-      /*
-                   //System.err.println("canImport("+support);
-                   if (!support.isDataFlavorSupported(DataFlavor.javaFileListFlavor)) {
-          return false;
-                   }
-       */
 
-      //support.setDropAction(COPY);
+  private TransferHandler transferhandler = new TransferHandler() {
+      public boolean canImport(JComponent arg0, DataFlavor[] arg1) {
+
+//    public boolean canImport(TransferHandler.TransferSupport support) {
 
       return true;
     }
 
-    public boolean importData(TransferHandler.TransferSupport support) {
-      System.err.println("import(" + support);
-      if (!canImport(support)) {
-        return false;
-      }
+
+    public boolean importData(JComponent comp, Transferable t) {
+    //public boolean importData(TransferHandler.TransferSupport support) {
+    //Transferable t = support.getTransferable();
+
 
       StringBuffer status = new StringBuffer();
 
       //support.getDataFlavors()
-      Transferable t = support.getTransferable();
 
-      DataFlavor[] flx = t.getTransferDataFlavors();
-      DataFlavor[] fl = support.getDataFlavors();
-      System.err.println("t.getTransferDataFlavors()=" + flx.length);
+      DataFlavor[] fl = t.getTransferDataFlavors();
+      //DataFlavor[] flx = support.getDataFlavors();
+      //System.err.println("t.getTransferDataFlavors()=" + flx.length);
       System.err.println("support.getDataFlavors()=" + fl.length);
 
       for (int i = 0; i < fl.length; i++) {
@@ -140,23 +140,41 @@ public class ConverterPanel extends JPanel {
           System.err.println("  " + t.getTransferData(fl[i]));
         } catch (Exception e) {
           e.printStackTrace();
-          return false;
         }
-      }
 
-      for (int i = 0; i < fl.length; i++) {
-        DataFlavor f = fl[i];
         if (f.getHumanPresentableName().equals("text/uri-list")) {
           try {
             List l = (List) t.getTransferData(DataFlavor.javaFileListFlavor);
             status.append("ITS A FILE LIST: " + l);
-            break;
           } catch (Exception ex) {
             ex.printStackTrace();
           }
         }
 
-        if (f.getHumanPresentableName().equals("text/html") && f.getRepresentationClass() == String.class) {
+        if (f.getRepresentationClass() == InputStream.class) {
+          try {
+            InputStream l = (InputStream) t.getTransferData(f);
+            new File("clipboardData").mkdirs();
+            FileOutputStream fos = new FileOutputStream("clipboardData/clipboard"+i+"_"+f.getHumanPresentableName().replaceAll("/",""));
+            int j;
+            while ((j = l.read()) != -1) {
+                fos.write(j);
+              System.err.print((char) j);
+            }
+            System.err.println();
+            fos.close();
+          } catch (Exception ex) {
+            ex.printStackTrace();
+          }
+        }
+
+      }
+
+      for (int i = 0; i < fl.length; i++) {
+        DataFlavor f = fl[i];
+
+        /*
+                 if (f.getHumanPresentableName().equals("text/html") && f.getRepresentationClass() == String.class) {
           try {
             Object l = t.getTransferData(f);
             status.append("ITS A TEXT: " + l);
@@ -164,7 +182,8 @@ public class ConverterPanel extends JPanel {
           } catch (Exception ex) {
             ex.printStackTrace();
           }
-        }
+                 }
+         */
       }
 
       statusText.setText(status.toString());
@@ -178,7 +197,25 @@ public class ConverterPanel extends JPanel {
     System.out.println("Paste");
   }
 
+  public void jCheckBoxAutoconvert_actionPerformed(ActionEvent e) {
+    System.err.println(Toolkit.getDefaultToolkit().getSystemClipboard());
+    System.err.println(Toolkit.getDefaultToolkit().getSystemSelection());
+    Toolkit.getDefaultToolkit().getSystemClipboard();
+  }
 
+
+}
+
+
+class ConverterPanel_jCheckBoxAutoconvert_actionAdapter implements ActionListener {
+  private ConverterPanel adaptee;
+  ConverterPanel_jCheckBoxAutoconvert_actionAdapter(ConverterPanel adaptee) {
+    this.adaptee = adaptee;
+  }
+
+  public void actionPerformed(ActionEvent e) {
+    adaptee.jCheckBoxAutoconvert_actionPerformed(e);
+  }
 }
 
 
