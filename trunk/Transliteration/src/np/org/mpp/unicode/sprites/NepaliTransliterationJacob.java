@@ -6,29 +6,49 @@ import java.util.regex.*;
 import np.org.mpp.tools.conversion.xml.*;
 import np.org.npp.conv.string2.*;
 import vortaro.*;
+import java.util.Map.Entry;
 
 public class NepaliTransliterationJacob implements Transliterator {
 
-  HashMap<String, String> hashMap;
+  HashMap<String, String> devToRomanMap;
+  HashMap<String, String> specialRulesMap;
+  ArrayList<String> suffices = new ArrayList<String>();
 
-  String ALL = Devanagari.ALL;
-  String CON = Devanagari.CONSONANTS;
-  String VFL = Devanagari.VOCALFLAGS;
-  String NAZ = Devanagari.NAZALIZATIONS;
-  String HAL = Devanagari.HALANTA; // "्"; // Halanta
+  static String ALL = Devanagari.ALL;
+  static String CON = Devanagari.CONSONANTS;
+  static String VFL = Devanagari.VOCALFLAGS;
+  static String NAZ = Devanagari.NAZALIZATIONS;
+  static String HAL = Devanagari.HALANTA; // "्"; // Halanta
 
 	public NepaliTransliterationJacob() {
-    SAXParser parser = new SAXParser("res/NepaliJacob.xml");
-    hashMap = parser.getHashMap();
+    devToRomanMap = new SAXParser("res/NepaliJacobVortaro.xml").getHashMap();
 
     String checkChars = ALL.replaceAll(HAL,"");
     for (int i=0; i<checkChars.length(); i++) {
       String c = ""+checkChars.charAt(i);
-      if (hashMap.get(c)==null) {
+      if (devToRomanMap.get(c)==null) {
         System.err.println("Missing devanagari character in map: "+c);
         System.err.println("	<char trans=\""+DevAlRomana.m.get(c)+"\">"+c+"</char>");
       }
     }
+
+    specialRulesMap = new SAXParser("res/NepaliSpecialRules.xml").getHashMap();
+    System.out.println("specialRulesMap raw = " + specialRulesMap);
+    for (Iterator<Entry<String,String>> ie= specialRulesMap.entrySet().iterator(); ie.hasNext(); ) {
+      Entry<String,String> e = ie.next();
+      if (e.getKey()==null || e.getValue()==null|| e.getKey().trim().length()==0|| e.getValue().trim().length()==0) {
+        ie.remove();
+        continue;
+      }
+
+      if (e.getValue().equals("suffix")) {
+        suffices.add(e.getKey());
+        ie.remove();
+      }
+    }
+
+    System.out.println("specialRulesMap = " + specialRulesMap);
+    System.out.println("suffices = " + suffices);
 	}
 
 
@@ -50,26 +70,53 @@ public class NepaliTransliterationJacob implements Transliterator {
       String orgWord = word;
 
       // General rule for word ending:
-      // Explicit mention in translit table
 
-      if (word.equals("उष्ण")) {
+      if (word.equals("तर")) {
         System.out.println("XXX7");
       }
 
       String log = "";
 
+      boolean dontAppendHalanta = false;
+
+      String specialRule = specialRulesMap.get(word);
+      if (specialRule != null) {
+        log = word + " -> "+specialRule+" mentioned as special exception";
+        word = specialRule;
+        dontAppendHalanta = true;
+        System.out.println(orgWord+" -> "+word+" - "+log);
+      }
+
+      if (!dontAppendHalanta)
+        for (String suf : suffices) {
+          if (word.endsWith(suf)) {
+            log = "Ending with suffix " + suf + " -> do nothing";
+            dontAppendHalanta = true;
+            System.out.println(orgWord+" -> "+word+" - "+log);
+          }
+        }
+
+      if (dontAppendHalanta) {
+        ;
+      } else
       if (!word.matches(".*["+CON+"]")) {
         log = "Not ending on a consonant -> do nothing";
         // This includes ending on a nazalization ["+NAZ+"]*, as it seems you cant put halanta on a consonant with nazalization??!
       } else
-      if (!word.matches(".*[\\"+CON+"].*[\\"+CON+"].*")) {
-        log = "One consonant only -> ending a (do nothing)";
-      } else
       if (word.endsWith(HAL)) {
         log="Already ends on halanta (so do nothing)";
+        throw new IllegalStateException("This rule should never be reached.");
+      } else
+      if (!word.matches(".*["+CON+"].*["+CON+"].*")) {
+        log = "One consonant only -> keep ending a (do nothing)";
+      } else
+      if (!word.matches(".*["+CON+"].*["+CON+"].*["+CON+"].*")) {
+        log = "Two consonant only -> NO ending a, so append halanta";
+        //System.out.println(orgWord+" -> "+word+" - "+log);
+        word = word + HAL;
       } else
       if (word.matches(".*["+CON+"]"+HAL+"["+CON+"]")) {
-         log="Last syllable consists of half consonant and whole consonant -> ending a  (do nothing)";
+         log="Last syllable consists of half consonant and whole consonant -> keep ending a (do nothing)";
       } else {
         log="Three or more consonants -> NO ending a, so append halanta";
         word = word + HAL;
@@ -77,11 +124,44 @@ public class NepaliTransliterationJacob implements Transliterator {
 
       word = simpleTransliterate(word);
 
-      System.out.println(orgWord+" -> "+word+" - "+log);
+      // post-processing: Putting ~ over previous vocal - or making it a n
+
+      if (word.contains("~")) {
+        word = word.replaceAll("a~", "ã");
+        word = word.replaceAll("u~","ũ");
+        word = word.replaceAll("i~","ĩ");
+        word = word.replaceAll("o~","õ");
+
+        //word = word.replaceAll("e~","e"); // ~ over e doesent exists ?
+        //word = word.replaceAll("~","");
+      }
+
+      //System.out.println(orgWord+" -> "+word+" - "+log);
 
       rezulto.append(word);
       pos = m.end(); // pos just after this matched Dev word
     }
+
+/* PROBLEMOJ
+
+maastir	मास्तिर (ना.यो)	supren    DEVAS ESTI maastira   CXAR finagjo tira
+
+mushkilale	मुस्किलले (क्रिवि)	apenaŭ ri  DEVAS ESTI mushkille	 CXAR finajxo le
+
+musalamaan	मुसलमान s (ना)	muslimano vi   DEVAS ESTI musalamaan   CXAR ??? (estas kunigo de musal KAJ maan??)
+
+
+
+
+     tab	तब (क्रिवि)	tiam ri   DEVAS ESTI taba
+
+ daiv	दैव (ना)	dio ri vi
+
+
+
+
+ matalab	मतलब s (ना)	signifo ri vi     matlab	 ???
+ */
 
 
 
@@ -104,7 +184,8 @@ public class NepaliTransliterationJacob implements Transliterator {
       if (d.equals(HAL) || VFL.contains(d)) { // vocal flag or halanta - make previous consonant half (delete last a)
         int l = rezulto.length();
 
-        if (l==0 || rezulto.charAt(l-1) != 'a') { // ā
+        //if (l==0 || !CON.contains(dev.substring(i-1,i))) { // ā
+        if (l==0 || ("ae".indexOf(rezulto.charAt(l-1))==-1)) { // ā
           // NOT good... we have a dangling halanta or vocal flag!
           System.err.println("Warn: Halanta or vocal flag ignored on character "+i+" in word "+dev);
         } else
@@ -112,7 +193,7 @@ public class NepaliTransliterationJacob implements Transliterator {
       }
 
       if (!d.equals(HAL)) {
-        String k = (String) hashMap.get(d);
+        String k = (String) devToRomanMap.get(d);
         if (k != null)
           rezulto.append(k); // found in transliteration table
         else if (NAZ.contains(d))
@@ -123,5 +204,12 @@ public class NepaliTransliterationJacob implements Transliterator {
     }
 
     return rezulto.toString();
+  }
+
+
+  public static void main(String[] args) {
+    new NepaliTransliterationJacob().transliterate("अतः");
+    new NepaliTransliterationJacob().transliterate("बाह्रा");
+
   }
 }

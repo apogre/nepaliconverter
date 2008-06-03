@@ -60,7 +60,10 @@ public class SAXParser extends DefaultHandler {
 	}
 
 	public void endElement(String uri, String localName, String qName) {
-			hashMap.put(key, value);
+			String oldVal = hashMap.put(key, value);
+      if (oldVal != null && oldVal.length()>0 && !oldVal.equals(value)) {
+        System.err.println("Warning: "+xmlFile+": old value "+oldVal+" replaces with "+value+" for key "+key);
+      }
 	}
 
 	public HashMap<String, String> getHashMap(){
