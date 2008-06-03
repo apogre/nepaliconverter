@@ -149,15 +149,15 @@ public class Devanagari {
     // to karaktro(2399, "ya",        'य़' );    // य़ि
 
     types[TCONSONANTS] = "";
-    for (char c='क'; c<'ह'; c++)
+    for (char c='क'; c<='ह'; c++)
       types[TCONSONANTS] += c;
-    for (char c='क़'; c<'य़'; c++)
+    for (char c='क़'; c<='य़'; c++)
       types[TCONSONANTS] += c;
 
 
-    types[TVOCALFLAGS] = "ः ि  ी ु ू ृ ॄ े ै ः ा ि ी ॉ ॊ ो ौ " .replaceAll(" ",""); // i ii u uu e ai
+    types[TVOCALFLAGS] = "ि  ी ु ू ृ ॄ े ै ा ि ी ॉ ॊ ो ौ " .replaceAll(" ",""); // i ii u uu e ai
 
-    types[TNAZALIZATIONS] = types[Character.NON_SPACING_MARK].replaceAll("[्"+types[TVOCALFLAGS]+"]",""); // remove VOCALFLAGS
+    types[TNAZALIZATIONS] = "ः" + types[Character.NON_SPACING_MARK].replaceAll("[्"+types[TVOCALFLAGS]+"]",""); // remove VOCALFLAGS
 
 
     System.out.println("types[COMBINING_SPACING_MARK]="+types[Character.COMBINING_SPACING_MARK]);

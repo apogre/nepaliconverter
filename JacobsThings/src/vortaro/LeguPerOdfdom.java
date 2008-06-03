@@ -21,41 +21,61 @@ public class LeguPerOdfdom {
     // loads the ODF document from the path
     //OdfDocument odfDocument = OdfDocument.load("/home/j/esperanto/nepala vortaro/provo.odt");
     OdfDocument odfDocument = OdfDocument.load("aLotOfStyles-lil.odt");
+    //OdfDocument odfDocument = OdfDocument.load("/home/j/Dokumenter/oop/oopj354.odt");
 
+    // sdsd
+    // get the ODF content as DOM tree representation
+    Document content = odfDocument.getContent();
 
-// get the ODF content as DOM tree representation
-    Document odfContent = odfDocument.getContent();
-
-// XPath initialization ''(JDK5 functionality)''
+    // XPath initialization ''(JDK5 functionality)''
     XPath xpath = XPathFactory.newInstance().newXPath();
     xpath.setNamespaceContext(new OdfNamespace());
 
-// receiving the first paragraph "//text:p[1]" ''(JDK5 functionality)''
-//       OdfParagraphElement para = (OdfParagraphElement) xpath.evaluate("//text:p[1]", odfContent, XPathConstants.NODE);
-//    System.out.println(para.getTextContent());
-//    para.setTextContent("hej versen!");
+    // receiving the first paragraph "//text:p[1]" ''(JDK5 functionality)''
+    //       OdfParagraphElement para = (OdfParagraphElement) xpath.evaluate("//text:p[1]", odfContent, XPathConstants.NODE);
+    //    System.out.println(para.getTextContent());
+    //    para.setTextContent("hej versen!");
 
     NodeList nodes;
-    nodes = (NodeList) xpath.evaluate("//text:h", odfContent,  XPathConstants.NODESET);
-    for (int i = 0, n = nodes.getLength(); i < n; i++) {
-      OdfHeading para = (OdfHeading) nodes.item(i);
-      System.out.println(para.getStyleFamily());
-      System.out.println(para);
-      para.setTextContent("hej H versen!");
+
+
+    NodeList nl = content.getElementsByTagName("*");
+    for (int i=0; i<nl.getLength(); i++) {
+      Node n = nl.item(i);
+      if (!n.getNodeName().startsWith("text:"))
+        continue;
+
+      //System.out.println(""+n+" "+n.getNodeType());
+      {
+        NodeList nl2 = n.getChildNodes();
+
+        for (int j = 0; j < nl2.getLength(); j++) {
+          Node n2 = nl2.item(j);
+          //System.out.println("  nl2 " + n2+ n2.getNodeType());
+          if (n2.getNodeType() == Node.TEXT_NODE) {
+            System.out.println();
+            System.out.println(n2);
+            System.out.println(n2.getParentNode());
+
+
+            if (n2.getParentNode() instanceof OdfStylableElement) {
+              OdfStylableElement parent = (OdfStylableElement )n2.getParentNode();
+              String styleName = parent.getStyleName();
+              OdfStyle style = getStyle(odfDocument, styleName);
+            }
+
+            System.out.println(n2.getParentNode().getClass());
+          }
+        }
+      }
     }
 
-
-    System.out.println(""
-                       +odfDocument.getDocumentStyles()+"\n\n"
-                       +odfDocument.getDefaultStyles()+"\n\n"
-                       +odfDocument.getAutomaticStylesInternal()+"\n\n"
-                       +odfDocument.getAutomaticStyles()+"\n\n"
-        );
-
     // http://java.sun.com/j2se/1.5.0/docs/api/javax/xml/xpath/package-summary.html
-    nodes = (NodeList) xpath.evaluate("//text:span", odfContent,  XPathConstants.NODESET);
+    nodes = (NodeList) xpath.evaluate("//text:span", content,  XPathConstants.NODESET);
     for (int i = 0, n = nodes.getLength(); i < n; i++) {
       OdfSpan para = (OdfSpan) nodes.item(i);
+
+      if (para.getParentNode()==null) throw new IllegalStateException("No parent node!");
 
       String styleName = para.getStyleName();
 
@@ -72,7 +92,7 @@ public class LeguPerOdfdom {
 
 
       if (sty == null) {
-        System.out.println( "\nFEJL, INGEN STY!\n" + styleName+ " " +sty + " "
+        System.out.println( "\n\nFEJL, INGEN STY!\n" + styleName+ " " +sty + " "
                             + "\n" + para.toString()
                             + "\n" + para
                             + "\nparent=" + para.getParentNode()
@@ -81,10 +101,11 @@ public class LeguPerOdfdom {
 
       }
 
-      String font = sty.getProperty(OdfStylePropertiesSet.TextProperties, OdfNamespace.STYLE.toString(), OdfParagraphStyle.FontName.toString());
+      String font = getFont(sty);
+
 
       //OdfStyleFamily fam = para.getStyleFamily();
-      System.out.println( "\n" + styleName+ " " +sty + " "+ sty.getParentStyle()
+      System.out.println( "\n\n" + styleName+ " " +sty + " "+ sty.getParentStyle()
                           + "\n" + para.toString()
                           + "\n" + para
                           + "\nfont=" + font
@@ -92,8 +113,13 @@ public class LeguPerOdfdom {
 //                          + "\n" + para.getDocumentStyle()
           );
 
+      while (font == null && sty != null) {
+        sty = sty.getParentStyle();
+        font = getFont(sty);
+      }
+
       OdfStylableElement parent = para;
-      while (font==null) {
+      while (font==null && parent.getParentNode() instanceof OdfStylableElement) {
         parent = (OdfStylableElement) parent.getParentNode();
         if (parent==null) {
           System.out.println( "AARGH INGEN PARENT!");
@@ -150,6 +176,11 @@ public class LeguPerOdfdom {
     */
   }
 
+  private static String getFont(OdfStyle sty) {
+    String font = sty.getProperty(OdfStylePropertiesSet.TextProperties, OdfNamespace.STYLE.toString(), OdfParagraphStyle.FontName.toString());
+    return font;
+  }
+
 //  static styleColl
 
   private static OdfStyle getStyle(OdfDocument odfDocument, String styleName) {
@@ -166,3 +197,21 @@ public class LeguPerOdfdom {
     return sty;
   }
 }
+
+/*
+nodes = (NodeList) xpath.evaluate("//text:h", odfContent,  XPathConstants.NODESET);
+for (int i = 0, n = nodes.getLength(); i < n; i++) {
+  OdfHeading para = (OdfHeading) nodes.item(i);
+  System.out.println(para.getStyleFamily());
+  System.out.println(para);
+  para.setTextContent("hej H versen!");
+}
+
+
+System.out.println(""
+                   +odfDocument.getDocumentStyles()+"\n\n"
+                   +odfDocument.getDefaultStyles()+"\n\n"
+                   +odfDocument.getAutomaticStylesInternal()+"\n\n"
+                   +odfDocument.getAutomaticStyles()+"\n\n"
+  );
+ */
