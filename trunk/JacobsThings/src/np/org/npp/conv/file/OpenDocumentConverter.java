@@ -18,7 +18,7 @@ public class OpenDocumentConverter {
 
 
   public static void main(String[] args) throws Exception {
-    String fn = "BLT2";
+    String fn = "aLotOfStyles-lil";
     //String fn = "BLT2lil";
     //String fn = "/home/j/esperanto/nepala vortaro/lille-kant";
     ZipFile zif = new ZipFile(fn+".odt");

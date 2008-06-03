@@ -13,7 +13,7 @@ import np.org.mpp.unicode.sprites.*;
 
 public class ReviziuVortaron {
 
-  String dosiero = "versio62";
+  String dosiero = "versio63";
   public static boolean faruAnkauxInternajnLigojn = true;
 
   public static void main(String[] args) throws Exception {
@@ -204,7 +204,7 @@ public class ReviziuVortaron {
         }
         rezulto.append(tuto.substring(pos, m.start(2)));
         if (enmetuRomanizigon) {
-          if (!nurMppRomDiff) rezulto.append(rom + "<text:tab/>" + dev + "<text:tab/>" + esp);
+          if (!nurMppRomDiff) rezulto.append(mpprom + "<text:tab/>" + dev + "<text:tab/>" + esp);
           else rezulto.append(mpprom + "<text:tab/>" + rom + "<text:tab/>" + dev + "<text:tab/>" + esp);
 
         } else

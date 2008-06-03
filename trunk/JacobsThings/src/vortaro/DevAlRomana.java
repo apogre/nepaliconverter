@@ -189,7 +189,11 @@ public class DevAlRomana {
 
     for (String s : tenuAVortoj) {
       s = s.substring(0,s.length()-1); // forpr a
+      String r0 = r;
       r=r.replaceAll(" "+s+" ", " "+s+"a ");
+      if (!r0.equals(r)) {
+        System.err.println(dev + " "+r+" " + r0);
+      }
     }
 
     String[] tenuAFinajxoj = new String [] {
@@ -217,7 +221,7 @@ public class DevAlRomana {
 
     for (String s : tenuAFinajxoj) {
       r=r.replaceAll(s+" ", s+"a ");
-    }
+     }
 
 
     /*  tenu A cxe: pokhta  praphulla  preta   banda  balla
