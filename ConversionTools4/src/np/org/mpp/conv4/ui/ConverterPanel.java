@@ -17,6 +17,71 @@ import java.net.MalformedURLException;
 import java.util.Iterator;
 import java.util.Vector;
 
+
+/*
+
+      System.err.println(Toolkit.getDefaultToolkit().getSystemClipboard());
+      System.err.println(Toolkit.getDefaultToolkit().getSystemSelection());
+
+
+      FlavorListener flClip = new FlavorListener() {
+          public void flavorsChanged(FlavorEvent e) {
+              System.out.println("flClip "+e);
+          }
+      };
+
+      FlavorListener flSel = new FlavorListener() {
+          public void flavorsChanged(FlavorEvent ev) {
+              Clipboard source = (Clipboard) ev.getSource();
+              System.out.println("flSel "+source);
+              Transferable t = Toolkit.getDefaultToolkit().getSystemClipboard().getContents(null);
+
+              try {
+                   if (t != null && t.isDataFlavorSupported(DataFlavor.stringFlavor)) {
+                       String text = (String)t.getTransferData(DataFlavor.stringFlavor);
+                       System.out.println(text);
+                   }
+               } catch (UnsupportedFlavorException e) {
+               } catch (IOException e) {
+               }
+          }
+      };
+
+      Toolkit.getDefaultToolkit().getSystemSelection().addFlavorListener(flSel);
+      Toolkit.getDefaultToolkit().getSystemClipboard().addFlavorListener(flClip);
+
+      //Toolkit.getDefaultToolkit().getSystemClipboard().getContents(null).
+
+      // This class serves as the clipboard owner.
+      class MyClipboardOwner implements ClipboardOwner {
+          // This method is called when this object is no longer
+          // the owner of the item on the system clipboard.
+          public void lostOwnership(Clipboard clipboard, Transferable contents) {
+              // To retrieve the contents, see
+              // e637 Getting and Setting Text on the System Clipboard
+
+              Transferable t = Toolkit.getDefaultToolkit().getSystemClipboard().getContents(null);
+
+              try {
+                   if (t != null && t.isDataFlavorSupported(DataFlavor.stringFlavor)) {
+                       String text = (String)t.getTransferData(DataFlavor.stringFlavor);
+                       System.out.println(text);
+                   }
+               } catch (UnsupportedFlavorException e) {
+               } catch (IOException e) {
+               }
+
+          }
+      }
+
+      ClipboardOwner owner = new MyClipboardOwner();
+
+      // Set a string on the system clipboard and include the owner object
+      StringSelection ss = new StringSelection("A String");
+      Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss, owner);
+
+
+*/
 public class ConverterPanel extends JPanel {
   BorderLayout borderLayout1 = new BorderLayout();
   JLabel jLabelConvTitle = new JLabel();
@@ -50,6 +115,7 @@ public class ConverterPanel extends JPanel {
       imap.put(KeyStroke.getKeyStroke("ctrl V"),
                TransferHandler.getPasteAction().getValue(Action.NAME));
       this.setInputMap(WHEN_IN_FOCUSED_WINDOW, imap);
+
 
     } catch (Exception ex) {
       ex.printStackTrace();
@@ -142,14 +208,16 @@ public class ConverterPanel extends JPanel {
           e.printStackTrace();
         }
 
+        /*
         if (f.getHumanPresentableName().equals("text/uri-list")) {
           try {
             List l = (List) t.getTransferData(DataFlavor.javaFileListFlavor);
             status.append("ITS A FILE LIST: " + l);
           } catch (Exception ex) {
-            ex.printStackTrace();
+            //ex.printStackTrace();
           }
         }
+        */
 
         if (f.getRepresentationClass() == InputStream.class) {
           try {
@@ -197,10 +265,12 @@ public class ConverterPanel extends JPanel {
     System.out.println("Paste");
   }
 
+
+
+
+
   public void jCheckBoxAutoconvert_actionPerformed(ActionEvent e) {
-    System.err.println(Toolkit.getDefaultToolkit().getSystemClipboard());
-    System.err.println(Toolkit.getDefaultToolkit().getSystemSelection());
-    Toolkit.getDefaultToolkit().getSystemClipboard();
+
   }
 
 
