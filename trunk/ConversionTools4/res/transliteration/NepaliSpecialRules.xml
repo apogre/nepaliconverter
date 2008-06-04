@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<transliteration lang = "Nepali">
+	<!-- suffices -->
+	<suffix type="suffix">ले</suffix>
+	<suffix type="suffix">तिर</suffix>
+	<suffix type="suffix">का</suffix>
+	<suffix type="suffix">को</suffix>
+	<suffix type="suffix">तिर</suffix>
+	<suffix type="suffix"></suffix>
+	<suffix type="suffix"></suffix>
+	<suffix type="suffix"></suffix>
+	<suffix type="suffix"></suffix>
+
+
+<!--  <exception trans="musalmaan">मुसलमान</exception> -->
+  <exception trans="मुसल्मान्">मुसलमान</exception>
+  <exception trans="खातिर्">खातिर</exception>
+  <exception trans="फोर">फोर</exception>
+  <exception trans="तर">तर</exception>
+  <exception trans="अठार">अठार</exception>
+  <exception trans="चौध">चौध</exception>
+  <exception trans="एघार">एघार</exception>
+  <exception trans="किन">किन</exception>
+
+  <exception trans="काये">काय</exception>  <!-- e -->
+  <exception trans="जये">जय</exception> <!-- e -->
+
+  <exception trans="तब">तब</exception>
+  <exception trans="तल">तल</exception>
+<!--  <exception trans="तिर">तिर</exception>  sufikso -->
+  <exception trans="तेह्र">तेह्र</exception>
+  <exception trans="दैव">दैव</exception>
+  <exception trans="नर">नर</exception>
+  <exception trans="निहुर">निहुर</exception>
+  <exception trans="पर">पर</exception>
+  <exception trans="पोइल">पोइल</exception>
+  <exception trans="बिहान">बिहान</exception>
+  <exception trans="बैँक">बैँक</exception>
+  <exception trans="बैँस">बैँस</exception>
+  <exception trans="भये">भय</exception>   <!-- e -->
+  <exception trans="माइत">माइत</exception>
+  <exception trans="मृग">मृग</exception>
+  <exception trans="मृत">मृत</exception>
+  <exception trans="शुभ">शुभ</exception>
+  <exception trans="सँग">सँग</exception>
+  <exception trans="सये">सय</exception>  <!-- e -->
+  <exception trans=""></exception>
+  <exception trans=""></exception>
+  <exception trans=""></exception>
+
+ <!--
+atulaniiye	अतुलनीय (वि)	senkompara, preterkompara
+adamya	अदम्य (वि)	nevenkebla
+adrishye	अदृश्य (वि)	nevidebla
+advitiiye	अद्वितीय (वि)	unika, senkompara
+adhiraajye	अधिराज्य (ना)	reĝlando
+anitye	अनित्य (वि)	nedaŭra
+anivaarye	अनिवार्य (वि)	devigita
+anukaraniiye	अनुकरणीय (वि)	imitinda
+antaraashTriye	अन्तराष्ट्रिय (वि)	internacia
+antye	अन्त्य (ना)	fino
+anye	अन्य (वि)	alia
+ -->
+</transliteration>

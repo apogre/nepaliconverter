@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<transliteration lang = "Nepali">
+	<!-- vowels-->
+	<char trans="a">अ</char>
+	<char trans="ā">आ</char>
+	<char trans="i">इ</char>
+	<char trans="ī">ई</char>
+	<char trans="u">उ</char>
+	<char trans="ū">ऊ</char>
+	<char trans="e">ए</char>
+	<char trans="ai">ऐ</char>
+	<char trans="o">ओ</char>
+	<char trans="au">औ</char>
+	<char trans="om">ॐ</char>
+	<!-- vowel flags -->
+	<char trans="ā">ा</char>
+	<char trans="i">ि</char>
+	<char trans="ī">ी</char>
+	<char trans="u">ु</char>
+	<char trans="ū">ू</char>
+	<char trans="e">े</char>
+	<char trans="ai">ै</char>
+	<char trans="o">ो</char>
+	<char trans="au">ौ</char>
+	<!-- the modifiers-->
+<!--
+	<char trans="ṃ">ं</char>
+	<char trans="ḥ">ः</char>
+-->
+	<char trans="">ं</char>
+	<char trans="ḥ">ः</char>
+	<!-- consonants-->
+	<char trans="ka">क</char>
+	<char trans="kha">ख</char>
+	<char trans="ga">ग</char>
+	<char trans="gha">घ</char>
+	<char trans="ṅa">ङ</char>
+	<char trans="cha">च</char>
+	<char trans="chha">छ</char>
+	<char trans="ja">ज</char>
+	<char trans="jha">झ</char>
+	<char trans="ỹa">ञ</char>
+	<char trans="ṭa">ट</char>
+	<char trans="ṭha">ठ</char>
+	<char trans="ḍa">ड</char>
+	<char trans="ḍha">ढ</char>
+	<char trans="ṇa">ण</char>
+	<char trans="pa">प</char>
+	<char trans="pha">फ</char>
+	<char trans="ba">ब</char>
+	<char trans="bha">भ</char>
+	<char trans="ma">म</char>
+	<char trans="ta">त</char>
+	<char trans="tha">थ</char>
+	<char trans="da">द</char>
+	<char trans="dha">ध</char>
+	<char trans="na">न</char>
+	<char trans="ya">य</char>
+	<char trans="ra">र</char>
+	<char trans="la">ल</char>
+	<char trans="wa">व</char>
+	<char trans="śa">श</char>
+	<char trans="sha">ष</char>
+	<char trans="sa">स</char>
+	<char trans="ha">ह</char>
+	<char trans="ksha">क्ष</char>
+	<char trans="tra">त्र</char>
+	<char trans="gya">ज्ञ</char>
+	<!-- half consonants DELETED -->
+	<!-- diverse -->
+	<char trans="ṛi">ृ</char>
+	<char trans="ṛi">ऋ</char>
+
+	<char trans="">‍</char> <!-- zero-width separator to avoid combining characters -->
+
+	<!-- common used DELETED -->
+
+  <!-- missing chars in the Dev part of the Unicode table ADDED -->
+	<char trans="">ँ</char>
+	<char trans="">ऄ</char>
+	<char trans="lri">ऌ</char>
+	<char trans="en">ऍ</char>
+	<char trans="en">ऎ</char>
+	<char trans="ān">ऑ</char>
+	<char trans="ān">ऒ</char>
+	<char trans="ña">ऩ</char>
+	<char trans="ŕa">ऱ</char>
+	<char trans="la">ळ</char>
+	<char trans="la">ऴ</char>
+	<char trans="chha">ऺ</char>
+	<char trans="la">ऻ</char>
+	<char trans="">़</char>
+	<char trans=".">ऽ</char>
+	<char trans="rị̄">ॄ</char>
+	<char trans="~">ॅ</char>
+	<char trans="~">ॆ</char>
+	<char trans="a~">ॉ</char>
+	<char trans="a~">ॊ</char>
+	<char trans="">ॎ</char>
+	<char trans="">ॏ</char>
+	<char trans="">॑</char>
+	<char trans="">॒</char>
+	<char trans="">॓</char>
+	<char trans="">॔</char>
+	<char trans="~">ॕ</char>
+	<char trans="">ॖ</char>
+	<char trans="">ॗ</char>
+	<char trans="ka">क़</char>
+	<char trans="kha">ख़</char>
+	<char trans="ga">ग़</char>
+	<char trans="ja">ज़</char>
+	<char trans="nga">ड़</char>
+	<char trans="Dha">ढ़</char>
+	<char trans="pha">फ़</char>
+	<char trans="ya">य़</char>
+	<char trans="ri">ॠ</char>
+	<char trans="">ॡ</char>
+	<char trans="">ॢ</char>
+	<char trans="">ॣ</char>
+	<char trans=".">।</char>
+	<char trans=":|">॥</char>
+	<char trans="0">०</char>
+	<char trans="1">१</char>
+	<char trans="2">२</char>
+	<char trans="3">३</char>
+	<char trans="4">४</char>
+	<char trans="5">५</char>
+	<char trans="6">६</char>
+	<char trans="7">७</char>
+	<char trans="8">८</char>
+	<char trans="9">९</char>
+	<char trans="~">॰</char>
+</transliteration>
