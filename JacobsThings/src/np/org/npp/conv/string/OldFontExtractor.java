@@ -1,6 +1,6 @@
-package np.org.npp.conv.string2;
+package np.org.npp.conv.string;
 
-import np.org.npp.conv.string.*;
+
 import java.util.*;
 import java.io.*;
 
