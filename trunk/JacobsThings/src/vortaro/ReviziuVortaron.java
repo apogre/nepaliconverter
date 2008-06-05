@@ -10,6 +10,7 @@ import org.apache.xml.serialize.*;
 import org.w3c.dom.*;
 import java.text.*;
 import np.org.mpp.unicode.sprites.*;
+import np.org.mpp.conv4.translit.*;
 
 public class ReviziuVortaron {
 
@@ -126,7 +127,7 @@ public class ReviziuVortaron {
     String tuto = sw.toString();
 
     DevAlRomana devAlRomana = new DevAlRomana();
-    Transliterator mppdevAlRomana = new NepaliTransliterationJacob();
+    NepaliTransliterationJacob mppdevAlRomana = new NepaliTransliterationJacob();
 
     StringBuffer rezulto = new StringBuffer(3*tuto.length()/2);
     int pos = 0;
@@ -181,7 +182,7 @@ public class ReviziuVortaron {
       String devSenPara = dev.replaceAll("\\(.*?\\)", "").trim();
 
       rom = devAlRomana.alRomana(devSenPara).trim();
-      String mpprom =  mppdevAlRomana.transliterate(devSenPara).trim();
+      String mpprom =  mppdevAlRomana.convertText(null, devSenPara).trim();
       //System.out.println(rom + " / " + dev + " / " + esp + "   / "+m.start(2)+" " +m.end(2));
       if (faruLigojn)
         dev = FaruLigojn.faruNepalajnLigojn(dev);
