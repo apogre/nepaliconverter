@@ -20,7 +20,7 @@ public class NepaliTransliterationJacob implements ConversionHandler  {
   static String HAL = Devanagari.HALANTA; // "्"; // Halanta
 
 	public NepaliTransliterationJacob() {
-    devToRomanMap = new SAXParser("res/NepaliJacobVortaro.xml").getHashMap();
+    devToRomanMap = new SAXParser("res/transliteration/NepaliJacobVortaro.xml").getHashMap();
 
     String checkChars = ALL.replaceAll(HAL,"");
     for (int i=0; i<checkChars.length(); i++) {
@@ -32,7 +32,7 @@ public class NepaliTransliterationJacob implements ConversionHandler  {
       }
     }
 
-    specialRulesMap = new SAXParser("res/NepaliSpecialRules.xml").getHashMap();
+    specialRulesMap = new SAXParser("res/transliteration/NepaliSpecialRules.xml").getHashMap();
     System.out.println("specialRulesMap raw = " + specialRulesMap);
     for (Iterator<Entry<String,String>> ie= specialRulesMap.entrySet().iterator(); ie.hasNext(); ) {
       Entry<String,String> e = ie.next();
@@ -114,7 +114,7 @@ public class NepaliTransliterationJacob implements ConversionHandler  {
       } else
       if (!word.matches(".*["+CON+"].*["+CON+"].*["+CON+"].*")) {
         log = "Two consonant only -> NO ending a, so append halanta";
-        System.out.println(orgWord+" -> "+word+" - "+log);
+        //System.out.println(orgWord+" -> "+word+" - "+log);
         word = word + HAL;
       } else
       if (word.matches(".*["+CON+"]"+HAL+"["+CON+"]")) {
