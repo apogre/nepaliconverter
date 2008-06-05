@@ -10,7 +10,7 @@ public class NepaliTransliterationAbishek implements ConversionHandler {
   HashMap<String, String> hashMap;
 
 	public NepaliTransliterationAbishek() {
-    SAXParser parser = new SAXParser("res/NepaliALA-LC.xml");
+    SAXParser parser = new SAXParser("res/transliteration/NepaliALA-LC.xml");
     hashMap = parser.getHashMap();
 	}
 

@@ -10,6 +10,7 @@ import javax.xml.parsers.SAXParserFactory;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
+import java.io.FileNotFoundException;
 
 public class SAXParser extends DefaultHandler {
 	File xmlFile;
@@ -24,8 +25,7 @@ public class SAXParser extends DefaultHandler {
 			xmlFile = new File(xmlFilePath);
 			initParser();
 		} else {
-			System.err.println("File not found!");
-			return;
+			throw new IllegalStateException("File not found: "+xmlFilePath);
 		}
 	}
 
