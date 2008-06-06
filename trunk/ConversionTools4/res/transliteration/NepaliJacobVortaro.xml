@@ -34,7 +34,7 @@
 	<char trans="kha">ख</char>
 	<char trans="ga">ग</char>
 	<char trans="gha">घ</char>
-	<char trans="na">ङ</char>
+	<char trans="nga">ङ</char>
 	<char trans="cha">च</char>
 	<char trans="chha">छ</char>
 	<char trans="ja">ज</char>
@@ -55,7 +55,7 @@
 	<char trans="da">द</char>
 	<char trans="dha">ध</char>
 	<char trans="na">न</char>
-	<char trans="ye">य</char> <!-- ye anstataux ya!!!
+	<char trans="ya">य</char> <!-- ye anstataux ya!!!
 
  Sed kio estas do la diferenco inter    ये kaj य ?
  antyeshTi	अन्त्येष्टि (ना)	kremacio, funebro

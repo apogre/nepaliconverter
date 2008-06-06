@@ -27,7 +27,6 @@
 
   <exception trans="तब">तब</exception>
   <exception trans="तल">तल</exception>
-<!--  <exception trans="तिर">तिर</exception>  sufikso -->
   <exception trans="तेह्र">तेह्र</exception>
   <exception trans="दैव">दैव</exception>
   <exception trans="नर">नर</exception>
@@ -43,10 +42,64 @@
   <exception trans="मृत">मृत</exception>
   <exception trans="शुभ">शुभ</exception>
   <exception trans="सँग">सँग</exception>
-  <exception trans="सये">सय</exception>  <!-- e -->
+  <exception trans="सए">सय</exception>  <!-- 100 prononcigxas kiel 'sae'! -->
+  <exception trans="किन्मेल्">किनमेल</exception>
+  <exception trans="मेल्मिलाप्">मेलमिलाप</exception> <!-- sed dal ekzistas, do ne necesus -->
+  <exception trans="मैन्बत्ती">मैनबत्ती</exception> <!-- sed unua vortoparto  ekzistas, do ne necesus -->
+
+  <exception trans="मोटर्साइकल्">मोटरसाइकल</exception> <!-- sed unua vortoparto   ekzistas, do ne necesus -->
+  <exception trans=""></exception> <!-- sed unua vortoparto ekzistas, do ne necesus -->
+  <exception trans=""></exception> <!-- sed unua vortoparto ekzistas, do ne necesus -->
+  <exception trans=""></exception> <!-- sed unua vortoparto ekzistas, do ne necesus -->
+  <exception trans=""></exception> <!-- sed unua vortoparto ekzistas, do ne necesus -->
+
+
+
+  <exception trans="मोफ्सल्">मोफसल</exception>
+  <exception trans="कम्सल्">कमसल</exception>
+  <exception trans="कम्सेकम्">कमसेकम</exception>
+  <exception trans="रम्झम्">रमझम</exception>
+  <exception trans="रिपोर्ट्">रिपोर्ट</exception>
   <exception trans=""></exception>
-  <exception trans=""></exception>
-  <exception trans=""></exception>
+
+ <!-- ENMETU: ye anstataux ya !!
+yetaa	यता (क्रिवि)	tie ĉi
+yeti	यति (वि)	tiom ri ĉi
+yetinjel	यतिन्जेल s (क्रिवि)	ĝis tiam ri
+yetii	यती (ना)	neĝa simio ri vi
+yetro	यत्रो (वि)	tiom ri ĉi granda ri
+yesto	यस्तो (वि)	tia ĉi
+
+
+ENMETU: REGULO raaj SEN a:
+
+raajkumaar	राजकुमार (ना)	reĝido ri
+raajkumaarii	राजकुमारी (ना)	reĝidino ri
+raajgaddii	राजगद्दी (ना)	trono ri vi
+raajtantra	राजतन्त्र (ना)	monarkio vi
+raajdanDa	राजदण्ड (ना)	sceptro ri vi
+raajdaravaar	राजदरबार (ना)	reĝa ri palaco ri vi
+raajdroh	राजद्रोह (ना)	ribelo ri vi, revolucio ri vi
+raajdhaanii	राजधानी v s (ना)	reĝa ri urbo ri vi, ĉefurbo ri vi
+raajniiti	राजनीति v s (ना)	politiko ri vi
+raajparivaar	राजपरिवार (ना)	reĝa ri familio ri vi
+raajmukuT	राजमुकुट (ना)	reĝa ri krono ri vi
+raajsattaa	राजसत्ता (ना)	majesteco
+
+SED KUN a:
+raajasva	राजस्व s (ना)	ŝtata ri enspezo ri vi
+raajahas	राजहंस (ना)	cigno ri vi
+
+
+
+
+
+
+-->
+
+
+
+
 
  <!--
 atulaniiye	अतुलनीय (वि)	senkompara, preterkompara
