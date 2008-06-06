@@ -59,12 +59,13 @@ public class NepaliTransliterationJacob implements ConversionHandler  {
 
     // Make 'modified' devanagari easier to transliterate
 
-
+    // remove all Zero Width (Non) Joiner's
+    dev = dev.replaceAll("["+Devanagari.ZWJ+Devanagari.ZWNJ+"]", "");
 
     StringBuffer rezulto = new StringBuffer(dev.length()*2);
     int pos = 0;
 
-    // Iterate through each Dev word
+    // Iterate through each dev word
     Matcher m = Pattern.compile("["+ALL+"]+").matcher(dev); // search for Dev words
     while (m.find()) {
       rezulto.append(dev.substring(pos, m.start())); // append before match
@@ -86,7 +87,7 @@ public class NepaliTransliterationJacob implements ConversionHandler  {
         log = word + " -> "+specialRule+" mentioned as special exception";
         word = specialRule;
         dontAppendHalanta = true;
-        System.out.println(orgWord+" -> "+word+" - "+log);
+        //System.out.println(orgWord+" -> "+word+" - "+log);
       }
 
       if (!dontAppendHalanta)
@@ -94,7 +95,7 @@ public class NepaliTransliterationJacob implements ConversionHandler  {
           if (word.endsWith(suf)) {
             log = "Ending with suffix " + suf + " -> do nothing";
             dontAppendHalanta = true;
-            System.out.println(orgWord+" -> "+word+" - "+log);
+            //System.out.println(orgWord+" -> "+word+" - "+log);
           }
         }
 
@@ -169,6 +170,7 @@ musalamaan	मुसलमान s (ना)	muslimano vi   DEVAS ESTI musalamaan
   private String simpleTransliterate(String dev) {
 
     StringBuffer rezulto = new StringBuffer(dev.length()*2);
+    boolean warn = false;
 
     if (dev.contains("मिति")) {
       //System.err.println("XXX2");
@@ -186,6 +188,7 @@ musalamaan	मुसलमान s (ना)	muslimano vi   DEVAS ESTI musalamaan
         if (l==0 || ("ae".indexOf(rezulto.charAt(l-1))==-1)) { // ā
           // NOT good... we have a dangling halanta or vocal flag!
           System.err.println("Warn: Halanta or vocal flag ignored on character "+i+" in word "+dev);
+          warn = true;
         } else
           rezulto.setLength(rezulto.length()-1);
       }
@@ -199,6 +202,11 @@ musalamaan	मुसलमान s (ना)	muslimano vi   DEVAS ESTI musalamaan
         else
           rezulto.append(d); // not found - leave as is
       }
+    }
+
+    if (warn) {
+      System.err.println("      Transliteration became: " + rezulto);
+      //throw new IllegalStateException();
     }
 
     return rezulto.toString();
