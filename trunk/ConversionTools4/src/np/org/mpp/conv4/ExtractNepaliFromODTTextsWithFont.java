@@ -23,7 +23,7 @@ public class ExtractNepaliFromODTTextsWithFont {
     public String convertText(String font, String text) {
       if (text.length()==0) return text;
 
-      System.out.println("convertText("+font+", '"+text+"')");
+      //System.out.println("convertText("+font+", '"+text+"')");
 
       HashSet<String> words = fontwords.get(font);
       if (words == null) {
@@ -74,7 +74,7 @@ public class ExtractNepaliFromODTTextsWithFont {
       try {
         System.out.println("Reading " + file);
         odtrw.convert(file.getPath(), "tmp/delete.odt", conversionHandler);
-        System.out.println("fontwords = " + fontwords.keySet());
+        //System.out.println("fontwords = " + fontwords.keySet());
       } catch (Exception e) {
         e.printStackTrace();
       }
@@ -83,6 +83,19 @@ public class ExtractNepaliFromODTTextsWithFont {
 
 
   private void save() throws FileNotFoundException {
+    for (String font : fontwords.keySet()) {
+      TreeSet<String> words = new TreeSet<String>(fontwords.get(font));
+
+      PrintWriter pw = new PrintWriter("tmp/words_"+font+".txt");
+
+      for (String word : words) {
+        pw.println(word);
+      }
+      pw.close();
+    }
+  }
+
+  private void saveHtml() throws FileNotFoundException {
     for (String font : fontwords.keySet()) {
       TreeSet<String> words = new TreeSet<String>(fontwords.get(font));
 
@@ -96,6 +109,7 @@ public class ExtractNepaliFromODTTextsWithFont {
       pw.close();
     }
   }
+
 
   public static void main(String[] args) throws FileNotFoundException {
     ExtractNepaliFromODTTextsWithFont e = new ExtractNepaliFromODTTextsWithFont();
