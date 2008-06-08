@@ -1,5 +1,6 @@
 package np.org.mpp.conv4.f2u;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -9,6 +10,7 @@ import java.util.zip.ZipFile;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import np.org.mpp.conv4.utils.OdtSpreadsheetReader;
 import org.apache.xml.serialize.OutputFormat;
 import org.apache.xml.serialize.XMLSerializer;
 import org.w3c.dom.Document;
@@ -60,15 +62,32 @@ public class Font2UnicodeMappingFactory {
   public Font2UnicodeMapping getMapping(String name) throws Exception {
     Font2UnicodeMapping f2u = new Font2UnicodeMapping(name);
 
-    Document content = readOdtContent("res/"+name+"_unicode.ods");
-
-    readOdtTable(content, f2u);
+    ArrayList<ArrayList<String>> table = OdtSpreadsheetReader.read("res/"+name+"_unicode.ods");
+    for (ArrayList<String> row : table) {
+        f2u.addLetter(row.get(0), row.get(1));
+    }
 
     return f2u;
   }
 
 
-  private Document readOdtContent(String filename) throws Exception {
+
+  //The old way 'by hand' (without ODFDOM):
+/*
+
+  public Font2UnicodeMapping getMapping(String name) throws Exception {
+    Font2UnicodeMapping f2u = new Font2UnicodeMapping(name);
+
+    Document content = xxxreadOdtContent("res/"+name+"_unicode.ods");
+    xxxreadOdtTable(content, f2u);
+
+
+    return f2u;
+  }
+
+
+
+  private Document xxxreadOdtContent(String filename) throws Exception {
     File file = new File(filename);
     if (!file.exists())
         throw new FileNotFoundException(filename);
@@ -90,7 +109,7 @@ public class Font2UnicodeMappingFactory {
 
 
 
-  private void readOdtTable(Document content, Font2UnicodeMapping f2u) throws Exception {
+  private void xxxreadOdtTable(Document content, Font2UnicodeMapping f2u) throws Exception {
 
     OutputFormat format = new OutputFormat(content);
     format.setIndenting(false); format.setLineSeparator("\n");
@@ -172,5 +191,5 @@ public class Font2UnicodeMappingFactory {
     }
     return esp;
   }
-
+*/
 }
