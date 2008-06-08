@@ -17,7 +17,9 @@ import org.w3c.dom.*;
 
 public class OpenOfficeODFDOMReaderWriter implements GeneralReaderWriter {
 
-  final boolean DEBUG = true;
+//  http://develop.opendocumentfellowship.com/spec/
+
+  static boolean DEBUG = true;
 
   public static List<Node> list(final NodeList nl) throws Exception {
 
@@ -56,6 +58,7 @@ public class OpenOfficeODFDOMReaderWriter implements GeneralReaderWriter {
     // get the ODF content as DOM tree representation
     Document content = odfDocument.getContent();
 
+    System.out.println(""+content);
 
 
     NodeList nl = content.getElementsByTagName("*");
@@ -70,56 +73,28 @@ public class OpenOfficeODFDOMReaderWriter implements GeneralReaderWriter {
         progressMonitor.setProgress(nodeNr);
       }
       Node n = nl.item(nodeNr);
+      if (DEBUG) System.out.println("\n==========" + n + "=============");
       if (!n.getNodeName().startsWith("text:")) continue;
       if (!(n instanceof OdfStylableElement)) continue;
       OdfStylableElement parentNode = (OdfStylableElement) n;
 
 
-      System.out.println("\n==========" + parentNode + "=============");
-
       for (Node node : list(parentNode.getChildNodes())) {
 
         if (node.getNodeType() == Node.TEXT_NODE) {
-          System.out.println();
-          System.out.println(node);
+          if (DEBUG) System.out.println();
+          if (DEBUG) System.out.println(node);
           Node textNode = node;
 
-          //String styleName = parentNode.getStyleName();
-          OdfStyle style = getStyle(odfDocument, parentNode.getStyleName());
-
+          OdfStyle style = findStyleWithFont(odfDocument, parentNode);
           String font = getFont(style);
-
-          do {
-            while (font == null && style != null) {
-
-              // DOESENT WORK! style = style.getParentStyle();
-              style = getStyle(odfDocument, style.getParentName());
-              font = getFont(style);
-            }
-
-            if (font == null) {
-              // Search up to parent node with style and try again
-              Node n3 = parentNode.getParentNode();
-              while (n3 != null && !(n3 instanceof OdfStylableElement)) {
-                n3 = n3.getParentNode();
-                System.out.println(" parent "+ n3);
-              }
-              parentNode = (OdfStylableElement) n3;
-              System.out.println(" parent "+ parentNode);
-              style = getStyle(odfDocument, parentNode.getStyleName());
-              font = getFont(style);
-            }
-          } while (font == null && parentNode!=null);
-
-          System.out.println(font);
-
 
 
           String teksto = textNode.getTextContent();
           String teksto2 = conversionHandler.convertText(font, teksto);
           if (!teksto.trim().equals(teksto2.trim())) {
-            System.out.println("CONV "+teksto+" -> "+teksto2);
-            System.out.println("CONV "+style);
+            if (DEBUG) System.out.println("CONV "+teksto+" -> "+teksto2);
+            if (DEBUG) System.out.println("CONV "+style);
             textNode.setTextContent(teksto2);
           }
 
@@ -141,17 +116,49 @@ public class OpenOfficeODFDOMReaderWriter implements GeneralReaderWriter {
     for (OdfStyle style : styles) {
       String font = conversionHandler.giveFontReplacement(getFont(style));
       if (font != null) {
-        System.out.println("A =" + font + "  " + style);
+        if (DEBUG) System.out.println("A =" + font + "  " + style);
 
         style.setProperty(OdfStylePropertiesSet.TextProperties, OdfNamespace.STYLE.toString(), OdfParagraphStyle.FontName.toString(), "Arial");
         style.setProperty(OdfStylePropertiesSet.TextProperties, OdfNamespace.STYLE.toString(), OdfParagraphStyle.FontNameComplex.toString(), "Arial");
-        System.out.println("B =" + font + "  " + style);
+        if (DEBUG) System.out.println("B =" + font + "  " + style);
       }
     }
 
 
 
-    odfDocument.save(outFile);
+    if (outFile != null) odfDocument.save(outFile);
+  }
+
+  private OdfStyle findStyleWithFont(OdfDocument odfDocument, OdfStylableElement parentNode) {
+      //String styleName = parentNode.getStyleName();
+      OdfStyle style = getStyle(odfDocument, parentNode.getStyleName());
+
+      String font = getFont(style);
+
+      do {
+        while (font == null && style != null) {
+
+          // DOESENT WORK! style = style.getParentStyle();
+          style = getStyle(odfDocument, style.getParentName());
+          font = getFont(style);
+        }
+
+        if (font == null) {
+          // Search up to parent node with style and try again
+          Node n3 = parentNode.getParentNode();
+          while (n3 != null && !(n3 instanceof OdfStylableElement)) {
+            n3 = n3.getParentNode();
+            if (DEBUG) System.out.println(" parent "+ n3);
+          }
+          parentNode = (OdfStylableElement) n3;
+          if (DEBUG) System.out.println(" parent "+ parentNode);
+          style = getStyle(odfDocument, parentNode.getStyleName());
+          font = getFont(style);
+        }
+      } while (font == null && parentNode!=null);
+
+      if (DEBUG) System.out.println(font);
+      return style;
   }
 
 
@@ -187,7 +194,7 @@ public class OpenOfficeODFDOMReaderWriter implements GeneralReaderWriter {
   private static String getFont(OdfStyle sty) {
     if (sty == null) return null;
     String font = sty.getProperty(OdfStylePropertiesSet.TextProperties, OdfNamespace.STYLE.toString(), OdfParagraphStyle.FontName.toString());
-    System.out.println("  fon "+sty.getName()+"="+font);
+    if (DEBUG) System.out.println("  fon "+sty.getName()+"="+font);
     return font;
   }
 
@@ -204,7 +211,7 @@ public class OpenOfficeODFDOMReaderWriter implements GeneralReaderWriter {
     if (sty == null) {
       sty = odfDocument.getDefaultStyles().getStyle(styleName);
     }
-    System.out.println("  sty "+styleName+"="+sty);
+    if (DEBUG) System.out.println("  sty "+styleName+"="+sty);
     return sty;
   }
 

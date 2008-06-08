@@ -35,6 +35,11 @@
 	<char trans="ga">ग</char>
 	<char trans="gha">घ</char>
 	<char trans="nga">ङ</char>
+
+  <!-- SPECIALA REGULO  - ENMETU!
+	<char trans="nga">ङ्ग</char>
+  -->
+
 	<char trans="cha">च</char>
 	<char trans="chha">छ</char>
 	<char trans="ja">ज</char>
