@@ -53,13 +53,7 @@ public class TestF2U {
             String status = "";
             if (cNew.equals(cOld)) status="OK";
             else {
-              status = "diff: ";
-              int imax = Math.min(cNew.length(), cOld.length());
-              for (int i=0; i<imax && status.length()<20; i++) {
-                  if (cNew.charAt(i) != cOld.charAt(i)) {
-                      status = status + " pos "+i+": "+cNew.charAt(i)+" "+cOld.charAt(i);
-                  }
-              }
+              status = "diff: " + diffStringDetail(cNew, cOld);
             }
             row.add(status);
             table.add(row);
@@ -68,5 +62,16 @@ public class TestF2U {
         System.out.println(font+" writing "+resultFile+ " ");
         SpreadsheetWriter ssw = new SpreadsheetWriter();
         ssw.write(resultFile, table);
+    }
+
+    public static String diffStringDetail(String cNew, String cOld) {
+        String status = "";
+        int imax = Math.min(cNew.length(), cOld.length());
+        for (int i=0; i<imax && status.length()<20; i++) {
+            if (cNew.charAt(i) != cOld.charAt(i)) {
+                status = status + " pos "+i+": "+cNew.charAt(i)+" "+cOld.charAt(i);
+            }
+        }
+        return status;
     }
 }

@@ -14,6 +14,7 @@ import np.org.mpp.conv4.utils.odfdom.SpreadsheetReader;
 import org.apache.xml.serialize.OutputFormat;
 import org.apache.xml.serialize.XMLSerializer;
 import org.w3c.dom.Document;
+import np.org.mpp.conv4.test.TestF2U;
 
 public class Font2UnicodeMappingFactory {
 
@@ -54,8 +55,7 @@ public class Font2UnicodeMappingFactory {
     if (ures.equals(u))
       System.out.println("OK");
     else
-      System.out.println("CORRECT: "+u);
-
+      System.out.println("CORRECT: "+u + TestF2U.diffStringDetail(u,ures));
   }
 
   public Font2UnicodeMapping getMapping(String name) throws Exception {
