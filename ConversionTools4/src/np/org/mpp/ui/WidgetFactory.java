@@ -14,7 +14,6 @@ import javax.swing.JRadioButtonMenuItem;
 import javax.swing.KeyStroke;
 
 import np.org.mpp.exception.FileNotSelectedException;
-import java.net.URL;
 
 /**
  * A class that serves as factory for providing widgets. It follows Singleton
@@ -106,9 +105,8 @@ public class WidgetFactory {
 
 	// add icon
 	if (iconPath != null) {
-      URL url = this.getClass().getResource(iconPath);
-      System.out.println(url);
-	    menuItem.setIcon(new ImageIcon(url));
+	    menuItem.setIcon(new ImageIcon(this.getClass()
+		    .getResource(iconPath)));
 	}
 
 	// add accelerator
