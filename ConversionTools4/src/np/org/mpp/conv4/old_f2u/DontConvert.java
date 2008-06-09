@@ -23,7 +23,6 @@ package np.org.mpp.conv4.old_f2u;
 
 import java.io.*;
 
-import np.org.npp.conv.gui.*;
 
 public class DontConvert extends NonUnicodeFont {
 

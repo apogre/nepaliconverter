@@ -2,6 +2,9 @@ package np.org.mpp.conv4.test;
 
 import java.io.*;
 import java.util.*;
+import np.org.mpp.conv4.utils.GeneralReaderWriter;
+import np.org.mpp.conv4.utils.OpenOfficeJacobsOldReaderWriter;
+import np.org.mpp.conv4.utils.ConversionHandler;
 
 
 
