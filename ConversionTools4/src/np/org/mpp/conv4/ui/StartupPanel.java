@@ -3,9 +3,11 @@
  */
 package np.org.mpp.conv4.ui;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -13,7 +15,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JToolBar;
+
+import np.org.mpp.conv4.ConversionTools;
+import np.org.mpp.ui.WidgetFactory;
 
 /**
  * @author Abhishek
@@ -21,92 +25,116 @@ import javax.swing.JToolBar;
  */
 public class StartupPanel extends JPanel implements ActionListener {
 
-	private static final long serialVersionUID = 3553734976057624357L;
+    private static final long serialVersionUID = 3553734976057624357L;
 
-	private JButton btnF2U;
-	private JButton btnU2F;
-	private JButton btnTraslit;
-	private JButton btnExit;
+    private JButton btnF2U;
+    private JButton btnU2F;
+    private JButton btnTraslit;
+    private JButton btnExit;
 
-	private JLabel lblText1;
-	private JLabel lblText2;
+    private JLabel lblText1;
+    private JLabel lblText2;
+    private JPanel panel;
 
-	private JToolBar toolBar;
+    private ImageIcon imgF2U = new ImageIcon(WidgetFactory.class
+	    .getResource("f2u.png"));
+    private ImageIcon imgU2F = new ImageIcon(WidgetFactory.class
+	    .getResource("u2f.png"));
+    private ImageIcon imgTranslit = new ImageIcon(WidgetFactory.class
+	    .getResource("trans.png"));
+    private ImageIcon imgExit = new ImageIcon(WidgetFactory.class
+	    .getResource("exit.png"));
 
-	private ImageIcon imgF2U = new ImageIcon(
-			np.org.mpp.conv4.ui.StartupPanel.class.getResource("f2u.png"));
+    public StartupPanel() {
+	setPreferredSize(new Dimension(MainFrame.WIDTH, MainFrame.HEIGHT));
+	setLayout(new FlowLayout(FlowLayout.LEADING));
+	initComponents();
+    }
 
-	private ImageIcon imgU2F = new ImageIcon(
-			np.org.mpp.conv4.ui.StartupPanel.class.getResource("u2f.png"));
+    private void initComponents() {
+	panel = new JPanel();
+	panel.setLayout(new GridBagLayout());
+	GridBagConstraints GBC = new GridBagConstraints();
+	GBC.weightx = 0.0;
+	GBC.gridx = 0;
+	GBC.gridy = 0;
+	GBC.fill = GridBagConstraints.HORIZONTAL;
+	GBC.insets = new Insets(10, 20, 10, 20); // top padding
 
-	private ImageIcon imgTranslit = new ImageIcon(
-			np.org.mpp.conv4.ui.StartupPanel.class.getResource("help.png"));
+	lblText1 = new JLabel(
+		"<html><body><b> Wel come to Conversion Tools!</b>");
+	lblText1.setPreferredSize(new Dimension(300, 20));
+	panel.add(lblText1, GBC);
 
-	private ImageIcon imgExit = new ImageIcon(
-			np.org.mpp.conv4.ui.StartupPanel.class.getResource("exit.png"));
+	GBC.gridx = 0;
+	GBC.gridy = 1;
+	lblText2 = new JLabel("Please select one from the following task:");
+	lblText2.setPreferredSize(new Dimension(300, 20));
+	panel.add(lblText2, GBC);
 
-	public StartupPanel() {
+	GBC.weightx = 0.5;
+	GBC.gridx = 0;
+	GBC.gridy = 2;
+	btnF2U = new JButton(
+		"<html><body>Convert from non-Unicode font<br>to <b>Unicode</b>");
+	btnF2U.setPreferredSize(new Dimension(300, 60));
+	btnF2U.setIcon(imgF2U);
+	btnF2U.addActionListener(this);
+	panel.add(btnF2U, GBC);
 
-		setPreferredSize(new Dimension(800, 600));
-		setLayout(new FlowLayout(FlowLayout.CENTER, 20, 20));
-		initComponents();
+	GBC.gridx = 1;
+	btnU2F = new JButton(
+		"<html><body>Convert from Unicode to non-Unicode<br><b>Font</b> (like Preeti)");
+	btnU2F.setPreferredSize(new Dimension(300, 60));
+	btnU2F.setIcon(imgU2F);
+	btnU2F.addActionListener(this);
+	panel.add(btnU2F, GBC);
+
+	GBC.gridx = 0;
+	GBC.gridy = 3;
+	btnTraslit = new JButton(
+		"<html><body>Convert from Devanagari to <br><b>Roman</b> transliteration");
+	btnTraslit.setPreferredSize(new Dimension(300, 60));
+	btnTraslit.setIcon(imgTranslit);
+	btnTraslit.addActionListener(this);
+	panel.add(btnTraslit, GBC);
+
+	GBC.gridx = 1;
+	btnExit = new JButton("<html><body><b>Exit</b> from the Application");
+	btnExit.setPreferredSize(new Dimension(300, 60));
+	btnExit.setIcon(imgExit);
+	btnExit.addActionListener(this);
+	panel.add(btnExit, GBC);
+
+	add(panel);
+    }
+
+    public void actionPerformed(ActionEvent e) {
+	String mode = "";
+	if (e.getSource() == btnF2U) {
+	    mode = "Font To Unicode";
+	    loadRequiredPanels();
+	} else if (e.getSource() == btnU2F) {
+	    mode = "Unicode To Font";
+	    loadRequiredPanels();
+	} else if (e.getSource() == btnTraslit) {
+	    mode = "Trasnliteration";
+	    loadRequiredPanels();
+	} else if (e.getSource() == btnExit) {
+	    System.out.println("Exiting from system!");
+	    System.exit(0);
 	}
+	StatusBar.lblStatus.setText(" Mode: " + mode);
+    }
 
-	private void initComponents() {
-		lblText1 = new JLabel(
-				"<html><body><b> Wel come to Conversion Tools!</b>");
-		lblText1.setPreferredSize(new Dimension(600, 20));
+    private void loadRequiredPanels() {
+	setVisible(false);
+	ConversionTools.frame.remove(MainFrame.startPanel);
+	MainFrame.toolBar.setVisible(true);
+	MainFrame.statusBar.setVisible(true);
 
-		add(lblText1);
-
-		lblText2 = new JLabel("Please select one from the following task:");
-		lblText2.setPreferredSize(new Dimension(600, 20));
-		add(lblText2);
-
-		btnF2U = new JButton(
-				"<html><body>Convert from non-Unicode font<br>to <b>Unicode</b>");
-		btnF2U.setPreferredSize(new Dimension(300, 60));
-		btnF2U.setIcon(imgF2U);
-		btnF2U.addActionListener(this);
-		add(btnF2U);
-
-		btnU2F = new JButton(
-				"<html><body>Convert from Unicode to non-Unicode<br><b>font</b> (like Preeti)");
-		btnU2F.setPreferredSize(new Dimension(300, 60));
-		btnU2F.setIcon(imgU2F);
-		btnU2F.addActionListener(this);
-		add(btnU2F);
-
-		btnTraslit = new JButton(
-				"<html><body>Convert from Devanagari to <br><b>Roman</b> transliteration");
-		btnTraslit.setPreferredSize(new Dimension(300, 60));
-		btnTraslit.setIcon(imgTranslit);
-		btnTraslit.addActionListener(this);
-		add(btnTraslit);
-
-		btnExit = new JButton("<html><body><b>Exit</b> from the Application");
-		btnExit.setPreferredSize(new Dimension(300, 60));
-		btnExit.setIcon(imgExit);
-		btnExit.addActionListener(this);
-		add(btnExit);
-	}
-
-	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == btnF2U) {
-			toolBar = ToolBar.getInstance("Font2Unicode");
-			ConversionTools.frame.remove(this);
-			ConversionTools.frame.add(toolBar, BorderLayout.NORTH);
-			ConversionTools.frame.repaint();
-			ConversionTools.frame.setVisible(false);
-
-			ConversionTools.frame.setVisible(true);
-		} else if (e.getSource() == btnU2F) {
-
-		} else if (e.getSource() == btnTraslit) {
-
-		} else if (e.getSource() == btnExit) {
-			System.out.println("Exiting from system!");
-			System.exit(0);
-		}
-	}
+	ConversionTools.frame.add(MainFrame.conversionPanel);
+	MainFrame.conversionPanel.setVisible(true);
+	ConversionPanel.console.setText(ConversionTools.initLog);
+    }
 }
