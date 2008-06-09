@@ -5,4 +5,8 @@
     <old-class-name>np.org.mpp.conv4.ui.Frame</old-class-name>
     <new-class-name>np.org.mpp.conv4.ui.MainFrame</new-class-name>
   </rename-class>
+  <rename-class id="1AP0Q8UML8HFQCPM2XSFK8Z" creation-time="Mon Jun 09 14:01:34.347 GMT+05:45 2008">
+    <old-class-name>np.org.mpp.conv4.ExtractNepaliFromODTTextsWithFont</old-class-name>
+    <new-class-name>np.org.mpp.conv4.test.ExtractNepaliFromODTTextsWithFont</new-class-name>
+  </rename-class>
 </refactor>

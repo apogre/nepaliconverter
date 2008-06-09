@@ -63,11 +63,16 @@
   <exception trans=""></exception>   <!-- e -->
   <exception trans=""></exception>   <!-- e -->
   <exception trans=""></exception>   <!-- e -->
-  <exception trans=""></exception>   <!-- e -->
 
 
 
   <exception trans="सए">सय</exception>  <!-- 100 prononcigxas kiel 'sae'! -->
+  <exception trans="बर्स">वर्ष</exception>  <!-- barsa  anstataux varsha por 'jaro' -->
+  <exception trans="बर्खा">वर्षा</exception>  <!-- barkhaa anstataux varshaa por 'pluvo' -->
+  <exception trans="बिचार्">विचार</exception>   <!-- bichaar - opinio -->
+
+
+
 
 
 
@@ -93,6 +98,19 @@
   <exception trans="राज्परिवार्">राजपरिवार</exception>
   <exception trans="राज्मुकुट्">राजमुकुट</exception>
   <exception trans="राज्सत्ता">राजसत्ता</exception>
+  <exception trans="लाल्टिन्">लालटिन</exception>
+  <exception trans="लेन्स्">लेन्स</exception>
+  <exception trans="लोक्कथा">लोककथा</exception>
+  <exception trans="लोक्गीत्">लोकगीत</exception>
+  <exception trans="वन्भोज्">वनभोज</exception>
+  <exception trans="वर">वर</exception>
+  <exception trans="वर्पर्">वरपर</exception>
+  <exception trans="वर्ग्">वर्ग</exception>
+  <exception trans=""></exception>
+  <exception trans=""></exception>
+  <exception trans=""></exception>
+  <exception trans=""></exception>
+  <exception trans=""></exception>
   <exception trans=""></exception>
   <exception trans=""></exception>
   <exception trans=""></exception>
