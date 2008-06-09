@@ -42,12 +42,12 @@ public class SpreadsheetWriter {
             OdfTable.ELEMENT_NAME.getLocalName());
     OdfTable table = (OdfTable) lst.item(0);
 
-    System.out.println(doc.toString().replaceAll("<","\n1<"));
+    //System.out.println(doc.toString().replaceAll("<","\n1<"));
 
     table.removeChild(table.getFirstChild().getNextSibling()); // remove first empty row
     //table.removeChild(table.getFirstChild()); // remove first empty row
 
-    System.out.println(doc.toString().replaceAll("<","\n2<"));
+    //System.out.println(doc.toString().replaceAll("<","\n2<"));
 
     /*
     OdfStyle style1 = new OdfStyle("style1", OdfStyleFamily.TableCell);
@@ -109,32 +109,43 @@ public class SpreadsheetWriter {
     cs3.setProperty(OdfTableColumnProperties.ColumnWidth, "6cm");
     */
 
+   int n=0;
+
    for (ArrayList<String> ral : data) {
 
        OdfTableRow tr = (OdfTableRow) table.appendChild(
                doc.createOdfElement(OdfTableRow.class));
-
        for (String cellText : ral) {
+
            OdfTableCell td1 = (OdfTableCell) tr.appendChild(
                    doc.createOdfElement(OdfTableCell.class));
+
            OdfParagraph p1 = doc.createOdfElement(OdfParagraph.class);
+
            p1.appendChild(doc.createTextNode(cellText));
            td1.appendChild(p1);
 
        }
+       if (++n % 100 == 0) {
+           if (n % 10000 == 0) System.out.print("\n"+n);
+           else System.out.print(".");
+       }
    }
 
+   if (n > 10000) {
+       System.out.println("Writing to "+outFile);
+   }
 
     doc.getOdfDocument().save(outFile);
 
-    System.out.println(doc.toString().replaceAll("<","\n3<"));
+    //System.out.println(doc.toString().replaceAll("<","\n3<"));
 
   }
 
   public static void main(String[] args) throws Exception {
     SpreadsheetWriter ssw = new SpreadsheetWriter();
     new File("tmp").mkdirs();
-    String[][] data = new String[][] { { "A1", "A2" }, { "B1", "B2" } };
+    String[][] data = new String[][] { { "A1", "A2" }, { "A1", "A2" }, { "A1", "A2" }, { "A1", "A2" }, { "A1", "A2" }, { "B1", "B2" } };
     ssw.write("tmp/slet.ods", data );
   }
 }

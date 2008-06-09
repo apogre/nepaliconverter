@@ -51,6 +51,8 @@ public class Font2Unicode {
 
 
   public boolean interactive = true;
+  public boolean silent = false;
+  public boolean justStripSpaces = false;
 
   private Preferences extrafontNameMapping = Preferences.userNodeForPackage(this.getClass()).node("extrafontNameMapping");
 
@@ -96,7 +98,7 @@ public class Font2Unicode {
 
     if (nonUnicodeFont!=null) {
       unic = nonUnicodeFont.toUnicode(input);
-      if (nonUnicodeFont.problemsInLastConversion.size()>0) {
+      if (!silent && nonUnicodeFont.problemsInLastConversion.size()>0) {
         unic = "XXX"+unic;
 	problemForConverter = true;
 	err = "The following problems occured for converter '"+font+"' used on text '"+input+"':<br/>";
@@ -152,6 +154,8 @@ public class Font2Unicode {
 	System.err.println("WARNING: "+err);
       }
     }
+
+    if (justStripSpaces) return unic.trim();
 
     if (unic.startsWith(" ") && unic.endsWith("  ")) {
       if (unic.charAt(1)!=' ') {

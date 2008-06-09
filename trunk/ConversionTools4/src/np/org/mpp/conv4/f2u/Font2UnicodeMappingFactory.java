@@ -33,8 +33,7 @@ public class Font2UnicodeMappingFactory {
 
     test(f2u, // ma aaphno saajhedaar sansthaa herna gaeko thie
          "d cfˆgf] ;fem]bf/ ;+:yf x]g{ uPsf] lyPF",
-         "म आफ्नो साझेदार संस्था हेर्न गएको थिएँ।");
-
+         "म आफ्नो साझेदार संस्था हेर्न गएको थिएँ");
 
     test(f2u, // tapaai laai aaphno kaam garne Thaau kasto laagyo ?
          "tkfO{nfO{ cfˆgf] sfd ug]{ 7fpF s:tf] nfUof]<",
