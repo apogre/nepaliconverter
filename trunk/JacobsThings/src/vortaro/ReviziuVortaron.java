@@ -14,7 +14,7 @@ import np.org.mpp.conv4.translit.*;
 
 public class ReviziuVortaron {
 
-  String dosiero = "versio63";
+  String dosiero = "versio65";
   public static boolean faruAnkauxInternajnLigojn = true;
 
   public static void main(String[] args) throws Exception {
@@ -182,7 +182,13 @@ public class ReviziuVortaron {
       String devSenPara = dev.replaceAll("\\(.*?\\)", "").trim();
 
       rom = devAlRomana.alRomana(devSenPara).trim();
-      String mpprom =  mppdevAlRomana.convertText(null, devSenPara).trim();
+      String mpprom = null;
+      try {
+        mpprom = mppdevAlRomana.convertText(null, devSenPara).trim();
+      } catch (Exception e) {
+        e.printStackTrace();
+        System.err.println(rom+dev+esp);
+      }
       //System.out.println(rom + " / " + dev + " / " + esp + "   / "+m.start(2)+" " +m.end(2));
       if (faruLigojn)
         dev = FaruLigojn.faruNepalajnLigojn(dev);
