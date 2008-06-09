@@ -1,21 +1,21 @@
-package np.org.mpp.conv4.utils;
+package np.org.mpp.conv4.utils.odfdom;
 
 import java.util.*;
-
-import javax.swing.ProgressMonitor;
 import javax.xml.xpath.*;
 
-import np.org.mpp.conv4.f2u.F2UConversionHandler;
-import org.openoffice.odf.doc.OdfDocument;
-import org.openoffice.odf.doc.element.text.OdfSpan;
-import org.openoffice.odf.dom.OdfNamespace;
-import org.openoffice.odf.dom.element.OdfStylableElement;
-import org.openoffice.odf.dom.style.OdfParagraphStyle;
-import org.openoffice.odf.dom.style.OdfStyle;
-import org.openoffice.odf.dom.style.props.OdfStylePropertiesSet;
-import org.w3c.dom.*;
+import javax.swing.*;
 
-public class OpenOfficeODFDOMReaderWriter implements GeneralReaderWriter {
+import org.openoffice.odf.doc.*;
+import org.openoffice.odf.doc.element.text.*;
+import org.openoffice.odf.dom.*;
+import org.openoffice.odf.dom.element.*;
+import org.openoffice.odf.dom.style.*;
+import org.openoffice.odf.dom.style.props.*;
+import org.w3c.dom.*;
+import np.org.mpp.conv4.f2u.*;
+import np.org.mpp.conv4.utils.*;
+
+public class OpenOfficeReaderWriter implements GeneralReaderWriter {
 
 //  http://develop.opendocumentfellowship.com/spec/
 
@@ -32,7 +32,7 @@ public class OpenOfficeODFDOMReaderWriter implements GeneralReaderWriter {
   }
 
   public static void main(String[] args) throws Exception {
-    OpenOfficeODFDOMReaderWriter orw = new OpenOfficeODFDOMReaderWriter();
+    OpenOfficeReaderWriter orw = new OpenOfficeReaderWriter();
     //"/home/j/esperanto/nepala vortaro/provo.odt"; "/home/j/Dokumenter/oop/oopj354.odt";
 
     String fn = "test/aLotOfStyles";

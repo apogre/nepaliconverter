@@ -10,7 +10,7 @@ import java.util.zip.ZipFile;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
-import np.org.mpp.conv4.utils.OdtSpreadsheetReader;
+import np.org.mpp.conv4.utils.odfdom.SpreadsheetReader;
 import org.apache.xml.serialize.OutputFormat;
 import org.apache.xml.serialize.XMLSerializer;
 import org.w3c.dom.Document;
@@ -62,7 +62,7 @@ public class Font2UnicodeMappingFactory {
   public Font2UnicodeMapping getMapping(String name) throws Exception {
     Font2UnicodeMapping f2u = new Font2UnicodeMapping(name);
 
-    ArrayList<ArrayList<String>> table = OdtSpreadsheetReader.read("res/"+name+"_unicode.ods");
+    ArrayList<ArrayList<String>> table = SpreadsheetReader.read("res/"+name+"_unicode.ods");
     for (ArrayList<String> row : table) {
         f2u.addLetter(row.get(0), row.get(1));
     }

@@ -1,4 +1,4 @@
-package np.org.mpp.conv4.utils;
+package np.org.mpp.conv4.utils.odfdom;
 
 import java.io.*;
 
@@ -8,12 +8,12 @@ import org.openoffice.odf.dom.*;
 import org.w3c.dom.*;
 import java.util.ArrayList;
 
-public class OdtSpreadsheetReader {
+public class SpreadsheetReader {
 
   public static boolean DEBUG = false;
 
 
-  public OdtSpreadsheetReader() {
+  public SpreadsheetReader() {
   }
 
   public static void main(String[] args) throws Exception {
