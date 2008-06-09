@@ -112,6 +112,17 @@ public class Font2UnicodeMapping {
     // remove all duplicate flags and other non-spacing signs
     for (int j=0; j<NONSPAC.length(); j++) s = s.replaceAll(NONSPAC.charAt(j)+"+",NONSPAC.substring(j,j+1));
 
+
+
+    //  group = Consonant + navalization + flags
+    String G = "(["+ Devanagari.CONSONANTS+"])(["+ Devanagari.VOCALFLAGS+"])";
+
+    // Swap to before the last consonant according to the -SWAP- marker
+    // So f.eks. "  हेन-SWAP-र्  " gets "  हेर्न  "
+    // So f.eks. "  गने-SWAP-र्  " gets "  गर्ने  "
+    s = s.replaceAll( "(["+Devanagari.CONSONANTS+"][^"+Devanagari.CONSONANTS+"]*)-SWAP-(.*?)-SWAP-", "$2$1" );
+
+
     // replace aa + e flags with o
     // This could also be done in the mapping file.
     s = s.replaceAll("ाे","ो");

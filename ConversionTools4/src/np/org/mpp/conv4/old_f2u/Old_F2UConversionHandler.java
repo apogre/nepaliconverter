@@ -11,6 +11,8 @@ public class Old_F2UConversionHandler implements ConversionHandler {
 
   public Old_F2UConversionHandler() {
       f2u.interactive = false;
+      f2u.silent = true;
+      f2u.justStripSpaces = true;
   }
 
 
