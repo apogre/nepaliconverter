@@ -14,13 +14,14 @@ import javax.swing.JRadioButtonMenuItem;
 import javax.swing.KeyStroke;
 
 import np.org.mpp.exception.FileNotSelectedException;
+import java.net.URL;
 
 /**
  * A class that serves as factory for providing widgets. It follows Singleton
  * Design Pattern
- * 
+ *
  * @author Abhishek
- * 
+ *
  */
 public class WidgetFactory {
     private static WidgetFactory instance;
@@ -38,7 +39,7 @@ public class WidgetFactory {
 
     /**
      * a generic function to create JMenu
-     * 
+     *
      * @param name
      *                the name of the menu
      * @param mnemonic
@@ -67,7 +68,7 @@ public class WidgetFactory {
     }
 
     /**
-     * 
+     *
      * @param menu
      *                the parent menu
      * @param type
@@ -105,8 +106,9 @@ public class WidgetFactory {
 
 	// add icon
 	if (iconPath != null) {
-	    menuItem.setIcon(new ImageIcon(this.getClass()
-		    .getResource(iconPath)));
+      URL url = this.getClass().getResource(iconPath);
+      System.out.println(url);
+	    menuItem.setIcon(new ImageIcon(url));
 	}
 
 	// add accelerator

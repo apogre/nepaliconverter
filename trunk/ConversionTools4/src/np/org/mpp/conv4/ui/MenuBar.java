@@ -127,7 +127,7 @@ public class MenuBar extends JMenuBar implements ActionListener {
 	seeSplash = widgetFactory.createJMenuItem(help, PLAIN, "Splash Screen",
 		"splashIcon.png", null, "View Splash Screen", this, true);
 	abtDevelopers = widgetFactory.createJMenuItem(help, PLAIN,
-		"About Developers", "team.png", null, "About Developers", this,
+		"About Developers", "team.gif", null, "About Developers", this,
 		false);
 	abtMPP = widgetFactory.createJMenuItem(help, PLAIN, "About MPP",
 		"mpp.png", null, "About MPP", this, true);
