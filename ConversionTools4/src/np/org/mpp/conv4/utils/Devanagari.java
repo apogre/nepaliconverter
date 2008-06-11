@@ -173,8 +173,8 @@ public class Devanagari {
    * form of characters that normally fuse together to form a ligature.
    * @see http://madanpuraskar.org/index2.php?option=com_content&task=view&id=63&pop=1&page=0&Itemid=84
    */
-  public static final String ZWNJ = "‌";
-  public static final String ZWJ = "";  // XXX MISSING
+  public static final String ZWNJ = "‍";
+  public static final String ZWJ = "‌";  
   public static final String HALANTA = "्";
   public static final String CONSONANTS = types[TCONSONANTS];
   public static final String VOCALFLAGS = types[TVOCALFLAGS];

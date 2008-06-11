@@ -1,16 +1,30 @@
 package np.org.mpp.conv4.utils;
 
-import java.io.*;
-import java.util.*;
-import java.util.zip.*;
-import javax.xml.parsers.*;
-
-import org.apache.xml.serialize.*;
-import org.w3c.dom.*;
-
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
+import java.util.zip.ZipOutputStream;
 
 import javax.swing.ProgressMonitor;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+
 import np.org.mpp.conv4.f2u.F2UConversionHandler;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.NamedNodeMap;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+
+import com.sun.org.apache.xml.internal.serialize.OutputFormat;
+import com.sun.org.apache.xml.internal.serialize.XMLSerializer;
 
 
 public class OpenOfficeJacobsOldReaderWriter implements GeneralReaderWriter {
