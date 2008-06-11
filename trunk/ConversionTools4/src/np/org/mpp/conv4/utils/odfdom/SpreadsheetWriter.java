@@ -8,13 +8,14 @@ import org.openoffice.odf.doc.OdfFileDom;
 import org.openoffice.odf.doc.OdfSpreadsheetDocument;
 import org.openoffice.odf.doc.element.table.*;
 import org.openoffice.odf.doc.element.text.OdfParagraph;
-import org.w3c.dom.*;
-import org.openoffice.odf.dom.style.OdfTableCellStyle;
-import org.openoffice.odf.dom.style.props.OdfTextProperties;
-import org.openoffice.odf.dom.style.props.OdfParagraphProperties;
-import org.openoffice.odf.dom.type.OdfValueType;
-import org.openoffice.odf.dom.style.OdfStyleCollection;
 import org.openoffice.odf.dom.OdfNamespace;
+import org.openoffice.odf.dom.style.OdfStyleCollection;
+import org.openoffice.odf.dom.style.OdfTableCellStyle;
+import org.openoffice.odf.dom.style.props.OdfParagraphProperties;
+import org.openoffice.odf.dom.style.props.OdfTextProperties;
+import org.openoffice.odf.dom.type.OdfValueType;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 /**
  * A class for writing ODS spread sheets.
