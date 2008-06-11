@@ -78,29 +78,50 @@ public class Font2UnicodeMapping {
 
 	String NONSPAC = Devanagari.types[Character.NON_SPACING_MARK];
 
+  String BACKSCAN_MARKS = null;
+
 	public String toUnicode(String input) {
+    String org_input = input;
 		StringBuffer sb = new StringBuffer(input.length());
 
 		// Pre-processinhg of BACKSCAN directive: ensure a place for the char to match
-    // Jacob TODO look for chars with BACKSCAN mark
-		int i = 1;
-		while (i < input.length()) {
-			// DTODO properly
-			if (input.charAt(i)!=' ' && input.charAt(i)=='m') {
-        String keyToLookFor = input.substring(i-1, i+1);
-				Element e = f2u.get(keyToLookFor); // TODO also 3, 4 chars
-				if (e==null) {
-					// it wasnt in thge mapping! We need to backscan!
-					input = input.substring(0,i-1)
-					+ input.charAt(i) + input.charAt(i-1)
-					+ input.substring(i+1);
-					i--;
-					continue;
-				}
-			}
-			i++;
-		}
+    if (BACKSCAN_MARKS == null) {
+        BACKSCAN_MARKS = "m";
+    }
 
+    int i = 1;
+    if (BACKSCAN_MARKS.indexOf(input.charAt(0)) != -1) {
+        System.err.println("BACKSCAN impossible on first char: " + org_input);
+    }
+    else try {
+      // Jacob TODO look for chars with BACKSCAN marks
+
+      while (i < input.length()) {
+        // TODO properly
+        if (input.charAt(i) == 'm') {
+            if (i<=0 || input.charAt(i-1) == ' ') {
+                System.err.println("BACKSCAN failed on char "+i+ " on text: " + org_input);
+                input = org_input;
+                break;
+            }
+
+          String keyToLookFor = input.substring(i - 1, i + 1);
+          Element e = f2u.get(keyToLookFor); // TODO also 3, 4 chars
+          if (e == null) {
+            // it wasnt in thge mapping! We need to backscan!
+            input = input.substring(0, i - 1)
+                    + input.charAt(i) + input.charAt(i - 1)
+                    + input.substring(i + 1);
+            i--;
+            continue;
+          }
+        }
+        i++;
+      }
+    } catch (Exception e) {
+        System.err.println("Pre-processinhg of BACKSCAN coding error for "+input);
+        e.printStackTrace();
+    }
 
 		// replace all with Unicode
 		i = 0;
