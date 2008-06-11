@@ -21,7 +21,7 @@ public class TestF2U {
     private void test(String textFile, String font, String resultFile) throws Exception {
         ArrayList<String> words = new ArrayList<String>();
         BufferedReader br = new BufferedReader(new FileReader(textFile));
-        int maxLines = 10000;
+        int maxLines = 7000;
         String l;
         while ( (l=br.readLine())!=null && maxLines-->0) words.add(l.trim());
         br.close();

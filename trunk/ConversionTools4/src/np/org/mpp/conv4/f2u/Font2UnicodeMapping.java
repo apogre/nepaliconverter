@@ -127,6 +127,8 @@ public class Font2UnicodeMapping {
     // This could also be done in the mapping file.
     s = s.replaceAll("ाे","ो");
 
+    s = s.replaceAll("आे","ओ");
+
     return s;
   }
 
