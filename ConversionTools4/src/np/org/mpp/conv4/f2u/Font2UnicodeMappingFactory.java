@@ -27,6 +27,19 @@ public class Font2UnicodeMappingFactory {
 
     f2u.checkConsistency();
 
+    test(f2u,
+         "7fpFm",
+         "ठाऊँ");
+
+    test(f2u,
+         "",
+         "");
+
+    test(f2u,
+         "",
+         "");
+
+
     test(f2u, // namaste saathi, tapaai dherai din pachhi aaunubhayo kina?
          "gd:t] ;fyL, tkfO{ w]/} lbg kl5 cfpg' eof] lsg<",
          "नमस्ते साथी, तपाई धेरै दिन पछि आउनु भयो किन?");
