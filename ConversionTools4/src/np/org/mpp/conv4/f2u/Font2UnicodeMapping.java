@@ -103,7 +103,11 @@ public class Font2UnicodeMapping {
 
     // put the ii ि  after the following consonant
     String ii = "ि";
-    String allConsonantsWithPunct = "([" + Devanagari.NAZALIZATIONS +"]*["+ Devanagari.CONSONANTS+"])";
+
+    //String allConsonantsWithPunct = "([" + Devanagari.NAZALIZATIONS +"]*["+ Devanagari.CONSONANTS+"])";
+
+    String allConsonantsWithPunct = "([" + Devanagari.NAZALIZATIONS +"]*["+ Devanagari.CONSONANTS+"]"
+                                    +"("+Devanagari.HALANTA+"["+ Devanagari.CONSONANTS+"])*)";
     s = s.replaceAll( ii + allConsonantsWithPunct, "$1"+ii );
 
     // put all nazalizations after the vocal flags
