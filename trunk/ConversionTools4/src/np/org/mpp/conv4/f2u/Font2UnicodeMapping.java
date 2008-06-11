@@ -81,8 +81,27 @@ public class Font2UnicodeMapping {
 	public String toUnicode(String input) {
 		StringBuffer sb = new StringBuffer(input.length());
 
+		// Pre-processinhg of BACKSCAN directive: ensure a place for the char to match
+		int i = 1;
+		while (i < input.length()) {
+			// DTODO properly
+			if (input.charAt(i)!=' ' && input.charAt(i)=='m') {
+				Element e = f2u.get(input.substring(i-1, i)); // TODO also 3, 4 chars
+				if (e==null) {
+					// it wasnt in thge mapping! We need to backscan!
+					input = input.substring(0,i-1) 
+					+ input.charAt(i) + input.charAt(i-1)
+					+ input.substring(i+1);
+					i--; 
+					continue;
+				}
+			}
+			i++;
+		}
+		
+		
 		// replace all with Unicode
-		int i = 0;
+		i = 0;
 		while (i < input.length()) {
 			Element e = null;
 
