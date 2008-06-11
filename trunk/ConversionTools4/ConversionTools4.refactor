@@ -9,4 +9,8 @@
     <old-class-name>np.org.mpp.conv4.ExtractNepaliFromODTTextsWithFont</old-class-name>
     <new-class-name>np.org.mpp.conv4.test.ExtractNepaliFromODTTextsWithFont</new-class-name>
   </rename-class>
+  <rename-package id="6AP0Y9WF0CHFOZH77XSFK8Z" creation-time="Wed Jun 11 20:06:36.938 GMT+05:45 2008">
+    <old-package-name>np.org.mpp.conv4.utils.odfdom.examples</old-package-name>
+    <new-package-name>np.org.mpp.conv4.utils.odfdom.exampleEisenberg</new-package-name>
+  </rename-package>
 </refactor>
