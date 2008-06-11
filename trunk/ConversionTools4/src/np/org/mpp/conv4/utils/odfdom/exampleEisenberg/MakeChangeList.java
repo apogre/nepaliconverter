@@ -42,6 +42,7 @@ import org.openoffice.odf.doc.OdfDocument;
 import org.openoffice.odf.doc.OdfFileDom;
 import org.openoffice.odf.doc.OdfSpreadsheetDocument;
 import org.openoffice.odf.dom.style.OdfStyleCollection;
+import org.openoffice.odf.pkg.OdfPackage;
 
 /*
   This command-line application takes as its arguments:
@@ -320,8 +321,16 @@ public class MakeChangeList
       // which is a child of <office:body>
       body.appendChild( spreadsheet );
 
+
       // and write the resulting file.
-      outDoc.save( outputFileName );
+      // THIS WILL CALL odsDoc1.getContent() WHICH WILL DELETE MY STYLES!
+      //outDoc.save( outputFileName );
+
+      // Instead do it 'by hand' without calling getContent()
+      OdfPackage mPackage = outDoc.getOdfPackage();
+      mPackage.insert(content, "content.xml");
+      mPackage.save(outputFileName);
+
     }
     catch (Exception e)
     {
