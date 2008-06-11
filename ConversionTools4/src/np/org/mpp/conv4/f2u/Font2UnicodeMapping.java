@@ -82,24 +82,26 @@ public class Font2UnicodeMapping {
 		StringBuffer sb = new StringBuffer(input.length());
 
 		// Pre-processinhg of BACKSCAN directive: ensure a place for the char to match
+    // Jacob TODO look for chars with BACKSCAN mark
 		int i = 1;
 		while (i < input.length()) {
 			// DTODO properly
 			if (input.charAt(i)!=' ' && input.charAt(i)=='m') {
-				Element e = f2u.get(input.substring(i-1, i)); // TODO also 3, 4 chars
+        String keyToLookFor = input.substring(i-1, i+1);
+				Element e = f2u.get(keyToLookFor); // TODO also 3, 4 chars
 				if (e==null) {
 					// it wasnt in thge mapping! We need to backscan!
-					input = input.substring(0,i-1) 
+					input = input.substring(0,i-1)
 					+ input.charAt(i) + input.charAt(i-1)
 					+ input.substring(i+1);
-					i--; 
+					i--;
 					continue;
 				}
 			}
 			i++;
 		}
-		
-		
+
+
 		// replace all with Unicode
 		i = 0;
 		while (i < input.length()) {
@@ -166,14 +168,14 @@ public class Font2UnicodeMapping {
 		//		+ Devanagari.CONSONANTS + "]*)-SWAP-(.*?)-SWAP-", "$2$1");
 
 		s = s.replaceAll("([" + Devanagari.CONSONANTS + "]"
-				+"("+Devanagari.HALANTA+"["+Devanagari.CONSONANTS+"])*" 
+				+"("+Devanagari.HALANTA+"["+Devanagari.CONSONANTS+"])*"
 				+"[^"+Devanagari.CONSONANTS + "]*)-SWAP-(.*?)-SWAP-", "$3$1");
 
-		
+
 		// jacob why is moon disapperaring
 		// ;'gF]	;'gF]	सुनेँ	सुनँे	diff:  pos 3: े ँ pos 4: ँ े
 
-		
+
 		// replace aa + e flags with o
 		// This could also be done in the mapping file.
 		s = s.replaceAll("ाे", "ो");
