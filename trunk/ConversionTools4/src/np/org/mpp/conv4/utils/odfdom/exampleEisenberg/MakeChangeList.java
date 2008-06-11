@@ -280,6 +280,7 @@ public class MakeChangeList
       autoStyleNode.appendChild( dateStyle );
       automaticStyles.appendToNode( autoStyleNode );
 
+
       theTable = new OdfTable( content );
 
       /* The first <table:table-column> is populated with dates */

@@ -1,31 +1,16 @@
 package np.org.mpp.conv4.f2u;
-import java.io.*;
 import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipFile;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-
-import np.org.mpp.conv4.utils.odfdom.SpreadsheetReader;
-import org.apache.xml.serialize.OutputFormat;
-import org.apache.xml.serialize.XMLSerializer;
-import org.w3c.dom.Document;
 import np.org.mpp.conv4.test.TestF2U;
+import np.org.mpp.conv4.utils.odfdom.SpreadsheetReader;
 
 public class Font2UnicodeMappingFactory {
-
 
 
   public static void main(String[] args) throws Exception {
 
     Font2UnicodeMappingFactory fc = new Font2UnicodeMappingFactory();
     Font2UnicodeMapping f2u = fc.getMapping("preeti");
-
-    f2u.checkConsistency();
 
     test(f2u,
          "7fpFm",
@@ -78,6 +63,8 @@ public class Font2UnicodeMappingFactory {
     for (ArrayList<String> row : table) {
         f2u.addLetter(row.get(0), row.get(1));
     }
+
+    f2u.init();
 
     return f2u;
   }
