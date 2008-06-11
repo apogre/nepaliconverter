@@ -21,7 +21,7 @@ public class TestF2U {
     private void test(String textFile, String font, String resultFile) throws Exception {
         ArrayList<String> words = new ArrayList<String>();
         BufferedReader br = new BufferedReader(new FileReader(textFile));
-        int maxLines = 7000;
+        int maxLines = 3000000;
         String l;
         while ( (l=br.readLine())!=null && maxLines-->0) words.add(l.trim());
         br.close();
@@ -50,18 +50,22 @@ public class TestF2U {
             row.add(w);
             row.add(cNew);
             row.add(cOld);
+            cOld = cOld.replace('\'', '’').replace('ः',':');
+            // - –
             String status = "";
             if (cNew.equals(cOld)) status="OK";
             else {
               status = "diff: " + diffStringDetail(cNew, cOld);
             }
             row.add(status);
-            table.add(row);
+            if (status!="OK") table.add(row);
         }
 
         System.out.println(font+" writing "+resultFile+ " ");
         SpreadsheetWriter ssw = new SpreadsheetWriter();
         ssw.write(resultFile, table);
+        System.out.println();
+        System.out.println("finish");
     }
 
     public static String diffStringDetail(String cNew, String cOld) {
