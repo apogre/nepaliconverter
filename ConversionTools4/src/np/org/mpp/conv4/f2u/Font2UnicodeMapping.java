@@ -1,8 +1,9 @@
 package np.org.mpp.conv4.f2u;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
 
-import np.org.mpp.conv4.utils.*;
+import np.org.mpp.conv4.utils.Devanagari;
 
 public class Font2UnicodeMapping {
 	String name;
@@ -11,31 +12,31 @@ public class Font2UnicodeMapping {
 		this.name = name;
 	}
 
-	class Element {
+	static class F2Uelement {
 		public String fontLetter, unicLetter;
-		int elemNr;
+		int priority;
 
 		public String toString() {
-			return "r" + elemNr + ":'" + fontLetter + "'->" + unicLetter;
+			return "r" + priority + ":'" + fontLetter + "'->" + unicLetter;
 		}
 	}
 
-	HashMap<String, Element> f2u = new HashMap<String, Element>();
-	ArrayList<Element> elem = new ArrayList<Element>();
+	HashMap<String, F2Uelement> f2u = new HashMap<String, F2Uelement>();
+	ArrayList<F2Uelement> elem = new ArrayList<F2Uelement>();
 
 	int maxfontLetter = 0;
 
 	public void addLetter(String fontLetter, String unicLetter) {
 		if (fontLetter.length() == 0)
 			return;
-		Element e = new Element();
+		F2Uelement e = new F2Uelement();
 		e.fontLetter = fontLetter;
 		e.unicLetter = unicLetter;
 
-		e.elemNr = elem.size();
+		e.priority = elem.size();
 		elem.add(e);
 
-		Element old = f2u.put(fontLetter, e);
+		F2Uelement old = f2u.put(fontLetter, e);
 		if (old != null)
 			System.out.println("WARNING: Duplicate keys. Replacing " + old
 					+ " with " + e);
@@ -49,7 +50,7 @@ public class Font2UnicodeMapping {
 	 * Check table for and fix obvious errors, like missing and totally
 	 * overruled entries and
 	 */
-	public void checkConsistency() {
+	private void checkConsistency() {
 		for (char c = 33; c < 255; c++) {
 			if (f2u.get("" + c) == null) {
 				System.out.println("WARNING: Character missing in table: \t"
@@ -59,16 +60,16 @@ public class Font2UnicodeMapping {
 			}
 		}
 
-		for (Element e : f2u.values()) {
+		for (F2Uelement e : f2u.values()) {
 			if (e.fontLetter.length() > 1) {
-				Element eSingleLetter = f2u.get(e.fontLetter.substring(0, 1));
-				if (eSingleLetter != null && eSingleLetter.elemNr > e.elemNr) {
+				F2Uelement eSingleLetter = f2u.get(e.fontLetter.substring(0, 1));
+				if (eSingleLetter != null && eSingleLetter.priority > e.priority) {
 					System.out
 							.println("WARNING: Rule "
 									+ e
 									+ " would never be used as it has lower priority than rule "
 									+ eSingleLetter);
-					e.elemNr = 999;
+					e.priority = 999;
 					System.out.println("         Changed to " + e
 							+ " to repair this");
 				}
@@ -80,14 +81,28 @@ public class Font2UnicodeMapping {
 
   String BACKSCAN_MARKS = null;
 
+  public void init() {
+    checkConsistency();
+
+    // Pre-processinhg of BACKSCAN directive: ensure a place for the char to match
+    for (F2Uelement e : f2u.values()) {
+        if ("BACKSCAN".equals(e.unicLetter)) {
+            BACKSCAN_MARKS = BACKSCAN_MARKS + e.fontLetter;
+        }
+    }
+
+    if (BACKSCAN_MARKS.equals("m")) {
+        new IllegalStateException("BACKSCAN_MARKS='m' for now").printStackTrace();
+    }
+  }
+
+
 	public String toUnicode(String input) {
+    if (input==null || input.length() == 0) return input;
     String org_input = input;
-		StringBuffer sb = new StringBuffer(input.length());
+    StringBuffer sb = new StringBuffer(input.length());
 
 		// Pre-processinhg of BACKSCAN directive: ensure a place for the char to match
-    if (BACKSCAN_MARKS == null) {
-        BACKSCAN_MARKS = "m";
-    }
 
     int i = 1;
     if (BACKSCAN_MARKS.indexOf(input.charAt(0)) != -1) {
@@ -106,7 +121,7 @@ public class Font2UnicodeMapping {
             }
 
           String keyToLookFor = input.substring(i - 1, i + 1);
-          Element e = f2u.get(keyToLookFor); // TODO also 3, 4 chars
+          F2Uelement e = f2u.get(keyToLookFor); // TODO also 3, 4 chars
           if (e == null) {
             // it wasnt in thge mapping! We need to backscan!
             input = input.substring(0, i - 1)
@@ -126,18 +141,18 @@ public class Font2UnicodeMapping {
 		// replace all with Unicode
 		i = 0;
 		while (i < input.length()) {
-			Element e = null;
+			F2Uelement e = null;
 
 			if (input.charAt(i) == '<') {
 				// System.err.println("XXX");
 			}
 
 			for (int j = 1; j < maxfontLetter && j + i <= input.length(); j++) {
-				Element e2 = f2u.get(input.substring(i, i + j));
+				F2Uelement e2 = f2u.get(input.substring(i, i + j));
 				if (e2 != null) {
 					if (e == null)
 						e = e2;
-					else if (e2.elemNr > e.elemNr)
+					else if (e2.priority > e.priority)
 						e = e2; // last elements in table have highest priority
 				}
 			}
@@ -206,13 +221,13 @@ public class Font2UnicodeMapping {
 		return s;
 	}
 
-	public static class Identity extends Font2UnicodeMapping {
+    public static class Identity extends Font2UnicodeMapping {
 		public Identity() {
 			super("identity");
 		}
 
-		public void checkConsistency() {
-		}
+    public void init() {
+    }
 
 		public String toUnicode(String input) {
 			return input;

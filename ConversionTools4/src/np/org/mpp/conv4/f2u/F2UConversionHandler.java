@@ -37,7 +37,6 @@ public class F2UConversionHandler implements ConversionHandler {
       mapping = mappings.get(font);
       if (mapping == null) {
         mapping = fc.getMapping(font.toLowerCase().replaceAll("[0..9]", ""));
-        mapping.checkConsistency();
       }
     } catch (Exception e) {
       e.printStackTrace();

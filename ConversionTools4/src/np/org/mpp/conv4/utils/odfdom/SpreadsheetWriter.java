@@ -16,6 +16,7 @@ import org.openoffice.odf.dom.style.props.OdfTextProperties;
 import org.openoffice.odf.dom.type.OdfValueType;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.openoffice.odf.pkg.OdfPackage;
 
 /**
  * A class for writing ODS spread sheets.
@@ -62,27 +63,29 @@ public class SpreadsheetWriter {
         OdfTable.ELEMENT_NAME.getLocalName());
     OdfTable table = (OdfTable) lst.item(0);
 
+    // print out the XML
     //System.out.println(doc.toString().replaceAll("<","\n1<"));
 
     // remove first empty row of table. TODO: more rebust method
     table.removeChild(table.getFirstChild().getNextSibling());
 
-    OdfStyleCollection automaticStyles = odsDoc1.getAutomaticStyles( );
+
 
     /*
       Create a bold-centered style
     */
+    OdfStyleCollection automaticStyles = odsDoc1.getAutomaticStyles( );
     OdfTableCellStyle style = new OdfTableCellStyle( "boldCenter", automaticStyles );
     style.setProperty( OdfTextProperties.FontWeight, "bold");
     style.setProperty( OdfParagraphProperties.TextAlign, "center" );
-
-
     /* And our newly created styles will be children of the
       <office:automatic-styles> element */
     Node autoStyleNode =
       doc.getElementsByTagNameNS(OdfNamespace.OFFICE.getUri(), "automatic-styles").item(0);
 
-    automaticStyles.appendToNode( autoStyleNode );
+    style.appendToNode(autoStyleNode);
+
+
 
 
     /* Create the header row(s) */
@@ -124,9 +127,18 @@ public class SpreadsheetWriter {
       System.out.println("Writing to " + outFile);
     }
 
-    doc.getOdfDocument().save(outFile);
 
-    //System.out.println(doc.toString().replaceAll("<","\n3<"));
+    // THIS WILL CALL odsDoc1.getContent() WHICH WILL REBUILD DELETE MY STYLES!
+    // odsDoc1.save(outFile);
+
+    // Instead do it 'by hand' without calling getContent()
+    OdfPackage mPackage = odsDoc1.getOdfPackage();
+    mPackage.insert(doc, "content.xml");
+    mPackage.save(outFile);
+
+    if (n > 10000) {
+      System.out.println("Writing finished");
+    }
 
   }
 
