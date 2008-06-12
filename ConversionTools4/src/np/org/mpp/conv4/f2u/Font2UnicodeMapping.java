@@ -79,7 +79,7 @@ public class Font2UnicodeMapping {
 
 	String NONSPAC = Devanagari.types[Character.NON_SPACING_MARK];
 
-  String BACKSCAN_MARKS = null;
+  String BACKSCAN_MARKS = "";
 
   public void init() {
     checkConsistency();
@@ -91,7 +91,7 @@ public class Font2UnicodeMapping {
         }
     }
 
-    if (BACKSCAN_MARKS.equals("m")) {
+    if (!BACKSCAN_MARKS.equals("m")) {
         new IllegalStateException("BACKSCAN_MARKS='m' for now").printStackTrace();
     }
   }
@@ -106,7 +106,7 @@ public class Font2UnicodeMapping {
 
     int i = 1;
     if (BACKSCAN_MARKS.indexOf(input.charAt(0)) != -1) {
-        System.err.println("BACKSCAN impossible on first char: " + org_input);
+        System.err.println("BACKSCAN "+BACKSCAN_MARKS+" impossible on first char: " + org_input);
     }
     else try {
       // Jacob TODO look for chars with BACKSCAN marks

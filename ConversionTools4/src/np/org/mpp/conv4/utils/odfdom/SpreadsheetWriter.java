@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import org.w3c.dom.Element;
 import org.openoffice.odf.doc.OdfFileDom;
 import org.openoffice.odf.doc.OdfSpreadsheetDocument;
 import org.openoffice.odf.doc.element.table.*;
@@ -17,6 +18,7 @@ import org.openoffice.odf.dom.type.OdfValueType;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.openoffice.odf.pkg.OdfPackage;
+import org.w3c.dom.Document;
 
 /**
  * A class for writing ODS spread sheets.
@@ -75,24 +77,62 @@ public class SpreadsheetWriter {
       Create a bold-centered style
     */
     OdfStyleCollection automaticStyles = odsDoc1.getAutomaticStyles( );
-    OdfTableCellStyle style = new OdfTableCellStyle( "boldCenter", automaticStyles );
-    style.setProperty( OdfTextProperties.FontWeight, "bold");
-    style.setProperty( OdfParagraphProperties.TextAlign, "center" );
-    /* And our newly created styles will be children of the
-      <office:automatic-styles> element */
+
+    // newly created styles are children of <office:automatic-styles> element
     Node autoStyleNode =
       doc.getElementsByTagNameNS(OdfNamespace.OFFICE.getUri(), "automatic-styles").item(0);
 
-    style.appendToNode(autoStyleNode);
+    OdfTableCellStyle boldCenter = new OdfTableCellStyle( "boldCenter", automaticStyles );
+    boldCenter.setProperty( OdfTextProperties.FontWeight, "bold");
+    boldCenter.setProperty( OdfParagraphProperties.TextAlign, "center" );
+    boldCenter.appendToNode(autoStyleNode);
 
 
+    /*
+      Create a style with a different font
+    */
+    OdfTableCellStyle preeti = new OdfTableCellStyle( "preeti", automaticStyles );
+    preeti.setProperty( OdfTextProperties.FontName, "Preeti");
+    preeti.setProperty( OdfParagraphProperties.TextAlign, "center" );
+    preeti.appendToNode(autoStyleNode);
+
+
+    System.out.println("autoStyleNode.getNamespaceURI() = " + autoStyleNode.getNamespaceURI());
+
+    System.out.println(doc.toString().replaceAll("<","\n1<"));
+
+    // We also need a <office:font-face-decls>
+    // <style:font-face style:name="Preeti" svg:font-family="Preeti" style:font-pitch="variable"/>
+    Node fontFaceDecls =
+      doc.getElementsByTagNameNS(OdfNamespace.OFFICE.getUri(), "font-face-decls").item(0);
+
+    //Element ff = fontFaceDecls.getOwnerDocument().createElement("style:font-face");
+    String ns = fontFaceDecls.getFirstChild().getNamespaceURI();
+    // ns = urn:oasis:names:tc:opendocument:xmlns:style:1.0
+
+    System.out.println("ns = " + ns);
+    Document od = fontFaceDecls.getOwnerDocument();
+    Element ff = fontFaceDecls.getOwnerDocument().createElementNS(ns, "style:font-face");
+    ff.setAttribute("style:name","Preeti");
+    //ff.setAttribute("svg:font-family","Preeti");
+    org.w3c.dom.Attr a = od.createAttributeNS("urn:oasis:names:tc:opendocument:xmlns:svg-compatible:1.0","svg:font-family");
+    a.setValue("Preeti");
+    ff.setAttributeNode(a);
+    ff.setAttribute("style:font-pitch", "variable");
+
+    fontFaceDecls.appendChild(ff);
+    //System.out.println("fontFaceDecls = " + fontFaceDecls);
+
+    System.out.println(doc.toString().replaceAll("<","\n2<"));
+
+    //System.exit(0);
 
 
     /* Create the header row(s) */
     OdfTableHeaderRows tableHeaderRows = new OdfTableHeaderRows( doc );
     OdfTableRow row = new OdfTableRow( doc );
 
-    row.appendChild( constructStringCell( "Date", "boldCenter", doc ) );
+    row.appendChild( constructStringCell( "Date", "preeti", doc ) );
     row.appendChild( constructStringCell( "Type", "boldCenter", doc ) );
     row.appendChild( constructStringCell( "Author", "boldCenter", doc ) );
     row.appendChild( constructStringCell( "Content", "boldCenter", doc ) );
@@ -128,7 +168,7 @@ public class SpreadsheetWriter {
     }
 
 
-    // THIS WILL CALL odsDoc1.getContent() WHICH WILL REBUILD DELETE MY STYLES!
+    // THIS WILL CALL odsDoc1.getContent() WHICH WILL DELETE MY STYLES!
     // odsDoc1.save(outFile);
 
     // Instead do it 'by hand' without calling getContent()
