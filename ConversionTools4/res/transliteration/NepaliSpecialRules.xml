@@ -94,7 +94,7 @@
   <exception trans="मोटर्साइकल्">मोटरसाइकल</exception> <!-- sed unua vortoparto   ekzistas, do ne necesus -->
   <exception trans="रेसम्कीरा">रेसमकीरा</exception> <!-- sed unua vortoparto ekzistas, do ne necesus -->
   <exception trans="लाज्भाँड्">लाजभाँड</exception> <!-- sed unua vortoparto ekzistas, do ne necesus -->
-  <exception trans=""></exception> <!-- sed unua vortoparto ekzistas, do ne necesus -->
+  <exception trans="सन्पाट्">सनपाट</exception> <!-- sed unua vortoparto ekzistas, do ne necesus -->
   <exception trans=""></exception> <!-- sed unua vortoparto ekzistas, do ne necesus -->
 
 
@@ -132,7 +132,7 @@
   <exception trans="शुष्क्">शुष्क</exception>
   <exception trans="शोध्पत्र">शोधपत्र</exception>
   <exception trans="शौचालय">शौचालय</exception>
-  <exception trans=""></exception>
+  <exception trans="समूह">समूह</exception>
   <exception trans=""></exception>
   <exception trans=""></exception>
 

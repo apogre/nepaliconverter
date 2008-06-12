@@ -13,8 +13,10 @@ public class F2UConversionHandler implements ConversionHandler {
 
   private Font2UnicodeMappingFactory fc = new Font2UnicodeMappingFactory();
 
+  public static final Font2UnicodeMapping identity = new Font2UnicodeMapping.Identity();
+
+
   public F2UConversionHandler() {
-    Font2UnicodeMapping identity = new Font2UnicodeMapping.Identity();
     mappings.put("arial", identity);
     mappings.put("arial narrow", identity);
     mappings.put("helvetica", identity);

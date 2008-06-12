@@ -1,25 +1,27 @@
 package np.org.mpp.conv4.utils.odfdom;
 
 import java.util.*;
+
+import javax.swing.ProgressMonitor;
 import javax.xml.xpath.*;
 
-import javax.swing.*;
-
-import org.openoffice.odf.doc.*;
-import org.openoffice.odf.doc.element.text.*;
-import org.openoffice.odf.dom.*;
-import org.openoffice.odf.dom.element.*;
-import org.openoffice.odf.dom.style.*;
-import org.openoffice.odf.dom.style.props.*;
+import np.org.mpp.conv4.f2u.F2UConversionHandler;
+import np.org.mpp.conv4.utils.ConversionHandler;
+import np.org.mpp.conv4.utils.GeneralReaderWriter;
+import org.openoffice.odf.doc.OdfDocument;
+import org.openoffice.odf.doc.element.text.OdfSpan;
+import org.openoffice.odf.dom.OdfNamespace;
+import org.openoffice.odf.dom.element.OdfStylableElement;
+import org.openoffice.odf.dom.style.OdfParagraphStyle;
+import org.openoffice.odf.dom.style.OdfStyle;
+import org.openoffice.odf.dom.style.props.OdfStylePropertiesSet;
 import org.w3c.dom.*;
-import np.org.mpp.conv4.f2u.*;
-import np.org.mpp.conv4.utils.*;
 
 public class OpenOfficeReaderWriter implements GeneralReaderWriter {
 
 //  http://develop.opendocumentfellowship.com/spec/
 
-  static boolean DEBUG = true;
+  static boolean DEBUG = false;
 
   public static List<Node> list(final NodeList nl) throws Exception {
 
@@ -31,13 +33,28 @@ public class OpenOfficeReaderWriter implements GeneralReaderWriter {
     };
   }
 
+
+  static ConversionHandler conversionHandler = new ConversionHandler() {
+    public String convertText(String font, String text) {
+      System.out.println("convertText("+font+", '"+text+"')");
+      return text;
+    }
+
+    public String giveFontReplacement(String font) {
+      return font;
+    }
+  };
+
+
   public static void main(String[] args) throws Exception {
     OpenOfficeReaderWriter orw = new OpenOfficeReaderWriter();
     //"/home/j/esperanto/nepala vortaro/provo.odt"; "/home/j/Dokumenter/oop/oopj354.odt";
 
-    String fn = "test/aLotOfStyles";
 
-    orw.convert(fn+".odt", fn+"-converted.odt", new F2UConversionHandler());
+    //String fn = "test/aLotOfStyles";
+    //orw.convert(fn+".odt", fn+"-converted.odt", new F2UConversionHandler());
+
+    orw.convert("test/testtextKantipur.odt", "tmp/slet.odt", conversionHandler);
 
   }
 
