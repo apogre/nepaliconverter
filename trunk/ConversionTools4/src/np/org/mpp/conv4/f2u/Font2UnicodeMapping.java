@@ -97,6 +97,9 @@ public class Font2UnicodeMapping {
   }
 
 
+  // JAcob TODO: 82% of CPU time is spent here, and 63% CPU is used on compiling
+  // patterns. Caching the patterns would give a *2 or more seedup
+
 	public String toUnicode(String input) {
     if (input==null || input.length() == 0) return input;
     String org_input = input;

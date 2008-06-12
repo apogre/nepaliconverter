@@ -93,7 +93,7 @@ public class SpreadsheetWriter {
     */
     OdfTableCellStyle preeti = new OdfTableCellStyle( "preeti", automaticStyles );
     preeti.setProperty( OdfTextProperties.FontName, "Preeti");
-    preeti.setProperty( OdfParagraphProperties.TextAlign, "center" );
+    //preeti.setProperty( OdfParagraphProperties.TextAlign, "center" );
     preeti.appendToNode(autoStyleNode);
 
 
@@ -132,7 +132,7 @@ public class SpreadsheetWriter {
     OdfTableHeaderRows tableHeaderRows = new OdfTableHeaderRows( doc );
     OdfTableRow row = new OdfTableRow( doc );
 
-    row.appendChild( constructStringCell( "Date", "preeti", doc ) );
+    row.appendChild( constructStringCell( "Date", "boldCenter", doc ) );
     row.appendChild( constructStringCell( "Type", "boldCenter", doc ) );
     row.appendChild( constructStringCell( "Author", "boldCenter", doc ) );
     row.appendChild( constructStringCell( "Content", "boldCenter", doc ) );
@@ -142,19 +142,19 @@ public class SpreadsheetWriter {
     int n = 0;
 
     for (ArrayList<String> ral : data) {
-      OdfTableRow tr = (OdfTableRow) table.appendChild(
-          doc.createOdfElement(OdfTableRow.class));
+      OdfTableRow tr = (OdfTableRow) doc.createOdfElement(OdfTableRow.class);
 
+      int c = 0;
       for (String cellText : ral) {
-        OdfTableCell td1 = (OdfTableCell) tr.appendChild(
-            doc.createOdfElement(OdfTableCell.class));
-
-        OdfParagraph p1 = doc.createOdfElement(OdfParagraph.class);
-
-        p1.appendChild(doc.createTextNode(cellText));
-        td1.appendChild(p1);
-
+          if (c==1)
+              tr.appendChild(constructStringCell( cellText, "preeti", doc ));
+          else
+              tr.appendChild(constructStringCell( cellText, null, doc ));
+        c++;
       }
+
+      table.appendChild(tr);
+
       if (++n % 100 == 0) {
         if (n % 10000 == 0)
           System.out.print("\n" + n);
@@ -164,12 +164,12 @@ public class SpreadsheetWriter {
     }
 
     if (n > 10000) {
-      System.out.println("Writing to " + outFile);
+      System.out.println("\nWriting to " + outFile);
     }
 
 
     // THIS WILL CALL odsDoc1.getContent() WHICH WILL DELETE MY STYLES!
-    // odsDoc1.save(outFile);
+    //odsDoc1.save(outFile);
 
     // Instead do it 'by hand' without calling getContent()
     OdfPackage mPackage = odsDoc1.getOdfPackage();
