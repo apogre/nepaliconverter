@@ -52,7 +52,7 @@ import org.openoffice.odf.pkg.OdfPackage;
   It will then extract all the changes from the text file and
   create a spreadsheet that lists those changes.
 */
-public class MakeChangeList
+public class MakeChangeListOld
 {
   String inputFileName;
   String outputFileName;
@@ -67,10 +67,10 @@ public class MakeChangeList
 
   Vector<ChangeInfo> changeList;
 
-  MakeChangeList( String[ ] args )
+  MakeChangeListOld( String[ ] args )
   {
-    inputFileName = args[0];
-    outputFileName = args[1];
+    inputFileName = "tmp/changedfile.odt";
+    outputFileName = "tmp/changedfileSS.ods";
     xpath = XPathFactory.newInstance().newXPath();
     xpath.setNamespaceContext( new OdfNamespace() );
     changeList = new Vector<ChangeInfo>( );
@@ -254,7 +254,7 @@ public class MakeChangeList
 
       /* A style to refer to the number:date style */
       style = new OdfTableCellStyle( "dateCell", automaticStyles );
-      style.setDataStyleName( "dateStyle" );
+      //style.setDataStyleName( "dateStyle" );
 
       /* Default style for other columns */
       colStyle = new OdfTableColumnStyle( "colstyle", automaticStyles );
@@ -280,6 +280,7 @@ public class MakeChangeList
 
       autoStyleNode.appendChild( dateStyle );
       automaticStyles.appendToNode( autoStyleNode );
+
 
       theTable = new OdfTable( content );
 
@@ -322,14 +323,13 @@ public class MakeChangeList
 
 
       // and write the resulting file.
-      // THIS WILL CALL odsDoc1.getContent() WHICH WILL DELETE THE STYLES!
+      // THIS WILL CALL odsDoc1.getContent() WHICH WILL DELETE MY STYLES!
       //outDoc.save( outputFileName );
 
       // Instead do it 'by hand' without calling getContent()
       OdfPackage mPackage = outDoc.getOdfPackage();
       mPackage.insert(content, "content.xml");
       mPackage.save(outputFileName);
-
 
     }
     catch (Exception e)
@@ -425,26 +425,18 @@ public class MakeChangeList
   void process( )
   {
     extractChanges( );
+    changeList.add( new ChangeInfo(
+  "hej", "Jacob", "010171", "øføf" ) );
+
     createSpreadsheet( );
     System.runFinalization();
   }
 
   public static void main( String[] args )
   {
-    MakeChangeList app;
+    MakeChangeListOld app;
 
-    if (args.length == 2)
-    {
-      app = new MakeChangeList( args );
+      app = new MakeChangeListOld( args );
       app.process( );
-    }
-    else
-    {
-      System.err.println("Usage: java MakeChangeList inputfile.odt outputfile.ods" );
-
-      app = new MakeChangeList( new String[] { "test/changedfile.odt", "tmp/changedfileSS.ods"} );
-      app.process( );
-
-    }
   }
 }

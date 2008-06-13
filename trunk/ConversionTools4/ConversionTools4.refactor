@@ -17,4 +17,8 @@
     <old-class-name>np.org.mpp.conv4.f2u.Font2UnicodeMapping$Element</old-class-name>
     <new-class-name>np.org.mpp.conv4.f2u.Font2UnicodeMapping$F2Uelement</new-class-name>
   </rename-class>
+  <rename-class id="6AP0UCXUBEHFSB346XSFK8Z" creation-time="Fri Jun 13 11:01:46.305 GMT+05:45 2008">
+    <old-class-name>np.org.mpp.conv4.utils.odfdom.exampleEisenberg.MakeChangeList</old-class-name>
+    <new-class-name>np.org.mpp.conv4.utils.odfdom.exampleEisenberg.MakeChangeListOld</new-class-name>
+  </rename-class>
 </refactor>
