@@ -56,7 +56,7 @@ public class Font2UnicodeMapping {
 				System.out.println("WARNING: Character missing in table: \t"
 						+ c + "\t" + c + "\tChar " + c + " " + (int) c + " "
 						+ Integer.toHexString(c));
-				addLetter("" + c, "MISSING CHARACTER");
+				addLetter("" + c, "MISSING CHARACTER " + c+ " ");
 			}
 		}
 
