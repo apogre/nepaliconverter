@@ -97,9 +97,9 @@ public class SpreadsheetWriter {
     preeti.appendToNode(autoStyleNode);
 
 
-    System.out.println("autoStyleNode.getNamespaceURI() = " + autoStyleNode.getNamespaceURI());
+    //System.out.println("autoStyleNode.getNamespaceURI() = " + autoStyleNode.getNamespaceURI());
 
-    System.out.println(doc.toString().replaceAll("<","\n1<"));
+    //System.out.println(doc.toString().replaceAll("<","\n1<"));
 
     // We also need a <office:font-face-decls>
     // <style:font-face style:name="Preeti" svg:font-family="Preeti" style:font-pitch="variable"/>
@@ -110,7 +110,7 @@ public class SpreadsheetWriter {
     String ns = fontFaceDecls.getFirstChild().getNamespaceURI();
     // ns = urn:oasis:names:tc:opendocument:xmlns:style:1.0
 
-    System.out.println("ns = " + ns);
+    //System.out.println("ns = " + ns);
     Document od = fontFaceDecls.getOwnerDocument();
     Element ff = fontFaceDecls.getOwnerDocument().createElementNS(ns, "style:font-face");
     ff.setAttribute("style:name","Preeti");
@@ -123,7 +123,7 @@ public class SpreadsheetWriter {
     fontFaceDecls.appendChild(ff);
     //System.out.println("fontFaceDecls = " + fontFaceDecls);
 
-    System.out.println(doc.toString().replaceAll("<","\n2<"));
+    //System.out.println(doc.toString().replaceAll("<","\n2<"));
 
     //System.exit(0);
 
@@ -143,6 +143,7 @@ public class SpreadsheetWriter {
 
     for (ArrayList<String> ral : data) {
       OdfTableRow tr = (OdfTableRow) doc.createOdfElement(OdfTableRow.class);
+      table.appendChild(tr);
 
       int c = 0;
       for (String cellText : ral) {
@@ -153,7 +154,6 @@ public class SpreadsheetWriter {
         c++;
       }
 
-      table.appendChild(tr);
 
       if (++n % 100 == 0) {
         if (n % 10000 == 0)

@@ -63,7 +63,7 @@ public class SpreadsheetReader {
           rowIndex++;
           if (row != null) res.add(row);
           row = new ArrayList<String>();
-          for (int j=colFrom; j<colTo; j++) row.add(null);
+          for (int j=colFrom; j<=colTo; j++) row.add(null);
         }
         colIndex = td.getColumnIndex();
 
@@ -78,7 +78,7 @@ public class SpreadsheetReader {
 
         //String txt = td.getTextContent().trim();
         if (DEBUG) System.out.println("td = " + rowIndex + " " + colIndex + "  " + txt);
-        row.set(colIndex, txt);
+        if (colIndex>=colFrom && colIndex<=colTo) row.add(colIndex-colFrom, txt);
       }
     }
     if (row != null) res.add(row);
