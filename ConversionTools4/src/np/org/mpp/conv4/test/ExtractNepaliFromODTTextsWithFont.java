@@ -5,6 +5,13 @@ import java.util.*;
 import np.org.mpp.conv4.utils.GeneralReaderWriter;
 import np.org.mpp.conv4.utils.OpenOfficeJacobsOldReaderWriter;
 import np.org.mpp.conv4.utils.ConversionHandler;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathExpressionException;
+import org.openoffice.odf.doc.OdfDocument;
+import org.w3c.dom.NodeList;
+import org.openoffice.odf.doc.OdfFileDom;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathFactory;
 
 
 
@@ -14,6 +21,13 @@ public class ExtractNepaliFromODTTextsWithFont {
   GeneralReaderWriter odtrw = new OpenOfficeJacobsOldReaderWriter();
 
   HashMap<String,HashSet<String>> fontwords = new HashMap<String,HashSet<String>>();
+
+
+  HashSet<String> lookForWords = new HashSet<String>(Arrays.asList(new String[] {
+  "\\m", "\\mPd\\", "j|mflGtsf/Laf6", "m", "m\\", "", "", "", }));
+
+  File actualFile;
+  XPath  xpath = XPathFactory.newInstance().newXPath();
 
   ConversionHandler conversionHandler = new ConversionHandler() {
     /**
@@ -41,8 +55,12 @@ public class ExtractNepaliFromODTTextsWithFont {
 
       for (String word : text.split("[ \\n\\t]")) {
         word = word.trim();
+        if (word.length()==0) continue;
         if (word.length()<40)
-            words.add(word.trim());
+            words.add(word);
+        if (lookForWords.contains(word)) {
+            System.err.println(word+" found in " +actualFile+": "+text);
+        }
       }
 
       return text;
@@ -76,8 +94,16 @@ public class ExtractNepaliFromODTTextsWithFont {
     } else
       try {
         System.out.println("Reading " + file);
-        odtrw.convert(file.getPath(), "tmp/delete.odt", conversionHandler);
-        //System.out.println("fontwords = " + fontwords.keySet());
+
+        OdfFileDom content = OdfDocument.load( file ).getContent( );
+        if (content.toString().indexOf("text:change-start text:change-id")>0) {
+            System.out.println("Changesets found, skipping " + file);
+        } else {
+
+          actualFile = file;
+          odtrw.convert(file.getPath(), "tmp/delete.odt", conversionHandler);
+          //System.out.println("fontwords = " + fontwords.keySet());
+        }
       } catch (Exception e) {
         e.printStackTrace();
       }
