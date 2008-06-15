@@ -102,7 +102,7 @@ public class OpenOfficeJacobsOldReaderWriter implements GeneralReaderWriter {
     }
 
     zof.close();
-    System.out.println("----------- FINO ------------" + outFile);
+    //System.out.println("----------- FINO ------------" + outFile);
 
   }
 
@@ -320,7 +320,7 @@ public class OpenOfficeJacobsOldReaderWriter implements GeneralReaderWriter {
 
       }
     }
-    System.out.println("convertedFonts " + x.convertedFonts);
+    //System.out.println("convertedFonts " + x.convertedFonts);
 
   }
   /*

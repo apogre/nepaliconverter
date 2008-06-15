@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import np.org.mpp.conv4.utils.Devanagari;
+import java.util.HashSet;
+import java.util.Arrays;
 
 public class Font2UnicodeMapping {
 	String name;
@@ -64,20 +66,18 @@ public class Font2UnicodeMapping {
 			if (e.fontLetter.length() > 1) {
 				F2Uelement eSingleLetter = f2u.get(e.fontLetter.substring(0, 1));
 				if (eSingleLetter != null && eSingleLetter.priority > e.priority) {
-					System.out
-							.println("WARNING: Rule "
-									+ e
+					System.out.println("WARNING: Rule " + e
 									+ " would never be used as it has lower priority than rule "
 									+ eSingleLetter);
 					e.priority = 999;
-					System.out.println("         Changed to " + e
-							+ " to repair this");
+					System.out.println("         Changed to " + e	+ " to repair this");
 				}
 			}
 		}
 	}
 
 	String NONSPAC = Devanagari.types[Character.NON_SPACING_MARK];
+  HashSet<String> FONT_NONSPAC = new HashSet<String>();
 
   String BACKSCAN_MARKS = "";
 
@@ -89,6 +89,11 @@ public class Font2UnicodeMapping {
         if ("BACKSCAN".equals(e.unicLetter)) {
             BACKSCAN_MARKS = BACKSCAN_MARKS + e.fontLetter;
         }
+
+        if (e.unicLetter.length()==1 && e.fontLetter.length()==1 && NONSPAC.indexOf(e.unicLetter)!= -1) {
+            FONT_NONSPAC.add(e.fontLetter);
+            System.out.println("added to FONT_NONSPAC = " + e+ " char no "+(int) e.unicLetter.charAt(0));
+        }
     }
 
     if (!BACKSCAN_MARKS.equals("m")) {
@@ -97,52 +102,17 @@ public class Font2UnicodeMapping {
   }
 
 
-  // JAcob TODO: 82% of CPU time is spent here, and 63% CPU is used on compiling
-  // patterns. Caching the patterns would give a *2 or more seedup
 
 	public String toUnicode(String input) {
     if (input==null || input.length() == 0) return input;
-    String org_input = input;
-    StringBuffer sb = new StringBuffer(input.length());
 
-		// Pre-processinhg of BACKSCAN directive: ensure a place for the char to match
+    input = processBackscan(input);
+    input = removeDuplicatesAndReorderNonspacingMarks(input);
 
-    int i = 1;
-    if (BACKSCAN_MARKS.indexOf(input.charAt(0)) != -1) {
-        System.err.println("BACKSCAN "+BACKSCAN_MARKS+" impossible on first char: " + org_input);
-    }
-    else try {
-      // Jacob TODO look for chars with BACKSCAN marks
-
-      while (i < input.length()) {
-        // TODO properly
-        if (input.charAt(i) == 'm') {
-            if (i<=0 || input.charAt(i-1) == ' ') {
-                System.err.println("BACKSCAN failed on char "+i+ " on text: " + org_input);
-                input = org_input;
-                break;
-            }
-
-          String keyToLookFor = input.substring(i - 1, i + 1);
-          F2Uelement e = f2u.get(keyToLookFor); // TODO also 3, 4 chars
-          if (e == null) {
-            // it wasnt in thge mapping! We need to backscan!
-            input = input.substring(0, i - 1)
-                    + input.charAt(i) + input.charAt(i - 1)
-                    + input.substring(i + 1);
-            i--;
-            continue;
-          }
-        }
-        i++;
-      }
-    } catch (Exception e) {
-        System.err.println("Pre-processinhg of BACKSCAN coding error for "+input);
-        e.printStackTrace();
-    }
+    StringBuilder sb = new StringBuilder(input.length());
 
 		// replace all with Unicode
-		i = 0;
+		int i = 0;
 		while (i < input.length()) {
 			F2Uelement e = null;
 
@@ -173,6 +143,11 @@ public class Font2UnicodeMapping {
 
 		String s = sb.toString();
 
+    // Jacob TODO: 82% of CPU time is spent here, and 63% CPU is used on compiling
+    // patterns. Caching the patterns would give a *2 or more speedup
+
+
+
 		// put the ii ि after the following consonant
 		String ii = "ि";
 
@@ -188,10 +163,6 @@ public class Font2UnicodeMapping {
 		s = s.replaceAll("([" + Devanagari.NAZALIZATIONS + "]+)(["
 				+ Devanagari.VOCALFLAGS + "]+)", "$2$1");
 
-		// remove all duplicate flags and other non-spacing signs
-		// JACOB check if this works: /]l8of]] /]l8of]]]]]]]] रेडियोे रेडियो
-		// Jacob 4{g 4{g द्र्धन र्द्धन diff: pos 0: द र pos 2: र द
-		// Jacob /Xof] . /Xof] . रह्योnull। रह्यो । diff: pos 5: n   pos 6: u ।
 
 		for (int j = 0; j < NONSPAC.length(); j++)
 			s = s.replaceAll(NONSPAC.charAt(j) + "+", "" + NONSPAC.charAt(j));
@@ -211,9 +182,6 @@ public class Font2UnicodeMapping {
 				+"[^"+Devanagari.CONSONANTS + "]*)-SWAP-(.*?)-SWAP-", "$3$1");
 
 
-		// jacob why is moon disapperaring
-		// ;'gF]	;'gF]	सुनेँ	सुनँे	diff:  pos 3: े ँ pos 4: ँ े
-
 
 		// replace aa + e flags with o
 		// This could also be done in the mapping file.
@@ -223,6 +191,107 @@ public class Font2UnicodeMapping {
 
 		return s;
 	}
+
+  /**
+   * Pre-processinhg of BACKSCAN directive:
+   * look for chars with BACKSCAN marks and ensure a place for the char to match
+   * @param input String
+   */
+  private String processBackscan(String input) {
+    String org_input = input;
+
+    int i = 1;
+    if (BACKSCAN_MARKS.indexOf(input.charAt(0)) != -1) {
+      System.err.println("BACKSCAN " + BACKSCAN_MARKS + " impossible on first char: " + org_input);
+    } else
+      try {
+
+        while (i < input.length()) {
+          // TODO properly
+          if (input.charAt(i) == 'm') {
+            if (i <= 0 || input.charAt(i - 1) == ' ') {
+              System.err.println("BACKSCAN failed on char " + i + " on text: " + org_input);
+              input = org_input;
+              break;
+            }
+
+            String keyToLookFor = input.substring(i - 1, i + 1);
+            F2Uelement e = f2u.get(keyToLookFor); // TODO also 3, 4 chars
+            if (e == null) {
+              // it wasnt in thge mapping! We need to backscan!
+              input = input.substring(0, i - 1)
+                      + input.charAt(i) + input.charAt(i - 1)
+                      + input.substring(i + 1);
+              i--;
+              continue;
+            }
+          }
+          i++;
+        }
+      } catch (Exception e) {
+        System.err.println("Pre-processinhg of BACKSCAN coding error for " + input);
+        e.printStackTrace();
+      }
+    return input;
+  }
+
+
+  /**
+   * Pre-processinhg: Remove duplicate non-spacing marks and reorder them
+   * to avoid need of all combinations in mapping file.
+   * Examples (Preeti): xf]]] -> xf]   ,æsn]]hsf -> ,æsn]hsf     xF'b} -> x'Fb}
+   * u/+] -> u/]+
+   *
+   * Reordering is done so this order is followed (for Preeti):
+   * 'F'->ँ char no 2305  (last)
+   * '+'->ं char no 2306
+   * '''->ु char no 2369
+   * '"'->ू char no 2370
+   * '['->ृ char no 2371
+   * ']'->े char no 2375
+   * '}'->ै char no 2376
+   * '\'->् char no 2381  (first)
+   *
+   * @param input String
+   * @return String
+   */
+  private String removeDuplicatesAndReorderNonspacingMarks(String input) {
+      String orgInput = input;
+
+      int i = 1;
+      while (i < input.length()) {
+          int j = i;
+          while (j <= input.length() && FONT_NONSPAC.contains(input.substring(j-1, j))) j++;
+          if (j>i+1) {
+              // we found more than 1 nonspac char
+              StringBuilder sb2 = new StringBuilder(input.substring(i-1,j-1));
+
+              int k=1; // delete dublets
+              while (k<sb2.length()) {
+                char c0 = sb2.charAt(k-1);
+                char c1 = sb2.charAt(k);
+                if (c0 == c1) {
+                  sb2.deleteCharAt(k); // delete duplicate
+                } else if (f2u.get(""+c0).unicLetter.compareTo(f2u.get(""+c1).unicLetter)<0) {
+                  sb2.setCharAt(k-1, c1); // swap chars
+                  sb2.setCharAt(k, c0);
+                  k=1; // and start over (very ineffective sorting :-)
+                } else {
+                  k++;
+                }
+              }
+              //System.out.println("Ainput = " + input);
+              input = input.substring(0,i-1) + sb2 + input.substring(j-1);
+              //System.out.println("Binput = " + input);
+              //System.out.println();
+          }
+          i++;
+      }
+
+      if (!orgInput.equals(input))
+          System.out.println("removeDuplicateNonspacingMarks("+orgInput +" -> "+input);
+      return input;
+  }
 
     public static class Identity extends Font2UnicodeMapping {
 		public Identity() {
