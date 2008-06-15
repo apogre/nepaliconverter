@@ -186,8 +186,11 @@ public class Font2UnicodeMapping {
 		// replace aa + e flags with o
 		// This could also be done in the mapping file.
 		s = s.replaceAll("ाे", "ो");
-
 		s = s.replaceAll("आे", "ओ");
+
+    s = s.replaceAll("ाै", "ौ");
+    s = s.replaceAll("आै", "औ");
+
 
 		return s;
 	}
