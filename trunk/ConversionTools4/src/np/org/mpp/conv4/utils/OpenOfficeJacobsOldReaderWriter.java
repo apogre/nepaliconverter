@@ -45,6 +45,8 @@ public class OpenOfficeJacobsOldReaderWriter implements GeneralReaderWriter {
 
   public void convert(String inFile, String outFile, ConversionHandler conversionHandler) throws Exception
   {
+    if (outFile == null) outFile = "tmp/delete.odt";
+
     ZipFile zif = new ZipFile(inFile);
 
     ZipOutputStream zof = new ZipOutputStream(new FileOutputStream(outFile));
