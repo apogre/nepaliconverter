@@ -70,7 +70,8 @@ public class TestF2U {
             row.add(cNew);
             row.add(cOld);
 
-            String ignoreInDiff = "[Ù;Ü%'‘’:ः]";
+
+            String ignoreInDiff = "[Ù;धघÜ%-­'‘’:ः]";
             String cOldi = cOld.replaceAll(ignoreInDiff," ");
             String cNewi = cNew.replaceAll(ignoreInDiff," ");
 
