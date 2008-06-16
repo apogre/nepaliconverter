@@ -96,6 +96,13 @@ public class Font2UnicodeMapping {
         }
     }
 
+    // It also seems that for Preeti { (R halanta) is a non-spacing mark for which duplicates needs to be removed.
+    {
+      F2Uelement e = f2u.get("{");
+      FONT_NONSPAC.add(e.fontLetter);
+      System.out.println("added to FONT_NONSPAC = " + e + " char no " + (int) e.unicLetter.charAt(0));
+    }
+
     if (!BACKSCAN_MARKS.equals("m")) {
         new IllegalStateException("BACKSCAN_MARKS='m' for now").printStackTrace();
     }

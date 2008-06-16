@@ -127,21 +127,6 @@ public class ExtractNepaliFromODTTextsWithFont {
     }
   }
 
-  private void saveHtml() throws FileNotFoundException {
-    for (String font : fontwords.keySet()) {
-      TreeSet<String> words = new TreeSet<String>(fontwords.get(font));
-
-      PrintWriter pw = new PrintWriter("tmp/words_"+font+".html");
-      pw.println("<html><body><table>");
-
-      for (String word : words) {
-        pw.println("<tr><td><p>" + word + "</p></td><td><p><font face='" + font + "'>" + word + "</font></p></td></tr>");
-      }
-      pw.println("</table></body></html>");
-      pw.close();
-    }
-  }
-
 
   public static void main(String[] args) throws FileNotFoundException {
     ExtractNepaliFromODTTextsWithFont e = new ExtractNepaliFromODTTextsWithFont();
