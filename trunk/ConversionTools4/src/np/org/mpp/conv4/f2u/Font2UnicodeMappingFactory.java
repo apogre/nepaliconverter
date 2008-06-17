@@ -61,13 +61,13 @@ public class Font2UnicodeMappingFactory {
 
     ArrayList<ArrayList<String>> table = SpreadsheetReader.read("res/"+name+"_unicode.ods");
     for (ArrayList<String> row : table) {
-        String comment = row.get(2);
+        String comment = row.get(0)+row.get(2);
         if (comment != null && comment.indexOf("DEBUG")!=-1) {
             System.out.println("DEBUG "+row);
-            System.out.println("DEBUG "+f2u.hex(row.get(0)));
-            System.out.println("DEBUG "+f2u.hex(row.get(1)));
+            System.out.println(" FONT "+f2u.hex(row.get(1)));
+            System.out.println(" UNIC "+f2u.hex(row.get(2)));
         }
-        f2u.addLetter(row.get(0), row.get(1));
+        f2u.addLetter(row.get(1), row.get(2));
     }
 
     f2u.init();

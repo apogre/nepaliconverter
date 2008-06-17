@@ -21,7 +21,7 @@ public class Font2UnicodeMapping {
 		}
 	}
 
-	HashMap<String, F2Uelement> f2u = new HashMap<String, F2Uelement>();
+	HashMap<String, F2Uelement> f2u = new LinkedHashMap<String, F2Uelement>();
 	ArrayList<F2Uelement> elem = new ArrayList<F2Uelement>();
 
 	int maxfontLetter = 0;
@@ -40,7 +40,7 @@ public class Font2UnicodeMapping {
     if (unicLetter.equalsIgnoreCase("unicode")) return;
 
 
-    if (unicLetter.trim().equalsIgnoreCase("FONT_NONSPAC")) {
+    if (unicLetter.trim().equalsIgnoreCase("NONSPAC")) {
         for (int i=1; i<fontLetter.length(); i++) {
             String s = fontLetter.substring(i-1,i).trim();
             if (s.length()>0) FONT_NONSPAC.add(s);
@@ -101,6 +101,8 @@ public class Font2UnicodeMapping {
 				}
 			}
 		}
+
+    System.out.println("maxfontLetter = " + maxfontLetter);
 	}
 
   public static String hex(char c) {
@@ -122,8 +124,8 @@ public class Font2UnicodeMapping {
    */
   public void printUsage() {
       for (F2Uelement e : f2u.values()) {
-        if (e.used) {
-          System.out.println("This element wasnt used during test: " + e);
+        if (!e.used) {
+          System.out.println("This element was not used during test: " + e);
         }
       }
   }
@@ -141,10 +143,16 @@ public class Font2UnicodeMapping {
     for (F2Uelement e : f2u.values()) {
         if ("BACKSCAN".equals(e.unicLetter)) {
             BACKSCAN_MARKS = BACKSCAN_MARKS + e.fontLetter;
+            e.used = true;
         }
     }
 
+    if (!BACKSCAN_MARKS.equals("m")) {
+      new IllegalStateException("BACKSCAN_MARKS='m' for now").printStackTrace();
+    }
 
+
+    // Pre-processinhg of NONSPAC directive: swap noncpacing characters
     if (FONT_NONSPAC.size()==0) {
       System.out.println("Warning: FONT_NONSPAC list not found, trying to autogenerate it from mapping");
 
@@ -162,13 +170,10 @@ public class Font2UnicodeMapping {
         System.out.println("added to FONT_NONSPAC = " + e + " char no " + (int) e.unicLetter.charAt(0));
       }
 
-      System.out.println("         Please add entry " +FONT_NONSPAC.toString().replaceAll(", ","")+ " FONT_NONSPAC to spreadsheet");
+      System.out.println("         Please add entry " +FONT_NONSPAC.toString().replaceAll(", ","  ")+ " NONSPAC to spreadsheet");
 
     }
 
-    if (!BACKSCAN_MARKS.equals("m")) {
-      new IllegalStateException("BACKSCAN_MARKS='m' for now").printStackTrace();
-    }
   }
 
 
@@ -186,9 +191,6 @@ public class Font2UnicodeMapping {
 		while (i < input.length()) {
 			F2Uelement e = null;
 
-			if (input.charAt(i) == '<') {
-				// System.err.println("XXX");
-			}
 
 			for (int j = 1; j < maxfontLetter && j + i <= input.length(); j++) {
 				F2Uelement e2 = f2u.get(input.substring(i, i + j));
@@ -339,6 +341,7 @@ public class Font2UnicodeMapping {
           if (j>i+1) {
               // we found more than 1 nonspac char
               StringBuilder sb2 = new StringBuilder(input.substring(i-1,j-1));
+
 
               int k=1; // delete dublets
               while (k<sb2.length()) {
