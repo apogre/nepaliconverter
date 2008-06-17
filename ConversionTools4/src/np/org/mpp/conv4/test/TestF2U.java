@@ -98,15 +98,16 @@ public class TestF2U {
             if (status!="OK") {
               err++;
               table.add(row);
-              if (err < 100) System.out.println(row);
+              if (err < 10) System.out.println(row);
             }
         }
 
         System.out.println("");
+
+        newf2u.findMapping(font).printUsage();
+
         //System.out.println("Total of "+err+" errors on "+words.size()+" words ("+100*err/words.size()+" %)");
         System.out.println("Total of "+err+" deviations on "+words.size()+" words");
-
-        //newf2u.findMapping(font).printUsage();
 
         System.out.println(font+" writing "+resultFile+ " ");
         SpreadsheetWriter ssw = new SpreadsheetWriter();
