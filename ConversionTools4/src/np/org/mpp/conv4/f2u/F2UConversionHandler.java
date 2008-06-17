@@ -31,7 +31,7 @@ public class F2UConversionHandler implements ConversionHandler {
    * the identity mapping will be returned
    * (thus not convertint e.g. Arial and Times New Roman)
    */
-  private Font2UnicodeMapping findMapping(String font) {
+  public Font2UnicodeMapping findMapping(String font) {
     Font2UnicodeMapping mapping = mappings.get(font);
 
     if (mapping == null) try {

@@ -1,11 +1,8 @@
 package np.org.mpp.conv4.f2u;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.*;
 
 import np.org.mpp.conv4.utils.Devanagari;
-import java.util.HashSet;
-import java.util.Arrays;
 
 public class Font2UnicodeMapping {
 	String name;
@@ -17,6 +14,7 @@ public class Font2UnicodeMapping {
 	static class F2Uelement {
 		public String fontLetter, unicLetter;
 		int priority;
+    boolean used;
 
 		public String toString() {
 			return "r" + priority + ":'" + fontLetter + "'->" + unicLetter;
@@ -27,21 +25,51 @@ public class Font2UnicodeMapping {
 	ArrayList<F2Uelement> elem = new ArrayList<F2Uelement>();
 
 	int maxfontLetter = 0;
+  int lineNr = 0;
 
 	public void addLetter(String fontLetter, String unicLetter) {
-		if (fontLetter.length() == 0)
-			return;
+    lineNr++;
+
+
+    if (fontLetter == null)	return;
+		if (fontLetter.length() == 0)	return;
+
+    // BUGFIX - spreadsheetreader dont handle <table:table-cell table:number-columns-repeated="2"> !!!
+    if (unicLetter == null)	unicLetter=fontLetter;
+
+    if (unicLetter.equalsIgnoreCase("unicode")) return;
+
+
+    if (unicLetter.trim().equalsIgnoreCase("FONT_NONSPAC")) {
+        for (int i=1; i<fontLetter.length(); i++) {
+            String s = fontLetter.substring(i-1,i).trim();
+            if (s.length()>0) FONT_NONSPAC.add(s);
+        }
+        return;
+    }
+
 		F2Uelement e = new F2Uelement();
 		e.fontLetter = fontLetter;
 		e.unicLetter = unicLetter;
 
-		e.priority = elem.size();
+		e.priority = lineNr; //elem.size()+10;
 		elem.add(e);
 
-		F2Uelement old = f2u.put(fontLetter, e);
+		F2Uelement old = f2u.put(e.fontLetter, e);
+    /*
+    char[] ca = fontLetter.toCharArray();
+    Arrays.sort(ca);
+    if (ca[ca.length-1] >255) {
+      System.out.print(lineNr+" WARNING: all chars not in range 0-255 for " + e + " so it might not be used: ");
+      ca = fontLetter.toCharArray();
+      for (char c : ca) {
+          System.out.print(" '"+c+"' (\\u"+Integer.toHexString(c)+")");
+      }
+      System.out.println();
+    }
+    */
 		if (old != null)
-			System.out.println("WARNING: Duplicate keys. Replacing " + old
-					+ " with " + e);
+			System.out.println(lineNr+" WARNING: Duplicate keys. Replacing " + old + " with " + e);
 
 		// System.out.println(e);
 
@@ -55,10 +83,9 @@ public class Font2UnicodeMapping {
 	private void checkConsistency() {
 		for (char c = 33; c < 255; c++) {
 			if (f2u.get("" + c) == null) {
-				System.out.println("WARNING: Character missing in table: \t"
-						+ c + "\t" + c + "\tChar " + c + " " + (int) c + " "
-						+ Integer.toHexString(c));
-				addLetter("" + c, "MISSING CHARACTER " + c+ " ");
+        System.out.println("WARNING: Character missing in table: \t" + c + "\t"
+                           + c + "\tChar " + c + " " + hex(c));
+        addLetter("" + c, "MISSING CHARACTER " + hex(c));
 			}
 		}
 
@@ -76,6 +103,32 @@ public class Font2UnicodeMapping {
 		}
 	}
 
+  public static String hex(char c) {
+      return (int) c + "(\\u" + Integer.toHexString(c) + ")";
+  }
+
+  public static String hex(String s) {
+      if (s==null) return null;
+      StringBuilder r = new StringBuilder(s.length()*6);
+      for (int i=0; i<s.length(); i++) {
+          r.append(hex(s.charAt(i))).append(' ');
+      }
+      return r.toString();
+  }
+
+
+    /**
+   * Print out table entries which have not been used. For testing putposes
+   */
+  public void printUsage() {
+      for (F2Uelement e : f2u.values()) {
+        if (e.used) {
+          System.out.println("This element wasnt used during test: " + e);
+        }
+      }
+  }
+
+
 	String NONSPAC = Devanagari.types[Character.NON_SPACING_MARK];
   HashSet<String> FONT_NONSPAC = new HashSet<String>();
 
@@ -89,22 +142,32 @@ public class Font2UnicodeMapping {
         if ("BACKSCAN".equals(e.unicLetter)) {
             BACKSCAN_MARKS = BACKSCAN_MARKS + e.fontLetter;
         }
-
-        if (e.unicLetter.length()==1 && e.fontLetter.length()==1 && NONSPAC.indexOf(e.unicLetter)!= -1) {
-            FONT_NONSPAC.add(e.fontLetter);
-            System.out.println("added to FONT_NONSPAC = " + e+ " char no "+(int) e.unicLetter.charAt(0));
-        }
     }
 
-    // It also seems that for Preeti { (R halanta) is a non-spacing mark for which duplicates needs to be removed.
-    {
-      F2Uelement e = f2u.get("{");
-      FONT_NONSPAC.add(e.fontLetter);
-      System.out.println("added to FONT_NONSPAC = " + e + " char no " + (int) e.unicLetter.charAt(0));
+
+    if (FONT_NONSPAC.size()==0) {
+      System.out.println("Warning: FONT_NONSPAC list not found, trying to autogenerate it from mapping");
+
+      for (F2Uelement e : f2u.values()) {
+        if (e.unicLetter.length() == 1 && e.fontLetter.length() == 1 && NONSPAC.indexOf(e.unicLetter) != -1) {
+          FONT_NONSPAC.add(e.fontLetter);
+          System.out.println("added to FONT_NONSPAC = " + e + " char no " + (int) e.unicLetter.charAt(0));
+        }
+      }
+
+      // It also seems that for Preeti { (R halanta) is a non-spacing mark for which duplicates needs to be removed.
+      {
+        F2Uelement e = f2u.get("{");
+        FONT_NONSPAC.add(e.fontLetter);
+        System.out.println("added to FONT_NONSPAC = " + e + " char no " + (int) e.unicLetter.charAt(0));
+      }
+
+      System.out.println("         Please add entry " +FONT_NONSPAC.toString().replaceAll(", ","")+ " FONT_NONSPAC to spreadsheet");
+
     }
 
     if (!BACKSCAN_MARKS.equals("m")) {
-        new IllegalStateException("BACKSCAN_MARKS='m' for now").printStackTrace();
+      new IllegalStateException("BACKSCAN_MARKS='m' for now").printStackTrace();
     }
   }
 
@@ -140,6 +203,7 @@ public class Font2UnicodeMapping {
 			if (e != null) {
 				// found a transscription
 				sb.append(e.unicLetter);
+        e.used = true;
 				i = i + e.fontLetter.length();
 			} else {
 				// none found; add original letter
@@ -298,8 +362,7 @@ public class Font2UnicodeMapping {
           i++;
       }
 
-      if (!orgInput.equals(input))
-          System.out.println("removeDuplicateNonspacingMarks("+orgInput +" -> "+input);
+      //if (!orgInput.equals(input)) System.out.println("removeDuplicateNonspacingMarks("+orgInput +" -> "+input);
       return input;
   }
 

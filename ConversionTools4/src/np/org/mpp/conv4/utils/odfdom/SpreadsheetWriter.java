@@ -19,6 +19,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.openoffice.odf.pkg.OdfPackage;
 import org.w3c.dom.Document;
+import java.io.OutputStream;
 
 /**
  * A class for writing ODS spread sheets.
@@ -56,6 +57,7 @@ public class SpreadsheetWriter {
    */
   public static void write(String outFile, ArrayList<ArrayList<String>> data) throws Exception {
     OdfSpreadsheetDocument odsDoc1 = new OdfSpreadsheetDocument();
+
 
     OdfFileDom doc = odsDoc1.getContent();
 
@@ -173,6 +175,17 @@ public class SpreadsheetWriter {
 
     // Instead do it 'by hand' without calling getContent()
     OdfPackage mPackage = odsDoc1.getOdfPackage();
+
+    // quick fix to set zoom to 234%:
+    String sett = new String(mPackage.getBytes(mPackage.STREAMNAME_SETTINGS));
+    String sett2 = sett.replaceAll(
+        "<config:config-item config:name=\"ZoomValue\" config:type=\"int\">100</config:config-item>",
+        "<config:config-item config:name=\"ZoomValue\" config:type=\"int\">234</config:config-item>" );
+    if (sett2.equals(sett)) System.err.println("Failed to set zoom factor.");
+    OutputStream os = mPackage.insert(mPackage.STREAMNAME_SETTINGS);
+    os.write(sett2.getBytes());
+    os.close();
+
     mPackage.insert(doc, "content.xml");
     mPackage.save(outFile);
 

@@ -61,8 +61,13 @@ public class TestF2U {
         table.add(heading);
         int err = 0;
 
+        String ignoreInDiff = "[Ù;धघÜ%-­\u2013\u2014\u2015'‘’:ः]";
+        System.out.println("These chars be ignored in compariosons: "+ignoreInDiff);
+
+
         for (String w : words) {
             ArrayList<String> row = new ArrayList<String>();
+
             String cNew = newf2u.convertText(font, w).trim();
             String cOld = oldf2u.convertText(font, w).trim();
             row.add(w);
@@ -71,7 +76,6 @@ public class TestF2U {
             row.add(cOld);
 
 
-            String ignoreInDiff = "[Ù;धघÜ%-­'‘’:ः]";
             String cOldi = cOld.replaceAll(ignoreInDiff," ");
             String cNewi = cNew.replaceAll(ignoreInDiff," ");
 
@@ -81,6 +85,15 @@ public class TestF2U {
             else {
               status = "diff: " + diffStringDetail(cNewi, cOldi);
             }
+
+
+            /*
+            for (int i=0; i<w.length(); i++) {
+                if (w.charAt(i)>255) System.out.println(status = ">255 i input "+w+" : "
+                                                        +w.charAt(i) + "(\\u" + Integer.toHexString(w.charAt(i)) + ") ");
+            }*/
+
+
             row.add(status);
             if (status!="OK") {
               err++;
@@ -92,6 +105,8 @@ public class TestF2U {
         System.out.println("");
         //System.out.println("Total of "+err+" errors on "+words.size()+" words ("+100*err/words.size()+" %)");
         System.out.println("Total of "+err+" deviations on "+words.size()+" words");
+
+        //newf2u.findMapping(font).printUsage();
 
         System.out.println(font+" writing "+resultFile+ " ");
         SpreadsheetWriter ssw = new SpreadsheetWriter();
@@ -109,9 +124,16 @@ public class TestF2U {
                   status = status + "  ...";
                   break;
                 }
-                status = status + " pos "+i+": "+cNew.charAt(i)+" "+cOld.charAt(i);
+                status = status + " pos "+i+": "
+                         +hex(cNew.charAt(i))+ " "
+                         +hex(cOld.charAt(i));
             }
         }
         return status;
     }
+
+    public static String hex(char c) {
+        return (int) c + "(\\u" + Integer.toHexString(c) + ")";
+    }
+
 }
