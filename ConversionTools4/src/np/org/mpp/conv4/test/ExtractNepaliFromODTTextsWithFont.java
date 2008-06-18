@@ -20,12 +20,14 @@ public class ExtractNepaliFromODTTextsWithFont {
 
   HashMap<String,HashSet<String>> fontwords = new HashMap<String,HashSet<String>>();
 
+  HashSet<String> fonts = new HashSet<String>();
+
 
   HashSet<String> lookForWords = new HashSet<String>(Arrays.asList(new String[] {
   "\\m", "\\mPd\\", "j|mflGtsf/Laf6", "m", "m\\", "", "", "", }));
 
   File actualFile;
-  XPath  xpath = XPathFactory.newInstance().newXPath();
+  //XPath  xpath = XPathFactory.newInstance().newXPath();
 
   ConversionHandler conversionHandler = new ConversionHandler() {
     /**
@@ -39,6 +41,7 @@ public class ExtractNepaliFromODTTextsWithFont {
       if (text.length()==0) return text;
 
       //System.out.println("convertText("+font+", '"+text+"')");
+      fonts.add(font);
 
       HashSet<String> words = fontwords.get(font);
       if (words == null) {

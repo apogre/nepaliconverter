@@ -21,4 +21,16 @@
     <old-class-name>np.org.mpp.conv4.utils.odfdom.exampleEisenberg.MakeChangeList</old-class-name>
     <new-class-name>np.org.mpp.conv4.utils.odfdom.exampleEisenberg.MakeChangeListOld</new-class-name>
   </rename-class>
+  <rename-class id="6AP09JZITLHFLKIHEXSFK8Z" creation-time="Wed Jun 18 16:50:45.575 GMT+05:45 2008">
+    <old-class-name>np.org.mpp.conv4.utils.jodconverter.ConvertDocument</old-class-name>
+    <new-class-name>np.org.mpp.conv4.utils.jodconverter.CommentLineConvertDocument</new-class-name>
+  </rename-class>
+  <rename-class id="4AP09JZITLHFLKIHEXSFK8Z" creation-time="Wed Jun 18 17:11:29.636 GMT+05:45 2008">
+    <old-class-name>np.org.mpp.conv4.utils.jodconverter.ConvertDocument</old-class-name>
+    <new-class-name>np.org.mpp.conv4.utils.jodconverter.OODocumentConverter</new-class-name>
+  </rename-class>
+  <rename-class id="6AP0RJU66MHFMGPV4XSFK8Z" creation-time="Wed Jun 18 22:45:14.249 GMT+05:45 2008">
+    <old-class-name>np.org.mpp.conv4.utils.JodChainedReaderWriter</old-class-name>
+    <new-class-name>np.org.mpp.conv4.utils.jodconverter.JodChainedReaderWriter</new-class-name>
+  </rename-class>
 </refactor>
