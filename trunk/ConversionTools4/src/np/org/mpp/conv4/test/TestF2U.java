@@ -18,7 +18,8 @@ public class TestF2U {
   public static void main(String[] args) throws Exception {
     TestF2U testf2u = new TestF2U();
     //testf2u.test("test/words_Kantipur.txt", "Kantipur", "tmp/test_words_Kantipur_result.ods");
-    testf2u.test("Preeti", "tmp/test_words_Preeti_result3.ods");
+    //testf2u.test("Preeti", "tmp/test_words_Preeti_result.ods");
+    testf2u.test("Kantipur", "tmp/test_words_Kantipur_result.ods");
   }
 
     private void test(String font, String resultFile) throws Exception {
@@ -61,7 +62,7 @@ public class TestF2U {
         table.add(heading);
         int err = 0;
 
-        String ignoreInDiff = "[Ù;धघÜ%-­\u2013\u2014\u2015'‘’:ः]";
+        String ignoreInDiff = "[-­\u2013\u2014\u2015'‘’:ः ]"; //"[Ù;धघÜ%-­\u2013\u2014\u2015'‘’:ः]";
         System.out.println("These chars be ignored in compariosons: "+ignoreInDiff);
 
 
