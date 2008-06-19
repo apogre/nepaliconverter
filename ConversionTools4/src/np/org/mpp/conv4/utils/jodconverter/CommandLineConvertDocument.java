@@ -42,7 +42,7 @@ import org.apache.commons.io.FilenameUtils;
  * ConvertDocument -f pdf *.odt
  * </pre>
  */
-public class CommentLineConvertDocument {
+public class CommandLineConvertDocument {
 
   private static final Option OPTION_OUTPUT_FORMAT = new Option("f", "output-format", true, "output format (e.g. pdf)");
   private static final Option OPTION_PORT = new Option("p", "port", true, "OpenOffice.org port");
