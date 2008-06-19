@@ -68,9 +68,12 @@ public class Font2UnicodeMapping {
       System.out.println();
     }
     */
-		if (old != null)
-			System.out.println(lineNr+" WARNING: Duplicate keys. Replacing " + old + " with " + e);
-
+		if (old != null) {
+      if (e.unicLetter.equals(old.unicLetter))
+          System.out.println(lineNr + " WARNING: This key comes two times: " + old + " with " + e);
+      else
+          System.out.println(lineNr + " WARNING: Conflicting keys. Replacing " + old + " with " + e);
+    }
 		// System.out.println(e);
 
 		maxfontLetter = Math.max(maxfontLetter, fontLetter.length());

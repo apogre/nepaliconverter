@@ -55,7 +55,7 @@ public class SpreadsheetWriter {
    * @param data ArrayList of data rows. Each row is an ArrayList of strings.
    * Rows does not have to be of equal length
    */
-  public static void write(String outFile, ArrayList<ArrayList<String>> data) throws Exception {
+  public static void write(String outFile, ArrayList<ArrayList<String>> data, String font2) throws Exception {
     OdfSpreadsheetDocument odsDoc1 = new OdfSpreadsheetDocument();
 
 
@@ -93,10 +93,10 @@ public class SpreadsheetWriter {
     /*
       Create a style with a different font
     */
-    OdfTableCellStyle preeti = new OdfTableCellStyle( "preeti", automaticStyles );
-    preeti.setProperty( OdfTextProperties.FontName, "Preeti");
+    OdfTableCellStyle specFont2 = new OdfTableCellStyle( "specfont", automaticStyles );
+    specFont2.setProperty( OdfTextProperties.FontName, font2);
     //preeti.setProperty( OdfParagraphProperties.TextAlign, "center" );
-    preeti.appendToNode(autoStyleNode);
+    specFont2.appendToNode(autoStyleNode);
 
 
     //System.out.println("autoStyleNode.getNamespaceURI() = " + autoStyleNode.getNamespaceURI());
@@ -115,10 +115,10 @@ public class SpreadsheetWriter {
     //System.out.println("ns = " + ns);
     Document od = fontFaceDecls.getOwnerDocument();
     Element ff = fontFaceDecls.getOwnerDocument().createElementNS(ns, "style:font-face");
-    ff.setAttribute("style:name","Preeti");
+    ff.setAttribute("style:name",font2);
     //ff.setAttribute("svg:font-family","Preeti");
     org.w3c.dom.Attr a = od.createAttributeNS("urn:oasis:names:tc:opendocument:xmlns:svg-compatible:1.0","svg:font-family");
-    a.setValue("Preeti");
+    a.setValue(font2);
     ff.setAttributeNode(a);
     ff.setAttribute("style:font-pitch", "variable");
 
@@ -131,15 +131,16 @@ public class SpreadsheetWriter {
 
 
     /* Create the header row(s) */
+    /*
     OdfTableHeaderRows tableHeaderRows = new OdfTableHeaderRows( doc );
     OdfTableRow row = new OdfTableRow( doc );
-
     row.appendChild( constructStringCell( "Date", "boldCenter", doc ) );
     row.appendChild( constructStringCell( "Type", "boldCenter", doc ) );
     row.appendChild( constructStringCell( "Author", "boldCenter", doc ) );
     row.appendChild( constructStringCell( "Content", "boldCenter", doc ) );
     tableHeaderRows.appendChild( row );
     table.appendChild( tableHeaderRows );
+    */
 
     int n = 0;
 
@@ -150,7 +151,7 @@ public class SpreadsheetWriter {
       int c = 0;
       for (String cellText : ral) {
           if (c==1)
-              tr.appendChild(constructStringCell( cellText, "preeti", doc ));
+              tr.appendChild(constructStringCell( cellText, "specfont", doc ));
           else
               tr.appendChild(constructStringCell( cellText, null, doc ));
         c++;
@@ -211,7 +212,7 @@ public class SpreadsheetWriter {
       al.add(ral);
     }
 
-    write(outFile, al);
+    write(outFile, al, "Arial");
   }
 
 

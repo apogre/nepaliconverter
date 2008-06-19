@@ -112,7 +112,7 @@ public class TestF2U {
 
         System.out.println(font+" writing "+resultFile+ " ");
         SpreadsheetWriter ssw = new SpreadsheetWriter();
-        ssw.write(resultFile, table);
+        ssw.write(resultFile, table, font);
         System.out.println();
         System.out.println("finish");
     }
