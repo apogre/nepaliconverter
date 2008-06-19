@@ -1,15 +1,14 @@
 package np.org.mpp.conv4.utils.jodconverter;
 
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.net.ConnectException;
+import java.util.HashMap;
 
 import com.artofsolving.jodconverter.DocumentConverter;
 import com.artofsolving.jodconverter.openoffice.connection.OpenOfficeConnection;
 import com.artofsolving.jodconverter.openoffice.connection.SocketOpenOfficeConnection;
 import com.artofsolving.jodconverter.openoffice.converter.OpenOfficeDocumentConverter;
-import java.util.HashMap;
 
 
 
@@ -77,12 +76,40 @@ AutoReconnectingOOoConnection decorates an OOoConnection to auto-restart the OOo
       if (verbose) {
         System.out.println("-- starting OpenOffice.org on port " + port);
       }
-      Process p = Runtime.getRuntime().exec("soffice -headless -accept=\"socket,port=8100;urp;\" -nofirststartwizard");
-      // -headless -accept="socket,host=127.0.0.1,port=8100;urp;" -nofirststartwizard
-
+      //String cmd = "soffice -accept=\"sockethost=127.0.0.1,port=8100;urp;\"";
+      String cmd = "soffice -headless -accept=\"sockethost=127.0.0.1,port=8100;urp;\" -nofirststartwizard";
+      Process p = Runtime.getRuntime().exec(cmd);
+                                                  // -headless -accept="socket,host=127.0.0.1,port=8100;urp;" -nofirststartwizard
       try {
+
+          InputStream std = p.getInputStream();
+          InputStream err = p.getErrorStream();
+
+          StringBuffer outsb = new StringBuffer(20);
+          StringBuffer errsb = new StringBuffer(20);
+
+          do {
+            int ch =std.read();
+            if (ch==-1) break;
+            outsb.append( (char) ch);
+          } while (true);
+
+          do {
+            int ch =err.read();
+            if (ch==-1) break;
+            errsb.append( (char) ch);
+          } while (true);
+
+          p.getOutputStream().close();
+          std.close();
+          err.close();
+
+          System.out.println(cmd + "\n gave stdout: '" + outsb + "'");
+          System.out.println("\n gave stderr: '" + errsb + "'");
+
+
           p.waitFor();
-          Thread.sleep(200);
+          Thread.sleep(5000);
       } catch (InterruptedException ex) {
           ex.printStackTrace();
       }
@@ -92,8 +119,7 @@ AutoReconnectingOOoConnection decorates an OOoConnection to auto-restart the OOo
       connection.connect();
     } catch (Exception e) {
 
-      System.err
-          .println("ERROR: connection failed. Please make sure OpenOffice.org is installed ");
+      System.err.println("ERROR: connection failed. Please make sure OpenOffice.org is installed ");
 
     }
 
