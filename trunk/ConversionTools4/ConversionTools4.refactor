@@ -33,4 +33,8 @@
     <old-class-name>np.org.mpp.conv4.utils.JodChainedReaderWriter</old-class-name>
     <new-class-name>np.org.mpp.conv4.utils.jodconverter.JodChainedReaderWriter</new-class-name>
   </rename-class>
+  <rename-class id="6AP0LCBA2NHFNYZ0CXSFK8Z" creation-time="Thu Jun 19 13:43:43.704 GMT+05:45 2008">
+    <old-class-name>np.org.mpp.conv4.utils.jodconverter.CommentLineConvertDocument</old-class-name>
+    <new-class-name>np.org.mpp.conv4.utils.jodconverter.CommandLineConvertDocument</new-class-name>
+  </rename-class>
 </refactor>
