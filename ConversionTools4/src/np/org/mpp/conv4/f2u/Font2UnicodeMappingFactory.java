@@ -3,6 +3,7 @@ import java.util.ArrayList;
 
 import np.org.mpp.conv4.test.TestF2U;
 import np.org.mpp.conv4.utils.odfdom.SpreadsheetReader;
+import np.org.mpp.conv4.utils.jopendocument.JOpenDocumentSpreadsheetReader;
 
 public class Font2UnicodeMappingFactory {
 
@@ -59,7 +60,8 @@ public class Font2UnicodeMappingFactory {
   public Font2UnicodeMapping getMapping(String name) throws Exception {
     Font2UnicodeMapping f2u = new Font2UnicodeMapping(name);
 
-    ArrayList<ArrayList<String>> table = SpreadsheetReader.read("res/"+name+"_unicode.ods");
+    //ArrayList<ArrayList<String>> table = JOpenDocumentSpreadsheetReader.read("res/"+name+"_unicode.ods",0,4);
+    ArrayList<ArrayList<String>> table = SpreadsheetReader.read("res/"+name+"_unicode.ods",0,4);
     for (ArrayList<String> row : table) {
         String comment = row.get(0)+row.get(2);
         if (comment != null && comment.indexOf("DEBUG")!=-1) {

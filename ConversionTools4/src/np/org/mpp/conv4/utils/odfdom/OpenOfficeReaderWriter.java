@@ -16,6 +16,7 @@ import org.openoffice.odf.dom.style.OdfParagraphStyle;
 import org.openoffice.odf.dom.style.OdfStyle;
 import org.openoffice.odf.dom.style.props.OdfStylePropertiesSet;
 import org.w3c.dom.*;
+import java.io.*;
 
 public class OpenOfficeReaderWriter implements GeneralReaderWriter {
 
@@ -34,7 +35,7 @@ public class OpenOfficeReaderWriter implements GeneralReaderWriter {
   }
 
 
-  static ConversionHandler conversionHandler = new ConversionHandler() {
+  static ConversionHandler loggingConversionHandler = new ConversionHandler() {
     public String convertText(String font, String text) {
       System.out.println("convertText("+font+", '"+text+"')");
       return text;
@@ -55,12 +56,15 @@ public class OpenOfficeReaderWriter implements GeneralReaderWriter {
     //String fn = "test/aLotOfStyles";
     //orw.convert(fn+".odt", fn+"-converted.odt", new F2UConversionHandler());
 
-    orw.convert("test/testtextKantipur.odt", "tmp/slet.odt", conversionHandler);
+    //orw.convert("test/testtextKantipur.odt", "tmp/slet.odt", conversionHandler);
+    F2UConversionHandler f2u = new F2UConversionHandler();
+    orw.convert("../nepalitext_odt/esperanto-vortaro/vortaro_restajxo_kantipur.odt", "tmp/slet.odt", f2u);
 
   }
 
   public void convert(String inFile, String outFile, ConversionHandler conversionHandler) throws Exception {
 
+    if (!new File(inFile).exists()) throw new FileNotFoundException(inFile);
 
     // loads the ODF document from the path
     OdfDocument odfDocument = OdfDocument.load(inFile);
@@ -89,7 +93,7 @@ public class OpenOfficeReaderWriter implements GeneralReaderWriter {
     // get the ODF content as DOM tree representation
     Document content = odfDocument.getContent();
 
-    if (DEBUG) System.out.println(""+content);
+    //if (DEBUG) System.out.println(""+content);
 
 
     NodeList nl = content.getElementsByTagName("*");
@@ -124,7 +128,7 @@ public class OpenOfficeReaderWriter implements GeneralReaderWriter {
 
           if (font == null) {
               OdfStyle style = findStyleWithFont(stylenameToStyle, parentNode);
-              if (DEBUG) System.out.println("CONV sty " + style);
+              //if (DEBUG) System.out.println("CONV sty " + style);
               font = getFont(style);
               stylenameToFont.put(parentNode.getStyleName(), font);
           }
@@ -136,6 +140,7 @@ public class OpenOfficeReaderWriter implements GeneralReaderWriter {
             String teksto2 = conversionHandler.convertText(font, teksto);
             if (!teksto.trim().equals(teksto2.trim())) {
               if (DEBUG) System.out.println("CONV " + teksto + " -> " + teksto2);
+              //textNode.setTextContent("Kkk"+font+":"+teksto2+"kkK");
               textNode.setTextContent(teksto2);
             }
           }
