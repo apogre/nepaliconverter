@@ -254,7 +254,7 @@ public class MakeChangeList
 
       /* A style to refer to the number:date style */
       style = new OdfTableCellStyle( "dateCell", automaticStyles );
-      style.setDataStyleName( "dateStyle" );
+      //style.setDataStyleName( "dateStyle" );
 
       /* Default style for other columns */
       colStyle = new OdfTableColumnStyle( "colstyle", automaticStyles );

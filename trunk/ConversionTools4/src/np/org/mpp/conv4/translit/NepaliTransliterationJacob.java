@@ -56,7 +56,9 @@ public class NepaliTransliterationJacob implements ConversionHandler  {
   public String giveFontReplacement(String font) { return font; }
 
   public String convertText(String font, String dev) {
-
+    if (dev.indexOf("विचार")!=-1) {
+      System.out.println("XXX");
+    }
     // Make 'modified' devanagari easier to transliterate
 
     // remove all Zero Width (Non) Joiner's

@@ -14,7 +14,7 @@ import np.org.mpp.conv4.utils.*;
  * @author Jacob Nordfalk
  * @version 4.0
  */
-public class JodChainedReaderWriter implements GeneralReaderWriter {
+public class AnyDocumentChainedReaderWriter implements GeneralReaderWriter {
 
   private GeneralReaderWriter chainedRw = null;
   private OODocumentConverter jodDocumentConverter = new OODocumentConverter();
@@ -24,7 +24,7 @@ public class JodChainedReaderWriter implements GeneralReaderWriter {
   private Set oooSupportedExtentions = new HashSet();
 
 
-  public JodChainedReaderWriter(GeneralReaderWriter rw) {
+  public AnyDocumentChainedReaderWriter(GeneralReaderWriter rw) {
     chainedRw = rw;
     oooSupportedExtentions.addAll(jodDocumentConverter.formats.values());
     supportedExtentions.addAll(oooSupportedExtentions);
