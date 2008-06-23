@@ -47,8 +47,8 @@ public class NepaliTransliterationJacob implements ConversionHandler  {
       }
     }
 
-    System.out.println("specialRulesMap = " + specialRulesMap);
-    System.out.println("suffices = " + suffices);
+    //System.out.println("specialRulesMap = " + specialRulesMap);
+    //System.out.println("suffices = " + suffices);
 	}
 
 
