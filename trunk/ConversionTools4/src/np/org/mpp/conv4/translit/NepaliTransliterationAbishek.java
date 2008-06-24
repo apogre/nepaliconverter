@@ -1,24 +1,25 @@
 package np.org.mpp.conv4.translit;
 
-import java.util.*;
+import java.util.HashMap;
 
-import np.org.mpp.conv4.utils.*;
-import np.org.mpp.conv4.utils.xml.*;
+import np.org.mpp.conv4.utils.ConversionHandler;
+import np.org.mpp.conv4.utils.xml.SAXParser;
 
 public class NepaliTransliterationAbishek implements ConversionHandler {
 
-  HashMap<String, String> hashMap;
+	HashMap<String, String> hashMap;
 
 	public NepaliTransliterationAbishek() {
-    SAXParser parser = new SAXParser("res/transliteration/NepaliALA-LC.xml");
-    hashMap = parser.getHashMap();
+		SAXParser parser = new SAXParser("res/transliteration/NepaliALA-LC.xml");
+		hashMap = parser.getHashMap();
 	}
 
+	public String giveFontReplacement(String font) {
+		return font;
+	}
 
-  public String giveFontReplacement(String font) { return font; }
-
-  public String convertText(String font, String data) {
-    StringBuffer transData = new StringBuffer();
+	public String convertText(String font, String data) {
+		StringBuffer transData = new StringBuffer();
 
 		String ch = "";
 		String nextCh = "";
@@ -44,12 +45,12 @@ public class NepaliTransliterationAbishek implements ConversionHandler {
 					 * omit a from the string thus add the Zero width joiner
 					 */
 					if (j == wordLen - 1) {
-						if (!ch.equals("ः") && !ch.equals("ृ")) {
+						if (!ch.equals("ः") && !ch.equals("ृ") && !isVowel(ch)
+								&& !isPunctuation(ch) && !isNasalization(ch)) {
 							ch += "्";
 						}
 					} else {
 						// get the next character in sequence
-
 						nextCh = word.substring(j + 1, j + 2);
 
 						if (isHalfCharacter(nextCh)) {
@@ -58,7 +59,7 @@ public class NepaliTransliterationAbishek implements ConversionHandler {
 						} else if (isCombination(nextCh)) {
 							// if combination append the zero width joiner
 							String trnsChr = hashMap.get(ch + "्");
-							if (trnsChr!=null) {
+							if (trnsChr != null) {
 								transData.append(trnsChr);
 							}
 							ch = nextCh;
@@ -68,12 +69,15 @@ public class NepaliTransliterationAbishek implements ConversionHandler {
 					String transChr = hashMap.get(ch);
 					if (transChr != null) {
 						transData.append(transChr);
+					} else {
+						transData.append(ch);
 					}
 					j++;
 				}
 			} catch (StringIndexOutOfBoundsException s) {
-        s.printStackTrace();
+
 			}
+			// the space after each word
 			transData.append(" ");
 		}
 		return transData.toString();
@@ -87,8 +91,35 @@ public class NepaliTransliterationAbishek implements ConversionHandler {
 		if (nextCh.equals("ा") || nextCh.equals("ि") || nextCh.equals("ी")
 				|| nextCh.equals("ु") || nextCh.equals("ू")
 				|| nextCh.equals("े") || nextCh.equals("ो")
-				|| nextCh.equals("ै")) {
-			// System.out.println("half char found");
+				|| nextCh.equals("ै") || nextCh.equals("ृ")) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	private boolean isVowel(String chr) {
+		if (chr.equals("अ") || chr.equals("आ") || chr.equals("इ")
+				|| chr.equals("ई") || chr.equals("उ") || chr.equals("ऊ")
+				|| chr.equals("ए") || chr.equals("ऐ") || chr.equals("ॐ")) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	private boolean isPunctuation(String chr) {
+		if (chr.equals(",") || chr.equals("!") || chr.equals("?")
+				|| chr.equals(";") || chr.equals(":") || chr.equals("\"")
+				|| chr.equals("'") || chr.equals("`") || chr.equals("~")) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	private boolean isNasalization(String chr) {
+		if (chr.equals("ँ") || chr.equals("ं")) {
 			return true;
 		} else {
 			return false;
