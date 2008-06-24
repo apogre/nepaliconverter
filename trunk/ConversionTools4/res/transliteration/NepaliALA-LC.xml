@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transliteration lang = "Nepali">
-	<!-- vowels-->
+	<!-- VOWELS -->
 	<char trans="a">अ</char>
 	<char trans="ā">आ</char>
 	<char trans="i">इ</char>
@@ -12,7 +12,7 @@
 	<char trans="o">ओ</char>
 	<char trans="au">औ</char>
 	<char trans="om">ॐ</char>
-	<!-- vowel flags -->
+	<!-- VOWEL FLAGS -->
 	<char trans="ā">ा</char>
 	<char trans="i">ि</char>
 	<char trans="ī">ी</char>
@@ -22,11 +22,9 @@
 	<char trans="ai">ै</char>
 	<char trans="o">ो</char>
 	<char trans="au">ौ</char>
-	<!-- the modifiers-->
+	<!-- MODIFIERS -->
 	<char trans="ṃ">ं</char>
 	<char trans="ḥ">ः</char>
-
-	<!-- dummy character-->
 	<!-- consonants-->
 	<char trans="ka">क</char>
 	<char trans="kha">ख</char>
@@ -61,54 +59,46 @@
 	<char trans="sha">ष</char>
 	<char trans="sa">स</char>
 	<char trans="ha">ह</char>
-	<char trans="ksha">क्ष</char>
-	<char trans="tra">त्र</char>
-	<char trans="gya">ज्ञ</char>
-	<!-- half consonants THIS SECTION SHOULD NOT BE NECESSARY as it is repeating consonants section -->
+	<!-- nasalizations -->
+	<char trans="ṃṅ">ं</char>
+	<char trans="&#771;">ँ</char>
+	<!-- HALF CONSONANTS -THIS SECTION SHOULD NOT BE NECESSARY as it is repeating consonants section -->
 	<char trans="k">क्</char>
 	<char trans="kh">ख्</char>
 	<char trans="g">ग्</char>
 	<char trans="gh">घ्</char>
-	<char trans="ch">च्</char>
-	<char trans="chh">छ्</char>
+	<char trans="ṅ">ङ्</char>
+	<char trans="c">च्</char>
+	<char trans="ch">छ्</char>
 	<char trans="j">ज्</char>
 	<char trans="jh">झ्</char>
-	<char trans="ỹa">ञ्</char>
+	<char trans="ñ">ञ्</char>
 	<char trans="ṭ">ट्</char>
-	<char trans="ṭh">ठ्</char>
+	<char trans="ṭh">ठ्</char>	
 	<char trans="ḍ">ड्</char>
 	<char trans="ḍh">ढ्</char>
-	<char trans="ṇ">ण्</char>
+	<char trans="ṇ">ण्</char>	
 	<char trans="p">प्</char>
 	<char trans="ph">फ्</char>
-	<char trans="b">ब्</char>
+	<char trans="b">ब्</char>	
 	<char trans="bh">भ्</char>
 	<char trans="m">म्</char>
 	<char trans="t">त्</char>
-	<char trans="th">थ्</char>
+	<char trans="th">थ्</char>	
 	<char trans="d">द्</char>
 	<char trans="dh">ध्</char>
-	<char trans="n">न्</char>
+	<char trans="n">न्</char>	
 	<char trans="y">य्</char>
 	<char trans="r">र्</char>
 	<char trans="l">ल्</char>
-	<char trans="w">व्</char>
+	<char trans="v">व्</char>
 	<char trans="s">स्</char>
-	<char trans="sh">ष्</char>
+	<char trans="ṣh">ष्</char>	
 	<char trans="ś">श्</char>
 	<char trans="h">ह्</char>
 	<char trans="kṣ">क्ष्</char>
 	<char trans="dh">ध्</char>
-	<!-- diverse -->
-	<char trans="kta">क्त</char>
+	<!-- DIVERSE -->
 	<char trans="ṛ">ृ</char>
-	<char trans="ddh">द्ध</char>
-	<char trans="nga">ङ्ग</char>
-	<char trans="ṛi">ऋ</char>
-	<char trans="shr">श्र</char>
-	<!-- common used characters THIS SECTION SHOULD NOT BE NECESSARY -->
-	<char trans=".">.</char>
-	<char trans=",">,</char>
-	<char trans="-">–</char>
-	<char trans="/">/</char>
+	<char trans="ṛ">ऋ</char>
 </transliteration>
