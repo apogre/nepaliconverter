@@ -51,9 +51,10 @@ AutoReconnectingOOoConnection decorates an OOoConnection to auto-restart the OOo
 
   public static void main(String[] arguments) throws Exception {
     File inputFile = new File("/home/j/esperanto/nepaliconverter/nepalitext/MS/ICOC/new Lang meterial/BLT2 Lesson 20-23 Review 2 240303.doc");
-    File outputFile = new File("x.pdf");
+    File outputFile = new File("x.odt");
 
     OODocumentConverter ooDocumentConverter = new OODocumentConverter();
+
     ooDocumentConverter.convert(inputFile, outputFile);
   }
 

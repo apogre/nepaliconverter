@@ -61,7 +61,8 @@ public class WidgetFactory {
 	    menu.setIcon(new ImageIcon(instance.getClass()
 		    .getResource(iconPath)));
 	}
-	menu.addActionListener(listener);
+
+	if (listener==null) menu.addActionListener(listener);
 
 	return menu;
     }

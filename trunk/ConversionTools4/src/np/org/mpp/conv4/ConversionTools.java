@@ -6,8 +6,8 @@ import java.awt.Toolkit;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
-import np.org.mpp.conv4.ui.ConversionPanel;
-import np.org.mpp.conv4.ui.MainFrame;
+//import np.org.mpp.conv4.old_ui_abishek.*;
+import np.org.mpp.conv4.ui.*;
 
 public class ConversionTools {
     boolean packFrame = false;
@@ -51,11 +51,13 @@ public class ConversionTools {
 
     /**
      * Application entry point.
-     * 
+     *
      * @param args
      *                String[]
      */
     public static void main(String[] args) {
+
+
 	SwingUtilities.invokeLater(new Runnable() {
 	    public void run() {
 		try {
@@ -71,8 +73,9 @@ public class ConversionTools {
     }
 
     public static void appendLog(String logText) {
-	log += "\n" + logText;
-	ConversionPanel.console.setText(log);
+        System.out.println(logText);
+	//log += "\n" + logText;
+	//ConversionPanel.console.setText(log);
     }
 
     static public String getLog() {

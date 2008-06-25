@@ -2,16 +2,9 @@ package np.org.mpp.conv4.ui;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.InputEvent;
-import java.awt.event.KeyEvent;
+import java.awt.event.*;
 
-import javax.swing.ButtonGroup;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.KeyStroke;
+import javax.swing.*;
 
 import np.org.mpp.conv4.ConversionTools;
 import np.org.mpp.exception.FileNotSelectedException;
@@ -19,32 +12,32 @@ import np.org.mpp.ui.WidgetFactory;
 
 public class MenuBar extends JMenuBar implements ActionListener {
     private static final long serialVersionUID = -5440154862431565251L;
-    private JMenu file;
-    private JMenuItem open;
-    private JMenuItem exit;
+    JMenu file;
+    JMenuItem open;
+    JMenuItem exit;
 
-    private JMenu edit;
-    private JMenuItem paste;
+    JMenu edit;
+    JMenuItem paste;
 
-    private JMenu option;
-    private JMenu goTo;
-    private ButtonGroup gotoGroup;
-    private JMenuItem fontToUnicode;
-    private JMenuItem unicodeToFont;
-    private JMenuItem transliteration;
-    private JMenuItem prefs;
+    JMenu option;
+    JMenu goTo;
+    ButtonGroup gotoGroup;
+    JMenuItem fontToUnicode;
+    JMenuItem unicodeToFont;
+    JMenuItem transliteration;
+    JMenuItem prefs;
 
-    private JMenu tools;
-    private JMenuItem run;
-    private JMenuItem stop;
+    JMenu tools;
+    JMenuItem run;
+    JMenuItem stop;
 
-    private JMenu help;
-    private JMenuItem helpContents;
-    private JMenuItem seeSplash;
+    JMenu help;
+    JMenuItem helpContents;
+    JMenuItem seeSplash;
 
-    private JMenuItem abtConv4;
-    private JMenuItem abtDevelopers;
-    private JMenuItem abtMPP;
+    JMenuItem abtConv4;
+    JMenuItem abtDevelopers;
+    JMenuItem abtMPP;
 
     // JMenuItem types
     private final int PLAIN = 0;
@@ -65,7 +58,7 @@ public class MenuBar extends JMenuBar implements ActionListener {
     }
 
     static MenuBar getInstance() {
-	instance = new MenuBar();
+	if (instance == null) instance = new MenuBar();
 	return instance;
     }
 
