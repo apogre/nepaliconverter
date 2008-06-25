@@ -65,16 +65,6 @@ public class ConversionPanel extends JPanel {
 
 
 
-
-    // Observes the selection (also without copy)
-    new ClipboardObserver(Toolkit.getDefaultToolkit().getSystemSelection(), DataFlavor.stringFlavor).addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent ae) {
-          if (isVisible())
-              console.setText("text marked: " + ae.getActionCommand() + "\n" + ae.getSource());
-      }
-    });
-
-
   }
 
     public void confgureMenus(ToolBar toolBar, MenuBar menuBar) {
