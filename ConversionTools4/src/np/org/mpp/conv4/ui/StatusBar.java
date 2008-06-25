@@ -2,11 +2,7 @@ package np.org.mpp.conv4.ui;
 
 import java.awt.Dimension;
 
-import javax.swing.Box;
-import javax.swing.JLabel;
-import javax.swing.JProgressBar;
-import javax.swing.JSeparator;
-import javax.swing.JToolBar;
+import javax.swing.*;
 
 public class StatusBar extends JToolBar {
     private static final long serialVersionUID = 7097866625742998538L;
@@ -14,8 +10,8 @@ public class StatusBar extends JToolBar {
     /**
      * displays the progress of conversion
      */
-    static JProgressBar progressBar;
-    static JLabel lblStatus;
+    JProgressBar progressBar;
+    JLabel lblStatus;
 
     StatusBar() {
 	// setLayout(new BorderLayout());

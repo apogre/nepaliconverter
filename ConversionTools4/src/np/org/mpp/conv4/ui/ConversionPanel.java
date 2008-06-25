@@ -1,25 +1,21 @@
 package np.org.mpp.conv4.ui;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
+import java.awt.*;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import javax.swing.JEditorPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
+import javax.swing.*;
+import javax.swing.Action;
 import javax.swing.border.EtchedBorder;
 
 import np.org.mpp.conv4.ConversionTools;
-import javax.swing.*;
-import np.org.mpp.conv4.ui.dnd.*;
-import java.awt.datatransfer.DataFlavor;
-import java.awt.Toolkit;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import np.org.mpp.conv4.ui.dnd.ClipboardObserver;
+import np.org.mpp.conv4.ui.dnd.FilesAndHtmlTransferHandler;
 
 public class ConversionPanel extends JPanel {
   private static final long serialVersionUID = 6407038654026984919L;
-  public static JEditorPane console;
+  public JEditorPane console;
 
   FilesAndHtmlTransferHandler transferhandler = new FilesAndHtmlTransferHandler();
 
@@ -62,7 +58,8 @@ public class ConversionPanel extends JPanel {
     // Observes the selection (copy/cut in text documents detected)
     new ClipboardObserver(Toolkit.getDefaultToolkit().getSystemClipboard(), transferhandler.htmlDf).addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent ae) {
-        console.setText("copy/cut in text document: " + ae.getActionCommand() + "\n" + ae.getSource());
+          if (isVisible())
+              console.setText("copy/cut in text document: " + ae.getActionCommand() + "\n" + ae.getSource());
       }
     });
 
@@ -72,10 +69,15 @@ public class ConversionPanel extends JPanel {
     // Observes the selection (also without copy)
     new ClipboardObserver(Toolkit.getDefaultToolkit().getSystemSelection(), DataFlavor.stringFlavor).addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent ae) {
-        console.setText("text marked: " + ae.getActionCommand() + "\n" + ae.getSource());
+          if (isVisible())
+              console.setText("text marked: " + ae.getActionCommand() + "\n" + ae.getSource());
       }
     });
 
 
   }
+
+    public void confgureMenus(ToolBar toolBar, MenuBar menuBar) {
+        toolBar.cmbFont.setVisible(false);
+    }
 }

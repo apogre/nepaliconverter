@@ -45,4 +45,12 @@
     <old-class-name>np.org.mpp.conv4.ui.FilesAndHtmlTransferHandler</old-class-name>
     <new-class-name>np.org.mpp.conv4.ui.dnd.FilesAndHtmlTransferHandler</new-class-name>
   </rename-class>
+  <rename-package id="4AP0LTDKDVHFM0KTHXSFK8Z" creation-time="Wed Jun 25 09:29:09.356 GMT+05:45 2008">
+    <old-package-name>np.org.mpp.conv4.uijacob</old-package-name>
+    <new-package-name>np.org.mpp.conv4.old_ui</new-package-name>
+  </rename-package>
+  <rename-package id="3AP0LTDKDVHFM0KTHXSFK8Z" creation-time="Wed Jun 25 09:35:36.581 GMT+05:45 2008">
+    <old-package-name>np.org.mpp.conv4.old_ui</old-package-name>
+    <new-package-name>np.org.mpp.conv4.old_ui_jacob</new-package-name>
+  </rename-package>
 </refactor>

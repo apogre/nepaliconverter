@@ -1,36 +1,26 @@
 /**
- * 
+ *
  */
 package np.org.mpp.conv4.ui;
 
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.*;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.*;
 
-import np.org.mpp.conv4.ConversionTools;
 import np.org.mpp.ui.WidgetFactory;
 
 /**
  * @author Abhishek
- * 
+ *
  */
-public class StartupPanel extends JPanel implements ActionListener {
+public class StartupPanel extends JPanel {
 
     private static final long serialVersionUID = 3553734976057624357L;
 
-    private JButton btnF2U;
-    private JButton btnU2F;
-    private JButton btnTraslit;
-    private JButton btnExit;
+    JButton btnF2U;
+    JButton btnU2F;
+    JButton btnTraslit;
+    JButton btnExit;
 
     private JLabel lblText1;
     private JLabel lblText2;
@@ -62,7 +52,7 @@ public class StartupPanel extends JPanel implements ActionListener {
 	GBC.insets = new Insets(10, 20, 10, 20); // top padding
 
 	lblText1 = new JLabel(
-		"<html><body><b> Wel come to Conversion Tools!</b>");
+		"<html><body><b> Welcome to Conversion Tools!</b>");
 	lblText1.setPreferredSize(new Dimension(300, 20));
 	panel.add(lblText1, GBC);
 
@@ -79,7 +69,6 @@ public class StartupPanel extends JPanel implements ActionListener {
 		"<html><body>Convert from non-Unicode font<br>to <b>Unicode</b>");
 	btnF2U.setPreferredSize(new Dimension(300, 60));
 	btnF2U.setIcon(imgF2U);
-	btnF2U.addActionListener(this);
 	panel.add(btnF2U, GBC);
 
 	GBC.gridx = 1;
@@ -87,7 +76,6 @@ public class StartupPanel extends JPanel implements ActionListener {
 		"<html><body>Convert from Unicode to non-Unicode<br><b>Font</b> (like Preeti)");
 	btnU2F.setPreferredSize(new Dimension(300, 60));
 	btnU2F.setIcon(imgU2F);
-	btnU2F.addActionListener(this);
 	panel.add(btnU2F, GBC);
 
 	GBC.gridx = 0;
@@ -96,45 +84,14 @@ public class StartupPanel extends JPanel implements ActionListener {
 		"<html><body>Convert from Devanagari to <br><b>Roman</b> transliteration");
 	btnTraslit.setPreferredSize(new Dimension(300, 60));
 	btnTraslit.setIcon(imgTranslit);
-	btnTraslit.addActionListener(this);
 	panel.add(btnTraslit, GBC);
 
 	GBC.gridx = 1;
 	btnExit = new JButton("<html><body><b>Exit</b> from the Application");
 	btnExit.setPreferredSize(new Dimension(300, 60));
 	btnExit.setIcon(imgExit);
-	btnExit.addActionListener(this);
 	panel.add(btnExit, GBC);
 
 	add(panel);
-    }
-
-    public void actionPerformed(ActionEvent e) {
-	String mode = "";
-	if (e.getSource() == btnF2U) {
-	    mode = "Font To Unicode";
-	    loadRequiredPanels();
-	} else if (e.getSource() == btnU2F) {
-	    mode = "Unicode To Font";
-	    loadRequiredPanels();
-	} else if (e.getSource() == btnTraslit) {
-	    mode = "Trasnliteration";
-	    loadRequiredPanels();
-	} else if (e.getSource() == btnExit) {
-	    System.out.println("Exiting from system!");
-	    System.exit(0);
-	}
-	StatusBar.lblStatus.setText(" Mode: " + mode);
-    }
-
-    private void loadRequiredPanels() {
-	setVisible(false);
-	ConversionTools.frame.remove(MainFrame.startPanel);
-	MainFrame.toolBar.setVisible(true);
-	MainFrame.statusBar.setVisible(true);
-
-	ConversionTools.frame.add(MainFrame.conversionPanel);
-	MainFrame.conversionPanel.setVisible(true);
-	ConversionPanel.console.setText(ConversionTools.initLog);
     }
 }
