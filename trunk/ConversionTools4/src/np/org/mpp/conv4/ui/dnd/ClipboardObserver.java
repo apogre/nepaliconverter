@@ -74,7 +74,7 @@ public class ClipboardObserver implements Runnable {
                 } catch (IOException e) {
                     // This means we attempted to read valid data, but had a problem...
                     // Let's just report barebones, but proceed as normal afterwards
-                    e.printStackTrace();
+                    //e.printStackTrace();
                 }
             }
 
