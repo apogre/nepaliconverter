@@ -17,7 +17,9 @@ public class ConversionPanelU2F extends ConversionPanel {
         toolBar.cmbTrans.setVisible(false);
     }
 
-
-
+    public void confgureGui(MainFrame mainFrame) {
+        //mainFrame.toolBar.cmbFont.setVisible(false);
+        mainFrame.toolBar.cmbTrans.setVisible(false);
+    }
 
 }

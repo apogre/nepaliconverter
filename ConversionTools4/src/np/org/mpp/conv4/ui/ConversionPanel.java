@@ -15,7 +15,7 @@ import java.io.*;
 import java.awt.datatransfer.*;
 import np.org.mpp.conv4.ui.dnd.HtmlSelection;
 
-public class ConversionPanel extends JPanel {
+public abstract class ConversionPanel extends JPanel {
   private static final long serialVersionUID = 6407038654026984919L;
   JEditorPane console = new JEditorPane();
   private JScrollPane scroller = new JScrollPane();
@@ -79,9 +79,13 @@ public class ConversionPanel extends JPanel {
 
   }
 
-  public void confgureGui(MainFrame mainFrame) {
-    mainFrame.toolBar.cmbFont.setVisible(false);
-  }
+
+  /**
+   * This method is called just before the panel gets visible.
+   * Costly initialization which can be delayed can therefore be put here
+   * @param mainFrame MainFrame
+   */
+  public abstract void confgureGui(MainFrame mainFrame);
 
 
   public void openFileSelection() {

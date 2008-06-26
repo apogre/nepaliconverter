@@ -10,7 +10,8 @@ import java.util.regex.Pattern;
 
 public class ConversionPanelTrans extends ConversionPanel {
 
-    NepaliTransliterationJacob transliterator = new NepaliTransliterationJacob();
+    NepaliTransliterationJacob transliterator; // initialization delayed to later = new NepaliTransliterationJacob();
+
 
     public ConversionPanelTrans() {
         /*
@@ -49,10 +50,15 @@ public class ConversionPanelTrans extends ConversionPanel {
     }
 
 
-    public void confgureGuiForThisPanel(ToolBar toolBar, MenuBar menuBar) {
-        toolBar.cmbFont.setVisible(false);
-        //toolBar.cmbTrans.setVisible(false);
+    public void confgureGui(MainFrame mainFrame) {
+        if (transliterator == null) {
+            // delayed first time initialization
+          transliterator = new NepaliTransliterationJacob();
+        }
+
+        mainFrame.toolBar.cmbFont.setVisible(false);
     }
+
 
 
 
