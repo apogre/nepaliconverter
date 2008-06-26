@@ -61,8 +61,11 @@ public class ClipboardObserver implements Runnable {
                     if (isNewData(data)) {
                         lastData = data;
                         //System.out.println(" ClipboardEvent event = new ClipboardEvent(this, data);"+this+" "+data);
-                        for (ActionListener l : listeners) {
+
+                        if (active) {
+                          for (ActionListener l : listeners) {
                             l.actionPerformed(new ActionEvent(data, 0, observedFlavor.toString()));
+                          }
                         }
                     }
                 } catch (UnsupportedFlavorException e) {
@@ -86,6 +89,13 @@ public class ClipboardObserver implements Runnable {
     private boolean isNewData(Object data) {
         return data != null && !data.equals(lastData);
     }
+
+
+    private boolean active = true;
+    public void setActive(boolean a) {
+        active = a;
+    }
+
 
     public synchronized boolean isObserving() {
         return observing;
