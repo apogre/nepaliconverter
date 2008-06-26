@@ -32,7 +32,7 @@ public class ConversionPanel extends JPanel {
                                             MainFrame.HEIGHT - 75));
 
     console.setEditable(false);
-    console.setText(ConversionTools.initLog);
+    //console.setText(ConversionTools.initLog);
 
     console.setBackground(Color.WHITE);
     console.setPreferredSize(new Dimension(MainFrame.WIDTH - 10,

@@ -9,19 +9,11 @@ import java.awt.event.ActionListener;
 public class ConversionPanelU2F extends ConversionPanel {
 
     public ConversionPanelU2F() {
-
-        // Observes the selection (also without copy)
-        new ClipboardObserver(Toolkit.getDefaultToolkit().getSystemSelection(), DataFlavor.stringFlavor).addActionListener(new ActionListener() {
-          public void actionPerformed(ActionEvent ae) {
-              if (isVisible())
-                  console.setText("text marked: " + ae.getActionCommand() + "\n" + ae.getSource());
-          }
-        });
-
+        appendLog("this is the U 2 F");
     }
 
     public void confgureGuiForThisPanel(ToolBar toolBar, MenuBar menuBar) {
-        toolBar.cmbFont.setVisible(false);
+        //toolBar.cmbFont.setVisible(false);
         toolBar.cmbTrans.setVisible(false);
     }
 

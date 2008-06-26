@@ -16,9 +16,6 @@ public class ConversionTools {
      * Construct and show the application.
      */
     public static MainFrame frame;
-    public static String initLog = "Please drag and drop file(s) or "
-	    + "\r\nPress Ctrl+V to paste from Clipboard.";
-    private static String log = initLog;
 
     // static WidgetFactory widgetFactory;
 
@@ -76,9 +73,5 @@ public class ConversionTools {
         System.out.println(logText);
 	//log += "\n" + logText;
 	//ConversionPanel.console.setText(log);
-    }
-
-    static public String getLog() {
-	return log;
     }
 }

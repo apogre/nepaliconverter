@@ -26,8 +26,8 @@ public class MainFrame extends JFrame implements ActionListener {
 
     StartupPanel startPanel = new StartupPanel();
     ConversionPanelF2U conversionPanelf2u = new ConversionPanelF2U();
-    ConversionPanel conversionPanelu2f = new ConversionPanel();
-    ConversionPanel conversionPaneltrans = new ConversionPanel();
+    ConversionPanelU2F conversionPanelu2f = new ConversionPanelU2F();
+    ConversionPanelTrans conversionPaneltrans = new ConversionPanelTrans();
 
     StatusBar statusBar;
     WidgetFactory widgetFactory;
@@ -108,7 +108,7 @@ public class MainFrame extends JFrame implements ActionListener {
             Component c = container.getComponent(i);
             if (c instanceof AbstractButton) {
                 ((AbstractButton) c).addActionListener( this );
-                System.out.println("added "+c);
+                //System.out.println("added "+c);
             }
             if (c instanceof JComponent) {
                 addActionListeners((JComponent) c);

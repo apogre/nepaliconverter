@@ -9,15 +9,7 @@ import java.awt.event.ActionListener;
 public class ConversionPanelF2U extends ConversionPanel {
 
     public ConversionPanelF2U() {
-
-        // Observes the selection (also without copy)
-        new ClipboardObserver(Toolkit.getDefaultToolkit().getSystemSelection(), DataFlavor.stringFlavor).addActionListener(new ActionListener() {
-          public void actionPerformed(ActionEvent ae) {
-              if (isVisible())
-                  console.setText("text marked: " + ae.getActionCommand() + "\n" + ae.getSource());
-          }
-        });
-
+        appendLog("this is the F 2 U");
     }
 
     public void confgureGuiForThisPanel(ToolBar toolBar, MenuBar menuBar) {
