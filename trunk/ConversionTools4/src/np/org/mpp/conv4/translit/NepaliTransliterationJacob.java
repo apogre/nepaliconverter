@@ -147,6 +147,8 @@ public class NepaliTransliterationJacob implements ConversionHandler  {
       pos = m.end(); // pos just after this matched Dev word
     }
 
+    rezulto.append(dev.substring(pos)); // append after last match
+
 /* PROBLEMOJ
 
 maastir	मास्तिर (ना.यो)	supren    DEVAS ESTI maastira   CXAR finagjo tira

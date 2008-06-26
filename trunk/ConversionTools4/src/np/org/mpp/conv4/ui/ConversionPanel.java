@@ -11,7 +11,9 @@ import javax.swing.border.EtchedBorder;
 import np.org.mpp.conv4.ui.dnd.ClipboardObserver;
 import np.org.mpp.conv4.ui.dnd.FilesAndHtmlTransferHandler;
 import np.org.mpp.ui.WidgetFactory;
-import java.awt.BorderLayout;
+import java.io.*;
+import java.awt.datatransfer.*;
+import np.org.mpp.conv4.ui.dnd.HtmlSelection;
 
 public class ConversionPanel extends JPanel {
   private static final long serialVersionUID = 6407038654026984919L;
@@ -96,27 +98,51 @@ public class ConversionPanel extends JPanel {
 
   }
 
-  public void runConversion() {
+  public void runFileConversion() {
     appendLog("runConversion()!");
   }
 
-  public void stopRunningConversion() {
+  public void stopRunningFileConversion() {
     appendLog("stop runConversion()!");
   }
 
-  public void pasteClipboard() {
+  public void pasteClipboardAction() {
     appendLog("pasteClipboard()");
+    Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
+        try {
+        //transferhandler.logAllDataFlavors(cb.getContents(this), new StringBuffer());
+        String html = transferhandler.getHtml( cb.getData(transferhandler.htmlDfByteUtf8) );
+
+        String newHtml = convertClipboardHtml(html);
+
+
+        HtmlSelection htmlSel = new HtmlSelection(newHtml);
+        cb.setContents(htmlSel, null);
+
+    } catch (UnsupportedFlavorException ex) {
+        appendLog("Please select some text");
+    } catch (Exception ex) {
+        ex.printStackTrace();
+    }
+
+
   }
 
+    String convertClipboardHtml(String html) {
+        appendLog("convertClipboardHtml() not implemented");
+        return "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0 Transitional//EN\"><HTML><HEAD></HEAD><BODY LANG=\"en\" DIR=\"LTR\">"
+            +"<P>Hello to clipboard from Java</P></BODY></HTML>";
+    }
 
-  ClipboardObserver systemClipObserver = null;
+
+    ClipboardObserver systemClipObserver = null;
 
   public void jCheckBoxObserveAndConvertClipboard_actionPerformed(ActionEvent e) {
 
     if (jCheckBoxObserveAndConvertClipboard.isSelected()) {
       if (systemClipObserver == null) {
         // Observes the selection (copy/cut in text documents detected)
-        systemClipObserver = new ClipboardObserver(Toolkit.getDefaultToolkit().getSystemClipboard(), transferhandler.htmlDf);
+        systemClipObserver = new ClipboardObserver(Toolkit.getDefaultToolkit().getSystemClipboard(), transferhandler.htmlDfByteUtf8);
         systemClipObserver.addActionListener(new ActionListener() {
           public void actionPerformed(ActionEvent ae) {
             if (isVisible())

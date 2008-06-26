@@ -60,7 +60,7 @@ public class ConversionPanel extends JPanel {
 
 
     // Observes the selection (copy/cut in text documents detected)
-    new ClipboardObserver(Toolkit.getDefaultToolkit().getSystemClipboard(), transferhandler.htmlDf).addActionListener(new ActionListener() {
+    new ClipboardObserver(Toolkit.getDefaultToolkit().getSystemClipboard(), transferhandler.htmlDfByteUtf8).addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent ae) {
         console.setText("copy/cut in text document: " + ae.getActionCommand() + "\n" + ae.getSource());
       }

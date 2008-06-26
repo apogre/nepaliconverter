@@ -71,4 +71,22 @@
     <old-method-name>openFile</old-method-name>
     <new-method-name>openFileSelection</new-method-name>
   </rename-method>
+  <rename-method id="0AP0N0WVUWHFYJRE8XSFK8Z" creation-time="Thu Jun 26 11:49:30.770 GMT+05:45 2008">
+    <declaring-class-name>np.org.mpp.conv4.ui.ConversionPanel</declaring-class-name>
+    <declared-method-signature>()V</declared-method-signature>
+    <old-method-name>runConversion</old-method-name>
+    <new-method-name>runFileConversion</new-method-name>
+  </rename-method>
+  <rename-method id="Y9P0N0WVUWHFYJRE8XSFK8Z" creation-time="Thu Jun 26 11:49:38.999 GMT+05:45 2008">
+    <declaring-class-name>np.org.mpp.conv4.ui.ConversionPanel</declaring-class-name>
+    <declared-method-signature>()V</declared-method-signature>
+    <old-method-name>stopRunningConversion</old-method-name>
+    <new-method-name>stopRunningFileConversion</new-method-name>
+  </rename-method>
+  <rename-method id="W9P0N0WVUWHFYJRE8XSFK8Z" creation-time="Thu Jun 26 11:49:48.062 GMT+05:45 2008">
+    <declaring-class-name>np.org.mpp.conv4.ui.ConversionPanel</declaring-class-name>
+    <declared-method-signature>()V</declared-method-signature>
+    <old-method-name>pasteClipboard</old-method-name>
+    <new-method-name>pasteClipboardAction</new-method-name>
+  </rename-method>
 </refactor>
