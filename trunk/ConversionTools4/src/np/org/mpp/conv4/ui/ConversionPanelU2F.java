@@ -5,6 +5,7 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.event.ActionListener;
+import javax.swing.*;
 
 public class ConversionPanelU2F extends ConversionPanel {
 
@@ -17,7 +18,15 @@ public class ConversionPanelU2F extends ConversionPanel {
         toolBar.cmbTrans.setVisible(false);
     }
 
+    private final String[] fonts = { "Preeti", "Kantipur" };
+
     public void confgureGui(MainFrame mainFrame) {
+
+        if (mainFrame.toolBar.cmbFont.getModel().getSize() == 0) {
+            // first time init
+            mainFrame.toolBar.cmbFont.setModel(new DefaultComboBoxModel(fonts));
+        }
+
         //mainFrame.toolBar.cmbFont.setVisible(false);
         mainFrame.toolBar.cmbTrans.setVisible(false);
     }
