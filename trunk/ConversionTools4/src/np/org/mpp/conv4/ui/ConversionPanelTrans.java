@@ -18,11 +18,13 @@ public class ConversionPanelTrans extends ConversionPanel {
           }
         });
 
+        appendLog("this is the transliterator");
+
     }
 
     public void confgureGuiForThisPanel(ToolBar toolBar, MenuBar menuBar) {
         toolBar.cmbFont.setVisible(false);
-        toolBar.cmbTrans.setVisible(false);
+        //toolBar.cmbTrans.setVisible(false);
     }
 
 

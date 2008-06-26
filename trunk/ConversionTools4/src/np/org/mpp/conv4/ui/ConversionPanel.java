@@ -8,40 +8,61 @@ import javax.swing.*;
 import javax.swing.Action;
 import javax.swing.border.EtchedBorder;
 
-import np.org.mpp.conv4.ConversionTools;
 import np.org.mpp.conv4.ui.dnd.ClipboardObserver;
 import np.org.mpp.conv4.ui.dnd.FilesAndHtmlTransferHandler;
 import np.org.mpp.ui.WidgetFactory;
+import java.awt.BorderLayout;
 
 public class ConversionPanel extends JPanel {
   private static final long serialVersionUID = 6407038654026984919L;
-  public JEditorPane console;
+  JEditorPane console = new JEditorPane();
+  private JScrollPane scroller = new JScrollPane();
+  BorderLayout borderLayout1 = new BorderLayout();
 
   FilesAndHtmlTransferHandler transferhandler = new FilesAndHtmlTransferHandler();
+  JCheckBox jCheckBoxObserveAndConvertClipboard = new JCheckBox();
+
+  // Abishek: Please DONT TOUCH this method. Write your code in the constructor
+  private void jbInit() throws Exception {
+    setLayout(borderLayout1);
+    console.setEditable(false);
+    console.setText("Please drag and drop file(s) or text, or\r\npress Ctrl+V to paste from " +
+                    "clipboard.");
+
+    console.setBackground(Color.WHITE);
+
+    scroller.getViewport().add(console);
+
+    jCheckBoxObserveAndConvertClipboard.setText("Observe and automaticcaly convert clipboard contents");
+    jCheckBoxObserveAndConvertClipboard.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        jCheckBoxObserveAndConvertClipboard_actionPerformed(e);
+      }
+    });
+
+    this.add(scroller, java.awt.BorderLayout.CENTER);
+    this.add(jCheckBoxObserveAndConvertClipboard, java.awt.BorderLayout.SOUTH);
+
+  }
+
 
   public ConversionPanel() {
-
-    console = new JEditorPane();
-    JScrollPane scroller = new JScrollPane(console);
+    try {
+      jbInit();
+    } catch (Exception ex) {
+      ex.printStackTrace();
+    }
 
     scroller.setPreferredSize(new Dimension(MainFrame.WIDTH - 10,
                                             MainFrame.HEIGHT - 75));
 
-    console.setEditable(false);
-    console.setText(ConversionTools.initLog);
-
-    console.setBackground(Color.WHITE);
     console.setPreferredSize(new Dimension(MainFrame.WIDTH - 10,
                                            MainFrame.HEIGHT - 75));
     console.setBorder(new EtchedBorder(2));
 
-    setLayout(new BorderLayout());
     // setBorder(new EmptyBorder(2, 2, 2, 2));
 
-    add(scroller, BorderLayout.CENTER);
-
     console.setTransferHandler(transferhandler);
-
 
     ActionMap map = console.getActionMap();
     map.put(TransferHandler.getPasteAction().getValue(Action.NAME),
@@ -54,47 +75,61 @@ public class ConversionPanel extends JPanel {
 
     transferhandler.console = console;
 
+  }
 
-    // Observes the selection (copy/cut in text documents detected)
-    new ClipboardObserver(Toolkit.getDefaultToolkit().getSystemClipboard(), transferhandler.htmlDf).addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent ae) {
-          if (isVisible())
-              console.setText("copy/cut in text document: " + ae.getActionCommand() + "\n" + ae.getSource());
-      }
-    });
+  public void confgureGui(MainFrame mainFrame) {
+    mainFrame.toolBar.cmbFont.setVisible(false);
+  }
 
 
+  public void openFileSelection() {
+    String filePath = WidgetFactory.getInstance().invokeJFileChooser(this);
+    appendLog("You chose to open this file: " + filePath);
+  }
+
+
+  void appendLog(String text) {
+    System.out.println(text);
+    String t = console.getText();
+    t = t + "\n" + text;
+    console.setText(t);
 
   }
 
-    public void confgureGui(MainFrame mainFrame) {
-        mainFrame.toolBar.cmbFont.setVisible(false);
+  public void runConversion() {
+    appendLog("runConversion()!");
+  }
+
+  public void stopRunningConversion() {
+    appendLog("stop runConversion()!");
+  }
+
+  public void pasteClipboard() {
+    appendLog("pasteClipboard()");
+  }
+
+
+  ClipboardObserver systemClipObserver = null;
+
+  public void jCheckBoxObserveAndConvertClipboard_actionPerformed(ActionEvent e) {
+
+    if (jCheckBoxObserveAndConvertClipboard.isSelected()) {
+      if (systemClipObserver == null) {
+        // Observes the selection (copy/cut in text documents detected)
+        systemClipObserver = new ClipboardObserver(Toolkit.getDefaultToolkit().getSystemClipboard(), transferhandler.htmlDf);
+        systemClipObserver.addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent ae) {
+            if (isVisible())
+              console.setText("copy/cut in text document: " + ae.getActionCommand() + "\n" + ae.getSource());
+          }
+        });
+      }
+    } else {
+      if (systemClipObserver != null) {
+        systemClipObserver.stop();
+        systemClipObserver = null;
+      }
     }
 
-
-    public void openFileSelection() {
-        String filePath = WidgetFactory.getInstance().invokeJFileChooser(this);
-        appendLog("You chose to open this file: " + filePath);
-    }
-
-
-    private void appendLog(String text) {
-        System.out.println(text);
-        String t = console.getText();
-        t = t + "\n" + text;
-        console.setText(t);
-
-    }
-
-    public void runConversion() {
-        appendLog("runConversion()!");
-    }
-
-    public void stopRunningConversion() {
-        appendLog("stop runConversion()!");
-    }
-
-    public void pasteClipboard() {
-        appendLog("pasteClipboard()");
-    }
+  }
 }

@@ -135,6 +135,6 @@ public class StartupPanel extends JPanel implements ActionListener {
 
 	ConversionTools.frame.add(MainFrame.conversionPanel);
 	MainFrame.conversionPanel.setVisible(true);
-	ConversionPanel.console.setText(ConversionTools.initLog);
+	//ConversionPanel.console.setText(ConversionTools.initLog);
     }
 }
