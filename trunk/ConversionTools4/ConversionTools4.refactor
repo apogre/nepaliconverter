@@ -89,4 +89,10 @@
     <old-method-name>pasteClipboard</old-method-name>
     <new-method-name>pasteClipboardAction</new-method-name>
   </rename-method>
+  <rename-method id="89P0N0WVUWHFYJRE8XSFK8Z" creation-time="Thu Jun 26 14:25:55.368 GMT+05:45 2008">
+    <declaring-class-name>np.org.mpp.conv4.ui.ConversionPanel</declaring-class-name>
+    <declared-method-signature>()V</declared-method-signature>
+    <old-method-name>pasteClipboardAction</old-method-name>
+    <new-method-name>convertClipboardAction</new-method-name>
+  </rename-method>
 </refactor>

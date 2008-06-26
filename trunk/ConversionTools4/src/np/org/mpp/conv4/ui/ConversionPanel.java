@@ -106,18 +106,26 @@ public class ConversionPanel extends JPanel {
     appendLog("stop runConversion()!");
   }
 
-  public void pasteClipboardAction() {
-    appendLog("pasteClipboard()");
+  boolean working = false;
+
+  public void convertClipboardAction() {
+    if (working) return;
+    working = true;
+    appendLog("convertClipboardAction()");
     Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
-        try {
-        //transferhandler.logAllDataFlavors(cb.getContents(this), new StringBuffer());
-        String html = transferhandler.getHtml( cb.getData(transferhandler.htmlDfByteUtf8) );
-
-        String newHtml = convertClipboardHtml(html);
-
-
-        HtmlSelection htmlSel = new HtmlSelection(newHtml);
-        cb.setContents(htmlSel, null);
+    try {
+      //transferhandler.logAllDataFlavors(cb.getContents(this), new StringBuffer());
+      String html = transferhandler.getHtml( cb.getData(transferhandler.htmlDfByteUtf8) );
+      String newHtml = convertClipboardHtml(html);
+      HtmlSelection htmlSel = new HtmlSelection(newHtml);
+      if (systemClipObserver!=null) systemClipObserver.setActive(false);
+      ClipboardOwner clipobs = new ClipboardOwner() {
+          public void lostOwnership(Clipboard clipboard, Transferable contents) {
+              System.out.println("lost Ownership (resuming clipboard observation)");
+              if (systemClipObserver!=null) systemClipObserver.setActive(true);
+          }
+      };
+      cb.setContents(htmlSel, clipobs);
 
     } catch (UnsupportedFlavorException ex) {
         appendLog("Please select some text");
@@ -125,7 +133,7 @@ public class ConversionPanel extends JPanel {
         ex.printStackTrace();
     }
 
-
+    working = false;
   }
 
     String convertClipboardHtml(String html) {
@@ -135,7 +143,7 @@ public class ConversionPanel extends JPanel {
     }
 
 
-    ClipboardObserver systemClipObserver = null;
+  ClipboardObserver systemClipObserver = null;
 
   public void jCheckBoxObserveAndConvertClipboard_actionPerformed(ActionEvent e) {
 
@@ -145,8 +153,10 @@ public class ConversionPanel extends JPanel {
         systemClipObserver = new ClipboardObserver(Toolkit.getDefaultToolkit().getSystemClipboard(), transferhandler.htmlDfByteUtf8);
         systemClipObserver.addActionListener(new ActionListener() {
           public void actionPerformed(ActionEvent ae) {
-            if (isVisible())
-              console.setText("copy/cut in text document: " + ae.getActionCommand() + "\n" + ae.getSource());
+            if (isVisible()) { //  && systemClipObserver != null
+              appendLog("copy/cut in text document: " + ae.getActionCommand() + "\n" + ae.getSource());
+              convertClipboardAction();
+            }
           }
         });
       }

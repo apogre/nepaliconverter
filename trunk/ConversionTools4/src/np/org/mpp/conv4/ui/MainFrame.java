@@ -174,7 +174,7 @@ public class MainFrame extends JFrame implements ActionListener {
       else if (s == menuBar.mrun) currentConversionPanel.runFileConversion();
       else if (s == toolBar.btnStop) currentConversionPanel.stopRunningFileConversion();
       else if (s == menuBar.mstop) currentConversionPanel.stopRunningFileConversion();
-      else if (s == toolBar.btnPaste) currentConversionPanel.pasteClipboardAction();
-      else if (s == menuBar.mpaste) currentConversionPanel.pasteClipboardAction();
+      else if (s == toolBar.btnPaste) currentConversionPanel.convertClipboardAction();
+      else if (s == menuBar.mpaste) currentConversionPanel.convertClipboardAction();
     }
 }
