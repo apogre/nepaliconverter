@@ -145,13 +145,8 @@ public class MenuBar extends JMenuBar implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 	if (e.getSource() == open) {
 	    String filePath = "";
-	    try {
 		filePath = widgetFactory.invokeJFileChooser(this);
-		filePath = "You chose to open this file: " + filePath;
-	    } catch (FileNotSelectedException fe) {
-		filePath = "Oops no file chosen!!!";
-	    }
-	    ConversionTools.appendLog(filePath);
+	    ConversionTools.appendLog("You chose to open this file: " + filePath);
 	} else if (e.getSource() == exit) {
 	    System.out.println("Exiting from system!");
 	    System.exit(0);

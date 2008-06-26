@@ -95,14 +95,10 @@ public class ToolBar extends JToolBar implements ActionListener {
 	    MainFrame.startPanel.setVisible(true);
 	} else if (e.getSource() == btnOpen) {
 	    String filePath = "";
-	    try {
 		filePath = widgetFactory.invokeJFileChooser(this);
-		filePath = "You chose to open this file: " + filePath;
-	    } catch (FileNotSelectedException fe) {
-		filePath = "Oops no file chosen!!!";
+		//filePath = "Oops no file chosen!!!";
 		// System.err.println(e.toString());
-	    }
-	    ConversionTools.appendLog(filePath);
+	    ConversionTools.appendLog("You chose to open this file: " + filePath);
 	}
     }
 }

@@ -69,7 +69,7 @@ public class ToolBar extends JToolBar {
 
     }
 
-    static ToolBar getInstance(String status) {
+    static ToolBar getInstance() {
 	if (instance == null) instance = new ToolBar();
   	return instance;
     }
