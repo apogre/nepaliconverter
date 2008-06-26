@@ -36,8 +36,10 @@ public class FilesAndHtmlTransferHandler extends TransferHandler {
 
   public FilesAndHtmlTransferHandler() {
       try {
-          fileDf = new DataFlavor("text/uri-list; class=java.lang.String");
-          htmlDf = new DataFlavor("text/html; class=java.lang.String"); // charset=unicode;
+          //fileDf = new DataFlavor("text/uri-list; class=java.lang.String");
+          //htmlDf = new DataFlavor("text/html; class=java.lang.String"); // charset=unicode;
+          fileDf = new DataFlavor("text/uri-list; charset=UTF-8; class=java.lang.String");
+          htmlDf = new DataFlavor("text/html; charset=UTF-8; class=java.lang.String"); // charset=unicode;
       } catch (ClassNotFoundException ex) {
           ex.printStackTrace();
       }
