@@ -19,8 +19,14 @@ public class NepaliTransliterationJacob implements ConversionHandler  {
   static String NAZ = Devanagari.NAZALIZATIONS;
   static String HAL = Devanagari.HALANTA; // "्"; // Halanta
 
-	public NepaliTransliterationJacob() {
-    devToRomanMap = new SAXParser("res/transliteration/NepaliJacobVortaro.xml").getHashMap();
+
+  public NepaliTransliterationJacob() {
+      this("res/transliteration/NepaliJacobVortaro.xml", true);
+  }
+
+
+	public NepaliTransliterationJacob(String translitXmlFile, boolean useExceptions) {
+    devToRomanMap = new SAXParser(translitXmlFile).getHashMap();
 
     String checkChars = ALL.replaceAll(HAL,"");
     for (int i=0; i<checkChars.length(); i++) {
@@ -32,7 +38,11 @@ public class NepaliTransliterationJacob implements ConversionHandler  {
       }
     }
 
-    specialRulesMap = new SAXParser("res/transliteration/NepaliSpecialRules.xml").getHashMap();
+    if (useExceptions)
+        specialRulesMap = new SAXParser("res/transliteration/NepaliSpecialRules.xml").getHashMap();
+    else
+        specialRulesMap = new HashMap();
+
     System.out.println("specialRulesMap raw = " + specialRulesMap);
     for (Iterator<Entry<String,String>> ie= specialRulesMap.entrySet().iterator(); ie.hasNext(); ) {
       Entry<String,String> e = ie.next();

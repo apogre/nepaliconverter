@@ -21,9 +21,6 @@ public class ToolBar extends JToolBar {
 
     static ToolBar instance;
 
-    private final String[] fonts = { "Preeti", "Kantipur" };
-    private final String[] trans = { "ALA-LC", "MS-Nepal", "Local" };
-
     private WidgetFactory widgetFactory;
 
     private ToolBar() {
@@ -47,8 +44,8 @@ public class ToolBar extends JToolBar {
 	btnStop = widgetFactory.createJButton("stop", "stop.gif",
 		"Terminate Conversion");
 
-	cmbFont = new JComboBox(fonts);
-	cmbTrans = new JComboBox(trans);
+	cmbFont = new JComboBox();
+	cmbTrans = new JComboBox();
 
   instance.add(btnBack);
   JSeparator line = new JSeparator(JSeparator.VERTICAL);

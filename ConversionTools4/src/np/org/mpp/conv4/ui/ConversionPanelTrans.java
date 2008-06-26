@@ -1,16 +1,21 @@
 package np.org.mpp.conv4.ui;
 
-import np.org.mpp.conv4.ui.dnd.ClipboardObserver;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
-import java.awt.datatransfer.DataFlavor;
 import java.awt.event.ActionListener;
-import np.org.mpp.conv4.translit.NepaliTransliterationJacob;
 import java.util.regex.Pattern;
+
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
+
+import np.org.mpp.conv4.translit.NepaliTransliterationAbishek;
+import np.org.mpp.conv4.translit.NepaliTransliterationJacob;
+import np.org.mpp.conv4.utils.ConversionHandler;
+import np.org.mpp.ui.WidgetFactory;
+import javax.swing.JFileChooser;
 
 public class ConversionPanelTrans extends ConversionPanel {
 
-    NepaliTransliterationJacob transliterator; // initialization delayed to later = new NepaliTransliterationJacob();
+    ConversionHandler transliterator; // initialization delayed to later = new NepaliTransliterationJacob();
 
 
     public ConversionPanelTrans() {
@@ -28,7 +33,50 @@ public class ConversionPanelTrans extends ConversionPanel {
     }
 
 
+    private final String[] trans = { "ALA-LC", "ALA-LC w exceptions", "ALA-LC Abisheks code", "MS-Nepal", "Esperanto dict", "(select file)" };
+    private int currentTransliteratorIndex = -2;
+
+    private void getRightTransliterator() {
+      int i = cmbTrans.getSelectedIndex();
+      if (currentTransliteratorIndex != i) {
+          currentTransliteratorIndex = i;
+
+          switch (i) {
+          case 0:
+              transliterator = new NepaliTransliterationJacob("res/transliteration/NepaliALA-LC.xml", false);
+              break;
+          case 1:
+              transliterator = new NepaliTransliterationJacob("res/transliteration/NepaliALA-LC.xml", true);
+              break;
+          case 2:
+              transliterator = new NepaliTransliterationAbishek();
+              break;
+          case 3:
+              transliterator = new NepaliTransliterationJacob("res/transliteration/NepaliJacob.xml", true);
+              break;
+          case 4:
+              transliterator = new NepaliTransliterationJacob("res/transliteration/NepaliJacobVortaro.xml", true);
+              break;
+          case 5:
+              JFileChooser browse = new JFileChooser();
+              browse.setDialogTitle("Choose an XML transliteration file");
+              if (browse.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+                transliterator = new NepaliTransliterationJacob(browse.getSelectedFile().getPath(), true);
+              }
+              break;
+
+          }
+      }
+    }
+
+    private String JFileChooser() {
+        return "";
+    }
+
+
     String convertClipboardHtml(String html) {
+        getRightTransliterator();
+        //ToolBar.getInstance().list();
 
         // TODO: WE NEED A HTML PARSER to just transliterate the text (and f.eks. not transluiterate devanagari URLS)
         // Anyway, just transliterating it all will work on most HTML:
@@ -50,17 +98,22 @@ public class ConversionPanelTrans extends ConversionPanel {
     }
 
 
+    JComboBox cmbTrans = null; // Reference to instance from toolbar
+
     public void confgureGui(MainFrame mainFrame) {
-        if (transliterator == null) {
-            // delayed first time initialization
-          transliterator = new NepaliTransliterationJacob();
+
+        if (cmbTrans == null) {
+          // delayed first time initialization
+          cmbTrans = mainFrame.toolBar.cmbTrans;
+          cmbTrans.setModel(new DefaultComboBoxModel(trans));
+          cmbTrans.addActionListener(new ActionListener() {
+              public void actionPerformed(ActionEvent e) {
+                  appendLog("Transliterator selected "+cmbTrans.getSelectedItem());
+              }
+          });
         }
 
         mainFrame.toolBar.cmbFont.setVisible(false);
     }
-
-
-
-
 
 }
