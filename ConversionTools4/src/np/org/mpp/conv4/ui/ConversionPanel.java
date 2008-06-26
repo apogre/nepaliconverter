@@ -1,7 +1,6 @@
 package np.org.mpp.conv4.ui;
 
 import java.awt.*;
-import java.awt.datatransfer.DataFlavor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -12,6 +11,7 @@ import javax.swing.border.EtchedBorder;
 import np.org.mpp.conv4.ConversionTools;
 import np.org.mpp.conv4.ui.dnd.ClipboardObserver;
 import np.org.mpp.conv4.ui.dnd.FilesAndHtmlTransferHandler;
+import np.org.mpp.ui.WidgetFactory;
 
 public class ConversionPanel extends JPanel {
   private static final long serialVersionUID = 6407038654026984919L;
@@ -67,7 +67,34 @@ public class ConversionPanel extends JPanel {
 
   }
 
-    public void confgureMenus(ToolBar toolBar, MenuBar menuBar) {
-        toolBar.cmbFont.setVisible(false);
+    public void confgureGui(MainFrame mainFrame) {
+        mainFrame.toolBar.cmbFont.setVisible(false);
+    }
+
+
+    public void openFileSelection() {
+        String filePath = WidgetFactory.getInstance().invokeJFileChooser(this);
+        appendLog("You chose to open this file: " + filePath);
+    }
+
+
+    private void appendLog(String text) {
+        System.out.println(text);
+        String t = console.getText();
+        t = t + "\n" + text;
+        console.setText(t);
+
+    }
+
+    public void runConversion() {
+        appendLog("runConversion()!");
+    }
+
+    public void stopRunningConversion() {
+        appendLog("stop runConversion()!");
+    }
+
+    public void pasteClipboard() {
+        appendLog("pasteClipboard()");
     }
 }

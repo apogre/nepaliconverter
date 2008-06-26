@@ -147,8 +147,7 @@ public class WidgetFactory {
 	return image;
     }
 
-    public String invokeJFileChooser(Component parent)
-	    throws FileNotSelectedException {
+    public String invokeJFileChooser(Component parent) {
 	JFileChooser browse = new JFileChooser();
 
 	int returnVal = browse.showOpenDialog(parent);
@@ -157,7 +156,7 @@ public class WidgetFactory {
 	    return browse.getSelectedFile().getAbsolutePath();
 	} else {
 	    System.out.println("asdf");
-	    throw new FileNotSelectedException("");
+	    return null;
 	}
     }
 }

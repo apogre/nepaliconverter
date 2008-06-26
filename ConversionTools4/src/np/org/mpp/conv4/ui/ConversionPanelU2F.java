@@ -6,9 +6,9 @@ import java.awt.event.ActionEvent;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.event.ActionListener;
 
-public class ConversionPanelF2U extends ConversionPanel {
+public class ConversionPanelU2F extends ConversionPanel {
 
-    public ConversionPanelF2U() {
+    public ConversionPanelU2F() {
 
         // Observes the selection (also without copy)
         new ClipboardObserver(Toolkit.getDefaultToolkit().getSystemSelection(), DataFlavor.stringFlavor).addActionListener(new ActionListener() {

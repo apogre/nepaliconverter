@@ -1,12 +1,15 @@
 package np.org.mpp.conv4.ui;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
-import javax.swing.JToolBar;
+import javax.swing.JPanel;
 
 import np.org.mpp.ui.WidgetFactory;
-import java.awt.event.*;
+import javax.swing.JComponent;
+import javax.swing.AbstractButton;
 import javax.swing.*;
 
 public class MainFrame extends JFrame implements ActionListener {
@@ -49,7 +52,7 @@ public class MainFrame extends JFrame implements ActionListener {
 
 	menuBar = MenuBar.getInstance();
 
-	toolBar = ToolBar.getInstance("Font2Unicode");
+	toolBar = ToolBar.getInstance();
 	toolBar.setVisible(false);
 
 	statusBar = new StatusBar();
@@ -69,17 +72,6 @@ public class MainFrame extends JFrame implements ActionListener {
   jPanelSwitcher.add(conversionPanelu2f, MODE_U2F);
   jPanelSwitcher.add(conversionPaneltrans, MODE_TRANS);
 
-  //jPanelCards.add(converterPanelUnic, "converterPanelUnic");
-  //jPanelCards.add(converterPanelFont, "converterPanelFont");
-  //jPanelCards.add(converterPanelTranslit, "converterPanelTranslit");
-
-      /*
-	add(panelSwitcherPanel, BorderLayout.CENTER);
-
-      panelSwitcherPanel.setLayout(panelSwitcher);
-      panelSwitcher.addLayoutComponent(startPanel,"start");
-      panelSwitcher.show(panelSwitcherPanel, "start");
-*/
 
 	add(statusBar, BorderLayout.SOUTH);
 
@@ -89,7 +81,7 @@ public class MainFrame extends JFrame implements ActionListener {
 	setDefaultCloseOperation(EXIT_ON_CLOSE);
 	pack();
 
-
+      /*
       startPanel.btnF2U.addActionListener(this);
       startPanel.btnU2F.addActionListener(this);
       startPanel.btnTraslit.addActionListener(this);
@@ -100,39 +92,37 @@ public class MainFrame extends JFrame implements ActionListener {
       toolBar.btnPaste.addActionListener(this);
       toolBar.btnRun.addActionListener(this);
       toolBar.btnStop.addActionListener(this);
+      */
+      addActionListeners(toolBar);
+      addActionListeners(startPanel);
+      addActionListeners(menuBar);
+    }
 
+    /**
+     * Add this as actionlistener on all children and subchildren of this component.
+     * (is't a hell to maintain manually :-)
+     * @param container will get addActionListener( this ) its chuildren
+     */
+    private void addActionListeners(JComponent container) {
+        for (int i=0; i<container.getComponentCount(); i++) {
+            Component c = container.getComponent(i);
+            if (c instanceof AbstractButton) {
+                ((AbstractButton) c).addActionListener( this );
+                System.out.println("added "+c);
+            }
+            if (c instanceof JComponent) {
+                addActionListeners((JComponent) c);
+            }
+        }
     }
 
 
-    /*
+    String currentMode = "";
+    ConversionPanel currentConversionPanel = null;
 
-        public void actionPerformed(ActionEvent e) {
-          if (e.getSource() == btnBack) {
-              MainFrame.toolBar.setVisible(false);
-              MainFrame.statusBar.setVisible(false);
-              MainFrame.conversionPanel.setVisible(false);
-              ConversionTools.frame.add(MainFrame.startPanel);
-              MainFrame.startPanel.setVisible(true);
-          } else if (e.getSource() == btnOpen) {
-              String filePath = "";
-              try {
-                filePath = widgetFactory.invokeJFileChooser(this);
-                filePath = "You chose to open this file: " + filePath;
-              } catch (FileNotSelectedException fe) {
-                filePath = "Oops no file chosen!!!";
-                // System.err.println(e.toString());
-              }
-              ConversionTools.appendLog(filePath);
-          }
-        }
-    */
-
-
-
-    String mode = "";
 
     public void switchToMode(String newMode) {
-        if (mode == newMode) return;
+        if (currentMode == newMode) return;
         panelSwitcher.show(jPanelSwitcher, newMode);
 
         toolBar.setVisible( newMode != MODE_START );
@@ -142,48 +132,49 @@ public class MainFrame extends JFrame implements ActionListener {
         toolBar.cmbTrans.setVisible(true);
 
         if (newMode == MODE_F2U) {
-            conversionPanelf2u.confgureMenus(toolBar, menuBar);
+            currentConversionPanel = conversionPanelf2u;
         } else if (newMode == MODE_U2F) {
-            conversionPanelu2f.confgureMenus(toolBar, menuBar);
+            currentConversionPanel = conversionPanelu2f;
         } else if (newMode == MODE_TRANS) {
-            conversionPaneltrans.confgureMenus(toolBar, menuBar);
+            currentConversionPanel = conversionPaneltrans;
         }
+        currentConversionPanel.confgureGui(this);
 
-
-        mode = newMode;
+        currentMode = newMode;
+        statusBar.lblStatus.setText(" Mode: " + currentMode);
     }
 
-    public void actionPerformed(ActionEvent e) {
-      Object src = e.getSource();
 
-      if (e.getSource() == startPanel.btnF2U) {
-          switchToMode(MODE_F2U);
-      } else if (e.getSource() == startPanel.btnU2F) {
-          switchToMode(MODE_U2F);
-      } else if (e.getSource() == startPanel.btnTraslit) {
-          switchToMode(MODE_TRANS);
-      } else if (e.getSource() == startPanel.btnExit) {
+    public void actionPerformed(ActionEvent e) {
+      //System.out.println(""+e);
+      Object s = e.getSource();
+
+      if (s == toolBar.btnBack) switchToMode(MODE_START);
+      else if (s == startPanel.btnF2U) switchToMode(MODE_F2U);
+      else if (s == startPanel.btnU2F) switchToMode(MODE_U2F);
+      else if (s == startPanel.btnTraslit) switchToMode(MODE_TRANS);
+      else if (s == menuBar.mgoto_fontToUnicode) switchToMode(MODE_F2U);
+      else if (s == menuBar.mgoto_unicodeToFont) switchToMode(MODE_U2F);
+      else if (s == menuBar.mgoto_transliteration) switchToMode(MODE_TRANS);
+      else if (s == menuBar.mhelpContents) JOptionPane.showMessageDialog(this, "Not ready ;-)");
+      else if (s == menuBar.mprefs) JOptionPane.showMessageDialog(this, "Not ready ;-)");
+      else if (s == menuBar.mseeSplash) JOptionPane.showMessageDialog(this, "Not ready ;-)");
+      else if (s == startPanel.btnExit || s == menuBar.mexit) {
           System.out.println("Exiting from system!");
           System.exit(0);
-      } else if (src == toolBar.btnBack) {
-          switchToMode(MODE_START);
       }
 
 
-      //StatusBar.lblStatus.setText(" Mode: " + mode);
+      // now for the signals to a specific conversion panel
+      if (currentConversionPanel==null) return;
 
-/*
-    private void loadRequiredPanels() {
-      setVisible(false);
-      ConversionTools.frame.remove(MainFrame.startPanel);
-      MainFrame.toolBar.setVisible(true);
-      MainFrame.statusBar.setVisible(true);
-
-      ConversionTools.frame.add(MainFrame.conversionPanel);
-      MainFrame.conversionPanel.setVisible(true);
-      ConversionPanel.console.setText(ConversionTools.initLog);
-    }
-*/
-
+      if (s == toolBar.btnOpen) currentConversionPanel.openFileSelection();
+      else if (s == menuBar.mopen) currentConversionPanel.openFileSelection();
+      else if (s == toolBar.btnRun) currentConversionPanel.runConversion();
+      else if (s == menuBar.mrun) currentConversionPanel.runConversion();
+      else if (s == toolBar.btnStop) currentConversionPanel.stopRunningConversion();
+      else if (s == menuBar.mstop) currentConversionPanel.stopRunningConversion();
+      else if (s == toolBar.btnPaste) currentConversionPanel.pasteClipboard();
+      else if (s == menuBar.mpaste) currentConversionPanel.pasteClipboard();
     }
 }
