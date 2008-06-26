@@ -8,6 +8,8 @@ import javax.swing.UIManager;
 
 //import np.org.mpp.conv4.old_ui_abishek.*;
 import np.org.mpp.conv4.ui.*;
+import java.io.*;
+import np.org.mpp.conv4.translit.NepaliTransliterationJacob;
 
 public class ConversionTools {
     boolean packFrame = false;
@@ -52,21 +54,38 @@ public class ConversionTools {
      * @param args
      *                String[]
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        if (args.length == 0) {
+            // start the GUI
 
+            SwingUtilities.invokeLater(new Runnable() {
+                public void run() {
+                  try {
+                      UIManager.setLookAndFeel(UIManager
+                            .getSystemLookAndFeelClassName());
+                  } catch (Exception exception) {
+                      exception.printStackTrace();
+                  }
 
-	SwingUtilities.invokeLater(new Runnable() {
-	    public void run() {
-		try {
-		    UIManager.setLookAndFeel(UIManager
-			    .getSystemLookAndFeelClassName());
-		} catch (Exception exception) {
-		    exception.printStackTrace();
-		}
+                  new ConversionTools();
+                }
+            });
+        } else {
+            // CLI interface
+          String arg1 = args[0].toLowerCase();
+          if (arg1.startsWith("-tr")) {
+              // Transliteration mode
 
-		new ConversionTools();
-	    }
-	});
+              BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+              NepaliTransliterationJacob tr = new NepaliTransliterationJacob("res/transliteration/NepaliALA-LC.xml", true);
+              String lin = null;
+              while ( (lin = br.readLine()) != null) {
+                  String outLin = tr.convertText(null, lin);
+                  System.out.println(outLin);
+              }
+
+          }
+        }
     }
 
     public static void appendLog(String logText) {
