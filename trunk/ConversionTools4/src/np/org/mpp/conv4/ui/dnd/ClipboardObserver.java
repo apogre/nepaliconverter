@@ -40,11 +40,7 @@ public class ClipboardObserver implements Runnable {
     public synchronized void start() {
         observing = true;
         lastData = null;
-        try {
-            lastData = clipboard.getData(observedFlavor);
-        } catch (Exception e) {
-            // We ignore this altogether and assume an empty clipboard on the start
-        }
+        setActive(true);
         Thread observerThread = new Thread(this, "ClipboardObserver");
         observerThread.start();
     }
@@ -91,9 +87,14 @@ public class ClipboardObserver implements Runnable {
     }
 
 
-    private boolean active = true;
+    private boolean active = false;
     public void setActive(boolean a) {
         active = a;
+        try {
+            lastData = clipboard.getData(observedFlavor);
+        } catch (Exception e) {
+            // We ignore this altogether and assume an empty clipboard on the start
+        }
     }
 
 
