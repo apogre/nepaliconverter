@@ -7,13 +7,13 @@ import java.util.ArrayList;
 
 public class JOpenDocumentSpreadsheetReader {
 
-    /*
 
   public static boolean DEBUG = false;
 
 
   public JOpenDocumentSpreadsheetReader() {
   }
+  /*
 
   public static ArrayList<ArrayList<String>> read(String fileName) throws Exception {
     return read(fileName, 0, 0);

@@ -63,8 +63,10 @@ public class AnyDocumentChainedReaderWriter implements GeneralReaderWriter {
 
       if (!oooSupportedExtentions.contains(outExt)) {
         if (supportedExtentions.contains(outExt)) {
-          jodDocumentConverter.convert(new File(convOutFile), new File(outFile));
-          new File(convOutFile).delete();
+          if (new File(convOutFile).exists()) { // file may not be there is there was no changes
+            jodDocumentConverter.convert(new File(convOutFile), new File(outFile));
+            new File(convOutFile).delete();
+          }
         } else {
           // out file format not supported. Just rename and throw error
           String outFile2 = FilenameUtils.removeExtension(outFile) + "." + FilenameUtils.getExtension(convOutFile);

@@ -95,4 +95,8 @@
     <old-method-name>pasteClipboardAction</old-method-name>
     <new-method-name>convertClipboardAction</new-method-name>
   </rename-method>
+  <rename-class id="6AP0VD54LYHF5XYYEXSFK8Z" creation-time="Fri Jun 27 15:16:16.678 GMT+05:45 2008">
+    <old-class-name>np.org.mpp.conv4.ui.ConversionPanelF2U$FileFilter</old-class-name>
+    <new-class-name>np.org.mpp.conv4.ui.ConversionPanelF2U$OooFileFilter</new-class-name>
+  </rename-class>
 </refactor>

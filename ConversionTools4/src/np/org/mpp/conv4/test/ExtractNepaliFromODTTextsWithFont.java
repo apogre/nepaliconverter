@@ -3,9 +3,6 @@ package np.org.mpp.conv4.test;
 import java.io.*;
 import java.util.*;
 
-import javax.xml.xpath.XPath;
-import javax.xml.xpath.XPathFactory;
-
 import np.org.mpp.conv4.utils.ConversionHandler;
 import np.org.mpp.conv4.utils.GeneralReaderWriter;
 import org.openoffice.odf.doc.OdfDocument;
@@ -24,7 +21,8 @@ public class ExtractNepaliFromODTTextsWithFont {
 
 
   HashSet<String> lookForWords = new HashSet<String>(Arrays.asList(new String[] {
-  "\\m", "\\mPd\\", "j|mflGtsf/Laf6", "m", "m\\", "", "", "", }));
+  //  "\\m", "\\mPd\\", "j|mflGtsf/Laf6", "m", "m\\", "", "", "",
+}));
 
   File actualFile;
   //XPath  xpath = XPathFactory.newInstance().newXPath();

@@ -81,12 +81,15 @@ public class ConversionPanelTrans extends ConversionPanel {
         // TODO: WE NEED A HTML PARSER to just transliterate the text (and f.eks. not transluiterate devanagari URLS)
         // Anyway, just transliterating it all will work on most HTML:
         String conv = transliterator.convertText(null, html);
-
-
         appendLog("============================");
         appendLog(stripHtml(html));
-        appendLog("Was converted to: ");
-        appendLog(stripHtml(conv));
+        if (html.equals(conv)) {
+          appendLog("Was NOT converted (nothing to convert)");
+          conv = html;
+        } else {
+          appendLog("Was converted to: ");
+          appendLog(stripHtml(conv));
+        }
         return conv;
     }
 

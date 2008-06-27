@@ -67,7 +67,7 @@ public class ClipboardObserver implements Runnable {
                 } catch (UnsupportedFlavorException e) {
                     // If this occurs, it actually means that the clipboard has been modified after our check...
                     // We do not care, we just ignore the contents in that case.
-                } catch (IOException e) {
+                } catch (Exception e) {
                     // This means we attempted to read valid data, but had a problem...
                     // Let's just report barebones, but proceed as normal afterwards
                     //e.printStackTrace();
