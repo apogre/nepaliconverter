@@ -110,26 +110,35 @@ public abstract class ConversionPanel extends JPanel {
     appendLog("stop runConversion()!");
   }
 
-  boolean working = false;
 
   public void convertClipboardAction() {
-    if (working) return;
-    working = true;
     appendLog("convertClipboardAction()");
     Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
     try {
       //transferhandler.logAllDataFlavors(cb.getContents(this), new StringBuffer());
       String html = transferhandler.getHtml( cb.getData(transferhandler.htmlDfByteUtf8) );
       String newHtml = convertClipboardHtml(html);
-      HtmlSelection htmlSel = new HtmlSelection(newHtml);
-      if (systemClipObserver!=null) systemClipObserver.setActive(false);
-      ClipboardOwner clipobs = new ClipboardOwner() {
+
+      //if (!newHtml.equals(html))
+      { // something was convertet. Insert result back in clipboard
+        HtmlSelection htmlSel = new HtmlSelection(newHtml);
+
+        // dont get notification of this
+        if (systemClipObserver != null)
+          systemClipObserver.setActive(false);
+
+        // ... befores the user has put something into clipboard manually
+        ClipboardOwner clipobs = new ClipboardOwner() {
           public void lostOwnership(Clipboard clipboard, Transferable contents) {
-              System.out.println("lost Ownership (resuming clipboard observation)");
-              if (systemClipObserver!=null) systemClipObserver.setActive(true);
+            System.out.println("lost Ownership (resuming clipboard observation)");
+            if (systemClipObserver != null)
+              systemClipObserver.setActive(true);
           }
-      };
-      cb.setContents(htmlSel, clipobs);
+        };
+
+        // now set the clip board
+        cb.setContents(htmlSel, clipobs);
+      }
 
     } catch (UnsupportedFlavorException ex) {
         appendLog("Please select some text");
@@ -137,7 +146,6 @@ public abstract class ConversionPanel extends JPanel {
         ex.printStackTrace();
     }
 
-    working = false;
   }
 
     String convertClipboardHtml(String html) {

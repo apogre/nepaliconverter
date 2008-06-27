@@ -66,6 +66,8 @@ public class OpenOfficeReaderWriter implements GeneralReaderWriter {
 
     if (!new File(inFile).exists()) throw new FileNotFoundException(inFile);
 
+    boolean somethingWasConvertet = false;
+
     // loads the ODF document from the path
     OdfDocument odfDocument = OdfDocument.load(inFile);
 
@@ -142,6 +144,7 @@ public class OpenOfficeReaderWriter implements GeneralReaderWriter {
               if (DEBUG) System.out.println("CONV " + teksto + " -> " + teksto2);
               //textNode.setTextContent("Kkk"+font+":"+teksto2+"kkK");
               textNode.setTextContent(teksto2);
+              somethingWasConvertet = true;
             }
           }
         }
@@ -162,7 +165,7 @@ public class OpenOfficeReaderWriter implements GeneralReaderWriter {
 
 
 
-    if (outFile != null) odfDocument.save(outFile);
+    if (outFile != null && somethingWasConvertet) odfDocument.save(outFile);
   }
 
   private OdfStyle findStyleWithFont(HashMap<String, OdfStyle> stylenameToStyle, OdfStylableElement parentNode) {

@@ -146,7 +146,7 @@ public class MainFrame extends JFrame implements ActionListener {
 
 
     public void actionPerformed(ActionEvent e) {
-      //System.out.println(""+e);
+      System.out.println(""+e);
       Object s = e.getSource();
 
       if (s == toolBar.btnBack) switchToMode(MODE_START);
