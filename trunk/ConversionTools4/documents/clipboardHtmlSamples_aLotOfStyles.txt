@@ -1,6 +1,6 @@
 TRANSFER HANDLER LOGS of HTML contents - test/aLotOfStyles.odt
 
-lin
+Ubuntu Linux 8.04, jdk1.6.0, from OpenOffice.org 2.4.1:
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <HTML>
 <HEAD>
@@ -132,8 +132,7 @@ cs:dft\ -lqm=lj_ <FONT FACE="AlArabiya">&nbsp;s</FONT><FONT FACE="AlArabiya"><I>
 senpluveco</SPAN>
 
 
-OOO, win:
-
+OOO, jdk1.6 win:
 <HTML>
 <HEAD>
 	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
@@ -260,6 +259,145 @@ senpluveco</SPAN></FONT></P>
 <P CLASS="punkttegn-2-start-western">l:ytL -gf_ <FONT FACE="AlArabiya">situacxio</FONT></P>
 <P><FONT FACE="Kantipur"><SPAN LANG="da-DK">l:y/ &nbsp;</SPAN></FONT><FONT FACE="Arial Narrow, sans-serif"><SPAN LANG="da-DK">senmova</SPAN></FONT></P>
 <P><FONT FACE="Kantipur"><SPAN LANG="da-DK">:gfts -gf_ </SPAN></FONT><FONT FACE="Arial Narrow, sans-serif"><SPAN LANG="da-DK">diplomo</SPAN></FONT></P>
+</BODY>
+</HTML>
+
+
+ooo jdk1.5 win
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="OpenOffice.org 2.3  (Win32)">
+	<STYLE TYPE="text/css">
+	<!--
+		@page { size: 8.5in 11in; margin: 0.79in }
+		P { margin-bottom: 0.08in }
+		H2 { margin-bottom: 0.08in }
+		H2.western { font-family: "Helvetica", sans-serif; font-size: 14pt; font-style: italic }
+		H2.cjk { font-family: "HG Mincho Light J", "msmincho"; font-size: 14pt; font-style: italic }
+		H2.ctl { font-family: "Helvetica", sans-serif; font-size: 14pt; font-style: italic }
+		P.liste-western { font-family: "Lucidasans", sans-serif }
+		P.liste-ctl { font-family: "Lucidasans", sans-serif }
+		P.punkttegn-2-start-western { margin-left: 0.5in; text-indent: -0.25in; margin-top: 0.17in; font-family: "Kanchan" }
+		P.punkttegn-2-start-cjk { margin-left: 0.5in; text-indent: -0.25in; margin-top: 0.17in; font-size: 10pt }
+		P.punkttegn-2-start-ctl { margin-left: 0.5in; text-indent: -0.25in; margin-top: 0.17in; font-family: "Himalb" }
+		H1 { margin-bottom: 0.08in }
+		H1.western { font-family: "Helvetica", sans-serif; font-size: 16pt }
+		H1.cjk { font-family: "HG Mincho Light J", "msmincho"; font-size: 16pt }
+		H1.ctl { font-family: "Helvetica", sans-serif; font-size: 16pt }
+		H3 { margin-bottom: 0.08in }
+		H3.western { font-family: "Helvetica", sans-serif }
+		H3.cjk { font-family: "HG Mincho Light J", "msmincho" }
+		H3.ctl { font-family: "Helvetica", sans-serif }
+		P.text-20-body-western { margin-left: 0.5in; text-indent: -0.25in; margin-top: 0.17in; font-family: "Kanchan" }
+		P.text-20-body-cjk { margin-left: 0.5in; text-indent: -0.25in; margin-top: 0.17in; font-size: 10pt }
+		P.text-20-body-ctl { margin-left: 0.5in; text-indent: -0.25in; margin-top: 0.17in; font-family: "Himalb" }
+	-->
+	</STYLE>
+</HEAD>
+<BODY DIR="LTR">
+<H2 CLASS="western">Ne konvertu</H2>
+<P STYLE="margin-bottom: 0in">NNN1 Jen teksto kun normala tipografio:
+xxxxx1x</P>
+<P>NNN2 Jen teksto kun normala derivita tipografio: xxxxx2x</P>
+<P CLASS="punkttegn-2-start-western"><FONT FACE="Arial, sans-serif">NNN3
+Jen teksto kun ne-unikoda tipografio sed en Arial: xxxxx3x</FONT></P>
+<P>NNN4 Jen teksto kun normala derivita tipografio kaj
+NepaliTegnTypografi2, sed in Arial: <FONT FACE="Preeti"><FONT SIZE=4><SPAN LANG="nb-NO"><FONT FACE="Arial, sans-serif">xxxxx4x</FONT></SPAN></FONT></FONT></P>
+<P>NNN5 Jen teksto kun ne-unikoda tipografio, sed en Arial:</P>
+<P CLASS="punkttegn-2-start-western"><FONT FACE="Arial, sans-serif">xxxxx5x</FONT></P>
+<P><BR><BR>
+</P>
+<P>NNN6 Jen teksto kun ne-unikoda tipografio, sed en Arial:</P>
+<P CLASS="punkttegn-2-start-western"><FONT FACE="Arial, sans-serif"><FONT SIZE=3 STYLE="font-size: 13pt">xx</FONT><FONT SIZE=4>xx</FONT><FONT SIZE=4 STYLE="font-size: 15pt">x6x</FONT></FONT></P>
+<P><BR><BR>
+</P>
+<H2 CLASS="western">Konvertu</H2>
+<P STYLE="margin-bottom: 0in">KKK1 Jen teksto kun normala tipografio
+sed en Kantipur: <FONT FACE="Kantipur">yyyyy7y</FONT></P>
+<P>KKK2 Jen teksto kun normala derivita tipografio kaj
+NepaliTegnTypografi2 - Preeti: <FONT FACE="Preeti"><FONT SIZE=4><SPAN LANG="nb-NO">yyyyy8y</SPAN></FONT></FONT></P>
+<P>KKK3 Jen teksto kun normala derivita tipografio kaj
+NepaliTegnTypografi2 - Preeti: <FONT FACE="Preeti"><FONT SIZE=4><SPAN LANG="nb-NO">yyyyyy9y</SPAN></FONT></FONT></P>
+<P>KKK4 Jen teksto kun normala derivita tipografio kaj
+NepaliTegnTypografi2, sed in Arial: <FONT FACE="Preeti"><FONT SIZE=4><SPAN LANG="nb-NO"><FONT SIZE=2>yyyyy1+y</FONT></SPAN></FONT></FONT></P>
+<P>KKK5 Jen teksto kun normala derivita tipografio kaj
+NepaliTegnTypografi2, sed in Kantipur: <FONT FACE="Preeti"><FONT SIZE=4><SPAN LANG="nb-NO"><FONT FACE="Kantipur">yyyyyy11y</FONT></SPAN></FONT></FONT></P>
+<P><BR><BR>
+</P>
+<P>KKK6 Jen teksto kun ne-unikoda tipografio (Kanchan, ne estas
+Himal!):</P>
+<P CLASS="punkttegn-2-start-western">yyyyy12y</P>
+<P><BR><BR>
+</P>
+<P>KKK7 Jen teksto kun ne-unikoda tipografio (Kanchan, ne estas
+Himal!):</P>
+<P CLASS="punkttegn-2-start-western"><FONT SIZE=3 STYLE="font-size: 13pt">yy</FONT><FONT SIZE=4>yy</FONT><FONT SIZE=4 STYLE="font-size: 15pt">y13y</FONT></P>
+<P><BR><BR>
+</P>
+<P>KKK8 Jen teksto kun ne-unikoda tipografio kaj NepaliTegnTypografi2
+(Preeti):</P>
+<P CLASS="punkttegn-2-start-western"><FONT FACE="Preeti"><FONT SIZE=4><SPAN LANG="nb-NO">yyyy</SPAN></FONT></FONT><FONT FACE="Preeti"><FONT SIZE=4><SPAN LANG="nb-NO"><FONT SIZE=4 STYLE="font-size: 15pt">yy14y</FONT></SPAN></FONT></FONT></P>
+<P>KKK9 Jen teksto kun ne-unikoda tipografio kaj
+NepaliTegnTypografi2, sed in Kantipur:</P>
+<P CLASS="punkttegn-2-start-western"><FONT FACE="Preeti"><FONT SIZE=4><SPAN LANG="nb-NO"><FONT FACE="Kantipur"><SPAN STYLE="font-style: normal">yyy</SPAN></FONT></SPAN></FONT></FONT><FONT FACE="Preeti"><FONT SIZE=4><SPAN LANG="nb-NO"><FONT FACE="Kantipur">y</FONT></SPAN></FONT></FONT><FONT FACE="Preeti"><FONT SIZE=4><SPAN LANG="nb-NO"><FONT FACE="Kantipur"><I>yy15y</I></FONT></SPAN></FONT></FONT></P>
+<P><BR><BR>
+</P>
+<P><BR><BR>
+</P>
+<P>-----------------------------------</P>
+<H2 CLASS="western">Ekzempla teksto</H2>
+<P STYLE="font-style: normal; font-weight: medium"><BR><BR>
+</P>
+<P STYLE="margin-left: 0.5in; text-indent: -0.25in; margin-bottom: 0in">
+<FONT FACE="Kantipur"><SPAN LANG="da-DK">Yyy c“ -lg_ &nbsp;&nbsp;</SPAN></FONT><FONT FACE="Arial Narrow, sans-serif"><SPAN LANG="da-DK">jes
+xxx</SPAN></FONT></P>
+<P><FONT FACE="Kantipur"><SPAN LANG="da-DK">yyy cr]6\g' -;=lqm_
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</SPAN></FONT><FONT FACE="Arial Narrow, sans-serif"><SPAN LANG="da-DK">pusxi,
+premegi XXX</SPAN></FONT></P>
+<P><FONT FACE="Kantipur"><SPAN LANG="da-DK">yyy c“h'nL&divide;c~hln
+-gf_ </SPAN></FONT><FONT FACE="Kantipur"><SPAN LANG="da-DK"><B>&nbsp;</B></SPAN></FONT><FONT FACE="Arial Narrow, sans-serif"><SPAN LANG="da-DK"><B>dumanpreno
+xxx</B></SPAN></FONT></P>
+<P STYLE="margin-left: 0.5in; text-indent: -0.25in; margin-bottom: 0in">
+<FONT SIZE=6><FONT FACE="Kantipur"><SPAN LANG="da-DK">yyy c“Wo./f]]
+-lj_ &nbsp;</SPAN></FONT><FONT FACE="Arial, sans-serif"><SPAN LANG="da-DK">malluma
+xxx</SPAN></FONT></FONT></P>
+<P><FONT SIZE=6><FONT FACE="Kantipur"><SPAN LANG="da-DK">yyy c“x
+“-lg_ &nbsp;</SPAN></FONT><FONT FACE="Arial, sans-serif"><SPAN LANG="da-DK">ne
+xxx</SPAN></FONT></FONT></P>
+<H1 CLASS="western"><FONT FACE="Kantipur"><SPAN LANG="da-DK">yyy
+c+z&divide;c+; </SPAN></FONT><FONT FACE="Kantipur"><SPAN LANG="da-DK"><I>&nbsp;</I></SPAN></FONT><FONT FACE="Arial Narrow, sans-serif"><SPAN LANG="da-DK"><I>parto</I></SPAN></FONT><FONT FACE="Arial Narrow, sans-serif"><SPAN LANG="da-DK">,
+membro xxx</SPAN></FONT></H1>
+<H2 CLASS="western"><FONT FACE="Kantipur"><SPAN LANG="da-DK">yyy
+c+zjG8 -gf_ </SPAN></FONT><FONT FACE="Arial Narrow, sans-serif"><SPAN LANG="da-DK">divido
+de posedajxoj al hereduloj xxx</SPAN></FONT></H2>
+<H3 CLASS="western"><FONT FACE="Preeti"><SPAN LANG="da-DK">yyy cs8
+</SPAN></FONT><FONT FACE="Preeti"><SPAN LANG="da-DK"><B>-gf_</B></SPAN></FONT><FONT FACE="Kantipur"><SPAN LANG="da-DK">
+</SPAN></FONT><FONT FACE="Times New Roman, serif"><SPAN LANG="da-DK">kontrauxstaro</SPAN></FONT><FONT FACE="Arial Narrow, sans-serif"><SPAN LANG="da-DK">,obstino
+xxx</SPAN></FONT></H3>
+<P CLASS="text-20-body-western"><FONT FACE="Preeti"><FONT SIZE=4><SPAN LANG="nb-NO">yyy
+csdsfpg' -c=lqm_</SPAN></FONT></FONT><FONT FACE="Arial, sans-serif">
+heziti,&nbsp;embarasigxi xxx</FONT></P>
+<P CLASS="text-20-body-western"><FONT FACE="Preeti"><FONT SIZE=4><SPAN LANG="nb-NO">yyy
+cs/0f &nbsp;</SPAN></FONT></FONT><FONT FACE="Preeti"><FONT SIZE=4><SPAN LANG="nb-NO"><I>-gf_</I></SPAN></FONT></FONT><FONT FACE="Preeti"><FONT SIZE=4><SPAN LANG="nb-NO">
+</SPAN></FONT></FONT><FONT FACE="Preeti"><FONT SIZE=4><SPAN LANG="nb-NO"><FONT FACE="Arial, sans-serif">&nbsp;negacio
+xxx</FONT></SPAN></FONT></FONT></P>
+<P CLASS="punkttegn-2-start-western">yyy cs:dft\ -lqm=lj_<FONT FACE="Arial, sans-serif">
+&nbsp;s</FONT><FONT FACE="Arial, sans-serif"><I>ub</I></FONT><FONT FACE="Arial, sans-serif">ite
+xxx</FONT></P>
+<P><FONT FACE="Kantipur"><SPAN LANG="da-DK">yyy csfn -gf_ </SPAN></FONT><FONT FACE="Arial Narrow, sans-serif"><SPAN LANG="da-DK">sekego,
+senpluveco xxx</SPAN></FONT></P>
+<P><FONT FACE="Kantipur"><SPAN LANG="da-DK">yyy cSsn</SPAN></FONT>&nbsp;<FONT FACE="Kantipur"><SPAN LANG="da-DK">-gf_</SPAN></FONT>
+<FONT SIZE=6 STYLE="font-size: 28pt">&nbsp;</FONT><FONT FACE="Arial Narrow, sans-serif"><FONT SIZE=6 STYLE="font-size: 28pt"><SPAN LANG="da-DK">lerteco</SPAN></FONT></FONT><FONT FACE="Arial Narrow, sans-serif"><SPAN LANG="da-DK">
+ xxx</SPAN></FONT></P>
+<P><FONT FACE="Himalb">yyy :yfoL -lj_ </FONT>&nbsp;konstanta xxx</P>
+<P CLASS="punkttegn-2-start-western">yyy l:ytL -gf_ <FONT FACE="AlArabiya">situacxio
+xxx</FONT></P>
+<P><FONT FACE="Kantipur"><SPAN LANG="da-DK">yyy l:y/ &nbsp;</SPAN></FONT><FONT FACE="Arial Narrow, sans-serif"><SPAN LANG="da-DK">senmova
+xxx</SPAN></FONT></P>
+<P><FONT FACE="Kantipur"><SPAN LANG="da-DK">yyy :gfts -gf_ </SPAN></FONT><FONT FACE="Arial Narrow, sans-serif"><SPAN LANG="da-DK">diplomo
+xxx</SPAN></FONT></P>
 </BODY>
 </HTML>
 
