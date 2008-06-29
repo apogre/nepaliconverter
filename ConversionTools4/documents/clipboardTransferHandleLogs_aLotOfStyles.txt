@@ -1,6 +1,6 @@
 TRANSFER HANDLER LOGS of HTML contents - test/aLotOfStyles.odt
 
-
+lin
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <HTML>
 <HEAD>
@@ -130,3 +130,533 @@ cs:dft\ -lqm=lj_ <FONT FACE="AlArabiya">&nbsp;s</FONT><FONT FACE="AlArabiya"><I>
 </P>
 <P><FONT FACE="Kantipur"><SPAN LANG="da-DK">csfn -gf_ </SPAN></FONT><FONT FACE="Arial Narrow, sans-serif"><SPAN LANG="da-DK">sekego,
 senpluveco</SPAN>
+
+
+OOO, win:
+
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="OpenOffice.org 2.3  (Win32)">
+	<STYLE TYPE="text/css">
+	<!--
+		@page { size: 8.5in 11in; margin: 0.79in }
+		P { margin-bottom: 0.08in }
+		H2 { margin-bottom: 0.08in }
+		H2.western { font-family: "Helvetica", sans-serif; font-size: 14pt; font-style: italic }
+		H2.cjk { font-family: "HG Mincho Light J", "msmincho"; font-size: 14pt; font-style: italic }
+		H2.ctl { font-family: "Helvetica", sans-serif; font-size: 14pt; font-style: italic }
+		P.liste-western { font-family: "Lucidasans", sans-serif }
+		P.liste-ctl { font-family: "Lucidasans", sans-serif }
+		P.punkttegn-2-start-western { margin-left: 0.5in; text-indent: -0.25in; margin-top: 0.17in; font-family: "Kanchan" }
+		P.punkttegn-2-start-cjk { margin-left: 0.5in; text-indent: -0.25in; margin-top: 0.17in; font-size: 10pt }
+		P.punkttegn-2-start-ctl { margin-left: 0.5in; text-indent: -0.25in; margin-top: 0.17in; font-family: "Himalb" }
+		H1 { margin-bottom: 0.08in }
+		H1.western { font-family: "Helvetica", sans-serif; font-size: 16pt }
+		H1.cjk { font-family: "HG Mincho Light J", "msmincho"; font-size: 16pt }
+		H1.ctl { font-family: "Helvetica", sans-serif; font-size: 16pt }
+		H3 { margin-bottom: 0.08in }
+		H3.western { font-family: "Helvetica", sans-serif }
+		H3.cjk { font-family: "HG Mincho Light J", "msmincho" }
+		H3.ctl { font-family: "Helvetica", sans-serif }
+		P.text-20-body-western { margin-left: 0.5in; text-indent: -0.25in; margin-top: 0.17in; font-family: "Kanchan" }
+		P.text-20-body-cjk { margin-left: 0.5in; text-indent: -0.25in; margin-top: 0.17in; font-size: 10pt }
+		P.text-20-body-ctl { margin-left: 0.5in; text-indent: -0.25in; margin-top: 0.17in; font-family: "Himalb" }
+	-->
+	</STYLE>
+</HEAD>
+<BODY DIR="LTR">
+<H2 CLASS="western">Ne konvertu 2</H2>
+<P STYLE="margin-bottom: 0in">NNN1 Jen teksto kun normala tipografio:
+xxxxx1x</P>
+<P>NNN2 Jen teksto kun normala derivita tipografio: xxxxx2x</P>
+<P CLASS="punkttegn-2-start-western"><FONT FACE="Arial, sans-serif">NNN3
+Jen teksto kun ne-unikoda tipografio sed en Arial: xxxxx3x</FONT></P>
+<P>NNN4 Jen teksto kun normala derivita tipografio kaj
+NepaliTegnTypografi2, sed in Arial: <FONT FACE="Preeti"><FONT SIZE=4><SPAN LANG="nb-NO"><FONT FACE="Arial, sans-serif">xxxxx4x</FONT></SPAN></FONT></FONT></P>
+<P>NNN5 Jen teksto kun ne-unikoda tipografio, sed en Arial:</P>
+<P CLASS="punkttegn-2-start-western"><FONT FACE="Arial, sans-serif">xxxxx5x</FONT></P>
+<P><BR><BR>
+</P>
+<P>NNN6 Jen teksto kun ne-unikoda tipografio, sed en Arial:</P>
+<P CLASS="punkttegn-2-start-western"><FONT FACE="Arial, sans-serif"><FONT SIZE=3 STYLE="font-size: 13pt">xx</FONT><FONT SIZE=4>xx</FONT><FONT SIZE=4 STYLE="font-size: 15pt">x6x</FONT></FONT></P>
+<P><BR><BR>
+</P>
+<H2 CLASS="western">Konvertu</H2>
+<P STYLE="margin-bottom: 0in">KKK1 Jen teksto kun normala tipografio
+sed en Kantipur: <FONT FACE="Kantipur">yyyyy7y</FONT></P>
+<P>KKK2 Jen teksto kun normala derivita tipografio kaj
+NepaliTegnTypografi2 - Preeti: <FONT FACE="Preeti"><FONT SIZE=4><SPAN LANG="nb-NO">yyyyy8y</SPAN></FONT></FONT></P>
+<P>KKK3 Jen teksto kun normala derivita tipografio kaj
+NepaliTegnTypografi2 - Preeti: <FONT FACE="Preeti"><FONT SIZE=4><SPAN LANG="nb-NO">yyyyyy9y</SPAN></FONT></FONT></P>
+<P>KKK4 Jen teksto kun normala derivita tipografio kaj
+NepaliTegnTypografi2, sed in Arial: <FONT FACE="Preeti"><FONT SIZE=4><SPAN LANG="nb-NO"><FONT SIZE=2>yyyyy1+y</FONT></SPAN></FONT></FONT></P>
+<P>KKK5 Jen teksto kun normala derivita tipografio kaj
+NepaliTegnTypografi2, sed in Kantipur: <FONT FACE="Preeti"><FONT SIZE=4><SPAN LANG="nb-NO"><FONT FACE="Kantipur">yyyyyy11y</FONT></SPAN></FONT></FONT></P>
+<P><BR><BR>
+</P>
+<P>KKK6 Jen teksto kun ne-unikoda tipografio (Kanchan, ne estas
+Himal!):</P>
+<P CLASS="punkttegn-2-start-western">yyyyy12y</P>
+<P><BR><BR>
+</P>
+<P>KKK7 Jen teksto kun ne-unikoda tipografio (Kanchan, ne estas
+Himal!):</P>
+<P CLASS="punkttegn-2-start-western"><FONT SIZE=3 STYLE="font-size: 13pt">yy</FONT><FONT SIZE=4>yy</FONT><FONT SIZE=4 STYLE="font-size: 15pt">y13y</FONT></P>
+<P><BR><BR>
+</P>
+<P>KKK8 Jen teksto kun ne-unikoda tipografio kaj NepaliTegnTypografi2
+(Preeti):</P>
+<P CLASS="punkttegn-2-start-western"><FONT FACE="Preeti"><FONT SIZE=4><SPAN LANG="nb-NO">yyyy</SPAN></FONT></FONT><FONT FACE="Preeti"><FONT SIZE=4><SPAN LANG="nb-NO"><FONT SIZE=4 STYLE="font-size: 15pt">yy14y</FONT></SPAN></FONT></FONT></P>
+<P>KKK9 Jen teksto kun ne-unikoda tipografio kaj
+NepaliTegnTypografi2, sed in Kantipur:</P>
+<P CLASS="punkttegn-2-start-western"><FONT FACE="Preeti"><FONT SIZE=4><SPAN LANG="nb-NO"><FONT FACE="Kantipur"><SPAN STYLE="font-style: normal">yyy</SPAN></FONT></SPAN></FONT></FONT><FONT FACE="Preeti"><FONT SIZE=4><SPAN LANG="nb-NO"><FONT FACE="Kantipur">y</FONT></SPAN></FONT></FONT><FONT FACE="Preeti"><FONT SIZE=4><SPAN LANG="nb-NO"><FONT FACE="Kantipur"><I>yy15y</I></FONT></SPAN></FONT></FONT></P>
+<P><BR><BR>
+</P>
+<P><BR><BR>
+</P>
+<P>-----------------------------------</P>
+<H2 CLASS="western">Ekzempla teksto</H2>
+<P STYLE="font-style: normal; font-weight: medium"><BR><BR>
+</P>
+<P STYLE="margin-left: 0.5in; text-indent: -0.25in; margin-bottom: 0in">
+<FONT FACE="Kantipur"><SPAN LANG="da-DK">c“ -lg_ &nbsp;&nbsp;</SPAN></FONT><FONT FACE="Arial Narrow, sans-serif"><SPAN LANG="da-DK">jes</SPAN></FONT></P>
+<P><FONT FACE="Kantipur"><SPAN LANG="da-DK">cr]6\g' -;=lqm_
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</SPAN></FONT><FONT FACE="Arial Narrow, sans-serif"><SPAN LANG="da-DK">pusxi,
+premegi XXXXXXXX</SPAN></FONT></P>
+<P><FONT FACE="Kantipur"><SPAN LANG="da-DK">c“h'nL&divide;c~hln
+-gf_ </SPAN></FONT><FONT FACE="Kantipur"><SPAN LANG="da-DK"><B>&nbsp;</B></SPAN></FONT><FONT FACE="Arial Narrow, sans-serif"><SPAN LANG="da-DK"><B>dumanpreno</B></SPAN></FONT></P>
+<P STYLE="margin-left: 0.5in; text-indent: -0.25in; margin-bottom: 0in">
+<FONT SIZE=6><FONT FACE="Kantipur"><SPAN LANG="da-DK">c“Wo./f]]
+-lj_ &nbsp;</SPAN></FONT><FONT FACE="Arial, sans-serif"><SPAN LANG="da-DK">malluma</SPAN></FONT></FONT></P>
+<P><FONT SIZE=6><FONT FACE="Kantipur"><SPAN LANG="da-DK">c“x “-lg_
+&nbsp;</SPAN></FONT><FONT FACE="Arial, sans-serif"><SPAN LANG="da-DK">ne
+</SPAN></FONT></FONT>
+</P>
+<H1 CLASS="western"><FONT FACE="Kantipur"><SPAN LANG="da-DK">c+z&divide;c+;
+</SPAN></FONT><FONT FACE="Kantipur"><SPAN LANG="da-DK"><I>&nbsp;</I></SPAN></FONT><FONT FACE="Arial Narrow, sans-serif"><SPAN LANG="da-DK"><I>parto</I></SPAN></FONT><FONT FACE="Arial Narrow, sans-serif"><SPAN LANG="da-DK">,
+membro</SPAN></FONT></H1>
+<H2 CLASS="western"><FONT FACE="Kantipur"><SPAN LANG="da-DK">c+zjG8
+-gf_ </SPAN></FONT><FONT FACE="Arial Narrow, sans-serif"><SPAN LANG="da-DK">divido
+de posedajxoj al hereduloj</SPAN></FONT></H2>
+<H3 CLASS="western"><FONT FACE="Preeti"><SPAN LANG="da-DK">cs8 </SPAN></FONT><FONT FACE="Preeti"><SPAN LANG="da-DK"><B>-gf_</B></SPAN></FONT><FONT FACE="Kantipur"><SPAN LANG="da-DK">
+</SPAN></FONT><FONT FACE="Times New Roman, serif"><SPAN LANG="da-DK">kontrauxstaro</SPAN></FONT><FONT FACE="Arial Narrow, sans-serif"><SPAN LANG="da-DK">,obstino</SPAN></FONT></H3>
+<P CLASS="text-20-body-western"><FONT FACE="Preeti"><FONT SIZE=4><SPAN LANG="nb-NO">csdsfpg'
+-c=lqm_</SPAN></FONT></FONT> heziti,&nbsp;embarasigxi</P>
+<P CLASS="text-20-body-western"><FONT FACE="Preeti"><FONT SIZE=4><SPAN LANG="nb-NO">cs/0f
+&nbsp;</SPAN></FONT></FONT><FONT FACE="Preeti"><FONT SIZE=4><SPAN LANG="nb-NO"><I>-gf_</I></SPAN></FONT></FONT><FONT FACE="Preeti"><FONT SIZE=4><SPAN LANG="nb-NO">
+&nbsp;negacio </SPAN></FONT></FONT>
+</P>
+<P CLASS="punkttegn-2-start-western">cs:dft\ -lqm=lj_ &nbsp;s<I>ub</I>ite
+</P>
+<P><FONT FACE="Kantipur"><SPAN LANG="da-DK">csfn -gf_ </SPAN></FONT><FONT FACE="Arial Narrow, sans-serif"><SPAN LANG="da-DK">sekego,
+senpluveco</SPAN></FONT></P>
+<P><FONT FACE="Kantipur"><SPAN LANG="da-DK">cSsn</SPAN></FONT>&nbsp;<FONT FACE="Kantipur"><SPAN LANG="da-DK">-gf_</SPAN></FONT>
+<FONT SIZE=6 STYLE="font-size: 28pt">&nbsp;</FONT><FONT FACE="Arial Narrow, sans-serif"><FONT SIZE=6 STYLE="font-size: 28pt"><SPAN LANG="da-DK">lerteco</SPAN></FONT></FONT><FONT FACE="Arial Narrow, sans-serif"><SPAN LANG="da-DK">
+</SPAN></FONT>
+</P>
+<P><FONT FACE="Himalb">:yfoL -lj_ &nbsp;konstanta</FONT></P>
+<P CLASS="punkttegn-2-start-western">l:ytL -gf_ <FONT FACE="AlArabiya">situacxio</FONT></P>
+<P><FONT FACE="Kantipur"><SPAN LANG="da-DK">l:y/ &nbsp;</SPAN></FONT><FONT FACE="Arial Narrow, sans-serif"><SPAN LANG="da-DK">senmova</SPAN></FONT></P>
+<P><FONT FACE="Kantipur"><SPAN LANG="da-DK">:gfts -gf_ </SPAN></FONT><FONT FACE="Arial Narrow, sans-serif"><SPAN LANG="da-DK">diplomo</SPAN></FONT></P>
+</BODY>
+</HTML>
+
+
+
+Word 2003, win, jdk1.6.0_01
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 11">
+<meta name=Originator content="Microsoft Word 11">
+<link rel=File-List
+href="file:///C:\DOCUME~1\Admin\LOCALS~1\Temp\msohtml1\01\clip_filelist.xml">
+<!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:View>Normal</w:View>
+  <w:Zoom>0</w:Zoom>
+  <w:PunctuationKerning/>
+  <w:ValidateAgainstSchemas/>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+  <w:Compatibility>
+   <w:BreakWrappedTables/>
+   <w:SnapToGridInCell/>
+   <w:WrapTextWithPunct/>
+   <w:UseAsianBreakRules/>
+   <w:DontGrowAutofit/>
+  </w:Compatibility>
+  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
+ </w:WordDocument>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:LatentStyles DefLockedState="false" LatentStyleCount="156">
+ </w:LatentStyles>
+</xml><![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Helvetica;
+	panose-1:2 11 6 4 2 2 2 2 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:swiss;
+	mso-font-format:other;
+	mso-font-pitch:variable;
+	mso-font-signature:3 0 0 0 1 0;}
+@font-face
+	{font-family:Kantipur;
+	panose-1:0 0 0 0 0 0 0 0 0 0;
+	mso-font-charset:0;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 0 0 0 1 0;}
+@font-face
+	{font-family:Kanchan;
+	panose-1:0 0 0 0 0 0 0 0 0 0;
+	mso-font-charset:0;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 0 0 0 1 0;}
+@font-face
+	{font-family:Himalb;
+	panose-1:0 0 0 0 0 0 0 0 0 0;
+	mso-font-charset:0;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 0 0 0 1 0;}
+@font-face
+	{font-family:Preeti;
+	panose-1:0 0 0 0 0 0 0 0 0 0;
+	mso-font-charset:0;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 0 0 0 1 0;}
+@font-face
+	{font-family:"Arial Narrow";
+	panose-1:2 11 5 6 2 2 2 3 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:swiss;
+	mso-font-pitch:variable;
+	mso-font-signature:647 0 0 0 159 0;}
+@font-face
+	{font-family:AlArabiya;
+	panose-1:0 0 0 0 0 0 0 0 0 0;
+	mso-font-alt:"Times New Roman";
+	mso-font-charset:0;
+	mso-generic-font-family:roman;
+	mso-font-format:other;
+	mso-font-pitch:auto;
+	mso-font-signature:0 0 0 0 0 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-language:AR-SA;}
+h1
+	{mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:1;
+	font-size:16.0pt;
+	font-family:Arial;
+	mso-font-kerning:16.0pt;
+	mso-bidi-language:AR-SA;
+	font-weight:bold;}
+h2
+	{mso-margin-top-alt:auto;
+	margin-right:0in;
+	margin-bottom:2.9pt;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	mso-outline-level:2;
+	font-size:18.0pt;
+	font-family:"Times New Roman";
+	font-weight:bold;}
+h3
+	{mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:3;
+	font-size:13.0pt;
+	font-family:Arial;
+	mso-bidi-language:AR-SA;
+	font-weight:bold;}
+p
+	{mso-margin-top-alt:auto;
+	margin-right:0in;
+	margin-bottom:5.75pt;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";}
+p.punkttegn-2-start-western, li.punkttegn-2-start-western, div.punkttegn-2-start-western
+	{mso-style-name:punkttegn-2-start-western;
+	margin-top:12.25pt;
+	margin-right:0in;
+	margin-bottom:5.75pt;
+	margin-left:.5in;
+	text-indent:-.25in;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:Kanchan;
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";}
+p.text-20-body-western, li.text-20-body-western, div.text-20-body-western
+	{mso-style-name:text-20-body-western;
+	margin-top:12.25pt;
+	margin-right:0in;
+	margin-bottom:5.75pt;
+	margin-left:.5in;
+	text-indent:-.25in;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:Kanchan;
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";}
+@page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;
+	mso-header-margin:.5in;
+	mso-footer-margin:.5in;
+	mso-paper-source:0;}
+div.Section1
+	{page:Section1;}
+-->
+</style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+	{mso-style-name:"Table Normal";
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-parent:"";
+	mso-padding-alt:0in 5.4pt 0in 5.4pt;
+	mso-para-margin:0in;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-ansi-language:#0400;
+	mso-fareast-language:#0400;
+	mso-bidi-language:#0400;}
+</style>
+<![endif]-->
+</head>
+
+<body lang=EN-US style='tab-interval:.5in'>
+<!--StartFragment-->
+
+<h2><i><span lang=DA style='font-size:14.0pt;font-family:Helvetica;mso-ansi-language:
+DA'>Ne konvertu 2<o:p></o:p></span></i></h2>
+
+<p style='margin-bottom:0in;margin-bottom:.0001pt'><span lang=DA
+style='mso-ansi-language:DA'>NNN1 Jen teksto kun normala tipografio: xxxxx1x<o:p></o:p></span></p>
+
+<p><span lang=DA style='mso-ansi-language:DA'>NNN2 Jen teksto kun normala
+derivita tipografio: xxxxx2x<o:p></o:p></span></p>
+
+<p class=punkttegn-2-start-western><span lang=DA style='font-family:Arial;
+mso-ansi-language:DA'>NNN3 Jen teksto kun ne-unikoda tipografio sed en Arial:
+xxxxx3x</span><span lang=DA style='mso-ansi-language:DA'><o:p></o:p></span></p>
+
+<p><span lang=DA style='mso-ansi-language:DA'>NNN4 Jen teksto kun normala
+derivita tipografio kaj NepaliTegnTypografi2, sed in Arial: </span><span
+lang=DA style='font-size:13.5pt;font-family:Arial;mso-ansi-language:DA'>xxxxx4x</span><span
+lang=DA style='mso-ansi-language:DA'><o:p></o:p></span></p>
+
+<p><span lang=DA style='mso-ansi-language:DA'>NNN5 Jen teksto kun ne-unikoda
+tipografio, sed en Arial:<o:p></o:p></span></p>
+
+<p class=punkttegn-2-start-western><span lang=DA style='font-family:Arial;
+mso-ansi-language:DA'>xxxxx5x</span><span lang=DA style='mso-ansi-language:
+DA'><o:p></o:p></span></p>
+
+<p style='margin-bottom:12.0pt'><span lang=DA style='mso-ansi-language:DA'><o:p>&nbsp;</o:p></span></p>
+
+<p><span lang=DA style='mso-ansi-language:DA'>NNN6 Jen teksto kun ne-unikoda
+tipografio, sed en Arial:<o:p></o:p></span></p>
+
+<p class=punkttegn-2-start-western><span lang=DA style='font-size:13.0pt;
+font-family:Arial;mso-ansi-language:DA'>xx</span><span lang=DA
+style='font-size:13.5pt;font-family:Arial;mso-ansi-language:DA'>xx</span><span
+lang=DA style='font-size:15.0pt;font-family:Arial;mso-ansi-language:DA'>x6x</span><span
+lang=DA style='mso-ansi-language:DA'><o:p></o:p></span></p>
+
+<p style='margin-bottom:12.0pt'><span lang=DA style='mso-ansi-language:DA'><o:p>&nbsp;</o:p></span></p>
+
+<h2><i><span lang=DA style='font-size:14.0pt;font-family:Helvetica;mso-ansi-language:
+DA'>Konvertu<o:p></o:p></span></i></h2>
+
+<p style='margin-bottom:0in;margin-bottom:.0001pt'><span lang=DA
+style='mso-ansi-language:DA'>KKK1 Jen teksto kun normala tipografio sed en
+Kantipur: </span><span lang=DA style='font-family:Kantipur;mso-ansi-language:
+DA'>yyyyy7y</span><span lang=DA style='mso-ansi-language:DA'><o:p></o:p></span></p>
+
+<p><span lang=DA style='mso-ansi-language:DA'>KKK2 Jen teksto kun normala
+derivita tipografio kaj NepaliTegnTypografi2 - Preeti: </span><span lang=DA
+style='font-size:13.5pt;font-family:Preeti;mso-ansi-language:DA'>yyyyy8y</span><span
+lang=DA style='mso-ansi-language:DA'><o:p></o:p></span></p>
+
+<p><span lang=DA style='mso-ansi-language:DA'>KKK3 Jen teksto kun normala
+derivita tipografio kaj NepaliTegnTypografi2 - Preeti: </span><span lang=DA
+style='font-size:13.5pt;font-family:Preeti;mso-ansi-language:DA'>yyyyyy9y</span><span
+lang=DA style='mso-ansi-language:DA'><o:p></o:p></span></p>
+
+<p><span lang=DA style='mso-ansi-language:DA'>KKK4 Jen teksto kun normala
+derivita tipografio kaj NepaliTegnTypografi2, sed in Arial: </span><span
+lang=DA style='font-size:10.0pt;font-family:Preeti;mso-ansi-language:DA'>yyyyy1+y</span><span
+lang=DA style='mso-ansi-language:DA'><o:p></o:p></span></p>
+
+<p><span lang=DA style='mso-ansi-language:DA'>KKK5 Jen teksto kun normala
+derivita tipografio kaj NepaliTegnTypografi2, sed in Kantipur: </span><span
+lang=DA style='font-size:13.5pt;font-family:Kantipur;mso-ansi-language:DA'>yyyyyy11y</span><span
+lang=DA style='mso-ansi-language:DA'><o:p></o:p></span></p>
+
+<p style='margin-bottom:12.0pt'><span lang=DA style='mso-ansi-language:DA'><o:p>&nbsp;</o:p></span></p>
+
+<p><span lang=DA style='mso-ansi-language:DA'>KKK6 Jen teksto kun ne-unikoda
+tipografio (Kanchan, ne estas Himal!):<o:p></o:p></span></p>
+
+<p class=punkttegn-2-start-western><span lang=DA style='mso-ansi-language:DA'>yyyyy12y<o:p></o:p></span></p>
+
+<p style='margin-bottom:12.0pt'><span lang=DA style='mso-ansi-language:DA'><o:p>&nbsp;</o:p></span></p>
+
+<p><span lang=DA style='mso-ansi-language:DA'>KKK7 Jen teksto kun ne-unikoda
+tipografio (Kanchan, ne estas Himal!):<o:p></o:p></span></p>
+
+<p class=punkttegn-2-start-western><span lang=DA style='font-size:13.0pt;
+mso-ansi-language:DA'>yy</span><span lang=DA style='font-size:13.5pt;
+mso-ansi-language:DA'>yy</span><span lang=DA style='font-size:15.0pt;
+mso-ansi-language:DA'>y13y</span><span lang=DA style='mso-ansi-language:DA'><o:p></o:p></span></p>
+
+<p style='margin-bottom:12.0pt'><span lang=DA style='mso-ansi-language:DA'><o:p>&nbsp;</o:p></span></p>
+
+<p><span lang=DA style='mso-ansi-language:DA'>KKK8 Jen teksto kun ne-unikoda
+tipografio kaj NepaliTegnTypografi2 (Preeti):<o:p></o:p></span></p>
+
+<p class=punkttegn-2-start-western><span lang=DA style='font-size:13.5pt;
+font-family:Preeti;mso-ansi-language:DA'>yyyy</span><span lang=DA
+style='font-size:15.0pt;font-family:Preeti;mso-ansi-language:DA'>yy14y</span><span
+lang=DA style='mso-ansi-language:DA'><o:p></o:p></span></p>
+
+<p><span lang=DA style='mso-ansi-language:DA'>KKK9 Jen teksto kun ne-unikoda
+tipografio kaj NepaliTegnTypografi2, sed in Kantipur:<o:p></o:p></span></p>
+
+<p class=punkttegn-2-start-western><span lang=DA style='font-size:13.5pt;
+font-family:Kantipur;mso-ansi-language:DA'>yyyy<i>yy15y</i></span><span
+lang=DA style='mso-ansi-language:DA'><o:p></o:p></span></p>
+
+<p style='margin-bottom:12.0pt'><span lang=DA style='mso-ansi-language:DA'><o:p>&nbsp;</o:p></span></p>
+
+<p style='margin-bottom:12.0pt'><span lang=DA style='mso-ansi-language:DA'><o:p>&nbsp;</o:p></span></p>
+
+<p><span lang=DA style='mso-ansi-language:DA'>-----------------------------------<o:p></o:p></span></p>
+
+<h2><i><span lang=DA style='font-size:14.0pt;font-family:Helvetica;mso-ansi-language:
+DA'>Ekzempla teksto<o:p></o:p></span></i></h2>
+
+<p style='margin-bottom:12.0pt;font-weight:medium'><span lang=DA
+style='mso-ansi-language:DA'><o:p>&nbsp;</o:p></span></p>
+
+<p style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:.5in;
+margin-bottom:.0001pt;text-indent:-.25in'><span lang=DA style='font-family:
+Kantipur;mso-ansi-language:DA'>c“ -lg_ &nbsp;&nbsp;</span><span lang=DA
+style='font-family:"Arial Narrow";mso-ansi-language:DA'>jes</span><span
+lang=DA style='mso-ansi-language:DA'><o:p></o:p></span></p>
+
+<p><span lang=DA style='font-family:Kantipur;mso-ansi-language:DA'>cr]6\g'
+-;=lqm_ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span lang=DA style='font-family:
+"Arial Narrow";mso-ansi-language:DA'>pusxi, premegi XXXXXXXX</span><span
+lang=DA style='mso-ansi-language:DA'><o:p></o:p></span></p>
+
+<p><span lang=DA style='font-family:Kantipur;mso-ansi-language:DA'>c“h'nL÷c~hln
+-gf_ <b>&nbsp;</b></span><b><span lang=DA style='font-family:"Arial Narrow";
+mso-ansi-language:DA'>dumanpreno</span></b><span lang=DA style='mso-ansi-language:
+DA'><o:p></o:p></span></p>
+
+<p style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:.5in;
+margin-bottom:.0001pt;text-indent:-.25in'><span style='font-size:24.0pt;
+font-family:Kantipur'>c“Wo./f]] -lj_ &nbsp;</span><span style='font-size:24.0pt;
+font-family:Arial'>malluma</span><o:p></o:p></p>
+
+<p><span style='font-size:24.0pt;font-family:Kantipur'>c“x “-lg_ &nbsp;</span><span
+style='font-size:24.0pt;font-family:Arial'>ne </span><o:p></o:p></p>
+
+<h1><span style='font-family:Kantipur'>c+z÷c+; <i>&nbsp;</i></span><i><span
+style='font-family:"Arial Narrow"'>parto</span></i><span style='font-family:
+"Arial Narrow"'>, membro</span><span style='font-family:Helvetica'><o:p></o:p></span></h1>
+
+<h2><i><span style='font-size:14.0pt;font-family:Kantipur'>c+zjG8 -gf_ </span></i><i><span
+style='font-size:14.0pt;font-family:"Arial Narrow"'>divido de posedajxoj al
+hereduloj</span></i><i><span style='font-size:14.0pt;font-family:Helvetica'><o:p></o:p></span></i></h2>
+
+<h3><span style='font-family:Preeti'>cs8 -gf_</span><span style='font-family:
+Kantipur'> </span>kontrauxstaro<span style='font-family:"Arial Narrow"'>,obstino</span><span
+style='font-size:13.5pt;font-family:Helvetica'><o:p></o:p></span></h3>
+
+<p class=text-20-body-western><span style='font-size:13.5pt;font-family:Preeti'>csdsfpg'
+-c=lqm_</span> heziti,<span style='font-family:"Times New Roman"'>&nbsp;</span><span
+style='mso-bidi-font-family:Kanchan'>em</span>barasigxi<o:p></o:p></p>
+
+<p class=text-20-body-western><span style='font-size:13.5pt;font-family:Preeti'>cs/0f
+&nbsp;<i>-gf_</i> &nbsp;negacio </span><o:p></o:p></p>
+
+<p class=punkttegn-2-start-western>cs:dft\ -lqm=lj_ <span style='font-family:
+"Times New Roman"'>&nbsp;</span><span style='mso-bidi-font-family:Kanchan'>s</span><i>ub</i>ite
+<o:p></o:p></p>
+
+<p><span style='font-family:Kantipur'>csfn -gf_ </span><span style='font-family:
+"Arial Narrow"'>sekego, senpluveco</span><o:p></o:p></p>
+
+<p><span lang=DA style='font-family:Kantipur;mso-ansi-language:DA'>cSsn</span><span
+lang=DA style='mso-ansi-language:DA'>&nbsp;</span><span lang=DA
+style='font-family:Kantipur;mso-ansi-language:DA'>-gf_</span><span lang=DA
+style='mso-ansi-language:DA'> </span><span lang=DA style='font-size:28.0pt;
+mso-ansi-language:DA'>&nbsp;</span><span lang=DA style='font-size:28.0pt;
+font-family:"Arial Narrow";mso-ansi-language:DA'>lerteco</span><span lang=DA
+style='font-family:"Arial Narrow";mso-ansi-language:DA'> </span><span lang=DA
+style='mso-ansi-language:DA'><o:p></o:p></span></p>
+
+<p><span lang=DA style='font-family:Himalb;mso-ansi-language:DA'>:yfoL -lj_
+&nbsp;konstanta</span><span lang=DA style='mso-ansi-language:DA'><o:p></o:p></span></p>
+
+<p class=punkttegn-2-start-western>l:ytL -gf_ <span style='font-family:AlArabiya'>situacxio</span><o:p></o:p></p>
+
+<p><span style='font-family:Kantipur'>l:y/ &nbsp;</span><span style='font-family:
+"Arial Narrow"'>senmova</span><o:p></o:p></p>
+
+<p><span style='font-family:Kantipur'>:gfts -gf_ </span><span style='font-family:
+"Arial Narrow"'>diplomo</span><o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<!--EndFragment-->
+</body>
+
+</html>
+
