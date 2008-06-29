@@ -158,4 +158,251 @@ f[52]=text/_moz_htmlinfo; class="[B"
 f[53]=text/_moz_htmlcontext; class="[B"
 
 
+Windows explorer, win XP, jdk1.6.0_01
+f[0]=application/x-java-file-list; class=java.util.List
+!!!!!!!!!
 
+
+OOO 2.3.1, win XP, jdk1.6.0_01
+f[0]=application/x-java-text-encoding; class="[B"
+f[1]=text/html; class=java.io.Reader; charset=Unicode
+f[2]=text/html; class=java.lang.String; charset=Unicode
+f[3]=text/html; class=java.nio.CharBuffer; charset=Unicode
+f[4]=text/html; class="[C"; charset=Unicode
+f[5]=text/html; class=java.io.InputStream; charset=UTF-16
+f[6]=text/html; class=java.nio.ByteBuffer; charset=UTF-16
+f[7]=text/html; class="[B"; charset=UTF-16
+f[8]=text/html; class=java.io.InputStream; charset=UTF-8
+f[9]=text/html; class=java.nio.ByteBuffer; charset=UTF-8
+f[10]=text/html; class="[B"; charset=UTF-8
+f[11]=text/html; class=java.io.InputStream; charset=UTF-16BE
+f[12]=text/html; class=java.nio.ByteBuffer; charset=UTF-16BE
+f[13]=text/html; class="[B"; charset=UTF-16BE
+f[14]=text/html; class=java.io.InputStream; charset=UTF-16LE
+f[15]=text/html; class=java.nio.ByteBuffer; charset=UTF-16LE
+f[16]=text/html; class="[B"; charset=UTF-16LE
+f[17]=text/html; class=java.io.InputStream; charset=ISO-8859-1
+f[18]=text/html; class=java.nio.ByteBuffer; charset=ISO-8859-1
+f[19]=text/html; class="[B"; charset=ISO-8859-1
+f[20]=text/html; class=java.io.InputStream; charset=windows-1252
+f[21]=text/html; class=java.nio.ByteBuffer; charset=windows-1252
+f[22]=text/html; class="[B"; charset=windows-1252
+f[23]=text/html; class=java.io.InputStream; charset=US-ASCII
+f[24]=text/html; class=java.nio.ByteBuffer; charset=US-ASCII
+f[25]=text/html; class="[B"; charset=US-ASCII
+f[26]=text/rtf; class=java.io.InputStream
+f[27]=text/rtf; class=java.nio.ByteBuffer
+f[28]=text/rtf; class="[B"
+f[29]=application/x-java-serialized-object; class=java.lang.String
+f[30]=text/plain; class=java.io.Reader; charset=Unicode
+f[31]=text/plain; class=java.lang.String; charset=Unicode
+f[32]=text/plain; class=java.nio.CharBuffer; charset=Unicode
+f[33]=text/plain; class="[C"; charset=Unicode
+f[34]=text/plain; class=java.io.InputStream; charset=unicode
+f[35]=text/plain; class=java.nio.ByteBuffer; charset=UTF-16
+f[36]=text/plain; class="[B"; charset=UTF-16
+f[37]=text/plain; class=java.io.InputStream; charset=UTF-8
+f[38]=text/plain; class=java.nio.ByteBuffer; charset=UTF-8
+f[39]=text/plain; class="[B"; charset=UTF-8
+f[40]=text/plain; class=java.io.InputStream; charset=UTF-16BE
+f[41]=text/plain; class=java.nio.ByteBuffer; charset=UTF-16BE
+f[42]=text/plain; class="[B"; charset=UTF-16BE
+f[43]=text/plain; class=java.io.InputStream; charset=UTF-16LE
+f[44]=text/plain; class=java.nio.ByteBuffer; charset=UTF-16LE
+f[45]=text/plain; class="[B"; charset=UTF-16LE
+f[46]=text/plain; class=java.io.InputStream; charset=ISO-8859-1
+f[47]=text/plain; class=java.nio.ByteBuffer; charset=ISO-8859-1
+f[48]=text/plain; class="[B"; charset=ISO-8859-1
+f[49]=text/plain; class=java.io.InputStream; charset=windows-1252
+f[50]=text/plain; class=java.nio.ByteBuffer; charset=windows-1252
+f[51]=text/plain; class="[B"; charset=windows-1252
+f[52]=text/plain; class=java.io.InputStream; charset=US-ASCII
+f[53]=text/plain; class=java.nio.ByteBuffer; charset=US-ASCII
+f[54]=text/plain; class="[B"; charset=US-ASCII
+
+Word 2003, win XP, jdk1.6.0_01
+f[0]=application/x-java-text-encoding; class="[B"
+f[1]=text/html; class=java.io.Reader; charset=Unicode
+f[2]=text/html; class=java.lang.String; charset=Unicode
+f[3]=text/html; class=java.nio.CharBuffer; charset=Unicode
+f[4]=text/html; class="[C"; charset=Unicode
+f[5]=text/html; class=java.io.InputStream; charset=UTF-16
+f[6]=text/html; class=java.nio.ByteBuffer; charset=UTF-16
+f[7]=text/html; class="[B"; charset=UTF-16
+f[8]=text/html; class=java.io.InputStream; charset=UTF-8
+f[9]=text/html; class=java.nio.ByteBuffer; charset=UTF-8
+f[10]=text/html; class="[B"; charset=UTF-8
+f[11]=text/html; class=java.io.InputStream; charset=UTF-16BE
+f[12]=text/html; class=java.nio.ByteBuffer; charset=UTF-16BE
+f[13]=text/html; class="[B"; charset=UTF-16BE
+f[14]=text/html; class=java.io.InputStream; charset=UTF-16LE
+f[15]=text/html; class=java.nio.ByteBuffer; charset=UTF-16LE
+f[16]=text/html; class="[B"; charset=UTF-16LE
+f[17]=text/html; class=java.io.InputStream; charset=ISO-8859-1
+f[18]=text/html; class=java.nio.ByteBuffer; charset=ISO-8859-1
+f[19]=text/html; class="[B"; charset=ISO-8859-1
+f[20]=text/html; class=java.io.InputStream; charset=windows-1252
+f[21]=text/html; class=java.nio.ByteBuffer; charset=windows-1252
+f[22]=text/html; class="[B"; charset=windows-1252
+f[23]=text/html; class=java.io.InputStream; charset=US-ASCII
+f[24]=text/html; class=java.nio.ByteBuffer; charset=US-ASCII
+f[25]=text/html; class="[B"; charset=US-ASCII
+f[26]=text/rtf; class=java.io.InputStream
+f[27]=text/rtf; class=java.nio.ByteBuffer
+f[28]=text/rtf; class="[B"
+f[29]=application/x-java-serialized-object; class=java.lang.String
+f[30]=text/plain; class=java.io.Reader; charset=Unicode
+f[31]=text/plain; class=java.lang.String; charset=Unicode
+f[32]=text/plain; class=java.nio.CharBuffer; charset=Unicode
+f[33]=text/plain; class="[C"; charset=Unicode
+f[34]=text/plain; class=java.io.InputStream; charset=unicode
+f[35]=text/plain; class=java.nio.ByteBuffer; charset=UTF-16
+f[36]=text/plain; class="[B"; charset=UTF-16
+f[37]=text/plain; class=java.io.InputStream; charset=UTF-8
+f[38]=image/x-java-image; class=java.awt.Image
+f[39]=text/plain; class=java.nio.ByteBuffer; charset=UTF-8
+f[40]=text/plain; class="[B"; charset=UTF-8
+f[41]=text/plain; class=java.io.InputStream; charset=UTF-16BE
+f[42]=text/plain; class=java.nio.ByteBuffer; charset=UTF-16BE
+f[43]=text/plain; class="[B"; charset=UTF-16BE
+f[44]=text/plain; class=java.io.InputStream; charset=UTF-16LE
+f[45]=text/plain; class=java.nio.ByteBuffer; charset=UTF-16LE
+f[46]=text/plain; class="[B"; charset=UTF-16LE
+f[47]=text/plain; class=java.io.InputStream; charset=ISO-8859-1
+f[48]=text/plain; class=java.nio.ByteBuffer; charset=ISO-8859-1
+f[49]=text/plain; class="[B"; charset=ISO-8859-1
+f[50]=text/plain; class=java.io.InputStream; charset=windows-1252
+f[51]=text/plain; class=java.nio.ByteBuffer; charset=windows-1252
+f[52]=text/plain; class="[B"; charset=windows-1252
+f[53]=text/plain; class=java.io.InputStream; charset=US-ASCII
+f[54]=text/plain; class=java.nio.ByteBuffer; charset=US-ASCII
+f[55]=text/plain; class="[B"; charset=US-ASCII
+
+
+
+
+
+Windows explorer, win XP, jdk1.5
+f[0]=application/x-java-file-list; class=java.util.List
+!!!!!
+
+
+
+
+OOO 2.3.1, win XP, jdk1.5
+f[0]=application/x-java-text-encoding; class="[B"
+f[1]=text/html; class=java.io.Reader; charset=Unicode
+f[2]=text/html; class=java.lang.String; charset=Unicode
+f[3]=text/html; class=java.nio.CharBuffer; charset=Unicode
+f[4]=text/html; class="[C"; charset=Unicode
+f[5]=text/html; class=java.io.InputStream; charset=UTF-16
+f[6]=text/html; class=java.nio.ByteBuffer; charset=UTF-16
+f[7]=text/html; class="[B"; charset=UTF-16
+f[8]=text/html; class=java.io.InputStream; charset=UTF-8
+f[9]=text/html; class=java.nio.ByteBuffer; charset=UTF-8
+f[10]=text/html; class="[B"; charset=UTF-8
+f[11]=text/html; class=java.io.InputStream; charset=UTF-16BE
+f[12]=text/html; class=java.nio.ByteBuffer; charset=UTF-16BE
+f[13]=text/html; class="[B"; charset=UTF-16BE
+f[14]=text/html; class=java.io.InputStream; charset=UTF-16LE
+f[15]=text/html; class=java.nio.ByteBuffer; charset=UTF-16LE
+f[16]=text/html; class="[B"; charset=UTF-16LE
+f[17]=text/html; class=java.io.InputStream; charset=Cp1252
+f[18]=text/html; class=java.nio.ByteBuffer; charset=Cp1252
+f[19]=text/html; class="[B"; charset=Cp1252
+f[20]=text/html; class=java.io.InputStream; charset=ISO-8859-1
+f[21]=text/html; class=java.nio.ByteBuffer; charset=ISO-8859-1
+f[22]=text/html; class="[B"; charset=ISO-8859-1
+f[23]=text/html; class=java.io.InputStream; charset=US-ASCII
+f[24]=text/html; class=java.nio.ByteBuffer; charset=US-ASCII
+f[25]=text/html; class="[B"; charset=US-ASCII
+f[26]=text/rtf; class=java.io.InputStream
+f[27]=text/rtf; class=java.nio.ByteBuffer
+f[28]=text/rtf; class="[B"
+f[29]=application/x-java-serialized-object; class=java.lang.String
+f[30]=text/plain; class=java.io.Reader; charset=Unicode
+f[31]=text/plain; class=java.lang.String; charset=Unicode
+f[32]=text/plain; class=java.nio.CharBuffer; charset=Unicode
+f[33]=text/plain; class="[C"; charset=Unicode
+f[34]=text/plain; class=java.io.InputStream; charset=UTF-16
+f[35]=text/plain; class=java.nio.ByteBuffer; charset=UTF-16
+f[36]=text/plain; class="[B"; charset=UTF-16
+f[37]=text/plain; class=java.io.InputStream; charset=UTF-8
+f[38]=text/plain; class=java.nio.ByteBuffer; charset=UTF-8
+f[39]=text/plain; class="[B"; charset=UTF-8
+f[40]=text/plain; class=java.io.InputStream; charset=UTF-16BE
+f[41]=text/plain; class=java.nio.ByteBuffer; charset=UTF-16BE
+f[42]=text/plain; class="[B"; charset=UTF-16BE
+f[43]=text/plain; class=java.io.InputStream; charset=UTF-16LE
+f[44]=text/plain; class=java.nio.ByteBuffer; charset=UTF-16LE
+f[45]=text/plain; class="[B"; charset=UTF-16LE
+f[46]=text/plain; class=java.io.InputStream; charset=unicode
+f[47]=text/plain; class=java.io.InputStream; charset=Cp1252
+f[48]=text/plain; class=java.nio.ByteBuffer; charset=Cp1252
+f[49]=text/plain; class="[B"; charset=Cp1252
+f[50]=text/plain; class=java.io.InputStream; charset=ISO-8859-1
+f[51]=text/plain; class=java.nio.ByteBuffer; charset=ISO-8859-1
+f[52]=text/plain; class="[B"; charset=ISO-8859-1
+f[53]=text/plain; class=java.io.InputStream; charset=US-ASCII
+f[54]=text/plain; class=java.nio.ByteBuffer; charset=US-ASCII
+f[55]=text/plain; class="[B"; charset=US-ASCII
+
+
+Word 2003, win XP, jdk1.5
+f[0]=application/x-java-text-encoding; class="[B"
+f[1]=text/html; class=java.io.Reader; charset=Unicode
+f[2]=text/html; class=java.lang.String; charset=Unicode
+f[3]=text/html; class=java.nio.CharBuffer; charset=Unicode
+f[4]=text/html; class="[C"; charset=Unicode
+f[5]=text/html; class=java.io.InputStream; charset=UTF-16
+f[6]=text/html; class=java.nio.ByteBuffer; charset=UTF-16
+f[7]=text/html; class="[B"; charset=UTF-16
+f[8]=text/html; class=java.io.InputStream; charset=UTF-8
+f[9]=text/html; class=java.nio.ByteBuffer; charset=UTF-8
+f[10]=text/html; class="[B"; charset=UTF-8
+f[11]=text/html; class=java.io.InputStream; charset=UTF-16BE
+f[12]=text/html; class=java.nio.ByteBuffer; charset=UTF-16BE
+f[13]=text/html; class="[B"; charset=UTF-16BE
+f[14]=text/html; class=java.io.InputStream; charset=UTF-16LE
+f[15]=text/html; class=java.nio.ByteBuffer; charset=UTF-16LE
+f[16]=text/html; class="[B"; charset=UTF-16LE
+f[17]=text/html; class=java.io.InputStream; charset=Cp1252
+f[18]=text/html; class=java.nio.ByteBuffer; charset=Cp1252
+f[19]=text/html; class="[B"; charset=Cp1252
+f[20]=text/html; class=java.io.InputStream; charset=ISO-8859-1
+f[21]=text/html; class=java.nio.ByteBuffer; charset=ISO-8859-1
+f[22]=text/html; class="[B"; charset=ISO-8859-1
+f[23]=text/html; class=java.io.InputStream; charset=US-ASCII
+f[24]=text/html; class=java.nio.ByteBuffer; charset=US-ASCII
+f[25]=text/html; class="[B"; charset=US-ASCII
+f[26]=text/rtf; class=java.io.InputStream
+f[27]=text/rtf; class=java.nio.ByteBuffer
+f[28]=text/rtf; class="[B"
+f[29]=application/x-java-serialized-object; class=java.lang.String
+f[30]=text/plain; class=java.io.Reader; charset=Unicode
+f[31]=text/plain; class=java.lang.String; charset=Unicode
+f[32]=text/plain; class=java.nio.CharBuffer; charset=Unicode
+f[33]=text/plain; class="[C"; charset=Unicode
+f[34]=text/plain; class=java.io.InputStream; charset=UTF-16
+f[35]=text/plain; class=java.nio.ByteBuffer; charset=UTF-16
+f[36]=text/plain; class="[B"; charset=UTF-16
+f[37]=text/plain; class=java.io.InputStream; charset=UTF-8
+f[38]=text/plain; class=java.nio.ByteBuffer; charset=UTF-8
+f[39]=text/plain; class="[B"; charset=UTF-8
+f[40]=text/plain; class=java.io.InputStream; charset=UTF-16BE
+f[41]=text/plain; class=java.nio.ByteBuffer; charset=UTF-16BE
+f[42]=text/plain; class="[B"; charset=UTF-16BE
+f[43]=text/plain; class=java.io.InputStream; charset=UTF-16LE
+f[44]=text/plain; class=java.nio.ByteBuffer; charset=UTF-16LE
+f[45]=text/plain; class="[B"; charset=UTF-16LE
+f[46]=text/plain; class=java.io.InputStream; charset=unicode
+f[47]=text/plain; class=java.io.InputStream; charset=Cp1252
+f[48]=text/plain; class=java.nio.ByteBuffer; charset=Cp1252
+f[49]=text/plain; class="[B"; charset=Cp1252
+f[50]=text/plain; class=java.io.InputStream; charset=ISO-8859-1
+f[51]=text/plain; class=java.io.InputStream; charset=US-ASCII
+f[52]=image/x-java-image; class=java.awt.Image
+f[53]=text/plain; class=java.nio.ByteBuffer; charset=ISO-8859-1
+f[54]=text/plain; class="[B"; charset=ISO-8859-1
+f[55]=text/plain; class=java.nio.ByteBuffer; charset=US-ASCII
+f[56]=text/plain; class="[B"; charset=US-ASCII
