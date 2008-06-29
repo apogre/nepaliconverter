@@ -1,0 +1,29 @@
+TRANSFER HANDLER LOGS of HTML contents - test/testtextKantipur.odt
+
+
+Ubuntu Linux 8.04, jdk1.6.0, from OpenOffice.org 2.4.1:
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="OpenOffice.org 2.4  (Linux)">
+	<STYLE TYPE="text/css">
+	<!--
+		@page { size: 21cm 29.7cm; margin: 2cm }
+		H2 { margin-bottom: 0.11cm }
+		H2.western { font-family: "Arial", sans-serif; font-size: 14pt; font-style: italic }
+		H2.cjk { font-family: "DejaVu Sans"; font-size: 14pt; font-style: italic }
+		H2.ctl { font-family: "Arial", sans-serif; font-size: 14pt; font-style: italic }
+		P { margin-bottom: 0.21cm }
+	-->
+	</STYLE>
+</HEAD>
+<BODY DIR="LTR">
+<H2 LANG="en-GB" CLASS="western" ALIGN=JUSTIFY STYLE="font-style: normal">
+<FONT FACE="Kantipur"><FONT SIZE=4 STYLE="font-size: 16pt">pgsf
+&gt;Ldfg\n] cfºgf]</FONT></FONT></H2>
+</BODY>
+</HTML>
+
