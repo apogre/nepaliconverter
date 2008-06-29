@@ -8,7 +8,7 @@ import java.util.*;
 import java.util.regex.*;
 
 import np.org.npp.conv.gui.*;
-import np.org.npp.conv.string.*;
+import np.org.mpp.conv4.old_f2u.*;
 
 public class TransformText
 {
@@ -33,7 +33,7 @@ public class TransformText
 	String tuto = laes(new File("vorto02txt.txt"));
 	PrintWriter pw = new PrintWriter(new FileWriter("rezulto.html"));
 
-	Font2Unicode font2Unicode = new Font2Unicode();
+	//Font2Unicode font2Unicode = new Font2Unicode();
 
 	try {
 
@@ -52,7 +52,7 @@ public class TransformText
 
                 System.out.println(ne + " ** " + eo);
 
-                String ne2 = font2Unicode.toUnicode("Kantipur", ne);
+                String ne2 = ne; //font2Unicode.toUnicode("Kantipur", ne);
 
 
 		pw.println("<tr><td>"+ne + "</td><td>" +ne2+ "</td><td>" + eo+ "</td></tr>");

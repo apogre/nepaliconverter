@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.*;
 import javax.swing.table.*;
 import java.awt.Font;
-import np.org.npp.conv.string.*;
+import np.org.mpp.conv4.old_f2u.*;
 
 public class AskWhichEncoderToUsePanel2 extends JPanel {
   private BorderLayout borderLayout1 = new BorderLayout();
@@ -39,7 +39,7 @@ public class AskWhichEncoderToUsePanel2 extends JPanel {
     allGivesSameUnicode = true;
     for (int i=0; i<fontNames.length; i++) {
       String f = (String) fontNames[i];
-      NonUnicodeFont nonUnicodeFont2 = (NonUnicodeFont) fontNameToFontClass.get(f);
+      //NonUnicodeFont nonUnicodeFont2 = (NonUnicodeFont) fontNameToFontClass.get(f);
 
       //if (nonUnicodeFont2 instanceof DontConvert) {
 	//d[i][0] .addElement("<html><body>"+teksto+"  &nbsp;&nbsp;(no conversion)</body></html>");
@@ -48,7 +48,7 @@ public class AskWhichEncoderToUsePanel2 extends JPanel {
       {
 
 	StringBuffer sb = new StringBuffer(teksto.length() + 5);
-	nonUnicodeFont2.toUnicode(sb, teksto);
+	//nonUnicodeFont2.toUnicode(sb, teksto);
 	String unic2 = sb.toString();
 
 

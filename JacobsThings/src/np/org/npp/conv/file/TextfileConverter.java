@@ -5,7 +5,7 @@ import java.nio.*;
 import java.nio.channels.*;
 import java.nio.charset.*;
 
-
+/*
 public class TextfileConverter extends FileConverter {
 
   public String name() { return "plain text"; }
@@ -36,3 +36,4 @@ public class TextfileConverter extends FileConverter {
     lastConversionRes = sb.toString().substring(1);
   }
 };
+*/

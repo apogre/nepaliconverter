@@ -13,6 +13,7 @@ static String[] tst= {
 //"cifero; poento",
 "ŝoso, ekkreskaĵo (de planto)",};
 
+  public static boolean nurEksteraj = true;
 
 
   public static String faruLigojn(String tuto) {
@@ -41,10 +42,12 @@ static String[] tst= {
 
       if (vorto.length()>=4 || vorto.length()>=3 && tuto.trim().length()<5) {
 
-        String revo = AliajVortaroj.revoext.get(vorto);
+        String revo = sercxuVortaron(vorto, AliajVortaroj.revoext);
         if (revo != null) {
-          rezulto.append("<text:a xlink:href=\"" + revo + "\" xlink:type=\"simple\"> r</text:a>");
-          rezulto.append("<text:a xlink:href=\"" + AliajVortaroj.revoint.get(vorto) + "\" xlink:type=\"simple\">i</text:a>");
+          if (nurEksteraj)
+            rezulto.append("<text:a xlink:href=\"" + revo + "\" xlink:type=\"simple\"> r</text:a>");
+          else
+            rezulto.append("<text:a xlink:href=\"" + sercxuVortaron(vorto, AliajVortaroj.revoint) + "\" xlink:type=\"simple\"> r</text:a>");
         }
 
         //System.out.println(vorto + " (revo) => " + revo);
@@ -55,7 +58,7 @@ static String[] tst= {
         String viki = AliajVortaroj.vikiext.get(vorto);
         if (viki != null) {
           rezulto.append("<text:a xlink:href=\"" + viki + "\" xlink:type=\"simple\"> v</text:a>");
-          rezulto.append("<text:a xlink:href=\"" + AliajVortaroj.vikiint.get(vorto) + "\" xlink:type=\"simple\">i</text:a>");
+          //rezulto.append("<text:a xlink:href=\"" + AliajVortaroj.vikiint.get(vorto) + "\" xlink:type=\"simple\">i</text:a>");
           //System.out.println(viki);
         }
       }
@@ -71,6 +74,57 @@ static String[] tst= {
     //System.out.println("RES="+s);
 
     return s;
+  }
+
+  private static String sercxuVortaron(String vorto, HashMap<String, String> vortaro) {
+    String revo = vortaro.get(vorto);
+    if (revo == null && vorto.endsWith("n")) {
+      vorto = vorto.substring(0,vorto.length()-1); // fprprenu 'n'
+      revo = vortaro.get(vorto);
+    }
+
+    if (revo == null && vorto.endsWith("j")) {
+      vorto = vorto.substring(0,vorto.length()-1); // fprprenu 'j'
+      revo = vortaro.get(vorto);
+    }
+
+    if (revo == null && vorto.endsWith("e")) {
+      vorto = vorto.substring(0,vorto.length()-1)+"a"; // provu kun 'a'
+      revo = vortaro.get(vorto);
+    }
+
+    if (revo == null && vorto.endsWith("i")) {
+      vorto = vorto.substring(0,vorto.length()-1)+"a"; // provu kun 'a'
+      revo = vortaro.get(vorto);
+    }
+
+    if (revo == null && vorto.endsWith("a")) {
+      vorto = vorto.substring(0,vorto.length()-1)+"o"; // provu kun 'o'
+      revo = vortaro.get(vorto);
+    }
+
+    if (revo == null && vorto.endsWith("o")) {
+      vorto = vorto.substring(0,vorto.length()-1)+"a"; // provu kun 'o'
+      revo = vortaro.get(vorto);
+    }
+
+    if (revo == null && vorto.endsWith("a")) {
+      vorto = vorto.substring(0,vorto.length()-1)+"i"; // provu kun 'o'
+      revo = vortaro.get(vorto);
+    }
+
+    if (revo == null && vorto.endsWith("eci")) {
+      vorto = vorto.substring(0,vorto.length()-3)+"o"; // provu kun 'o'
+      revo = sercxuVortaron(vorto, vortaro);
+    }
+
+    if (revo == null && vorto.endsWith("aĵi")) {
+      vorto = vorto.substring(0,vorto.length()-3)+"o"; // provu kun 'o'
+      revo = sercxuVortaron(vorto, vortaro);
+    }
+
+
+    return revo;
   }
 
 

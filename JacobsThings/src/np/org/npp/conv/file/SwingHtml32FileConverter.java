@@ -51,7 +51,7 @@ import java.net.*;
   }
 */
 
-
+/*
 public class SwingHtml32FileConverter extends FileConverter {
 
   public String name() { return "HTML"; }
@@ -247,3 +247,4 @@ public class SwingHtml32FileConverter extends FileConverter {
     c.convertRTF();
   }
 }
+*/

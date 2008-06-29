@@ -154,7 +154,7 @@ public class AliajVortaroj {
     while ( (linio=br.readLine()) != null) {
       if (linio.contains("_")) continue;
       if (linio.contains("(")) continue;
-      linio=linio.replaceAll("[^\\p{L}]","-");
+      //linio=linio.replaceAll("[^\\p{L}]","-");
       if (linio.contains("-")) continue;
       String vorto = linio.toLowerCase();
       //linio = URLEncoder.encode(linio, "UTF-8");
