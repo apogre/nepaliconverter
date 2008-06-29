@@ -11,7 +11,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-import np.org.npp.conv.string.*;
+import np.org.mpp.conv4.old_f2u.*;
 import np.org.npp.conv.file.*;
 import java.util.*;
 import javax.swing.text.*;
@@ -33,7 +33,7 @@ public class FileConvPanel extends JPanel {
 
 
 
-  public FileConverter[] converters = new FileConverter[] { new FileAutodetectConverter(), new TextfileConverter(), new SwingHtml32FileConverter() };
+  //public FileConverter[] converters = new FileConverter[] { new FileAutodetectConverter(), new TextfileConverter(), new SwingHtml32FileConverter() };
 
 
 
@@ -46,11 +46,11 @@ public class FileConvPanel extends JPanel {
 
       jTextFieldInFile.setText(prefs.get("inputFile", ""));
       jTextFieldOutFile.setText(prefs.get("outputFile", ""));
-      for (Object font : new Font2Unicode().knownFontNames()) jComboInpFont.addItem(font);
+      //for (Object font : new Font2Unicode().knownFontNames()) jComboInpFont.addItem(font);
       jComboInpFont.setSelectedIndex(0);
       jComboInpFont.setSelectedItem(prefs.get("inputFont", null));
 
-      for (FileConverter c : converters) jComboConvType.addItem(c.name());
+      //for (FileConverter c : converters) jComboConvType.addItem(c.name());
       String sel = prefs.get("convType", null);
       if (sel!=null) jComboConvType.setSelectedItem(sel);
       else jComboConvType.setSelectedIndex(0);
@@ -266,9 +266,9 @@ public class FileConvPanel extends JPanel {
 
     String convType = (String) jComboConvType.getSelectedItem();
 
-    FileConverter c = null;
-    for (FileConverter c2 : converters) if (c2.name().equals(convType)) c = c2;
-    if (c==null) throw new IllegalStateException("Unknown coverter "+jComboConvType.getSelectedItem());
+    //FileConverter c = null;
+    //for (FileConverter c2 : converters) if (c2.name().equals(convType)) c = c2;
+    //if (c==null) throw new IllegalStateException("Unknown coverter "+jComboConvType.getSelectedItem());
 
     convType = convType.toLowerCase();
 
@@ -280,7 +280,7 @@ public class FileConvPanel extends JPanel {
       this.jTextPanePreview.setText("");
       return;
     }
-
+/*
     try {
 
       c.font2Unicode.interactive = false;
@@ -305,6 +305,7 @@ public class FileConvPanel extends JPanel {
       ex.printStackTrace();
       this.jTextPanePreview.setText("[" + ex.getLocalizedMessage() + "]");
     }
+*/
   }
 
   private Runnable updatePreview = new Runnable() {

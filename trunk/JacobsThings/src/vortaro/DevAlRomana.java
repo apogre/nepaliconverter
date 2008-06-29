@@ -148,9 +148,6 @@ public class DevAlRomana {
 
   public String alRomana(String dev) {
 
-    if (dev.equals("चमेना गृह")) {
-      System.err.println("XXX3");
-    }
 
     StringBuffer rom = new StringBuffer(dev.length()*3);
     for (int i=0; i<dev.length(); i++) {

@@ -9,7 +9,7 @@ import javax.swing.*;
 import javax.swing.text.*;
 import javax.swing.text.html.*;
 
-import np.org.npp.conv.string.*;
+import np.org.mpp.conv4.old_f2u.*;
 import np.org.npp.conv.file.*;
 
 public class ClipBoardConvPanel
@@ -98,7 +98,7 @@ public class ClipBoardConvPanel
     //javax.swing.text.rtf.RTFEditorKit d2;
 
     Element el = d0.getDefaultRootElement();
-      new SwingHtml32FileConverter().toUnicode(el);
+      //new SwingHtml32FileConverter().toUnicode(el);
     }
 
 
@@ -108,7 +108,7 @@ public class ClipBoardConvPanel
 
   }
 
-  static Font2Unicode font2Unicode = new Font2Unicode();
+  //static Font2Unicode font2Unicode = new Font2Unicode();
   BorderLayout borderLayout1 = new BorderLayout();
 
 }
