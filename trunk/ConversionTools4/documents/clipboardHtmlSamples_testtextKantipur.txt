@@ -28,7 +28,7 @@ Ubuntu Linux 8.04, jdk1.6.0, from OpenOffice.org 2.4.1:
 
 
 
-OOO 2.3.1, win, jdk1.6.0_01
+OOO 2.3.1, win XP, jdk1.6.0_01
 <HTML>
 <HEAD>
 	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
@@ -77,7 +77,7 @@ OOO 2.3.1, win, jdk1.5
 </HTML>
 
 
-Word 2003, win, jdk1.6.0_01
+Word 2003, win XP, jdk1.6.0_01
 <html xmlns:o="urn:schemas-microsoft-com:office:office"
 xmlns:w="urn:schemas-microsoft-com:office:word"
 xmlns="http://www.w3.org/TR/REC-html40">
@@ -188,7 +188,7 @@ font-family:Arial;mso-ansi-language:EN-GB'><o:p></o:p></span></h2>
 
 
 
-Word 2003, win, jdk1.5
+Word 2003, win XP, jdk1.5
 <html xmlns:o="urn:schemas-microsoft-com:office:office"
 xmlns:w="urn:schemas-microsoft-com:office:word"
 xmlns="http://www.w3.org/TR/REC-html40">
@@ -297,8 +297,7 @@ font-family:Arial;mso-ansi-language:EN-GB'><o:p></o:p></span></h2>
 </html>
 
 
-Word 2003, win, jdk1.6.0_01
-
+Word 2003, win XP, jdk1.6.0_01
 <head>
 <meta http-equiv=Content-Type content="text/html; charset=utf-8">
 <meta name=ProgId content=Word.Document>
