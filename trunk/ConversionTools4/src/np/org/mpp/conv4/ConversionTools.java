@@ -6,6 +6,7 @@ import java.awt.Toolkit;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
+
 //import np.org.mpp.conv4.old_ui_abishek.*;
 import np.org.mpp.conv4.ui.*;
 import java.io.*;
@@ -55,41 +56,41 @@ public class ConversionTools {
      *                String[]
      */
     public static void main(String[] args) throws IOException {
-        if (args.length == 0) {
-            // start the GUI
+	  if (args.length == 0) {
+		// start the GUI
 
-            SwingUtilities.invokeLater(new Runnable() {
-                public void run() {
-                  try {
-                      UIManager.setLookAndFeel(UIManager
-                            .getSystemLookAndFeelClassName());
-                  } catch (Exception exception) {
-                      exception.printStackTrace();
-                  }
+		SwingUtilities.invokeLater(new Runnable() {
+		    public void run() {
+			try {
+			    UIManager.setLookAndFeel(UIManager
+				    .getSystemLookAndFeelClassName());
+			} catch (Exception exception) {
+			    exception.printStackTrace();
+			}
 
-                  new ConversionTools();
-                }
-            });
-        } else {
-            // CLI interface
-          String arg1 = args[0].toLowerCase();
-          if (arg1.startsWith("-tr")) {
-              // Transliteration mode
+			new ConversionTools();
+		    }
+		});
+	  } else {
+		// CLI interface
+	    String arg1 = args[0].toLowerCase();
+	    if (arg1.startsWith("-tr")) {
+		  // Transliteration mode
 
-              BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-              NepaliTransliterationJacob tr = new NepaliTransliterationJacob("res/transliteration/NepaliALA-LC.xml", true);
-              String lin = null;
-              while ( (lin = br.readLine()) != null) {
-                  String outLin = tr.convertText(null, lin);
-                  System.out.println(outLin);
-              }
+		  BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		  NepaliTransliterationJacob tr = new NepaliTransliterationJacob("res/transliteration/NepaliALA-LC.xml", true);
+		  String lin = null;
+		  while ( (lin = br.readLine()) != null) {
+			String outLin = tr.convertText(null, lin);
+			System.out.println(outLin);
+		  }
 
-          }
-        }
+	    }
+	  }
     }
 
     public static void appendLog(String logText) {
-        System.out.println(logText);
+	  System.out.println(logText);
 	//log += "\n" + logText;
 	//ConversionPanel.console.setText(log);
     }
