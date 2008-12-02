@@ -30,11 +30,16 @@
   <property category="optimize.0" name="oipr.FilterFile" value="/home/j/esperanto/nepaliconverter/ConversionTools4/ConversionTools4.oif"/>
   <property category="optimize.0" name="oipr.VMCannotExit" value="1"/>
   <property category="optimize.0" name="oira.FilterFile" value="/home/j/esperanto/nepaliconverter/ConversionTools4/ConversionTools4.oif"/>
+  <property category="runtime" name="ConfigurationCount" value="1"/>
   <property category="runtime" name="DefaultConfiguration" value="-1"/>
   <property category="runtime.0" name="BuildTargetOnRun" value="com.borland.jbuilder.build.ProjectBuilder$ProjectBuildAction;make"/>
   <property category="runtime.0" name="ConfigurationName" value="ConversionTools"/>
   <property category="runtime.0" name="RunnableType" value="com.borland.jbuilder.runtime.ApplicationRunner"/>
   <property category="runtime.0" name="application.class" value="np.org.mpp.conv4.ConversionTools"/>
+  <property category="runtime.1" name="ConfigurationName" value="TestReaderWriters"/>
+  <property category="runtime.1" name="RunnableType" value="com.borland.jbuilder.runtime.TestRunner"/>
+  <property category="runtime.1" name="test.class" value="np.org.mpp.conv4.test.TestReaderWriters"/>
+  <property category="runtime.1" name="test.harness" value="com.borland.jbuilder.unittest.JBTestRunner"/>
   <property category="serverservices" name="disabled.services" value="jdatastore"/>
   <property category="serverservices" name="single.server.name" value=""/>
   <property category="sys" name="AuthorLabel" value="@author"/>
@@ -55,10 +60,10 @@
   <property category="sys" name="JDK" value="java version 1.6.0-beta2-b86"/>
   <property category="sys" name="JvmVersion" value="1.5"/>
   <property category="sys" name="LastTag" value="0"/>
-  <property category="sys" name="Libraries" value="usrsharejavaxercesImpl;usrsharejavajunit4;jodconverter;jopendocument"/>
+  <property category="sys" name="Libraries" value="usrsharejavaxercesImpl;usrsharejavajunit4;[/home/j/esperanto/nepaliconverter/ConversionTools4/lib/odfdom.jar];[/home/j/esperanto/nepaliconverter/ConversionTools4/lib/commons-io-1.3.1.jar];[/home/j/esperanto/nepaliconverter/ConversionTools4/lib/jodconverter-2.2.1.jar];JUnit"/>
   <property category="sys" name="MakeStable" value="0"/>
   <property category="sys" name="OutPath" value="classes"/>
-  <property category="sys" name="SourcePath" value="src;test;../ooo-libs/odfdom/src;../ooo-libs/odfdom/test"/>
+  <property category="sys" name="SourcePath" value="src;test;../ooo-libs/odfdom/nbproject;../ooo-libs/odfdom/test"/>
   <property category="sys" name="SourceVersion" value="1.5"/>
   <property category="sys" name="TestPath" value="src"/>
   <property category="sys" name="Title" value="Nepaliconverter"/>
@@ -70,11 +75,19 @@
   <property category="sys" name="uidesign.size.np.org.mpp.conv4.ui.ConverterPanel" value="670,331"/>
   <property category="team" name="ignorePath.0" value="bak"/>
   <property category="team" name="ignorePath.1" value="classes"/>
+  <property category="team" name="ignorePath.10" value="ConversionTools4.jpx.local~"/>
+  <property category="team" name="ignorePath.11" value="build"/>
   <property category="team" name="ignorePath.2" value="clipboardData"/>
   <property category="team" name="ignorePath.3" value="tmp"/>
   <property category="team" name="ignorePath.4" value="test/aLotOfStyles-converted.odt"/>
   <property category="team" name="ignorePath.5" value="src/resources"/>
   <property category="team" name="ignorePath.6" value="doc/org"/>
+  <property category="team" name="ignorePath.7" value="lib/jodconverter-3.0.x.jar"/>
+  <property category="team" name="ignorePath.8" value="nbproject/private"/>
+  <property category="team" name="ignorePath.9" value="src.gammel_odfdom.zip"/>
+  <file path="documents/clipboadTransferHandleLogs.txt"/>
+  <file path="documents/clipboardHtmlSamples.txt"/>
+  <file path="documents/clipboardTransferHandleLogs_aLotOfStyles.txt"/>
   <file path="res/transliteration/NepaliALA-LC.xml"/>
   <file path="res/transliteration/NepaliJacob.xml"/>
   <file path="res/transliteration/NepaliJacobVortaro.xml"/>
