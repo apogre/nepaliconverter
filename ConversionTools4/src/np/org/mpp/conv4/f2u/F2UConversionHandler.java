@@ -60,6 +60,8 @@ public class F2UConversionHandler implements ConversionHandler {
     String text2 = mapping.toUnicode(text);
     if (!text2.equals(text)) {
       fontsConverted.add(font);
+      
+      System.err.println("fontsConverted = " + fontsConverted);
     }
     return text2;
   }
