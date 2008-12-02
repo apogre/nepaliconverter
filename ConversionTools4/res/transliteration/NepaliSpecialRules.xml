@@ -49,6 +49,10 @@
   <exception trans="रम्झम्">रमझम</exception>
   <exception trans="रिपोर्ट्">रिपोर्ट</exception>
   <exception trans="लाम्खुट्टे">लामखुट्टे</exception>
+  <exception trans="एक">एक</exception>
+  <exception trans=""></exception>
+  <exception trans=""></exception>
+  <exception trans=""></exception>
 
 <!-- vortoj kie ya estas prononcitaj kiel ye -->
   <exception trans="काये">काय</exception>  <!-- e -->
@@ -78,10 +82,10 @@
 
 
 <!-- GXENERALA REGULO kun NUR TRI EXCEPTOJ:  वित्त वेटर वेतन -->
-  <exception trans="ब">व* \ वेटर,वित्त,वेतन</exception> 
+  <exception trans="ब">व* \ वेटर,वित्त,वेतन</exception>
 
 
-<!-- 
+<!--
 
 -->
 
@@ -120,7 +124,7 @@
   <exception trans="वर्ग्">वर्ग</exception>
 
   <exception trans="बिपक्ष्">विपक्ष</exception>
-  <exception trans="बिमान्स्थल">विमानस्थल</exception> 
+  <exception trans="बिमान्स्थल">विमानस्थल</exception>
   <exception trans="बिश्वास्घात्">विश्वासघात</exception>
 
 
@@ -148,10 +152,10 @@
   <exception trans="हेर्विचार्">हेरविचार</exception>
   <exception trans="हेर्चाह्">हेरचाह</exception>
   <exception trans="होइन">होइन</exception>
-  <exception trans=""></exception>
-  <exception trans=""></exception>
-  <exception trans=""></exception>
-  <exception trans=""></exception>
+  <exception trans="काम्कारवाई">कामकारवाई</exception>
+  <exception trans="काम्चोर्">कामचोर</exception>
+  <exception trans="काम्दार्">कामदार</exception>
+  <exception trans="काम्देव्">कामदेव</exception>
   <exception trans=""></exception>
   <exception trans=""></exception>
   <exception trans=""></exception>

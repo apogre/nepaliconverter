@@ -85,11 +85,11 @@ public class NepaliTransliterationJacob implements ConversionHandler  {
       String orgWord = word;
 
       // General rule for word ending:
-
+/*
       if (word.equals("तर")) {
         System.out.println("XXX7");
       }
-
+*/
       String log = "";
 
       boolean dontAppendHalanta = false;

@@ -174,7 +174,7 @@ public class Devanagari {
    * @see http://madanpuraskar.org/index2.php?option=com_content&task=view&id=63&pop=1&page=0&Itemid=84
    */
   public static final String ZWNJ = "‍";
-  public static final String ZWJ = "‌";  
+  public static final String ZWJ = "‌";
   public static final String HALANTA = "्";
   public static final String CONSONANTS = types[TCONSONANTS];
   public static final String VOCALFLAGS = types[TVOCALFLAGS];
@@ -185,6 +185,11 @@ public class Devanagari {
 
 
   public static void main(String[] args) {
+    System.out.println((int)ZWNJ.charAt(0));
+    System.out.println((int)ZWJ.charAt(0));
+    System.out.println((ZWJ+ZWNJ).length());
+    String s = " अश्लील     अश्‍लील   ";
+    for (int i=0; i<s.length(); i++)     System.out.println((int)s.charAt(i)+" "+s.charAt(i));
     Devanagari devanagari = new Devanagari();
   }
 
