@@ -101,11 +101,15 @@ public class OpenOfficeReaderWriter implements GeneralReaderWriter {
 
     
     Transformer trans = TransformerFactory.newInstance().newTransformer();
-    trans.setOutputProperty("indent", "yes");
-    trans.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
+    if (DEBUG) {
+      trans.setOutputProperty("indent", "yes");
+      trans.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
 
-    trans.transform(new DOMSource(odfDocument.getContentDom()), new StreamResult(new File("tmp/foer-content.xml")));
-    trans.transform(new DOMSource(odfDocument.getStylesDom()), new StreamResult(new File("tmp/foer-styles.xml")));
+      trans.transform(new DOMSource(odfDocument.getContentDom()), new StreamResult(new File("tmp/foer-content.xml")));
+      trans.transform(new DOMSource(odfDocument.getStylesDom()), new StreamResult(new File("tmp/foer-styles.xml")));
+      
+    }
+    
     
     
     final HashMap<String, String> fontReplacement = new HashMap<String, String>();
@@ -122,29 +126,6 @@ public class OpenOfficeReaderWriter implements GeneralReaderWriter {
 
           OdfStylableElement parentNodeWithSty=findOdfStylableParentNode(textNode);
           String font = findFont(parentNodeWithSty);    
-/*
-          if (font==null) {
-            // Ingen 
-            OdfStyles odfDocumentStyles = ((OdfFileDom) textNode.getOwnerDocument()).getOdfDocument().getOrCreateDocumentStyles();
-            
-            System.err.println("odfDocument.getDocumentStyles() = " + odfDocumentStyles.getDefaultStyles());
-            
-            while (parentNodeWithSty!=null && font==null) {
-              System.err.println("parentNode.getStyleFamily() = " + parentNodeWithSty.getStyleFamily());
-              OdfDefaultStyle sty = odfDocumentStyles.getDefaultStyle( parentNodeWithSty.getStyleFamily());
-              if (sty != null) {
-                System.err.println("sty = " + sty);
-                font = sty.getProperty(OdfTextProperties.FontName);              
-              }
-              parentNodeWithSty=findOdfStylableParentNode(parentNodeWithSty.getParentNode());
-            }
-            
-            
-            //System.err.println("parentNode = " + parentNodeWithSty+" har ingen font!"+parentNodeWithSty.getParentNode()+"  så font="+font);
-            System.err.println("  xxx default så font="+font);
-            //font = findFont(parentNode.getParentNode());      
-          }
-  */        
 
           if (font==null || font.length()==0) {
             System.err.println("!!!!!! font==null for "+textNode);
@@ -168,76 +149,6 @@ public class OpenOfficeReaderWriter implements GeneralReaderWriter {
     OdfElement e = (OdfElement) odfDocument.getContentDom().getDocumentElement();
     replaceText.performAction(e, "hejsa");
     
-    /*
-    OdfStyles styless=odfDocument.getDocumentStyles();
-    OdfFileDom stylesDom=odfDocument.getStylesDom();
-    OdfFileDom contentDom=odfDocument.getContentDom();
-
-
-
-    final HashMap<String, OdfStyleBase> stylenameToStyle=new HashMap<String, OdfStyleBase>();
-    final HashSet<OdfStyleBase> styles=new HashSet<OdfStyleBase>();
-    class X1 {
-
-      private void add(Iterable<OdfStyle> stylesForFamily) {
-        for (OdfStyle s : stylesForFamily) {
-          styles.add(s);
-          OdfStyleBase olds = stylenameToStyle.put(s.getName(), s);
-          if (olds != null) 
-            System.err.println("olds = " + olds+"   s="+s);
-        }
-      }
-    }
-    ;
-    X1 x1=new X1();
-
-    x1.add(styless.getStylesForFamily(OdfStyleFamily.Paragraph));
-    x1.add(styless.getStylesForFamily(OdfStyleFamily.Text));
-    x1.add(styless.getStylesForFamily(OdfStyleFamily.TableCell));
-    x1.add(styless.getStylesForFamily(OdfStyleFamily.Graphic));
-    x1.add(styless.getStylesForFamily(OdfStyleFamily.Presentation));
-    x1.add(styless.getStylesForFamily(OdfStyleFamily.Chart));
-    x1.add(styless.getStylesForFamily(OdfStyleFamily.List));
-*/
-    
-    //System.err.println("odfDocument.getDocumentStyles() = " + odfDocument.getDocumentStyles());
-    //x1.add(styless.getDefaultStyles());
-    
-    //System.err.println("stylenameToStyle = " + stylenameToStyle);
-    //System.exit(0);
-
-
-    // get the ODF content as DOM tree representation
-    // NB! Regenarates automatic style names!
-    //Document content = odfDocument.getContent();
-
-
-/*
-    if (progressMonitor!=null) {
-      progressMonitor.setMaximum(nl.getLength());
-    }
-*/
-
-    
-    
-  /*
-    for (OdfStyleBase style : styles) {
-      String oldFont = getFont(style);
-      String newFont=conversionHandler.giveFontReplacement(oldFont);
-      if (newFont!=null && !newFont.equals(oldFont)) {
-        //if (DEBUG)
-          System.err.println("A ="+oldFont+"->"+newFont+"  "+style);
-        
-        System.err.println("err = mangler at sætte til Arial");
-        style.setProperty(OdfTextProperties.FontName, "Arial");
-        //style.setProperty(OdfStylePropertiesSet.TextProperties, OdfNamespace.STYLE.toString(), OdfParagraphStyle.FontName.toString(), "Arial");
-        //style.setProperty(OdfStylePropertiesSet.TextProperties, OdfNamespace.STYLE.toString(), OdfParagraphStyle.FontNameComplex.toString(), "Arial");
-        //if (DEBUG) {
-          System.err.println("B ="+oldFont+"->"+newFont+"  "+style);
-        //}
-      }
-    }
-*/
 
 
     if (outFile!=null&& !fontReplacement.isEmpty()) {
@@ -284,15 +195,19 @@ public class OpenOfficeReaderWriter implements GeneralReaderWriter {
       };
       replaceFontnames.performAction(odfDocument.getStylesDom(), "hej2");
       replaceFontnames.performAction(odfDocument.getContentDom(), "hej2");
-          
-      
+                
       odfDocument.save(outFile);
-      trans.transform(new DOMSource(odfDocument.getContentDom()), new StreamResult(new File("tmp/efter-content.xml")));
-      trans.transform(new DOMSource(odfDocument.getStylesDom()), new StreamResult(new File("tmp/efter-styles.xml")));
+      
+      if (DEBUG) {
+        trans.transform(new DOMSource(odfDocument.getContentDom()), new StreamResult(new File("tmp/efter-content.xml")));
+        trans.transform(new DOMSource(odfDocument.getStylesDom()), new StreamResult(new File("tmp/efter-styles.xml")));
+
+      }
+
     }
   }
 
-  public OdfStylableElement findOdfStylableParentNode(Node node) {
+  private OdfStylableElement findOdfStylableParentNode(Node node) {
     if (node==null) return null;
     if (node instanceof OdfStylableElement) return (OdfStylableElement) node;
     return findOdfStylableParentNode(node.getParentNode());
@@ -312,128 +227,7 @@ public class OpenOfficeReaderWriter implements GeneralReaderWriter {
     return font;
   }
   
-  /*
-  private String findFont(OdfStylableElement parentNode) {
-    OdfStylableElement orgNode=parentNode;
-    
-    String font = parentNode.getProperty(OdfTextProperties.FontName);
-    System.err.println("font = " + font);
-
-    
-    OdfStyleBase style=null;//stylenameToStyle.get(parentNode.getStyleName());
-    
-    System.err.println("style = " + style);
-
-    //String font=getFont(style);
-
-    do {
-      while (font==null && style!=null) {
-
-        // DOESENT WORK! 
-        style = style.getParentStyle();
-        //style=stylenameToStyle.get(style.getParentNode().getNodeName());
-        font=getFont(style);
-      }
-
-      if (font==null) {
-        // Search up to parent node with style and try again
-        Node n3=parentNode.getParentNode();
-        while (n3!=null&&!(n3 instanceof OdfStylableElement)) {
-          n3=n3.getParentNode();
-          if (DEBUG) {
-            //System.err.println(" parent "+n3);
-          }
-        }
-        parentNode=(OdfStylableElement) n3;
-        if (DEBUG) {
-          System.err.println(" parent "+parentNode);
-        }
-        if (parentNode==null) {
-          if (DEBUG) {
-            System.err.println("parentNode==null!  for "+orgNode);
-          }
-          break;
-        }
-        style=stylenameToStyle.get(parentNode.getStyleName());
-        font=getFont(style);
-      }
-    } while (font==null);
-
-    if (DEBUG) {
-      System.err.println(font);
-    }
-    return style;
-  }
-*/
   
-  
-  
-  /*
-  private OdfStyleBase findStyleWithFont(HashMap<String, OdfStyleBase> stylenameToStyle, OdfStylableElement parentNode) {
-    //String styleName = parentNode.getStyleName();
-    OdfStylableElement orgNode=parentNode;
-    
-    System.err.println("parentNode.getStyleName() = " + parentNode.getStyleName());
-    System.err.println("parentNode.getStyleFam() = " + parentNode.getStyleFamily());
-    //System.err.println("parentNode.getAutoStyle() = " + parentNode.getAutomaticStyle());
-    
-    String font = parentNode.getProperty(OdfTextProperties.FontName);
-    System.err.println("font = " + font);
-    
-    OdfStyleBase style=stylenameToStyle.get(parentNode.getStyleName());
-    
-    System.err.println("style = " + style);
-
-    //String font=getFont(style);
-
-    do {
-      while (font==null && style!=null) {
-
-        // DOESENT WORK! 
-        style = style.getParentStyle();
-        //style=stylenameToStyle.get(style.getParentNode().getNodeName());
-        font=getFont(style);
-      }
-
-      if (font==null) {
-        // Search up to parent node with style and try again
-        Node n3=parentNode.getParentNode();
-        while (n3!=null&&!(n3 instanceof OdfStylableElement)) {
-          n3=n3.getParentNode();
-          if (DEBUG) {
-            //System.err.println(" parent "+n3);
-          }
-        }
-        parentNode=(OdfStylableElement) n3;
-        if (DEBUG) {
-          System.err.println(" parent "+parentNode);
-        }
-        if (parentNode==null) {
-          if (DEBUG) {
-            System.err.println("parentNode==null!  for "+orgNode);
-          }
-          break;
-        }
-        style=stylenameToStyle.get(parentNode.getStyleName());
-        font=getFont(style);
-      }
-    } while (font==null);
-
-    if (DEBUG) {
-      System.err.println(font);
-    }
-    return style;
-  }
-*/
-  
-  private static String getFont(OdfStyleBase sty) {
-    if (sty==null) {
-      return null;
-    }
-    String font=sty.getProperty(OdfTextProperties.FontName);
-    return font;
-  }
-
   
   ProgressMonitor progressMonitor=null;
 
