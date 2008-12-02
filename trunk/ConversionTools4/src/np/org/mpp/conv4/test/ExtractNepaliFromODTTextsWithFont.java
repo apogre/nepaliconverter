@@ -12,73 +12,16 @@ import org.openoffice.odf.doc.OdfFileDom;
 
 public class ExtractNepaliFromODTTextsWithFont {
 
-  //OpenOfficeODFDOMReaderWriter odtrw = new OpenOfficeODFDOMReaderWriter();
-  GeneralReaderWriter odtrw = new np.org.mpp.conv4.utils.odfdom.OpenOfficeReaderWriter();
-
-  HashMap<String,HashSet<String>> fontwords = new HashMap<String,HashSet<String>>();
-
-  HashSet<String> fonts = new HashSet<String>();
+  String subdir = "";
+  GeneralReaderWriter odtrwj = new np.org.mpp.conv4.utils.OpenOfficeJacobsOldReaderWriter(); //String subdir = "ja";
+  GeneralReaderWriter odtrwo = new np.org.mpp.conv4.utils.odfdom.OpenOfficeReaderWriter(); //String subdir = "odfdom";
 
 
-  HashSet<String> lookForWords = new HashSet<String>(Arrays.asList(new String[] {
-  //  "\\m", "\\mPd\\", "j|mflGtsf/Laf6", "m", "m\\", "", "", "",
-}));
-
-  File actualFile;
   //XPath  xpath = XPathFactory.newInstance().newXPath();
 
-  ConversionHandler conversionHandler = new ConversionHandler() {
-    /**
-     * Convert text.
-     * This migt be to Unicode, from Unicode or a transliteration
-     * @param text The text to be converted
-     * @param font The font the text is encoded in (if any)
-     * @return The converted text
-     */
-    public String convertText(String font, String text) {
-      if (text.length()==0) return text;
 
-      //System.out.println("convertText("+font+", '"+text+"')");
-      fonts.add(font);
-
-      HashSet<String> words = fontwords.get(font);
-      if (words == null) {
-        System.out.println("Created words for font " + font);
-        words = new HashSet<String>();
-        fontwords.put(font, words);
-      }
-
-      if (text.indexOf("Ldfg")!=-1) {
-          ;
-      }
-
-      for (String word : text.split("[ \\n\\t]")) {
-        word = word.trim();
-        if (word.length()==0) continue;
-        if (word.length()<40)
-            words.add(word);
-        if (lookForWords.contains(word)) {
-            System.err.println(word+" found in " +actualFile+": "+text);
-        }
-      }
-
-      return text;
-    }
-
-    /**
-     * Specify which font a given font should be replaced with.
-     * NOTE: This method must only be called AFTER calls to convertText(),
-     * @param font The original font. Ex. "Preeti"
-     * @return The replacement font. Ex. "Arial".
-     * If no replacement of this font should be made the original font should be returned.
-     */
-    public String giveFontReplacement(String font) {
-      return font;
-    }
-
-  };
-
-
+  LoggingConversionHandler conversionHandlerj = new LoggingConversionHandler();
+  LoggingConversionHandler conversionHandlero = new LoggingConversionHandler();
 
   public ExtractNepaliFromODTTextsWithFont() {
   }
@@ -87,43 +30,53 @@ public class ExtractNepaliFromODTTextsWithFont {
 
   private void traverse(File file) {
     if (file.isDirectory()) {
-      if (file.isHidden()) return;
-      for (File f : file.listFiles()) {
-        traverse(f);
-      }
+	if (file.isHidden()) return;
+	for (File f : file.listFiles()) {
+	  traverse(f);
+	}
     } else
-      try {
-        System.out.println(++documentNumber +" Reading " + file);
+	try {
+	  System.out.println(++documentNumber +" Reading " + file);
 
-        OdfFileDom content = OdfDocument.load( file ).getContent( );
-        if (content.toString().indexOf("text:change-start text:change-id")>0) {
-            System.out.println("Changesets found, skipping " + file);
-        } else {
+	  OdfFileDom content = OdfDocument.load( file ).getContent( );
+	  if (content.toString().indexOf("text:change-start text:change-id")>0) {
+		System.out.println("Changesets found, skipping " + file);
+	  } else {
 
-          actualFile = file;
-          //odtrw.convert(file.getPath(), "tmp/delete.odt", conversionHandler);
-          odtrw.convert(file.getPath(), null, conversionHandler);
-          //System.out.println("fontwords = " + fontwords.keySet());
-        }
-      } catch (Exception e) {
-        e.printStackTrace();
-      }
+	    //conversionHandler.actualFile = file;
+	    //odtrw.convert(file.getPath(), "tmp/delete.odt", conversionHandler);
+	    odtrwj.convert(file.getPath(), null, conversionHandlerj);
+	    odtrwo.convert(file.getPath(), null, conversionHandlero);
+
+	    if (!conversionHandlerj.fontwords.equals(conversionHandlero.fontwords)) {
+		  System.out.println("FORSKEL for "+file);
+		  System.out.println("conversionHandlerj.fontwords = " + conversionHandlerj.fontwords);
+		  System.out.println("conversionHandlero.fontwords = " + conversionHandlero.fontwords);
+		  conversionHandlerj.fontwords.clear(); conversionHandlero.fontwords.clear();
+	    }
+	    //System.out.println("fontwords = " + fontwords.keySet());
+	  }
+	} catch (Exception e) {
+	  e.printStackTrace();
+	}
   }
 
 
 
   private void save() throws FileNotFoundException {
-    for (String font : fontwords.keySet()) {
-      if (font.indexOf("Arial") != -1) continue;
-      if (font.indexOf("Times") != -1) continue;
-      if (font.indexOf("Sans") != -1) continue;
-      TreeSet<String> words = new TreeSet<String>(fontwords.get(font));
-      PrintWriter pw = new PrintWriter("tmp/words_"+font+".txt");
-      for (String word : words) {
-        pw.println(word);
-      }
-      pw.close();
-      System.out.println("wrote words for "+font);
+
+    for (String font : conversionHandlero.fontwords.keySet()) {
+	if (font.indexOf("Arial") != -1) continue;
+	if (font.indexOf("Times") != -1) continue;
+	if (font.indexOf("Sans") != -1) continue;
+	TreeSet<String> words = new TreeSet<String>(conversionHandlero.fontwords.get(font));
+	new File("tmp/"+subdir).mkdirs();
+	PrintWriter pw = new PrintWriter("tmp/"+subdir+"/words_"+font+".txt");
+	for (String word : words) {
+	  pw.println(word);
+	}
+	pw.close();
+	System.out.println("wrote words for "+font);
 
     }
   }
@@ -131,7 +84,29 @@ public class ExtractNepaliFromODTTextsWithFont {
 
   public static void main(String[] args) throws FileNotFoundException {
     ExtractNepaliFromODTTextsWithFont e = new ExtractNepaliFromODTTextsWithFont();
-    e.traverse(new File("../nepalitext_odt"));
+
+
+    //e.traverse(new File("../nepalitext_odt/esperanto-vortaro/vorto02.odt"));
+    //e.traverse(new File("../nepalitext_odt/esperanto-vortaro/vorto03.odt"));
+
+    //e.traverse(new File("../nepalitext_odt/nep_eng.odt"));
+    //e.traverse(new File("../nepalitext_odt/MS/ICOC/Training Modules/Follow up course 1/Materials/LES1.odt"));
+    //e.traverse(new File("../nepalitext_odt/MS/ICOC/Training Modules/Follow up course 1/Materials/Follow up 1.odt"));
+    //e.traverse(new File("../nepalitext_odt/MS/ICOC/Training Modules/Follow up course 3/Materials/MD3GUID.odt"));
+    //e.traverse(new File("../nepalitext_odt/MS/ICOC/Training Modules/Basic Language 1/Reviews, Monetoring and Evauluations/Materials/Old stuff/CASTE.odt"));
+    e.traverse(new File("../nepalitext_odt/MS/ICOC/Training Modules/Basic Language 1/Correspondence/2004/GKSiwakoti's honorerium.odt"));
+    e.traverse(new File("../nepalitext_odt/MS/ICOC/Training Modules/Basic Language 1/Materials/ICOC intro, background & aims.odt"));
+    e.traverse(new File("../nepalitext_odt/MS/ICOC/Training Modules/Basic Language 1/Materials/ICOCINF.S3.odt"));
+    e.traverse(new File("../nepalitext_odt/MS/ICOC/Training Modules/Basic Language 2/Materials/BLT 2  april 2007.odt"));
+    //e.traverse(new File("../nepalitext_odt/MS/ICOC/new Lang meterial/lise language 200407.odt"));
+    e.traverse(new File("../nepalitext_odt/MS/translated/MSN income generation strategy.odt"));
+    e.traverse(new File("../nepalitext_odt/MS/translated/Baseline/baseline/ALG Questionnaire DDC.odt"));
+    e.traverse(new File("../nepalitext_odt/MS/translated/Baseline/baseline/ALG QuestionnaireVDC.odt"));
+    e.traverse(new File("../nepalitext_odt/MS/translated/Baseline/baseline/CSO Questionnaire.odt"));
+    e.traverse(new File("../nepalitext_odt/MS/translated/Baseline/baseline/PR Questionnaire.doc_nepali.odt"));
+
+
+    //e.traverse(new File("../nepalitext_odt"));
     //e.traverse(new File("../nepalitext_odt/MS/ICOC"));
     //e.traverse(new File("test"));
     //e.traverse(new File("test/testtextKantipur.odt"));
@@ -140,3 +115,4 @@ public class ExtractNepaliFromODTTextsWithFont {
 
 
 }
+
