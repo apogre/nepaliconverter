@@ -21,6 +21,8 @@ public class F2UConversionHandler implements ConversionHandler {
     mappings.put("arial narrow", identity);
     mappings.put("helvetica", identity);
     mappings.put("palatino", identity);
+    setStandardFontReplacement("Kalimati");
+    //setStandardFontReplacement("ArialMT");
   }
 
 
@@ -41,7 +43,8 @@ public class F2UConversionHandler implements ConversionHandler {
         mapping = fc.getMapping(font.toLowerCase().replaceAll("[0..9]", ""));
       }
     } catch (Exception e) {
-      e.printStackTrace();
+      //e.printStackTrace();
+      System.err.println(e);
       mapping = new Font2UnicodeMapping.Identity();
     } finally {
       mappings.put(font, mapping);
@@ -61,15 +64,23 @@ public class F2UConversionHandler implements ConversionHandler {
     if (!text2.equals(text)) {
       fontsConverted.add(font);
       
-      System.err.println("fontsConverted = " + fontsConverted);
+      //System.err.println("fontsConverted = " + fontsConverted);
     }
     return text2;
   }
 
+  private String standardFontReplacement = "Arial";
+  
+  public void setStandardFontReplacement(String f) {
+    standardFontReplacement = f;
+    mappings.put(f.toLowerCase(), identity);    
+  }
 
+      
+      
   public String giveFontReplacement(String font) {
     if (fontsConverted.contains(font)) {
-      return "Arial";
+      return standardFontReplacement;
     } else {
       return font;
     }

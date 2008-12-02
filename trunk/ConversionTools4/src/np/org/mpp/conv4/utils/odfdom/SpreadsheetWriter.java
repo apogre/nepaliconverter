@@ -10,16 +10,12 @@ import org.openoffice.odf.doc.OdfSpreadsheetDocument;
 import org.openoffice.odf.doc.element.table.*;
 import org.openoffice.odf.doc.element.text.OdfParagraph;
 import org.openoffice.odf.dom.OdfNamespace;
-import org.openoffice.odf.dom.style.OdfStyleCollection;
-import org.openoffice.odf.dom.style.OdfTableCellStyle;
-import org.openoffice.odf.dom.style.props.OdfParagraphProperties;
-import org.openoffice.odf.dom.style.props.OdfTextProperties;
-import org.openoffice.odf.dom.type.OdfValueType;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.openoffice.odf.pkg.OdfPackage;
 import org.w3c.dom.Document;
 import java.io.OutputStream;
+import org.openoffice.odf.dom.type.table.OdfValueType;
 
 /**
  * A class for writing ODS spread sheets.
@@ -33,7 +29,7 @@ public class SpreadsheetWriter {
       and the given cell style.
     */
     private static OdfTableCell constructStringCell( String s, String cellStyleName, OdfFileDom content)
-    {
+    {/*
       OdfTableCell cell = new OdfTableCell( content );
       cell.setStringValue( s );
       cell.setValueType( OdfValueType.STRING );
@@ -45,6 +41,8 @@ public class SpreadsheetWriter {
       }
       cell.appendChild( para );
       return cell;
+      */
+      return null;
     }
 
 
@@ -56,6 +54,7 @@ public class SpreadsheetWriter {
    * Rows does not have to be of equal length
    */
   public static void write(String outFile, ArrayList<ArrayList<String>> data, String font2) throws Exception {
+    /*
     OdfSpreadsheetDocument odsDoc1 = new OdfSpreadsheetDocument();
 
 
@@ -75,9 +74,7 @@ public class SpreadsheetWriter {
 
 
 
-    /*
-      Create a bold-centered style
-    */
+      //Create a bold-centered style
     OdfStyleCollection automaticStyles = odsDoc1.getAutomaticStyles( );
 
     // newly created styles are children of <office:automatic-styles> element
@@ -90,9 +87,9 @@ public class SpreadsheetWriter {
     boldCenter.appendToNode(autoStyleNode);
 
 
-    /*
-      Create a style with a different font
-    */
+    
+    //  Create a style with a different font
+    
     OdfTableCellStyle specFont2 = new OdfTableCellStyle( "specfont", automaticStyles );
     specFont2.setProperty( OdfTextProperties.FontName, font2);
     //preeti.setProperty( OdfParagraphProperties.TextAlign, "center" );
@@ -130,17 +127,6 @@ public class SpreadsheetWriter {
     //System.exit(0);
 
 
-    /* Create the header row(s) */
-    /*
-    OdfTableHeaderRows tableHeaderRows = new OdfTableHeaderRows( doc );
-    OdfTableRow row = new OdfTableRow( doc );
-    row.appendChild( constructStringCell( "Date", "boldCenter", doc ) );
-    row.appendChild( constructStringCell( "Type", "boldCenter", doc ) );
-    row.appendChild( constructStringCell( "Author", "boldCenter", doc ) );
-    row.appendChild( constructStringCell( "Content", "boldCenter", doc ) );
-    tableHeaderRows.appendChild( row );
-    table.appendChild( tableHeaderRows );
-    */
 
     int n = 0;
 
@@ -193,7 +179,7 @@ public class SpreadsheetWriter {
     if (n > 10000) {
       System.out.println("Writing finished");
     }
-
+*/
   }
 
 
@@ -225,66 +211,3 @@ public class SpreadsheetWriter {
   }
 }
 
-//table.removeChild(table.getFirstChild()); // remove first empty row
-
-//System.out.println(doc.toString().replaceAll("<","\n2<"));
-
-/*
-OdfStyle style1 = new OdfStyle("style1", OdfStyleFamily.TableCell);
-style1.setProperty(OdfTextProperties.FontName, "Preeti");
-
-OdfTextStyle ts1 = new OdfTextStyle("text1");
-ts1.setProperty(ts1.FontName, "Helvetica");
-
-OdfStyle style2 = new OdfStyle("style2", OdfStyleFamily.getByName("text"));
-style2.setProperty(OdfStylePropertiesSet.TextProperties, OdfNamespace.FO, "font-weight", "bold");
-
-OdfStyle style3 = new OdfStyle("style3", OdfStyleFamily.Text);
-style3.setProperty(OdfStylePropertiesSet.TextProperties, OdfNamespace.FO, "font-weight", "bold");
-style3.setProperty(OdfStylePropertiesSet.TextProperties, OdfNamespace.FO, "font-size", "15pt");
-
-odsDoc1.getDocumentStyles().addStyle(style1);
-odsDoc1.getDocumentStyles().addStyle(style2);
-odsDoc1.getDocumentStyles().addStyle(style3);
-odsDoc1.getDocumentStyles().addStyle(ts1);
-
-OdfTableRow tr = (OdfTableRow) table.appendChild(
-        doc.createOdfElement(OdfTableRow.class));
-OdfTableCell td1 = (OdfTableCell) tr.appendChild(
-        doc.createOdfElement(OdfTableCell.class));
-OdfParagraph p1 = doc.createOdfElement(OdfParagraph.class);
-p1.setStyleName(ts1.getName());
-p1.appendChild(doc.createTextNode("content 1"));
-td1.appendChild(p1);
-
-OdfTableCell td2 = (OdfTableCell) tr.appendChild(
-        doc.createOdfElement(OdfTableCell.class));
-OdfParagraph p2 = doc.createOdfElement(OdfParagraph.class);
-p2.setStyleName(style1.getName());
-p2.appendChild(doc.createTextNode("cell 2"));
-td2.appendChild(p2);
-
-OdfTableCell td3 = (OdfTableCell) tr.appendChild(
-        doc.createOdfElement(OdfTableCell.class));
-OdfParagraph p3 = doc.createOdfElement(OdfParagraph.class);
-p2.setStyleName(style3.getName());
-p3.appendChild(doc.createTextNode("table cell content 3"));
-td3.appendChild(p3);
-
-//p0.getParentNode().insertBefore(table, p0);
-
-OdfStyle ts = table.getAutomaticStyle();
-ts.setProperty(OdfTableProperties.Width, "12cm");
-ts.setProperty(OdfTableProperties.Align, "left");
-
-OdfStyle cs1 = td1.getTableColumn().getAutomaticStyle();
-cs1.setProperty(OdfTableColumnProperties.ColumnWidth, "2cm");
-td1.getTableColumn().setStyleName(style1.getName());
-
-OdfStyle cs2 = td2.getTableColumn().getAutomaticStyle();
-cs2.setProperty(OdfTableColumnProperties.ColumnWidth, "4cm");
-cs2.setProperty(OdfTextProperties.FontName, "Preeti");
-
-OdfStyle cs3 = td3.getTableColumn().getAutomaticStyle();
-cs3.setProperty(OdfTableColumnProperties.ColumnWidth, "6cm");
-*/

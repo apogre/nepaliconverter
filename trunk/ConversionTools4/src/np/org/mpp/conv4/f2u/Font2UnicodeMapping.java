@@ -105,7 +105,7 @@ public class Font2UnicodeMapping {
 			}
 		}
 
-    System.out.println("maxfontLetter = " + maxfontLetter);
+    //System.out.println("maxfontLetter = " + maxfontLetter);
 	}
 
   public static String hex(char c) {

@@ -38,7 +38,7 @@ public class ExtractNepaliFromODTTextsWithFont {
 	try {
 	  System.out.println(++documentNumber +" Reading " + file);
 
-	  OdfFileDom content = OdfDocument.load( file ).getContent( );
+	  OdfFileDom content = OdfDocument.loadDocument(file ).getContentDom();
 	  if (content.toString().indexOf("text:change-start text:change-id")>0) {
 		System.out.println("Changesets found, skipping " + file);
 	  } else {
