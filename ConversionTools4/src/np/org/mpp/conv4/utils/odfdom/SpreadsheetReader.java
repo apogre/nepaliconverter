@@ -7,6 +7,7 @@ import org.openoffice.odf.doc.element.table.*;
 import org.openoffice.odf.dom.*;
 import org.w3c.dom.*;
 import java.util.ArrayList;
+import org.openoffice.odf.doc.element.office.OdfSpreadsheet;
 
 public class SpreadsheetReader {
 
@@ -31,11 +32,12 @@ public class SpreadsheetReader {
   public static ArrayList<ArrayList<String>> read(String fileName, int colFrom, int colTo) throws Exception {
     if (!new File(fileName).exists()) throw new FileNotFoundException(fileName);
 
-    OdfDocument odfdoc = new OdfDocument(fileName);
+    OdfDocument odfdoc = OdfDocument.loadDocument(fileName);
+
 
     NodeList lst;
     if (colFrom==colTo) {
-      lst = odfdoc.getContentCached().getElementsByTagNameNS(OdfNamespace.TABLE.getUri(), "table");
+      lst = odfdoc.getContentDom().getElementsByTagNameNS(OdfNamespace.TABLE.getUri(), "table");
       OdfTable t = (OdfTable) lst.item(0);
       if (DEBUG) System.out.println("t.getTableColumnCount() = " + t.getTableColumnCount());
 
@@ -49,7 +51,8 @@ public class SpreadsheetReader {
     ArrayList<String> row = null;
 
 
-    lst = odfdoc.getContentCached().getElementsByTagNameNS(OdfNamespace.TABLE.getUri(), "table-cell");
+//    lst = odfdoc.getContentCached().getElementsByTagNameNS(OdfNamespace.TABLE.getUri(), "table-cell");
+    lst = odfdoc.getContentDom().getElementsByTagNameNS(OdfNamespace.TABLE.getUri(), "table-cell");
     int colIndex = Integer.MAX_VALUE;
     int rowIndex = -1;
     for (int i = 0; i < lst.getLength(); i++) {
