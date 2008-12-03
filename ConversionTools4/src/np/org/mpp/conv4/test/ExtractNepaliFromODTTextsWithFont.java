@@ -48,6 +48,8 @@ public class ExtractNepaliFromODTTextsWithFont {
 	    odtrwj.convert(file.getPath(), null, conversionHandlerj);
 	    odtrwo.convert(file.getPath(), null, conversionHandlero);
 
+      System.out.println("conversionHandlero.fontwords = " + conversionHandlero.fontwords);
+
 	    if (!conversionHandlerj.fontwords.equals(conversionHandlero.fontwords)) {
 		  System.out.println("FORSKEL for "+file);
 		  System.out.println("conversionHandlerj.fontwords = " + conversionHandlerj.fontwords);
