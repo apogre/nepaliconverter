@@ -69,16 +69,16 @@ public class OpenOfficeReaderWriter implements GeneralReaderWriter {
     //f2u.setStandardFontReplacement("Arial");
     
     //String fn = "test/aLotOfStyles";
-    String fn = "/home/j/esperanto/nepala_vortaro/espeanto-enkonduko";
+    //String fn = "/home/j/esperanto/nepala_vortaro/espeanto-enkonduko";
 
     //orw.convert("test/testtextKantipur.odt", "tmp/slet.odt", conversionHandler);
 
     //orw.convert("../nepalitext_odt/esperanto-vortaro/vortaro_restajxo_kantipur.odt", "tmp/slet.odt", f2u);
-    //orw.convert("/tmp/espeanto-enkonduko1.odt", "tmp/slet.odt", f2u);
+    orw.convert("/tmp/espeanto-enkonduko.odt", "tmp/slet.odt", f2u);
 
     //orw.convert("test/esperanto-enkonduko.odt", "tmp/slet.odt", f2u);
     //orw.convert(fn+".odt", fn+"-converted.odt", f2u);
-    orw.convert(fn+".odt", "tmp/slet.odt", f2u);
+    //orw.convert(fn+".odt", "tmp/slet.odt", f2u);
 
   }
 
