@@ -34,20 +34,7 @@ public class OpenOfficeReaderWriter implements GeneralReaderWriter {
 //  http://develop.opendocumentfellowship.com/spec/
   static boolean DEBUG=true;
 
-  public static List<Node> list(final NodeList nl) throws Exception {
 
-    return new AbstractList<Node>() {
-
-      public Node get(int i) {
-        return nl.item(i);
-      }
-
-      public int size() {
-        return nl.getLength();
-      }
-      ;
-    };
-  }
   static ConversionHandler loggingConversionHandler=new ConversionHandler() {
 
     public String convertText(String font, String text) {
@@ -124,8 +111,7 @@ public class OpenOfficeReaderWriter implements GeneralReaderWriter {
           String teksto=textNode.getTextContent();
           if (teksto.trim().length()==0) return;
 
-          OdfStylableElement parentNodeWithSty=findOdfStylableParentNode(textNode);
-          String font = findFont(parentNodeWithSty);    
+          String font = StyleUtils.findStylePropertyForNode(textNode, OdfTextProperties.FontName);    
 
           if (font==null || font.length()==0) {
             System.err.println("!!!!!! font==null for "+textNode);
@@ -201,31 +187,12 @@ public class OpenOfficeReaderWriter implements GeneralReaderWriter {
       if (DEBUG) {
         trans.transform(new DOMSource(odfDocument.getContentDom()), new StreamResult(new File("tmp/efter-content.xml")));
         trans.transform(new DOMSource(odfDocument.getStylesDom()), new StreamResult(new File("tmp/efter-styles.xml")));
-
       }
-
     }
   }
 
-  private OdfStylableElement findOdfStylableParentNode(Node node) {
-    if (node==null) return null;
-    if (node instanceof OdfStylableElement) return (OdfStylableElement) node;
-    return findOdfStylableParentNode(node.getParentNode());
-  }
 
 
-  
-  private String findFont(Node textNode) {
-    if (textNode==null) return null;
-    OdfStylableElement parentNode=findOdfStylableParentNode(textNode);
-    if (parentNode==null) return null;
-
-    String font = parentNode.getProperty(OdfTextProperties.FontName);
-    if (font != null) return font;
-
-    font = findFont(parentNode.getParentNode());
-    return font;
-  }
   
   
   
