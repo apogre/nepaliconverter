@@ -10,7 +10,7 @@ import javax.swing.border.EtchedBorder;
 
 import np.org.mpp.conv4.ui.dnd.ClipboardObserver;
 import np.org.mpp.conv4.ui.dnd.FilesAndHtmlTransferHandler;
-import np.org.mpp.ui.WidgetFactory;
+import np.org.mpp.conv4.ui.WidgetFactory;
 import java.io.*;
 import java.awt.datatransfer.*;
 import np.org.mpp.conv4.ui.dnd.HtmlSelection;

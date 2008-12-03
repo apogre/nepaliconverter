@@ -10,7 +10,7 @@ import javax.swing.JComboBox;
 import np.org.mpp.conv4.translit.NepaliTransliterationAbishek;
 import np.org.mpp.conv4.translit.NepaliTransliterationJacob;
 import np.org.mpp.conv4.utils.ConversionHandler;
-import np.org.mpp.ui.WidgetFactory;
+import np.org.mpp.conv4.ui.WidgetFactory;
 import javax.swing.JFileChooser;
 
 public class ConversionPanelTrans extends ConversionPanel {

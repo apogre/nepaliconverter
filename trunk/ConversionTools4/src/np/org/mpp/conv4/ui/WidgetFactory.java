@@ -1,4 +1,4 @@
-package np.org.mpp.ui;
+package np.org.mpp.conv4.ui;
 
 import java.awt.Component;
 import java.awt.Image;
@@ -13,7 +13,6 @@ import javax.swing.JMenuItem;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.KeyStroke;
 
-import np.org.mpp.exception.FileNotSelectedException;
 
 /**
  * A class that serves as factory for providing widgets. It follows Singleton

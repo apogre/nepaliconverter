@@ -5,7 +5,7 @@ import java.awt.FlowLayout;
 
 import javax.swing.*;
 
-import np.org.mpp.ui.WidgetFactory;
+import np.org.mpp.conv4.ui.WidgetFactory;
 
 public class ToolBar extends JToolBar {
     private static final long serialVersionUID = 7786176193025631322L;

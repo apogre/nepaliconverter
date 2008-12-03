@@ -7,7 +7,7 @@ import java.awt.*;
 
 import javax.swing.*;
 
-import np.org.mpp.ui.WidgetFactory;
+import np.org.mpp.conv4.ui.WidgetFactory;
 
 /**
  * @author Abhishek

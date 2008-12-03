@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import np.org.mpp.ui.WidgetFactory;
+import np.org.mpp.conv4.ui.WidgetFactory;
 import javax.swing.JComponent;
 import javax.swing.AbstractButton;
 import javax.swing.*;
