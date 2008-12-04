@@ -30,29 +30,39 @@ import org.w3c.dom.Node;
  * @author j
  */
 public class StyleUtils {
-/*
-  public static OdfStylableElement findOdfStylableParentNode(Node node) {
-    if (node==null) return null;
-    if (node instanceof OdfStylableElement) return (OdfStylableElement) node;
-    return findOdfStylableParentNode(node.getParentNode());
-  }
-*/
-  
-  
-  public static String findStylePropertyForNode(Node node, OdfStyleProperty propertyName) {
-    
-    while (node!=null && !(node instanceof OdfStylableElement)) 
-      node.getParentNode();
 
-    if (node==null) return null;
-    
-    OdfStylableElement parentNode= (OdfStylableElement) node;
-
-    String propertyValue = parentNode.getProperty(propertyName);
-    if (propertyValue != null) return propertyValue;
-
-    return findStylePropertyForNode(parentNode.getParentNode(), propertyName);
-  }
   
+    /**
+     * Returns a property for a (text) node, as it would appear for a user in OpenOffice:
+     * First examining the style (and the style's parent styles) and if the property is not
+     * found the search continues in the enclosing node, and so on, until an enclosing node
+     * is found, whitc has a style (or an inherited style) where the property is defined.
+     * Example: findActualStylePropertyValueForNode(textNode, OdfTextProperties.FontName) will give the font name
+     * @param node (text) node to be examined
+     * @param propertyName for example OdfTextProperties.FontName
+     * @return proterty the value of the property, for example "Thorndale"
+     */
+    public static String findActualStylePropertyValueForNode(Node node, OdfStyleProperty propertyName) {
+      Node nodeWithStyle = node;
+
+      while (nodeWithStyle!=null && !(nodeWithStyle instanceof OdfStylableElement)) 
+        nodeWithStyle = nodeWithStyle.getParentNode();
+
+      if (nodeWithStyle==null) {
+        // Property value not found in any nodes' styles!
+        return null;
+      }
+
+
+      String propertyValue = ((OdfStylableElement) nodeWithStyle).getProperty(propertyName);
+
+      if (propertyValue != null) return propertyValue;
+
+      // Continue the search in enclosing nodes
+      return findActualStylePropertyValueForNode(nodeWithStyle.getParentNode(), propertyName);
+
+    }
+
+
 
 }
