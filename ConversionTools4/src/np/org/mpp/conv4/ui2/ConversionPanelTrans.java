@@ -6,15 +6,49 @@
 
 package np.org.mpp.conv4.ui2;
 
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JFileChooser;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import np.org.mpp.conv4.translit.NepaliTransliterationAbishek;
+import np.org.mpp.conv4.translit.NepaliTransliterationJacob;
+import np.org.mpp.conv4.utils.ConversionHandler;
+
 /**
  *
  * @author  j
  */
 public class ConversionPanelTrans extends ConversionPanel {
 
+  boolean initializing = true;
+  
     /** Creates new form ConversionPanelTrans */
     public ConversionPanelTrans() {
-        initComponents();
+      initComponents();
+      jComboBoxTransliterationScheme.setModel(new DefaultComboBoxModel(trans));
+        
+      DocumentListener listener = new DocumentListener() {
+
+        public void insertUpdate(DocumentEvent e) {
+          updateTextArea();
+        }
+
+        public void removeUpdate(DocumentEvent e) {
+          updateTextArea();
+        }
+
+        public void changedUpdate(DocumentEvent e) {
+          updateTextArea();
+        }
+
+      };
+
+      if (!java.beans.Beans.isDesignTime())  initializing = false;
+      
+      
+        jTextArea1.getDocument().addDocumentListener(listener);
+        jComboBoxTransliterationScheme.setSelectedIndex(prefs.getInt("scheme", 0)); 
+        jCheckBoxMakeExceptions.setSelected(prefs.getBoolean("useExceptions", false));
     }
 
     /** This method is called from within the constructor to
@@ -48,7 +82,7 @@ public class ConversionPanelTrans extends ConversionPanel {
 
     jTextArea1.setColumns(20);
     jTextArea1.setRows(5);
-    jTextArea1.setText("Type in or paste text here...\nक ख ग घ");
+    jTextArea1.setText("Type in or paste text here...\nक ख ग घ\n\nसय रुपिया नेपाल तिर");
     jScrollPane1.setViewportView(jTextArea1);
 
     jSplitPane1.setTopComponent(jScrollPane1);
@@ -65,13 +99,11 @@ public class ConversionPanelTrans extends ConversionPanel {
     jPanel2.setLayout(jPanel2Layout);
     jPanel2Layout.setHorizontalGroup(
       jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE)
+      .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 725, Short.MAX_VALUE)
     );
     jPanel2Layout.setVerticalGroup(
       jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGroup(jPanel2Layout.createSequentialGroup()
-        .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addContainerGap(45, Short.MAX_VALUE))
+      .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 383, Short.MAX_VALUE)
     );
 
     jTabbedPane1.addTab("Clipboard conversion", jPanel2);
@@ -102,7 +134,7 @@ public class ConversionPanelTrans extends ConversionPanel {
           .addComponent(jButtonOpenFile)
           .addComponent(jLabelSelectedFiles)
           .addComponent(jButtonRunConversion))
-        .addContainerGap(359, Short.MAX_VALUE))
+        .addContainerGap(550, Short.MAX_VALUE))
     );
     jPanel1Layout.setVerticalGroup(
       jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -113,46 +145,56 @@ public class ConversionPanelTrans extends ConversionPanel {
         .addComponent(jLabelSelectedFiles)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(jButtonRunConversion)
-        .addContainerGap(229, Short.MAX_VALUE))
+        .addContainerGap(290, Short.MAX_VALUE))
     );
 
     jTabbedPane1.addTab("File conversion", jPanel1);
 
     jComboBoxTransliterationScheme.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+    jComboBoxTransliterationScheme.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        transliterationSchemeActionPerformed(evt);
+      }
+    });
 
-    jCheckBoxMakeExceptions.setText("<html><body>Make<br>exceptions");
+    jCheckBoxMakeExceptions.setText("<html><body>Make speech<br>exceptions");
+    jCheckBoxMakeExceptions.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        transliterationSchemeActionPerformed(evt);
+      }
+    });
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
     this.setLayout(layout);
     layout.setHorizontalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-        .addContainerGap()
-        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 538, Short.MAX_VALUE)
-          .addGroup(layout.createSequentialGroup()
-            .addComponent(jLabelInfo)
-            .addGap(105, 105, 105)
-            .addComponent(jComboBoxTransliterationScheme, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
+      .addGroup(layout.createSequentialGroup()
+        .addGap(24, 24, 24)
+        .addComponent(jLabelInfo)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 229, Short.MAX_VALUE)
+        .addComponent(jComboBoxTransliterationScheme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addComponent(jCheckBoxMakeExceptions)
-        .addContainerGap())
+        .addComponent(jCheckBoxMakeExceptions))
+      .addGroup(layout.createSequentialGroup()
+        .addContainerGap()
+        .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 729, Short.MAX_VALUE))
     );
     layout.setVerticalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(layout.createSequentialGroup()
-        .addContainerGap()
-        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addGroup(layout.createSequentialGroup()
-            .addComponent(jLabelInfo)
-            .addGap(10, 10, 10))
-          .addGroup(layout.createSequentialGroup()
+            .addContainerGap()
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-              .addComponent(jCheckBoxMakeExceptions)
-              .addComponent(jComboBoxTransliterationScheme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-        .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE)
-        .addGap(12, 12, 12))
+              .addGroup(layout.createSequentialGroup()
+                .addComponent(jLabelInfo)
+                .addGap(10, 10, 10))
+              .addComponent(jCheckBoxMakeExceptions)))
+          .addGroup(layout.createSequentialGroup()
+            .addGap(18, 18, 18)
+            .addComponent(jComboBoxTransliterationScheme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE))
     );
   }// </editor-fold>//GEN-END:initComponents
 
@@ -177,6 +219,70 @@ private void jButtonRunConversionActionPerformed(java.awt.event.ActionEvent evt)
 }//GEN-LAST:event_jButtonRunConversionActionPerformed
 
 
+    ConversionHandler transliterator; // initialization delayed to later = new NepaliTransliterationJacob();
+
+
+
+
+
+
+    private final String[] trans = { "ALA-LC", "MS-Nepal", "Esperanto dictionary", "(choose file)" };
+    private int currentTransliteratorIndex = -2;
+
+
+private void transliterationSchemeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transliterationSchemeActionPerformed
+      if (initializing) return;
+    
+      int i = jComboBoxTransliterationScheme.getSelectedIndex();      
+      boolean useExceptions = jCheckBoxMakeExceptions.isSelected();
+      
+      //if (currentTransliteratorIndex != i) 
+      {
+          currentTransliteratorIndex = i;
+          prefs.putInt("scheme", currentTransliteratorIndex);
+          prefs.putBoolean("useExceptions", useExceptions);
+
+          switch (i) {
+          case 0:
+              transliterator = new NepaliTransliterationJacob("res/transliteration/NepaliALA-LC.xml", useExceptions);
+              break;
+          case 1:
+              transliterator = new NepaliTransliterationJacob("res/transliteration/NepaliJacob.xml", useExceptions);
+              break;
+          case 2:
+              transliterator = new NepaliTransliterationJacob("res/transliteration/NepaliJacobVortaro.xml", useExceptions);
+              break;
+          case 3:
+              prefs.putInt("scheme", 0);
+              JFileChooser browse = new JFileChooser(prefs.get("dir", "res/transliteration/"));
+              browse.setDialogTitle("Choose an XML transliteration file");
+              if (browse.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+                transliterator = new NepaliTransliterationJacob(browse.getSelectedFile().getPath(), useExceptions);
+                prefs.put("dir", browse.getSelectedFile().getParent());
+              }
+              break;
+          }
+          
+          jCheckBoxMakeExceptions.setEnabled(transliterator instanceof NepaliTransliterationJacob);
+          updateTextArea();
+      }
+  
+}//GEN-LAST:event_transliterationSchemeActionPerformed
+
+
+      private void updateTextArea() {
+        if (initializing) return;
+        if (!jTextArea1.isVisible()) return;
+        if (transliterator==null) transliterationSchemeActionPerformed(null);
+        
+        String txt = jTextArea1.getText();
+        String txt2 = transliterator.convertText(null, txt);
+        jTextArea2.setText(txt2);
+        
+      }
+
+
+      
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JButton jButtonOpenFile;
   private javax.swing.JButton jButtonRunConversion;

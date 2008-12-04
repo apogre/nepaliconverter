@@ -6,15 +6,22 @@
 
 package np.org.mpp.conv4.ui2;
 
+import java.util.prefs.Preferences;
+import javax.swing.UIManager;
+
 /**
  *
  * @author  j
  */
 public class ConversionToolsFrame extends javax.swing.JFrame {
 
+    Preferences prefs = Preferences.userNodeForPackage(this.getClass()).node(this.getClass().getSimpleName());
+
     /** Creates new form ConversionToolsFrame */
     public ConversionToolsFrame() {
         initComponents();
+        
+        jTabbedPane1.setSelectedIndex( prefs.getInt("tab",0));
     }
 
     /** This method is called from within the constructor to
@@ -36,6 +43,7 @@ public class ConversionToolsFrame extends javax.swing.JFrame {
     jButton3 = new javax.swing.JButton();
     jButton4 = new javax.swing.JButton();
     conversionPanelF2U1 = new np.org.mpp.conv4.ui2.ConversionPanelF2U();
+    conversionPanelTrans1 = new np.org.mpp.conv4.ui2.ConversionPanelTrans();
     jMenuBar1 = new javax.swing.JMenuBar();
     jMenu1 = new javax.swing.JMenu();
     jMenuItem1 = new javax.swing.JMenuItem();
@@ -66,6 +74,11 @@ public class ConversionToolsFrame extends javax.swing.JFrame {
 
     jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/np/org/mpp/conv4/ui/trans.png"))); // NOI18N
     jButton3.setText("<html><body>Convert from Devanagari to <br><b>Roman</b> transliteration");
+    jButton3.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton3ActionPerformed(evt);
+      }
+    });
     jPanel2.add(jButton3);
 
     jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/np/org/mpp/conv4/ui/exit.png"))); // NOI18N
@@ -87,7 +100,7 @@ public class ConversionToolsFrame extends javax.swing.JFrame {
           .addComponent(jLabel1)
           .addComponent(jLabel2)
           .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 610, javax.swing.GroupLayout.PREFERRED_SIZE))
-        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        .addContainerGap(193, Short.MAX_VALUE))
     );
     jPanel1Layout.setVerticalGroup(
       jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -98,11 +111,12 @@ public class ConversionToolsFrame extends javax.swing.JFrame {
         .addComponent(jLabel2)
         .addGap(18, 18, 18)
         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addContainerGap(185, Short.MAX_VALUE))
+        .addContainerGap(242, Short.MAX_VALUE))
     );
 
     jTabbedPane1.addTab("Welcome", jPanel1);
     jTabbedPane1.addTab("Font to Unicode", new javax.swing.ImageIcon(getClass().getResource("/np/org/mpp/conv4/ui/f2u.png")), conversionPanelF2U1); // NOI18N
+    jTabbedPane1.addTab("Transliterator", new javax.swing.ImageIcon(getClass().getResource("/np/org/mpp/conv4/ui/trans.png")), conversionPanelTrans1); // NOI18N
 
     jMenu1.setText("File");
 
@@ -127,11 +141,11 @@ public class ConversionToolsFrame extends javax.swing.JFrame {
     getContentPane().setLayout(layout);
     layout.setHorizontalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 638, Short.MAX_VALUE)
+      .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 819, Short.MAX_VALUE)
     );
     layout.setVerticalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 484, Short.MAX_VALUE)
+      .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 541, Short.MAX_VALUE)
     );
 
     pack();
@@ -140,6 +154,7 @@ public class ConversionToolsFrame extends javax.swing.JFrame {
 private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 // TODO add your handling code here:
   jTabbedPane1.setSelectedComponent(conversionPanelF2U1);
+  prefs.putInt("tab", jTabbedPane1.getSelectedIndex());
 }//GEN-LAST:event_jButton1ActionPerformed
 
 private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
@@ -147,19 +162,34 @@ private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:ev
   System.exit(0);
 }//GEN-LAST:event_exitActionPerformed
 
+private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+// TODO add your handling code here:
+  jTabbedPane1.setSelectedComponent(conversionPanelTrans1);  
+  prefs.putInt("tab", jTabbedPane1.getSelectedIndex());  
+}//GEN-LAST:event_jButton3ActionPerformed
+
     /**
     * @param args the command line arguments
     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+			try {
+			    UIManager.setLookAndFeel(UIManager
+				    .getSystemLookAndFeelClassName());
+			} catch (Exception exception) {
+			    exception.printStackTrace();
+			}
                 new ConversionToolsFrame().setVisible(true);
             }
         });
     }
-
+    
+    
+    
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private np.org.mpp.conv4.ui2.ConversionPanelF2U conversionPanelF2U1;
+  private np.org.mpp.conv4.ui2.ConversionPanelTrans conversionPanelTrans1;
   private javax.swing.JButton jButton1;
   private javax.swing.JButton jButton2;
   private javax.swing.JButton jButton3;

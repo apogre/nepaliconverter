@@ -15,41 +15,41 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jTabbedPane1" pref="538" max="32767" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="jLabelInfo" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="105" max="-2" attributes="0"/>
-                      <Component id="jComboBoxTransliterationScheme" min="-2" pref="135" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+              <Component id="jLabelInfo" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="229" max="32767" attributes="0"/>
+              <Component id="jComboBoxTransliterationScheme" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jCheckBoxMakeExceptions" min="-2" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
+              <Component id="jTabbedPane1" pref="729" max="32767" attributes="1"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="jLabelInfo" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jCheckBoxMakeExceptions" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jComboBoxTransliterationScheme" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jLabelInfo" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="jCheckBoxMakeExceptions" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                      <Component id="jComboBoxTransliterationScheme" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <Component id="jTabbedPane1" pref="351" max="32767" attributes="0"/>
-              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jTabbedPane1" pref="412" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -76,15 +76,12 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jSplitPane1" alignment="0" pref="534" max="32767" attributes="0"/>
+                  <Component id="jSplitPane1" alignment="0" pref="725" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="jSplitPane1" min="-2" pref="277" max="-2" attributes="0"/>
-                      <EmptySpace pref="45" max="32767" attributes="0"/>
-                  </Group>
+                  <Component id="jSplitPane1" alignment="0" pref="383" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
@@ -110,7 +107,7 @@
                       <Properties>
                         <Property name="columns" type="int" value="20"/>
                         <Property name="rows" type="int" value="5"/>
-                        <Property name="text" type="java.lang.String" value="Type in or paste text here...&#xa;&#x915; &#x916; &#x917; &#x918;"/>
+                        <Property name="text" type="java.lang.String" value="Type in or paste text here...&#xa;&#x915; &#x916; &#x917; &#x918;&#xa;&#xa;&#x938;&#x92f; &#x930;&#x941;&#x92a;&#x93f;&#x92f;&#x93e; &#x928;&#x947;&#x92a;&#x93e;&#x932; &#x924;&#x93f;&#x930;"/>
                       </Properties>
                     </Component>
                   </SubComponents>
@@ -157,7 +154,7 @@
                           <Component id="jLabelSelectedFiles" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jButtonRunConversion" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="359" max="32767" attributes="0"/>
+                      <EmptySpace pref="550" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -170,7 +167,7 @@
                       <Component id="jLabelSelectedFiles" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jButtonRunConversion" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="229" max="32767" attributes="0"/>
+                      <EmptySpace pref="290" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -212,11 +209,17 @@
           </StringArray>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="transliterationSchemeActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JCheckBox" name="jCheckBoxMakeExceptions">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;body&gt;Make&lt;br&gt;exceptions"/>
+        <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;body&gt;Make speech&lt;br&gt;exceptions"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="transliterationSchemeActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

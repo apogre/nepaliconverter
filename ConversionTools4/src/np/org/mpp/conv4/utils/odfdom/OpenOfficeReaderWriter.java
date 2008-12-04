@@ -32,7 +32,7 @@ import org.openoffice.odf.dom.util.NodeAction;
 public class OpenOfficeReaderWriter implements GeneralReaderWriter {
 
 //  http://develop.opendocumentfellowship.com/spec/
-  static boolean DEBUG=true;
+  static boolean DEBUG=false;
 
 
   static ConversionHandler loggingConversionHandler=new ConversionHandler() {
@@ -103,7 +103,6 @@ public class OpenOfficeReaderWriter implements GeneralReaderWriter {
     
     NodeAction<String> replaceText = new NodeAction<String>() {
 
-
         protected void apply(Node textNode, String replace, int depth) {
           if (textNode.getNodeType() != Node.TEXT_NODE) return;
           if (textNode.hasChildNodes()) return;
@@ -111,12 +110,12 @@ public class OpenOfficeReaderWriter implements GeneralReaderWriter {
           String teksto=textNode.getTextContent();
           if (teksto.trim().length()==0) return;
 
-          String font = StyleUtils.findStylePropertyForNode(textNode, OdfTextProperties.FontName);    
+          String font = StyleUtils.findActualStylePropertyValueForNode(textNode, OdfTextProperties.FontName);
 
           if (font==null || font.length()==0) {
             System.err.println("!!!!!! font==null for "+textNode);
           } else {
-          font=chopNumber(font);
+            font=chopNumber(font);
             
             String teksto2=conversionHandler.convertText(font, teksto);
             if (!teksto.trim().equals(teksto2.trim())) {
@@ -130,8 +129,8 @@ public class OpenOfficeReaderWriter implements GeneralReaderWriter {
               System.err.println("     "+font+":"+teksto);
           }
         }
-
     };
+
     OdfElement e = (OdfElement) odfDocument.getContentDom().getDocumentElement();
     replaceText.performAction(e, "hejsa");
     

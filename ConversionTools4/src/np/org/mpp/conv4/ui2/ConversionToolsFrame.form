@@ -52,12 +52,12 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jTabbedPane1" alignment="0" pref="638" max="32767" attributes="0"/>
+          <Component id="jTabbedPane1" alignment="0" pref="819" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jTabbedPane1" alignment="0" pref="484" max="32767" attributes="0"/>
+          <Component id="jTabbedPane1" alignment="0" pref="541" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -85,7 +85,7 @@
                           <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jPanel2" alignment="0" min="-2" pref="610" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="193" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -98,7 +98,7 @@
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jPanel2" min="-2" pref="196" max="-2" attributes="0"/>
-                      <EmptySpace pref="185" max="32767" attributes="0"/>
+                      <EmptySpace pref="242" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -155,6 +155,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;body&gt;Convert from Devanagari to &lt;br&gt;&lt;b&gt;Roman&lt;/b&gt; transliteration"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="jButton4">
                   <Properties>
@@ -178,6 +181,18 @@
                 <Property name="tabTitle" type="java.lang.String" value="Font to Unicode"/>
                 <Property name="tabIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/np/org/mpp/conv4/ui/f2u.png"/>
+                </Property>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="np.org.mpp.conv4.ui2.ConversionPanelTrans" name="conversionPanelTrans1">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="Transliterator">
+                <Property name="tabTitle" type="java.lang.String" value="Transliterator"/>
+                <Property name="tabIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/np/org/mpp/conv4/ui/trans.png"/>
                 </Property>
               </JTabbedPaneConstraints>
             </Constraint>

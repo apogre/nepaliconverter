@@ -152,6 +152,10 @@ public class ConversionPanel extends javax.swing.JPanel {
         } else {
             if (oooFileFilter.accept(inf)) {
                 System.out.println("convertFile("+inf+" , "+outf);
+                String fn = outf.getName();
+                fn = FilenameUtils.getBaseName(fn) + CONVEXT + "." +FilenameUtils.getExtension(fn);
+                outf = new File(outf.getParent(), fn);
+
                 inputOutputFiles.put(inf, outf);              
             }
         }
@@ -169,7 +173,7 @@ public class ConversionPanel extends javax.swing.JPanel {
       }
     }
 
-    static String CONVEXT = "_unicode";
+    String CONVEXT = "_unicode";
 
     void convertFile(File inf, File outf) {
         {
@@ -177,10 +181,6 @@ public class ConversionPanel extends javax.swing.JPanel {
             //if (allFileFilter.accept(inf)) {
                 // convert!
                 try {
-                    String fn = outf.getName();
-                    fn = FilenameUtils.getBaseName(fn) + CONVEXT + "." +FilenameUtils.getExtension(fn);
-                    outf = new File(outf.getParent(), fn);
-
 
                     if (outf.exists()) {
                         int retVal = JOptionPane.showConfirmDialog(this, "Would you like to overwrite "+outf+"?");
