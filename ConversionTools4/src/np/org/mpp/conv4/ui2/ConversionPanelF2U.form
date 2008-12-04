@@ -38,7 +38,7 @@
               <Component id="jLabelSelectedFiles" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jButtonRunConversion" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="191" max="32767" attributes="0"/>
+              <EmptySpace pref="206" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -58,9 +58,6 @@
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabelSelectedFiles">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jLabelSelectedFiles"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonRunConversion">
       <Properties>
