@@ -42,8 +42,6 @@ public class ConversionPanelF2U extends ConversionPanel {
       }
     });
 
-    jLabelSelectedFiles.setText("jLabelSelectedFiles");
-
     jButtonRunConversion.setText("Do conversion");
     jButtonRunConversion.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -75,7 +73,7 @@ public class ConversionPanelF2U extends ConversionPanel {
         .addComponent(jLabelSelectedFiles)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
         .addComponent(jButtonRunConversion)
-        .addContainerGap(191, Short.MAX_VALUE))
+        .addContainerGap(215, Short.MAX_VALUE))
     );
   }// </editor-fold>//GEN-END:initComponents
 

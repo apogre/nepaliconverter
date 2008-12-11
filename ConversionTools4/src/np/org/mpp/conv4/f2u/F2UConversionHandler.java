@@ -11,7 +11,7 @@ public class F2UConversionHandler implements ConversionHandler {
 
   private HashMap<String,Font2UnicodeMapping> mappings = new HashMap<String,Font2UnicodeMapping>();
 
-  private Font2UnicodeMappingFactory fc = new Font2UnicodeMappingFactory();
+  private Font2UnicodeMappingFactory f2uFactory = new Font2UnicodeMappingFactory();
 
   public static final Font2UnicodeMapping identity = new Font2UnicodeMapping.Identity();
 
@@ -40,7 +40,7 @@ public class F2UConversionHandler implements ConversionHandler {
       font = font.toLowerCase().replaceAll("[0..9]", "");
       mapping = mappings.get(font);
       if (mapping == null) {
-        mapping = fc.getMapping(font.toLowerCase().replaceAll("[0..9]", ""));
+        mapping = f2uFactory.getMapping(font.toLowerCase().replaceAll("[0..9]", ""));
       }
     } catch (Exception e) {
       //e.printStackTrace();
