@@ -187,7 +187,7 @@ public class Font2UnicodeMapping {
     input = processBackscan(input);
     input = removeDuplicatesAndReorderNonspacingMarks(input);
 
-    StringBuilder sb = new StringBuilder(input.length());
+    StringBuilder output = new StringBuilder(input.length());
 
 		// replace all with Unicode
 		int i = 0;
@@ -207,25 +207,25 @@ public class Font2UnicodeMapping {
 
 			if (e != null) {
 				// found a transscription
-				sb.append(e.unicLetter);
+				output.append(e.unicLetter);
         e.used = true;
 				i = i + e.fontLetter.length();
 			} else {
 				// none found; add original letter
-				sb.append(input.charAt(i));
+				output.append(input.charAt(i));
 				i++;
 			}
 		}
 
-		String s = sb.toString();
+		String s = output.toString();
 
     // Jacob TODO: 82% of CPU time is spent here, and 63% CPU is used on compiling
     // patterns. Caching the patterns would give a *2 or more speedup
 
 
 
-		// put the ii ि after the following consonant
-		String ii = "ि";
+		// put the i ि after the following consonant
+		String i_raswa = "ि";
 
 		// String allConsonantsWithPunct = "([" + Devanagari.NAZALIZATIONS
 		// +"]*["+ Devanagari.CONSONANTS+"])";
@@ -233,13 +233,13 @@ public class Font2UnicodeMapping {
 		String allConsonantsWithPunct = "([" + Devanagari.NAZALIZATIONS + "]*["
 				+ Devanagari.CONSONANTS + "]" + "(" + Devanagari.HALANTA + "["
 				+ Devanagari.CONSONANTS + "])*)";
-		s = s.replaceAll(ii + allConsonantsWithPunct, "$1" + ii);
+		s = s.replaceAll(i_raswa + allConsonantsWithPunct, "$1" + i_raswa);
 
 		// put all nazalizations after the vocal flags
 		s = s.replaceAll("([" + Devanagari.NAZALIZATIONS + "]+)(["
 				+ Devanagari.VOCALFLAGS + "]+)", "$2$1");
 
-
+     // If there is many of a nonspacing character , then replace with just one
 		for (int j = 0; j < NONSPAC.length(); j++)
 			s = s.replaceAll(NONSPAC.charAt(j) + "+", "" + NONSPAC.charAt(j));
 
