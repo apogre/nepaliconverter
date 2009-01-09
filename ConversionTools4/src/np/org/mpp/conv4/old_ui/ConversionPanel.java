@@ -1,4 +1,4 @@
-package np.org.mpp.conv4.ui;
+package np.org.mpp.conv4.old_ui;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -10,7 +10,7 @@ import javax.swing.border.EtchedBorder;
 
 import np.org.mpp.conv4.ui.dnd.ClipboardObserver;
 import np.org.mpp.conv4.ui.dnd.FilesAndHtmlTransferHandler;
-import np.org.mpp.conv4.ui.WidgetFactory;
+import np.org.mpp.conv4.old_ui.WidgetFactory;
 import java.io.*;
 import java.awt.datatransfer.*;
 import np.org.mpp.conv4.ui.dnd.HtmlSelection;

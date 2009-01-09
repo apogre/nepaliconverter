@@ -1,13 +1,13 @@
 /**
  *
  */
-package np.org.mpp.conv4.ui;
+package np.org.mpp.conv4.old_ui;
 
 import java.awt.*;
 
 import javax.swing.*;
 
-import np.org.mpp.conv4.ui.WidgetFactory;
+import np.org.mpp.conv4.old_ui.WidgetFactory;
 
 /**
  * @author Abhishek

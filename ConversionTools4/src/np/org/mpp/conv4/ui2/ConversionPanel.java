@@ -29,7 +29,17 @@ import np.org.mpp.conv4.utils.*;
  * @author  j
  */
 public class ConversionPanel extends javax.swing.JPanel {
+/*
 
+As for the font-to-Unicode, it would be a good to have a tab similar to that of the transliterator for conversion on keypress event. 
+
+
+Conv ersion that strips/inserts non-combining characters? 
+ 
+ 
+ */
+  
+  
     /** Creates new form ConversionPanel */
     public ConversionPanel() {
         initComponents();
