@@ -1,14 +1,12 @@
 package np.org.mpp.conv4;
 
+import np.org.mpp.conv4.old_ui.MainFrame;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
-
-//import np.org.mpp.conv4.old_ui_abishek.*;
-import np.org.mpp.conv4.ui.*;
 import java.io.*;
 import np.org.mpp.conv4.translit.NepaliTransliterationJacob;
 

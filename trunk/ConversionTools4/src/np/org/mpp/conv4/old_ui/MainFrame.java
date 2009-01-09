@@ -1,4 +1,4 @@
-package np.org.mpp.conv4.ui;
+package np.org.mpp.conv4.old_ui;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import np.org.mpp.conv4.ui.WidgetFactory;
+import np.org.mpp.conv4.old_ui.WidgetFactory;
 import javax.swing.JComponent;
 import javax.swing.AbstractButton;
 import javax.swing.*;
