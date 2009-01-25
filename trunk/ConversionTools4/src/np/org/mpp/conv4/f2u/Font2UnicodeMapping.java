@@ -21,7 +21,7 @@ public class Font2UnicodeMapping {
 		}
 	}
 
-	HashMap<String, F2Uelement> f2u = new LinkedHashMap<String, F2Uelement>();
+	HashMap<String, F2Uelement> fontLetter_to_F2UElement = new LinkedHashMap<String, F2Uelement>();
 	ArrayList<F2Uelement> elem = new ArrayList<F2Uelement>();
 
 	int maxfontLetter = 0;
@@ -55,7 +55,7 @@ public class Font2UnicodeMapping {
 		e.priority = lineNr; //elem.size()+10;
 		elem.add(e);
 
-		F2Uelement old = f2u.put(e.fontLetter, e);
+		F2Uelement old = fontLetter_to_F2UElement.put(e.fontLetter, e);
     /*
     char[] ca = fontLetter.toCharArray();
     Arrays.sort(ca);
@@ -85,16 +85,16 @@ public class Font2UnicodeMapping {
 	 */
 	private void checkConsistency() {
 		for (char c = 33; c < 255; c++) {
-			if (f2u.get("" + c) == null) {
+			if (fontLetter_to_F2UElement.get("" + c) == null) {
         System.out.println("WARNING: Character missing in table: \t" + c + "\t"
                            + c + "\tChar " + c + " " + hex(c));
         addLetter("" + c, "MISSING CHARACTER " + hex(c));
 			}
 		}
 
-		for (F2Uelement e : f2u.values()) {
+		for (F2Uelement e : fontLetter_to_F2UElement.values()) {
 			if (e.fontLetter.length() > 1) {
-				F2Uelement eSingleLetter = f2u.get(e.fontLetter.substring(0, 1));
+				F2Uelement eSingleLetter = fontLetter_to_F2UElement.get(e.fontLetter.substring(0, 1));
 				if (eSingleLetter != null && eSingleLetter.priority > e.priority) {
 					System.out.println("WARNING: Rule " + e
 									+ " would never be used as it has lower priority than rule "
@@ -126,7 +126,7 @@ public class Font2UnicodeMapping {
    * Print out table entries which have not been used. For testing putposes
    */
   public void printUsage() {
-      for (F2Uelement e : f2u.values()) {
+      for (F2Uelement e : fontLetter_to_F2UElement.values()) {
         if (!e.used) {
           System.out.println("This element was not used during test: " + e);
         }
@@ -143,7 +143,7 @@ public class Font2UnicodeMapping {
     checkConsistency();
 
     // Pre-processinhg of BACKSCAN directive: ensure a place for the char to match
-    for (F2Uelement e : f2u.values()) {
+    for (F2Uelement e : fontLetter_to_F2UElement.values()) {
         if ("BACKSCAN".equals(e.unicLetter)) {
             BACKSCAN_MARKS = BACKSCAN_MARKS + e.fontLetter;
             e.used = true;
@@ -159,7 +159,7 @@ public class Font2UnicodeMapping {
     if (FONT_NONSPAC.size()==0) {
       System.out.println("Warning: FONT_NONSPAC list not found, trying to autogenerate it from mapping");
 
-      for (F2Uelement e : f2u.values()) {
+      for (F2Uelement e : fontLetter_to_F2UElement.values()) {
         if (e.unicLetter.length() == 1 && e.fontLetter.length() == 1 && NONSPAC.indexOf(e.unicLetter) != -1) {
           FONT_NONSPAC.add(e.fontLetter);
           System.out.println("added to FONT_NONSPAC = " + e + " char no " + (int) e.unicLetter.charAt(0));
@@ -168,7 +168,7 @@ public class Font2UnicodeMapping {
 
       // It also seems that for Preeti { (R halanta) is a non-spacing mark for which duplicates needs to be removed.
       {
-        F2Uelement e = f2u.get("{");
+        F2Uelement e = fontLetter_to_F2UElement.get("{");
         FONT_NONSPAC.add(e.fontLetter);
         System.out.println("added to FONT_NONSPAC = " + e + " char no " + (int) e.unicLetter.charAt(0));
       }
@@ -196,7 +196,7 @@ public class Font2UnicodeMapping {
 
 
 			for (int j = 1; j < maxfontLetter && j + i <= input.length(); j++) {
-				F2Uelement e2 = f2u.get(input.substring(i, i + j));
+				F2Uelement e2 = fontLetter_to_F2UElement.get(input.substring(i, i + j));
 				if (e2 != null) {
 					if (e == null)
 						e = e2;
@@ -295,7 +295,7 @@ public class Font2UnicodeMapping {
             }
 
             String keyToLookFor = input.substring(i - 1, i + 1);
-            F2Uelement e = f2u.get(keyToLookFor); // TODO also 3, 4 chars
+            F2Uelement e = fontLetter_to_F2UElement.get(keyToLookFor); // TODO also 3, 4 chars
             if (e == null) {
               // it wasnt in thge mapping! We need to backscan!
               input = input.substring(0, i - 1)
@@ -352,7 +352,7 @@ public class Font2UnicodeMapping {
                 char c1 = sb2.charAt(k);
                 if (c0 == c1) {
                   sb2.deleteCharAt(k); // delete duplicate
-                } else if (f2u.get(""+c0).unicLetter.compareTo(f2u.get(""+c1).unicLetter)<0) {
+                } else if (fontLetter_to_F2UElement.get(""+c0).unicLetter.compareTo(fontLetter_to_F2UElement.get(""+c1).unicLetter)<0) {
                   sb2.setCharAt(k-1, c1); // swap chars
                   sb2.setCharAt(k, c0);
                   k=1; // and start over (very ineffective sorting :-)
