@@ -1,4 +1,4 @@
-package np.org.mpp.conv4.old_f2u;
+package np.org.mpp.old.old_f2u;
 /**
  * Copyright (C) 2008 Madan Puraskar Pustakalaya - http://mpp.org.np/
  * and Jacob Nordfalk - http://javabog.dk
@@ -23,7 +23,7 @@ package np.org.mpp.conv4.old_f2u;
 import java.io.*;
 
 
-public class Kantipur extends NonUnicodeFont
+public class Preeti extends NonUnicodeFont
 {
 
      int ascii_value;
@@ -33,80 +33,104 @@ public class Kantipur extends NonUnicodeFont
      public void toUnicode(StringBuffer output, String input)
      {
        problemsInLastConversion.clear();
-		int p=0;
-		tmp= input.charAt(p) ;
-		ascii_value=(int)tmp;
-		    p++;
-		int array[]=new int[10];
-		while (p<(input.length()))
-		try {
+
+	    int p=0;
+	    tmp= input.charAt(p) ;
+	    ascii_value=(int)tmp;
+		p++;
+	    int array[]=new int[10];
+	    while (p<(input.length()))
+	    try {
 		    flag="yes";
 		    rahswa_fin="no";
 
-		    //*******************************chya ra anra********************************* //
+//*******************************************chya ra anra************************************************************ //
 		    if(ascii_value == 73 || ascii_value==48)
 		    {
 			    array[1] = ascii_value;
-			    tmp = input.charAt(p);
-			    ascii_value=(int)tmp;
-			    p++;
-			    if(ascii_value == 102||ascii_value==70)
+			    tmp = input.charAt(p);ascii_value=(int)tmp;p++;
+
+			    if(ascii_value == 102)
 			    {
+
 				if(array[1] == 73)
 				{
-				    output.append("\u0915\u094d\u0937");
-				    tmp = input.charAt(p);ascii_value=(int)tmp;p++;
+					output.append("\u0915\u094d\u0937");
+					tmp = input.charAt(p);ascii_value=(int)tmp;p++;
+
+
 				}
 				else
 				{
-				    output.append("\u0923");
-				    tmp = input.charAt(p);ascii_value=(int)tmp;p++;
+					output.append("\u0923");
+					tmp = input.charAt(p);ascii_value=(int)tmp;p++;
 				}
 			    }
 			    else
 			    {
+
+
 				output.append(value(array[1]));
+
 			    }
+
+
 		    }
 		    else
-		    //************************************a,o,aa,au************************************//
 
+//**************************************************a,o,aa,au************************************//
 		    if(ascii_value==99)
 		    {
-			 array[1]=ascii_value;
-			 tmp = input.charAt(p);ascii_value=(int)tmp;p++;
+			    array[1]=ascii_value;
+			    tmp = input.charAt(p);ascii_value=(int)tmp;p++;
 
-			 if(ascii_value==102||ascii_value==70)
-			 {//aa
-			       array[2]=ascii_value;
-			       tmp = input.charAt(p);ascii_value=(int)tmp;p++;
-			       if(ascii_value==93)
-			       {//o
-				    output.append("\u0913");
+				if(ascii_value==102)
+				{//aa
+				    array[2]=ascii_value;
 				    tmp = input.charAt(p);ascii_value=(int)tmp;p++;
-			       }
-			       else
+				    if(ascii_value==93)
+				    {//o
 
-				  if(ascii_value==125)
-				  {//au
+					    output.append("\u0913");
+					    tmp = input.charAt(p);ascii_value=(int)tmp;p++;
+				    }
+				    else
+
+				    if(ascii_value==125)
+				    {//au
 					output.append("\u0914");
 					tmp = input.charAt(p);ascii_value=(int)tmp;p++;
-				   }
-				   else
-				   {
-					output.append("\u0906");
-				   }
-			  }
-			  else
-			  {
-			       output.append(value(array[1]));
-			  }
+				    }
+				    else
+				    {
+					    output.append("\u0906");
+				    }
+				 }
+				 else
+				 {
+				    output.append(value(array[1]));
+				 }
 		    }
 
 		    else
-		    //***************************************for ref***************************//
+//*************************************************for Purnabiram and other mark***************************************//
+		    if(ascii_value==46||ascii_value==60||ascii_value==219)
+		    {
+			  int k=1;
+			  String a;
+			  String str[] = new String[10];
+			  str[k]=output.substring(output.length()-k,output.length());
 
-			    if(ascii_value==123)
+			  if(str[k].equals("\u0020"))
+			  {
+			      output.delete(output.length()-k, output.length());
+			  }
+			  output.append(value(ascii_value));
+			  tmp = input.charAt(p);ascii_value=(int)tmp;p++;
+		     }
+		       else
+		    //***************************************for ref***************************//
+						if(ascii_value==123)
 			    {
 			  int k=1;
 			  String a;
@@ -116,7 +140,6 @@ public class Kantipur extends NonUnicodeFont
 			  {
 								  output.delete(output.length()-k, output.length());
 								output.append("\u0908");
-
 						  }
 						  else
 						  {
@@ -149,119 +172,65 @@ public class Kantipur extends NonUnicodeFont
 
 			  tmp = input.charAt(p);ascii_value=(int)tmp;p++;
 		       }
+
 		       else
-//*************************************************for Purnabiram and other mark***************************************//
-		    if(ascii_value==46||ascii_value==60||ascii_value==134)
-		    {
-			  int k=1;
-			  String a;
-			  String str[] = new String[10];
-			  str[k]=output.substring(output.length()-k,output.length());
-
-			  if(str[k].equals("\u0020"))
-			  {
-			      output.delete(output.length()-k, output.length());
-			  }
-			  output.append(value(ascii_value));
-			  tmp = input.charAt(p);ascii_value=(int)tmp;p++;
-		     }
-		       else
-	  ///***********************for kta in yukta****************************************///
-			if(ascii_value==81)
-			{
-			    array[1]=ascii_value;
-			    tmp = input.charAt(p);ascii_value=(int)tmp;p++;
-
-			    if(ascii_value==109)
-			    {
-
-				output.append("\u0915\u094d\u0924");
-				tmp = input.charAt(p);ascii_value=(int)tmp;p++;
-			    }
-			    else
-			    {
-				output.append(value(array[1]));
-			    }
-
-			}
-			else
-
-//*************************************************for Purnabiram and other mark***************************************//
-		    if(ascii_value==77)
-		    {
-			  int k=1;
-			  String a;
-			  String str[] = new String[10];
-			  str[k]=output.substring(output.length()-k,output.length());
-
-			  if(str[k].equals("\u0020"))
-			  {
-			      output.delete(output.length()-k, output.length());
-			      output.append("\u003A");
-			  }
-			  else
-			  output.append("\u0903");
-			  tmp = input.charAt(p);ascii_value=(int)tmp;p++;
-		     }
-		       else
-/*                        //////***************************for bisarga and column***********************
-			 if(ascii_value==77)
+		     ///***********************for kta in yukta****************************************///
+		     if(ascii_value==81)
+		     {
+			 array[1]=ascii_value;
+			 tmp = input.charAt(p);ascii_value=(int)tmp;p++;
+			 if(ascii_value==109)
 			 {
-						       array[1]=ascii_value;
-						       tmp = input.charAt(p-2);
-						       ascii_value=(int)tmp;
-						       //p++;
+			       output.append("\u0915\u094d\u0924");
+			       tmp = input.charAt(p);ascii_value=(int)tmp;p++;
+			 }
+			 else
+			 {
+				output.append(value(array[1]));
+			 }
 
-						       if(ascii_value!=32)
-						       {
-					   output.append("\u0903");
-							   tmp = input.charAt(p);ascii_value=(int)tmp;p++;
-						       }
-						       else
-						       {
-					   output.append(value(array[1]));
-			       }
-			    }
-			else*/
+		     }
+		     else
 
-			///*****************for dirga u********************************
-			if(ascii_value==112)
-			{
-						       array[1]=ascii_value;
-						       tmp = input.charAt(p);
-						       ascii_value=(int)tmp;
-						       p++;
+		     //////***************************for bisarga and column***********************
+					 if(ascii_value==77)
+					 {
+					       array[1]=ascii_value;
+					       tmp = input.charAt(p-2);
+					       ascii_value=(int)tmp;
+					       //p++;
+					       if(ascii_value!=32)
+					       {
+				   output.append("\u0903");
+						   tmp = input.charAt(p);ascii_value=(int)tmp;p++;
+					       }
+					       else
+					       {
+				   output.append(value(array[1]));
+			   }
+		      }
+		      else
 
-						       if(ascii_value==109)
-						       {
-							   output.append("\u090a");
-							   tmp = input.charAt(p);ascii_value=(int)tmp;p++;
-						       }
-						       else
-						       {
-								   output.append(value(array[1]));
-							   }
-						}
-			else
 
-			////***************************tra****************************//
-			if(ascii_value==54)
-			{
+		       ////***************************tra****************************//
+		     if(ascii_value==54)
+		     {
 			    array[1]=ascii_value;
 			    tmp = input.charAt(p);ascii_value=(int)tmp;p++;
 			    if(ascii_value==171)
 			    {
-				output.append("\u091f\u094d\u0930");
-				tmp = input.charAt(p);ascii_value=(int)tmp;p++;
+				    output.append("\u091f\u094d\u0930");
+				    tmp = input.charAt(p);ascii_value=(int)tmp;p++;
 			    }
 			    else
 			    {
-				output.append(value(array[1]));
-			    }
-			}
-			else
+				    output.append(value(array[1]));
 
-			//***************************ngra******************//
+			    }
+		      }
+		      else
+
+		      //***************************ngra******************//
 			  /*  if(ascii_value==203){
 			    array[1]=ascii_value;
 			    tmp = input.charAt(p);ascii_value=(int)tmp;p++;
@@ -279,43 +248,62 @@ public class Kantipur extends NonUnicodeFont
 			}
 			else*/
 
-			//****************************for pet chireko sa**********************//
-			if(ascii_value==105)
-			{
-			     array[1]=ascii_value;
-			     tmp = input.charAt(p);ascii_value=(int)tmp;p++;
-			     if(ascii_value==102||ascii_value==70)
-			     {
-				  output.append("\u0937");
+			///*****************for dirga u********************************
+						 if(ascii_value==112)
+						 {
+						      array[1]=ascii_value;
+							  tmp = input.charAt(p);ascii_value=(int)tmp;p++;
+							  if(ascii_value==109)
+							  {
+							   output.append("\u090a");
+							       tmp = input.charAt(p);ascii_value=(int)tmp;p++;
+							  }
+							  else
+							  {
+							      output.append(value(array[1]));
+						      }
+						  }
+						  else
+
+			  //****************************for pet chireko sa**********************//
+
+			  if(ascii_value==105)
+			  {
+				array[1]=ascii_value;
+				tmp = input.charAt(p);ascii_value=(int)tmp;p++;
+
+				if(ascii_value==102)
+				{
+				       output.append("\u0937");
+				       tmp = input.charAt(p);ascii_value=(int)tmp;p++;
+				}
+				else
+				{
+					unicode_string=value(array[1]);
+					output.append(value(array[1]));;
+				}
+			    }
+			    else
+
+			    //********************************for kra**************************//
+				 if(ascii_value==113)
+				 {
+				  array[1] = ascii_value;
 				  tmp = input.charAt(p);ascii_value=(int)tmp;p++;
-			     }
-			     else
-			     {
-				  unicode_string=value(array[1]);
-				  output.append(value(array[1]));;
-			     }
+
+				  if(ascii_value==109)
+				  {
+					output.append("\u0915\u094d\u0930");
+					tmp = input.charAt(p);ascii_value=(int)tmp;p++;
+				  }
+
+				  else
+				  {
+					output.append(value(array[1]));;
+				  }
 			 }
 			 else
-
-			 //********************************for kra**************************//
-			 if(ascii_value==113)
-			 {
-			      array[1] = ascii_value;
-			      tmp = input.charAt(p);ascii_value=(int)tmp;p++;
-
-			      if(ascii_value==109)
-			      {
-				    output.append("\u0915\u094d\u0930");
-				    tmp = input.charAt(p);ascii_value=(int)tmp;p++;
-			      }
-			      else
-			      {
-				    output.append(value(array[1]));;
-			      }
-			 }
-			 else
-
-//********************************************** for pha,Jha,ka and other**********************************************
+ //*************************************** for pha,Jha,ka and other**********************************************
 			  if(ascii_value==107||ascii_value==106||ascii_value==101)
 			  {
 							  array[1] = ascii_value;
@@ -332,7 +320,7 @@ public class Kantipur extends NonUnicodeFont
 							  int gh=0;
 							  gh=ascii_value;
 							  f=p;
-							  while(ascii_value==34||ascii_value==39||ascii_value==92||ascii_value==91||ascii_value==93||ascii_value==123||ascii_value==125||ascii_value==70||ascii_value==43||ascii_value==124)
+							  while(ascii_value==34||ascii_value==39||ascii_value==91||ascii_value==92||ascii_value==93||ascii_value==123||ascii_value==125||ascii_value==70||ascii_value==43||ascii_value==124)
 							  {
 								  pha_array[num]=ascii_value;
 								  num++;
@@ -403,7 +391,6 @@ public class Kantipur extends NonUnicodeFont
 											     }
 											}
 										}
-
 										for(int h=1;h<num;h++)
 									   {
 										   if(pha_array[h]==92)
@@ -526,11 +513,12 @@ public class Kantipur extends NonUnicodeFont
 							else
 
 
-			   //**************for aae********************//
-			   if(ascii_value==80)
-			   {
+			 //**************for aae********************//
+			  if(ascii_value==80)
+			  {
 				  array[1] = ascii_value;
 				  tmp = input.charAt(p);ascii_value=(int)tmp;p++;
+
 				  if(ascii_value==93)
 				  {
 					output.append("\u0910");
@@ -540,60 +528,61 @@ public class Kantipur extends NonUnicodeFont
 				  {
 					output.append(value(array[1]));;
 				  }
-				 }
-				 /* else
+			 }
+			 else
 
-				 if(ascii_value==79)
-				 {// raswa e and dirgha e
-				    array[1] = ascii_value;
+			 /*if(ascii_value==79)
+			 {// raswa e and dirgha e
+			    array[1] = ascii_value;
+			    tmp = input.charAt(p);ascii_value=(int)tmp;p++;
+
+			    if(ascii_value==123)
+			    {
+				    output.append("\u0908");
 				    tmp = input.charAt(p);ascii_value=(int)tmp;p++;
+			    }
+			    else
+			    {
+				    output.append("\u0907");
 
-				     if(ascii_value==123)
-				 {
-				      output.append("\u0908");
-				      tmp = input.charAt(p);ascii_value=(int)tmp;p++;
-				 }
-				     else
-				 {
-				      output.append("\u0907");
-					 }
-				 }*/
+			    }
+			 }
+			 else*/
 
+			 if(ascii_value == 102)
+			 {//for okar and aukar //
+				array[1] = ascii_value;
+				tmp = input.charAt(p);ascii_value=(int)tmp;p++;
+
+				if(ascii_value == 93||ascii_value==125)
+				{
+				    if(ascii_value == 93)
+				    {
+					output.append("\u094b");
+					tmp = input.charAt(p);ascii_value=(int)tmp;p++;
+				    }
+				    else
+				    {
+					 output.append("\u094c");
+					 tmp = input.charAt(p);ascii_value=(int)tmp;p++;
+				    }
+				}
 				else
+				{
+					output.append(value(array[1]));;
+				}
 
-				if(ascii_value == 102)
-				{//for okar and aukar //
-				       array[1] = ascii_value;
-				       tmp = input.charAt(p);ascii_value=(int)tmp;p++;
-					    if(ascii_value == 93||ascii_value==125)
-				       {
-					   if(ascii_value == 93)
-					   {
-						      output.append("\u094b");
-						       tmp = input.charAt(p);ascii_value=(int)tmp;p++;
-					      }
-					      else
-					       {
-						    output.append("\u094c");
-						    tmp = input.charAt(p);ascii_value=(int)tmp;p++;
-					       }
-					}
-					else
-					{
-				     output.append(value(array[1]));;
-					}
-					 }
-			     else
+			 }
+			 else
 
-			     //**************************************for rashwa ekar******************************//
-			     if(ascii_value == 108)
-			     {
-
+			 //**************************************for rashwa ekar******************************//
+			 if(ascii_value == 108)
+			 {
 				 array[1]=ascii_value;
 				 int i = 1;
 				 tmp = input.charAt(p);ascii_value=(int)tmp;p++;
-
 				 // for ??? in yukti
+
 				 if(ascii_value==81)
 				 {
 				      array[2]=ascii_value;
@@ -601,18 +590,17 @@ public class Kantipur extends NonUnicodeFont
 
 				      if(ascii_value==109)
 				      {
-					  output.append("\u0915\u094d\u0924"+value(array[1]));
-					  flag = "no";
-					  tmp = input.charAt(p);ascii_value=(int)tmp;p++;
-					  rahswa_fin="yes";
+					   output.append("\u0915\u094d\u0924"+value(array[1]));
+					   flag = "no";
+					   tmp = input.charAt(p);ascii_value=(int)tmp;p++;
+					   rahswa_fin="yes";
 				       }
 				       else
 				       {
 					   output.append(value(array[2]));
 					   output.append(value(array[1]));;
 					   rahswa_fin="yes";
-				       }
-
+					}
 				   }
 				   else
 
@@ -621,55 +609,52 @@ public class Kantipur extends NonUnicodeFont
 				   {
 					array[2]=ascii_value;
 					tmp = input.charAt(p);ascii_value=(int)tmp;p++;
-
 					if(ascii_value==124)
 					{
-					     output.append("\u0915\u094d\u0930"+value(array[1]));
-					     flag = "no";
-					     tmp = input.charAt(p);ascii_value=(int)tmp;p++;
-					     rahswa_fin="yes";
-					}
-					else
-					{
-					     output.append(value(array[2]));
-					     output.append(value(array[1]));;
-					     rahswa_fin="yes";
-					}
-				    }
-				    else
+						output.append("\u0915\u094d\u0930"+value(array[1]));
+						flag = "no";
+						tmp = input.charAt(p);ascii_value=(int)tmp;p++;
+						rahswa_fin="yes";
+					 }
+					 else
+					 {
+					       output.append(value(array[2]));
+					       output.append(value(array[1]));;
+					       rahswa_fin="yes";
+					 }
+				     }
+				     else
 
 				    //***********for dra**************//
-				    if(ascii_value==56)
-				    {
-					  array[2]=ascii_value;
-					  tmp = input.charAt(p);ascii_value=(int)tmp;p++;
+				     if(ascii_value==56)
+				     {
+					    array[2]=ascii_value;
+					    tmp = input.charAt(p);ascii_value=(int)tmp;p++;
 
-					  if(ascii_value==171)
-					  {
+					    if(ascii_value==171)
+					    {
 						output.append("\u0921\u094d\u0930"+value(array[1]));
 						flag = "no";
 						tmp = input.charAt(p);ascii_value=(int)tmp;p++;
 						rahswa_fin="yes";
-					   }
-					   else
-					   {
+					    }
+					    else
+					    {
 						output.append(value(array[2]));
 						output.append(value(array[1]));;
 						rahswa_fin="yes";
 					    }
 
-				      }
-				      else
+					}
+					else
 
-				       //***********for dra another da**************//
-				      if(ascii_value==98)
-				      {
+					 //***********for dra another da**************//
+					if(ascii_value==98)
+					{
 					    array[2]=ascii_value;
 					    tmp = input.charAt(p);ascii_value=(int)tmp;p++;
-
 					    if(ascii_value==124)
 					    {
-
 						output.append("\u0926\u094d\u0930"+value(array[1]));
 						flag = "no";
 						tmp = input.charAt(p);ascii_value=(int)tmp;p++;
@@ -681,28 +666,26 @@ public class Kantipur extends NonUnicodeFont
 						output.append(value(array[1]));;
 						rahswa_fin="yes";
 					    }
-
 					}
 					else
 
 					// *************for fa************//
 					if(ascii_value==107)
 					{
-
 					    array[2]=ascii_value;
 					    tmp = input.charAt(p);ascii_value=(int)tmp;p++;
 					    if(ascii_value==109)
 					    {
-
 						output.append("\u092b"+value(array[1]));
 						flag = "no";
 						tmp = input.charAt(p);ascii_value=(int)tmp;p++;
 						rahswa_fin="yes";
 					    }
-						 else//************pra**************//
+						 else
+
+						 //************pra**************//
 					    if(ascii_value==124)
 					    {
-
 						tmp = input.charAt(p);ascii_value=(int)tmp;p++;
 						if(ascii_value==109)
 						{
@@ -719,47 +702,40 @@ public class Kantipur extends NonUnicodeFont
 							rahswa_fin="yes";
 						}
 					    }
-					     else
+					    else
 					    {
 						output.append(value(array[2]));
 						output.append(value(array[1]));;
 						rahswa_fin="yes";
 						//flag = "no";//test
 					    }
-
 					}
 					else
 
 					//*************jha*****************//
 					if(ascii_value==101)
 					{
-
 					    array[2]=ascii_value;
 					    tmp = input.charAt(p);ascii_value=(int)tmp;p++;
-
 					    if(ascii_value==109)
 					    {
-
 						output.append("\u091d"+value(array[1]));
 						flag = "no";
 						tmp = input.charAt(p);ascii_value=(int)tmp;p++;
 						rahswa_fin="yes";
 					    }
-
 						 else
 					    {
 						output.append(value(array[2]));
 						output.append(value(array[1]));;
 						rahswa_fin="yes";
 					    }
-
-					 }
-					 else
+					}
+					else
 
 					//************kra*********************//
 					if(ascii_value==113)
 					{
-
 					    array[2]=ascii_value;
 					    tmp = input.charAt(p);ascii_value=(int)tmp;p++;
 					    if(ascii_value==109)
@@ -770,41 +746,38 @@ public class Kantipur extends NonUnicodeFont
 						rahswa_fin="yes";
 					    }
 					    else
-					    if(ascii_value==92)
-					    {
-												    output.append("\u0924\u094d\u0930\u094d");
-												    flag = "no";
-												    tmp = input.charAt(p);ascii_value=(int)tmp;p++;
-												    output.append(value(ascii_value));
-												    tmp = input.charAt(p);ascii_value=(int)tmp;p++;
-												    output.append(value(array[1]));
-													rahswa_fin="yes";
-					    }
-											else
+											if(ascii_value==92)
+											{
+												output.append("\u0924\u094d\u0930\u094d");
+												flag = "no";
+												tmp = input.charAt(p);ascii_value=(int)tmp;p++;
+												output.append(value(ascii_value));
+												tmp = input.charAt(p);ascii_value=(int)tmp;p++;
+												output.append(value(array[1]));
+												rahswa_fin="yes";
+											}
+						 else
 					    {
 						output.append(value(array[2]));
 						output.append(value(array[1]));;
 						rahswa_fin="yes";
 					    }
-
 					}
-										else
+					else
 
 					//************bra*********************//
 					 if(ascii_value==97)
 					 {
-
 					    array[2]=ascii_value;
 					    tmp = input.charAt(p);ascii_value=(int)tmp;p++;
+
 					    if(ascii_value==124)
 					    {
-
 						output.append("\u092c\u094d\u0930"+value(array[1]));
-
 						flag = "no";
 						tmp = input.charAt(p);ascii_value=(int)tmp;p++;
 						rahswa_fin="yes";
-					    }
+						 }
 						 else
 					    {
 						output.append(value(array[2]));
@@ -818,19 +791,16 @@ public class Kantipur extends NonUnicodeFont
 					//****************gra************************//
 					if(ascii_value==117)
 					{
-
 					    array[2]=ascii_value;
 					    tmp = input.charAt(p);ascii_value=(int)tmp;p++;
 					    if(ascii_value==124)
 					    {
-
 						output.append("\u0917\u094d\u0930"+value(array[1]));
-
 						flag = "no";
 						tmp = input.charAt(p);ascii_value=(int)tmp;p++;
 						rahswa_fin="yes";
 					    }
-					    else
+						 else
 					    {
 						output.append(value(array[2]));
 						output.append(value(array[1]));;
@@ -838,18 +808,15 @@ public class Kantipur extends NonUnicodeFont
 					    }
 
 					}
-					else
 
 					//for the half characters that are present after the rahswa ekar//
-					if(rahswa_fin!="yes")
-					{
-						while (ascii_value == 48||ascii_value == 58||ascii_value == 65||ascii_value == 69||ascii_value == 68||ascii_value == 71||ascii_value == 72||ascii_value == 73||ascii_value == 74||ascii_value == 75||ascii_value == 78||ascii_value == 82||ascii_value == 83||ascii_value == 84||ascii_value == 85||ascii_value == 86||ascii_value == 87||ascii_value == 88||ascii_value == 89||ascii_value == 90||ascii_value == 105||ascii_value == 124||ascii_value == 126||ascii_value == 161||ascii_value == 163||ascii_value==165||ascii_value==140)
+				       if(rahswa_fin!="yes")
+				       {
+							while (ascii_value == 48||ascii_value == 58||ascii_value == 65||ascii_value == 69||ascii_value == 68||ascii_value == 71||ascii_value == 72||ascii_value == 73||ascii_value == 74||ascii_value == 75||ascii_value == 78||ascii_value == 82||ascii_value == 83||ascii_value == 84||ascii_value == 85||ascii_value == 86||ascii_value == 87||ascii_value == 88||ascii_value == 89||ascii_value == 90||ascii_value == 105||ascii_value == 124||ascii_value == 126||ascii_value == 161||ascii_value == 163||ascii_value==165 )
 						{
 						    i++;
 						    array[i]=ascii_value;
 						    tmp = input.charAt(p);ascii_value=(int)tmp;p++;
-
-
 						}
 
 						if(i != 1)
@@ -861,15 +828,12 @@ public class Kantipur extends NonUnicodeFont
 
 						    if(ascii_value == 102)
 						    {// anra, chya, pet chireko sha
-
 						    output.delete(output.length()-1, output.length());//=output.substring(0, output.length()-1);
 						    output.append(value(array[1]));
 						    tmp = input.charAt(p);ascii_value=(int)tmp;p++;
 						    }
-
 						    else
-
-					    //for tra in rashtriya
+					  //for tra in rashtriya
 							if(ascii_value==54)
 							{
 							    output.append(value(ascii_value));
@@ -882,31 +846,19 @@ public class Kantipur extends NonUnicodeFont
 								 else
 								 {  //only ta
 								output.append(value(array[1]));;
+
 							    }
 
-							 }
-							 else//****************************for dra**********************************//
-						     if(ascii_value==56)
-						     {
+							}
+							else
 
-								    output.append(value(ascii_value));
-							     tmp = input.charAt(p);ascii_value=(int)tmp;p++;
-							     if(ascii_value==171)
-							     {//if dra
-								output.append("\u094d\u0930"+value(array[1]));
-								tmp = input.charAt(p);ascii_value=(int)tmp;p++;
-							     }
-						     else
-						     {  //only da
-							output.append(value(array[1]));;
-								  }
-						}
-						else
-						if(ascii_value==98)
-						{
+							//****************************for dra**********************************//
+						    if(ascii_value==56)
+						    {
 							    output.append(value(ascii_value));
 							    tmp = input.charAt(p);ascii_value=(int)tmp;p++;
-							    if(ascii_value==124)
+
+							    if(ascii_value==171)
 							    {//if dra
 								output.append("\u094d\u0930"+value(array[1]));
 								tmp = input.charAt(p);ascii_value=(int)tmp;p++;
@@ -915,33 +867,50 @@ public class Kantipur extends NonUnicodeFont
 								 {  //only da
 								output.append(value(array[1]));;
 								 }
-							 }
-							 else
+							}
+							else
 
-						//****************for bra***************//
-							 if(ascii_value==97)
-							 {
+						    if(ascii_value==98)
+						    {
+							    output.append(value(ascii_value));
+							    tmp = input.charAt(p);ascii_value=(int)tmp;p++;
+
+							    if(ascii_value==124)
+							    {//if dra
+								output.append("\u094d\u0930"+value(array[1]));
+								tmp = input.charAt(p);ascii_value=(int)tmp;p++;
+							    }
+								 else
+							    {  //only da
+								output.append(value(array[1]));;
+							    }
+							}
+							else
+					//****************for bra***************//
+							if(ascii_value==97)
+							{
 							    array[9]=ascii_value;
 							    tmp = input.charAt(p);ascii_value=(int)tmp;p++;
+
 							    if(ascii_value==124)
 							    {//if bra
 								output.append("\u092c\u094d\u0930"+value(array[1]));
 								tmp = input.charAt(p);ascii_value=(int)tmp;p++;
 							    }
 								 else
-							     {  //only b
+								 {  //only b
 								output.append(value(array[9]));
 								output.append(value(array[1]));;
-							     }
-							 }
-							 else
-							 {
+								 }
+							}
+							else
+							{
 							    output.append(value(ascii_value)+value(array[1]));
 							    tmp = input.charAt(p);ascii_value=(int)tmp;p++;
-							 }
-						   }//}
-						   else
-						  {
+							}
+						}//}
+						else
+						{
 						    if(unicode_string =="\u0915\u094d\u0937" || unicode_string == "\u0923")
 						    {
 							output.append(value(array[1]));;
@@ -951,16 +920,13 @@ public class Kantipur extends NonUnicodeFont
 						    {
 							if(flag != "no")
 							{
-
 								    output.append(value(ascii_value)+value(array[1]));
 								    tmp = input.charAt(p);ascii_value=(int)tmp;p++;
-							}
+							    }
 						    }
-
 						}
-
 				       }
-					rahswa_fin="no";
+				       rahswa_fin="no";
 				    }
 
 				    else
@@ -969,20 +935,20 @@ public class Kantipur extends NonUnicodeFont
 				       tmp = input.charAt(p);ascii_value=(int)tmp;p++;
 				    }
 
-		} //end of while
-		catch (Exception e) {
-		  problemsInLastConversion.add(e);
-		  if (problemsInLastConversion.size() > 20)
-		    break;
-		}
+	      } //end of while
+	      catch (Exception e) {
+		problemsInLastConversion.add(e);
+		if (problemsInLastConversion.size() > 20)
+		  break;
+	      }
 
-	       output.append(value(ascii_value));
-	 }
+	     output.append(value(ascii_value));
+    }
 
 
 
- private String value(int ascii_value)
- {
+    private String value(int ascii_value)
+    {
 
        switch (ascii_value)
        {
@@ -1050,19 +1016,19 @@ public class Kantipur extends NonUnicodeFont
 			       unicode_string ="\u091c\u094d\u091e";
 			       break;
 
-			 case 50:
+			case 50:
 			       unicode_string ="\u0926\u094d\u0926";
 			       break;
-			 case 51:
+		       case 51:
 			       unicode_string ="\u0918";
 			       break;
-			 case 52:
+		       case 52:
 			       unicode_string ="\u0926\u094d\u0927";
 			       break;
-			 case 53:
+		       case 53:
 			       unicode_string ="\u091b";
 			       break;
-			 case 54:
+			case 54:
 			       unicode_string ="\u091f";
 			       break;
 			 case 55:
@@ -1074,100 +1040,100 @@ public class Kantipur extends NonUnicodeFont
 			 case 57:
 			       unicode_string ="\u0922";
 			       break;
-			 case 58:
+			  case 58:
 			       unicode_string ="\u0938\u094d";
 			       break;
-			 case 59:
+			  case 59:
 			       unicode_string ="\u0938";
 			       break;
-			 case 60:
+			   case 60:
 			       unicode_string ="\u003f";
 			       break;
-			 case 61:
+			   case 61:
 			       unicode_string ="\u002e";
 			       break;
-			 case 62:
+			    case 62:
 			       unicode_string ="\u0936\u094d\u0930";
 			       break;
-			 case 63:
+			     case 63:
 			       unicode_string ="\u0930\u0941";
 			       break;
-			 case 64:
+			     case 64:
 			       unicode_string ="\u0968";
 			       break;
-			 case 65:
+			     case 65:
 			       unicode_string ="\u092c\u094d";
 			       break;
-			 case 66:
+			      case 66:
 			       unicode_string ="\u0926\u094d\u092f";
 			       break;
-			 case 67:
+			       case 67:
 			       unicode_string ="\u090b";
 			       break;
-			 case 68:
+			   case 68:
 			       unicode_string ="\u092e\u094d";
 			       break;
-			 case 69:
+			   case 69:
 			       unicode_string ="\u092d\u094d";
 			       break;
-			 case 70:
-			       unicode_string ="\u093e";
+			   case 70:
+			       unicode_string ="\u0901";
 			       break;
-			 case 71:
+			   case 71:
 			       unicode_string ="\u0928\u094d";
 			       break;
-			 case 72:
+			   case 72:
 			       unicode_string ="\u091c\u094d";
 			       break;
-			 case 73:
+			   case 73:
 			       unicode_string ="\u0915\u094d\u0937\u094d";
 			       break;
-			 case 74:
+			   case 74:
 			       unicode_string ="\u0935\u094d";
 			       break;
-			 case 75:
+			   case 75:
 			       unicode_string ="\u092a\u094d";
 			       break;
-			 case 76:
+			   case 76:
 			       unicode_string ="\u0940";
 			       break;
-			 case 77:
+			   case 77:
 			       unicode_string ="\u003A";
 			       break;
-			 case 78:
+			   case 78:
 			       unicode_string ="\u0932\u094d";
 			       break;
-			 case 79:
+			   case 79:
 			       unicode_string ="\u0907";
 			       break;
-			 case 80:
+			   case 80:
 			       unicode_string ="\u090f";
 			       break;
-			 case 81:
+			   case 81:
 			       unicode_string ="\u0924\u094d\u0924";
 			       break;
-			 case 82:
+			   case 82:
 			       unicode_string ="\u091a\u094d";
 			       break;
-			 case 83:
+			   case 83:
 			       unicode_string ="\u0915\u094d";
 			       break;
-			 case 84:
+			   case 84:
 			       unicode_string ="\u0924\u094d";
 			       break;
-			 case 85:
+			   case 85:
 			       unicode_string ="\u0917\u094d";
 			       break;
-			 case 86:
+			   case 86:
 			       unicode_string ="\u0916\u094d";
 			       break;
-			 case 87:
+			   case 87:
 			       unicode_string ="\u0927\u094d";
 			       break;
-			 case 88:
+			   case 88:
 			       unicode_string ="\u0939\u094d";
 			       break;
-			 case 89:
+			   case 89:
 			       unicode_string ="\u0925\u094d";
 			       break;
 			 case 90:
@@ -1231,191 +1197,168 @@ public class Kantipur extends NonUnicodeFont
 			 case 109:
 			       unicode_string ="\u094d\u0915";
 			       break;
-			 case 110:
+			case 110:
 			       unicode_string ="\u0932";
 			       break;
-			 case 111:
+			case 111:
 			       unicode_string ="\u092f";
 			       break;
-			 case 112:
+			case 112:
 			       unicode_string ="\u0909";
 			       break;
-			 case 113:
+			case 113:
 			       unicode_string ="\u0924\u094d\u0930";
 			       break;
-			 case 114:
+		       case 114:
 			       unicode_string ="\u091a";
 			       break;
-			 case 115:
+		       case 115:
 			       unicode_string ="\u0915";
 			       break;
-			 case 116:
+		       case 116:
 			       unicode_string ="\u0924";
 			       break;
-			 case 117:
+		       case 117:
 			       unicode_string ="\u0917";
 			       break;
-			 case 118:
+		       case 118:
 			       unicode_string ="\u0916";
 			       break;
-			 case 119:
+			case 119:
 			       unicode_string ="\u0927";
 			       break;
-			 case 120:
+		       case 120:
 			       unicode_string ="\u0939";
 			       break;
-			 case 121:
+		       case 121:
 			       unicode_string ="\u0925";
 			       break;
-			 case 122:
+		       case 122:
 			       unicode_string ="\u0936";
 			       break;
-			 case 123:
+		       case 123:
 			       unicode_string ="\u0930\u094d";
 			       break;
-			 case 124:
+		       case 124:
 			       unicode_string ="\u094d\u0930";
 			       break;
-			 case 125:
+		       case 125:
 			       unicode_string ="\u0948";
 			       break;
-			 case 126:
+		       case 126:
 			       unicode_string ="\u091e\u094d";
 			       break;
-			 case 132:
+					    case 132:
 					 unicode_string="\u0927\u094d\u0930";
 					 break;
-			 case 133:
-					       unicode_string="\u0027";
+		       case 133:
+								unicode_string="\u0027";
 					       break;
-			 case 134:
-					       unicode_string="\u0021";
+		       case 136:
+					       unicode_string="\u092b\u094d";
 					       break;
-			 case 137:
-					       unicode_string="\u091d\u094d";
+		       case 137:
+								  unicode_string="\u091d\u094d";
 					       break;
-				case 139:
+					  case 139:
 						unicode_string="\u0919\u094d\u0927";
 						break;
-				case 140:
-						unicode_string="\u0924\u094d\u0924\u094d";
-						break;
-			 case 147:
-					       unicode_string="\u0901";
-					       break;
-				case 149:
+						case 149:
 						unicode_string="\u0921\u094d\u0921";
 						break;
-			 case 150:
-					       unicode_string="\u2013";
+		      case 150:
+								  unicode_string="\u2013";
 					       break;
-			 case 151:
+		      case 151:
 								unicode_string="\u2015";
 					       break;
-				case 156:
-						unicode_string="\u0924\u094d\u0930\u094d";
-						break;
-				case 160:
-						unicode_string="";
-						break;
-			 case 161:
+		       case 155:
+					       unicode_string="\u0926\u094d\u0930";
+		       case 161:
 			       unicode_string ="\u091c\u094d\u091e\u094d";
 			       break;
-			 case 162:
+			case 162:
 			       unicode_string ="\u0926\u094d\u0927";
 			       break;
-			 case 163:
+		       case 163:
 			       unicode_string ="\u0918\u094d";
 			       break;
-			 case 165:
+		       case 165:
 					       unicode_string="\u0930\u094d\u200d";
 					       break;
-				case 164:
-						unicode_string="\u091d\u094d";
-						break;
-			 case 167:
+		       case 167:
 			       unicode_string ="\u091f\u094d\u091f";
 			       break;
-			 case 168:
-					 unicode_string="\u0919\u094d\u0917";
-					 break;
-			 case 170:
+		       case 170:
 			       unicode_string ="\u0919";
 			       break;
-			 case 176:
+		       case 176:
 			       unicode_string ="\u0912\u094d\u0922";
 			       break;
-			 case 171:
+		       case 171:
 			       unicode_string ="\u094d\u0930";
 			       break;
-
-			 case 180:
-			       unicode_string ="\u091d";
+		      case 180:
+						   unicode_string ="\u091d";
+						   break;
+					  case 182:
+						   unicode_string ="\u0920\u094d\u0920";
 			       break;
-			 case 182:
-			       unicode_string ="\u0920\u094d\u0920";
-			       break;
-			 case 186:
-					 unicode_string="\u092b\u094d";
-					 break;
-			 case 191:
+		       case 191:
 			       unicode_string ="\u0930\u0942";
 			       break;
-			 case 198:
+		       case 197:
+			       unicode_string ="\u0939\u0943";
+			       break;
+		       case 198:
 			       unicode_string ="\u201d";
 			       break;
-			 case 200:
-				    unicode_string="\u0937";
-				    break;
-			 case 203:
+		       case 203:
 			       unicode_string ="\u0919\u094d\u0917";
 			       break;
-			 case 204:
+			case 204:
 			       unicode_string ="\u0928\u094d\u0928";
 			       break;
-			 case 205:
+			case 205:
 			       unicode_string ="\u0919\u094d\u0915";
 			       break;
-			 case 206:
-			       unicode_string ="\u092b\u094d";
+			case 206:
+			       unicode_string ="\u0919\u094d\u0916";
 			       break;
-			 //case 212:
-						 //   	unicode_string="\u0915";
-			//		break;
-			case 216:
-							       unicode_string="\u094d\u092f";
+			 case 216:
+					 unicode_string="\u094d\u092f";
 					 break;
 			 case 218:
 			       unicode_string ="\u0027";
 			       break;
-			 case 221:
+			 case 219:
+				    unicode_string="\u0021";
+				    break;
+			case 221:
 			       unicode_string ="\u091f\u094d\u0920";
 			       break;
-			 case 223:
+			case 223:
 			       unicode_string ="\u0926\u094d\u092e";
 			       break;
-			 case 229:
+			case 229:
 			       unicode_string ="\u0926\u094d\u0935";
 			       break;
-			 case 230:
+		       case 230:
 			       unicode_string ="\u201c";
 			       break;
-			 case 231:
+			case 231:
 			       unicode_string ="\u0950";
 			       break;
-			 case 247:
+			case 247:
 			       unicode_string ="\u002f";
 			       break;
-			 case 248:
-				    unicode_string="\u092f\u094d";
-				    break;
 			 default:
-				unicode_string = Character.toString((char)ascii_value);//Integer.toString(ascii_value);
+				unicode_string = Character.toString((char)ascii_value);//Integer.toString(ascii_value );
 				problemsInLastConversion.add(new IllegalArgumentException("Unhandled ascii_value "+Integer.toString(ascii_value)));
 				break;
 		   }
 
-		   return unicode_string;
+    return unicode_string;
 
     }
 }
