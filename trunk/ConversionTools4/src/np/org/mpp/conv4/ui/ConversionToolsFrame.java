@@ -4,7 +4,7 @@
  * Created on December 3, 2008, 11:41 AM
  */
 
-package np.org.mpp.conv4.ui2;
+package np.org.mpp.conv4.ui;
 
 import java.util.prefs.Preferences;
 import javax.swing.UIManager;
@@ -42,8 +42,8 @@ public class ConversionToolsFrame extends javax.swing.JFrame {
     jButton2 = new javax.swing.JButton();
     jButton3 = new javax.swing.JButton();
     jButton4 = new javax.swing.JButton();
-    conversionPanelF2U1 = new np.org.mpp.conv4.ui2.ConversionPanelF2U();
-    conversionPanelTrans1 = new np.org.mpp.conv4.ui2.ConversionPanelTrans();
+    conversionPanelF2U1 = new np.org.mpp.conv4.ui.ConversionPanelF2U();
+    conversionPanelTrans1 = new np.org.mpp.conv4.ui.ConversionPanelTrans();
     jMenuBar1 = new javax.swing.JMenuBar();
     jMenu1 = new javax.swing.JMenu();
     jMenuItem1 = new javax.swing.JMenuItem();
@@ -188,8 +188,8 @@ private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     
     
   // Variables declaration - do not modify//GEN-BEGIN:variables
-  private np.org.mpp.conv4.ui2.ConversionPanelF2U conversionPanelF2U1;
-  private np.org.mpp.conv4.ui2.ConversionPanelTrans conversionPanelTrans1;
+  private np.org.mpp.conv4.ui.ConversionPanelF2U conversionPanelF2U1;
+  private np.org.mpp.conv4.ui.ConversionPanelTrans conversionPanelTrans1;
   private javax.swing.JButton jButton1;
   private javax.swing.JButton jButton2;
   private javax.swing.JButton jButton3;

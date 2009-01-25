@@ -4,8 +4,9 @@
  * Created on December 3, 2008, 1:40 PM
  */
 
-package np.org.mpp.conv4.ui2;
+package np.org.mpp.conv4.ui;
 
+import np.org.mpp.conv4.ui.ConversionPanel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFileChooser;
 import javax.swing.event.DocumentEvent;

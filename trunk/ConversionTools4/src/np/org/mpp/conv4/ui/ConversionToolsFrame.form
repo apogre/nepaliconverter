@@ -174,7 +174,7 @@
             </Container>
           </SubComponents>
         </Container>
-        <Component class="np.org.mpp.conv4.ui2.ConversionPanelF2U" name="conversionPanelF2U1">
+        <Component class="np.org.mpp.conv4.ui.ConversionPanelF2U" name="conversionPanelF2U1">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="Font to Unicode">
@@ -186,7 +186,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="np.org.mpp.conv4.ui2.ConversionPanelTrans" name="conversionPanelTrans1">
+        <Component class="np.org.mpp.conv4.ui.ConversionPanelTrans" name="conversionPanelTrans1">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="Transliterator">
