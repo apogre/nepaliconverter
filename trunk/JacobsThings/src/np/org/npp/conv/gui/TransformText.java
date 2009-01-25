@@ -8,7 +8,7 @@ import java.util.*;
 import java.util.regex.*;
 
 import np.org.npp.conv.gui.*;
-import np.org.mpp.conv4.old_f2u.*;
+import np.org.mpp.old.old_f2u.*;
 
 public class TransformText
 {

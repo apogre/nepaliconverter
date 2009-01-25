@@ -6,6 +6,7 @@ import org.openoffice.odf.doc.*;
 import org.openoffice.odf.dom.element.*;
 import org.openoffice.odf.dom.style.*;
 import org.w3c.dom.*;
+import org.openoffice.odf.doc.element.style.*;
 
 public class ReviziuVortaronOdfdom {
 
@@ -56,7 +57,7 @@ public class ReviziuVortaronOdfdom {
 
 
 
-    OdfDocument odfDocument = OdfDocument.load("/home/j/esperanto/nepala vortaro/" + dosiero + ".odt");
+    OdfDocument odfDocument = OdfDocument.loadDocument("/home/j/esperanto/nepala vortaro/" + dosiero + ".odt");
 
 
     String kromnomo = "";
@@ -101,7 +102,7 @@ public class ReviziuVortaronOdfdom {
   private void convertStylesAndContent(OdfDocument odfDocument) throws Exception {
 
     //Document content = odfDocument.getContent();
-    OdfFileDom content = odfDocument.getContentCached();
+    OdfFileDom content = odfDocument.getContentDom();
 
     NodeList lst = content.getElementsByTagName("text:p");
 
@@ -109,7 +110,9 @@ public class ReviziuVortaronOdfdom {
       Node n = lst.item(i);
       if (!(n instanceof OdfStylableElement)) continue;
       OdfStylableElement linio = (OdfStylableElement) n;
-      OdfStyle sty = getStyle(odfDocument,linio.getStyleName());
+
+/* XXXXXXXXXX
+      OdfStyle sty =  linio.getSgetStyle(odfDocument,linio.getStyleName());
       while (sty != null && !"Vortaro".equals(sty.getName())) sty = getStyle(odfDocument,sty.getParentName());
       if (sty == null) continue;
 
@@ -154,6 +157,7 @@ public class ReviziuVortaronOdfdom {
       linio.appendChild(new org.openoffice.odf.doc.element.text.OdfTab(content));
       linio.appendChild(content.createTextNode(teksto[2]));
       if (DEBUG) System.out.println("B "+linio);
+ */
     }
 
 
@@ -311,22 +315,6 @@ public class ReviziuVortaronOdfdom {
     esp = esp.replaceAll("<text:span text:style-name=\"\\w\">(\\s)*</text:span>", "$1"); // forigu tipojn kiu nur kosideras spacojn
     esp = esp.replaceAll("<text:soft-page-break/>", "");
     return esp;
-  }
-
-
-  private static OdfStyle getStyle(OdfDocument odfDocument, String styleName) {
-    OdfStyle sty = odfDocument.getDocumentStyles().getStyle(styleName);
-    if (sty == null) {
-      sty = odfDocument.getAutomaticStylesInternal().getStyle(styleName);
-    }
-    if (sty == null) {
-      //sty = odfDocument.getDefaultStyles().getStyle(styleName);
-    }
-    if (sty == null) {
-      //sty = odfDocument.getAutomaticStyles().getStyle(styleName);
-    }
-    //if (DEBUG) System.out.println("  sty "+styleName+"="+sty);
-    return sty;
   }
 
 

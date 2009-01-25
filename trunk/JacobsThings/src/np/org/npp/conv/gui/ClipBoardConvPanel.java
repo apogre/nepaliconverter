@@ -9,7 +9,7 @@ import javax.swing.*;
 import javax.swing.text.*;
 import javax.swing.text.html.*;
 
-import np.org.mpp.conv4.old_f2u.*;
+import np.org.mpp.old.old_f2u.*;
 import np.org.npp.conv.file.*;
 
 public class ClipBoardConvPanel
