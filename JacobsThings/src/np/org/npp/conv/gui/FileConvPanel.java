@@ -11,7 +11,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-import np.org.mpp.conv4.old_f2u.*;
+import np.org.mpp.old.old_f2u.*;
 import np.org.npp.conv.file.*;
 import java.util.*;
 import javax.swing.text.*;

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.*;
 import javax.swing.table.*;
 import java.awt.Font;
-import np.org.mpp.conv4.old_f2u.*;
+import np.org.mpp.old.old_f2u.*;
 
 public class AskWhichEncoderToUsePanel2 extends JPanel {
   private BorderLayout borderLayout1 = new BorderLayout();
