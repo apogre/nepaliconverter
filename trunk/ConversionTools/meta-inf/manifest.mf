@@ -1,4 +1,0 @@
-Manifest-Version: 1.0
-Created-By: 3.0 (Madan Puraskar Pustakalaya)
-Main-Class: np.org.mpp.cd.ConversionTools
-SplashScreen-Image: res/images/splash.png
