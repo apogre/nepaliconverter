@@ -1,4 +1,4 @@
-package np.org.mpp.conv4.old_f2u;
+package np.org.mpp.old.old_f2u;
 /**
  * Copyright (C) 2008 Madan Puraskar Pustakalaya - http://mpp.org.np/
  * and Jacob Nordfalk - http://javabog.dk
@@ -19,20 +19,20 @@ package np.org.mpp.conv4.old_f2u;
  */
 
 
-
 import java.io.*;
 
 
-public class Preeti extends NonUnicodeFont
+public class Jaga_Himali extends NonUnicodeFont
 {
 
      int ascii_value;
      String unicode_string,flag,rahswa_fin;
+
      char tmp;
 
-     public void toUnicode(StringBuffer output, String input)
-     {
-       problemsInLastConversion.clear();
+    public void toUnicode(StringBuffer output, String input)
+    {
+      problemsInLastConversion.clear();
 
 	    int p=0;
 	    tmp= input.charAt(p) ;
@@ -43,8 +43,7 @@ public class Preeti extends NonUnicodeFont
 	    try {
 		    flag="yes";
 		    rahswa_fin="no";
-
-//*******************************************chya ra anra************************************************************ //
+//********************************************chya ra anra*********************************************** //
 		    if(ascii_value == 73 || ascii_value==48)
 		    {
 			    array[1] = ascii_value;
@@ -78,7 +77,7 @@ public class Preeti extends NonUnicodeFont
 		    }
 		    else
 
-//**************************************************a,o,aa,au************************************//
+//**********************************************a,o,aa,au*********************************************//
 		    if(ascii_value==99)
 		    {
 			    array[1]=ascii_value;
@@ -113,6 +112,54 @@ public class Preeti extends NonUnicodeFont
 		    }
 
 		    else
+
+//*************************************************for ref***************************************//
+		    if(ascii_value==123)
+		    {
+			  int k=1;
+			  String a;
+			  String str[] = new String[10];
+			  str[k]=output.substring(output.length()-k,output.length());
+
+			  if(str[k].equals("\u0907"))
+			  {
+								  output.delete(output.length()-k, output.length());
+								output.append("\u0908");
+						  }
+
+						  else
+						  {
+				  if(str[k].equals("\u0901")||str[k].equals("\u0902")||str[k].equals("\u094b")||str[k].equals("\u093e")||str[k].equals("\u093f")||str[k].equals("\u0940")||str[k].equals("\u0947")||str[k].equals("\u0941")||str[k].equals("\u0942")||str[k].equals("\u0943")||str[k].equals("\u0948")||str[k].equals("\u094c"))
+				  {
+				    k++;
+				    str[k]=output.substring(output.length()-k,output.length()-(k-1));
+				  }
+				  k++;
+				  str[k]=output.substring(output.length()-k,output.length()-(k-1));
+
+				  if(str[k].equals("\u094d"))
+				  {
+				       k++;
+				       str[k]=output.substring(output.length()-k,output.length()-(k-1));
+				  }
+				  else
+				  {
+				       k--;
+				  }
+
+				  output.delete(output.length()-k, output.length());//output.substring(0,output.length()-k);
+				  output.append("\u0930\u094d");
+
+				  for(int m=k;m>0;m--)
+				  {
+				      output.append(str[m]);
+				  }
+						    }
+
+			  tmp = input.charAt(p);ascii_value=(int)tmp;p++;
+		       }
+		       else
+
 //*************************************************for Purnabiram and other mark***************************************//
 		    if(ascii_value==46||ascii_value==60||ascii_value==219)
 		    {
@@ -129,52 +176,8 @@ public class Preeti extends NonUnicodeFont
 			  tmp = input.charAt(p);ascii_value=(int)tmp;p++;
 		     }
 		       else
-		    //***************************************for ref***************************//
-						if(ascii_value==123)
-			    {
-			  int k=1;
-			  String a;
-			  String str[] = new String[10];
-			  str[k]=output.substring(output.length()-k,output.length());
-			  if(str[k].equals("\u0907"))
-			  {
-								  output.delete(output.length()-k, output.length());
-								output.append("\u0908");
-						  }
-						  else
-						  {
-				  if(str[k].equals("\u0901")||str[k].equals("\u0902")||str[k].equals("\u094b")||str[k].equals("\u093e")||str[k].equals("\u093f")||str[k].equals("\u0940")||str[k].equals("\u0947")||str[k].equals("\u0941")||str[k].equals("\u0942")||str[k].equals("\u0948")||str[k].equals("\u094c")||str[k].equals("\u0943"))
-				  {
-				    k++;
-				    str[k]=output.substring(output.length()-k,output.length()-(k-1));
-				  }
-				  k++;
-				  str[k]=output.substring(output.length()-k,output.length()-(k-1));
 
-				  if(str[k].equals("\u094d"))
-				  {
-			       k++;
-			       str[k]=output.substring(output.length()-k,output.length()-(k-1));
-				  }
-				  else
-				  {
-			       k--;
-				  }
-
-				  output.delete(output.length()-k, output.length());//output.substring(0,output.length()-k);
-				  output.append("\u0930\u094d");
-
-				  for(int m=k;m>0;m--)
-				  {
-				      output.append(str[m]);
-				  }
-						    }
-
-			  tmp = input.charAt(p);ascii_value=(int)tmp;p++;
-		       }
-
-		       else
-		     ///***********************for kta in yukta****************************************///
+///***********************************for kta in yukta****************************************///
 		     if(ascii_value==81)
 		     {
 			 array[1]=ascii_value;
@@ -192,7 +195,7 @@ public class Preeti extends NonUnicodeFont
 		     }
 		     else
 
-		     //////***************************for bisarga and column***********************
+//////*********************************for bisarga and column************************************
 					 if(ascii_value==77)
 					 {
 					       array[1]=ascii_value;
@@ -212,7 +215,7 @@ public class Preeti extends NonUnicodeFont
 		      else
 
 
-		       ////***************************tra****************************//
+ ////***************************************tra*************************************************//
 		     if(ascii_value==54)
 		     {
 			    array[1]=ascii_value;
@@ -230,25 +233,26 @@ public class Preeti extends NonUnicodeFont
 		      }
 		      else
 
-		      //***************************ngra******************//
-			  /*  if(ascii_value==203){
+
+//*************************************for jha***********************************************//
+			if(ascii_value==101)
+			{
 			    array[1]=ascii_value;
 			    tmp = input.charAt(p);ascii_value=(int)tmp;p++;
-				if(ascii_value==124){
+			    if(ascii_value==109)
+			    {
 
-				    output.append("\u0919\u094d\u0917\u094d\u0930");
-				    tmp = input.charAt(p);ascii_value=(int)tmp;p++;
-				}
-				else{
-
-				    output.append(value(array[1]));
-
-				}
-
+				output.append("\u091d");
+				tmp = input.charAt(p);ascii_value=(int)tmp;p++;
+			    }
+			    else
+			    {
+				output.append(value(array[1]));;
+			    }
 			}
-			else*/
+			else
 
-			///*****************for dirga u********************************
+///******************************************for dirga u****************************************
 						 if(ascii_value==112)
 						 {
 						      array[1]=ascii_value;
@@ -265,7 +269,7 @@ public class Preeti extends NonUnicodeFont
 						  }
 						  else
 
-			  //****************************for pet chireko sa**********************//
+//*************************************for pet chireko sa**********************************************//
 
 			  if(ascii_value==105)
 			  {
@@ -285,7 +289,7 @@ public class Preeti extends NonUnicodeFont
 			    }
 			    else
 
-			    //********************************for kra**************************//
+//*********************************************for kra******************************************//
 				 if(ascii_value==113)
 				 {
 				  array[1] = ascii_value;
@@ -303,7 +307,8 @@ public class Preeti extends NonUnicodeFont
 				  }
 			 }
 			 else
- //*************************************** for pha,Jha,ka and other**********************************************
+
+//********************************************** for pha,Jha,ka and other**********************************************
 			  if(ascii_value==107||ascii_value==106||ascii_value==101)
 			  {
 							  array[1] = ascii_value;
@@ -320,7 +325,7 @@ public class Preeti extends NonUnicodeFont
 							  int gh=0;
 							  gh=ascii_value;
 							  f=p;
-							  while(ascii_value==34||ascii_value==39||ascii_value==91||ascii_value==92||ascii_value==93||ascii_value==123||ascii_value==125||ascii_value==70||ascii_value==43||ascii_value==124)
+							  while(ascii_value==34||ascii_value==39||ascii_value==92||ascii_value==91||ascii_value==93||ascii_value==123||ascii_value==125||ascii_value==70||ascii_value==43||ascii_value==124)
 							  {
 								  pha_array[num]=ascii_value;
 								  num++;
@@ -420,6 +425,7 @@ public class Preeti extends NonUnicodeFont
 											     }
 											}
 										}
+
 										for(int h=1;h<num;h++)
 										{
 											if(pha_array[h]==34||pha_array[h]==39||pha_array[h]==91||pha_array[h]==93||pha_array[h]==125)
@@ -530,24 +536,6 @@ public class Preeti extends NonUnicodeFont
 				  }
 			 }
 			 else
-
-			 /*if(ascii_value==79)
-			 {// raswa e and dirgha e
-			    array[1] = ascii_value;
-			    tmp = input.charAt(p);ascii_value=(int)tmp;p++;
-
-			    if(ascii_value==123)
-			    {
-				    output.append("\u0908");
-				    tmp = input.charAt(p);ascii_value=(int)tmp;p++;
-			    }
-			    else
-			    {
-				    output.append("\u0907");
-
-			    }
-			 }
-			 else*/
 
 			 if(ascii_value == 102)
 			 {//for okar and aukar //
@@ -1248,9 +1236,6 @@ public class Preeti extends NonUnicodeFont
 		       case 126:
 			       unicode_string ="\u091e\u094d";
 			       break;
-					    case 132:
-					 unicode_string="\u0927\u094d\u0930";
-					 break;
 		       case 133:
 								unicode_string="\u0027";
 					       break;
@@ -1258,14 +1243,11 @@ public class Preeti extends NonUnicodeFont
 					       unicode_string="\u092b\u094d";
 					       break;
 		       case 137:
-								  unicode_string="\u091d\u094d";
+								  unicode_string="\u091d";
 					       break;
-					  case 139:
-						unicode_string="\u0919\u094d\u0927";
-						break;
-						case 149:
-						unicode_string="\u0921\u094d\u0921";
-						break;
+		       case 140:
+					       unicode_string="\u0924\u094d\u0924\u094d";
+					       break;
 		      case 150:
 								  unicode_string="\u2013";
 					       break;
@@ -1274,6 +1256,13 @@ public class Preeti extends NonUnicodeFont
 					       break;
 		       case 155:
 					       unicode_string="\u0926\u094d\u0930";
+					       break;
+			       case 156:
+					       unicode_string="\u0924\u094d\u0930\u094d";
+					       break;
+	   case 160:
+		unicode_string="";
+		break;
 		       case 161:
 			       unicode_string ="\u091c\u094d\u091e\u094d";
 			       break;
@@ -1298,11 +1287,12 @@ public class Preeti extends NonUnicodeFont
 		       case 171:
 			       unicode_string ="\u094d\u0930";
 			       break;
-		      case 180:
-						   unicode_string ="\u091d";
-						   break;
-					  case 182:
-						   unicode_string ="\u0920\u094d\u0920";
+
+		       case 180:
+			       unicode_string ="\u091d\u094d";
+			       break;
+		       case 182:
+			       unicode_string ="\u0920\u094d\u0920";
 			       break;
 		       case 191:
 			       unicode_string ="\u0930\u0942";
@@ -1328,15 +1318,19 @@ public class Preeti extends NonUnicodeFont
 			 case 216:
 					 unicode_string="\u094d\u092f";
 					 break;
+			case 217:
+			    unicode_string="\u003b";
+			    break;
+
 			 case 218:
 			       unicode_string ="\u0027";
 			       break;
 			 case 219:
 				    unicode_string="\u0021";
 				    break;
-			case 221:
-			       unicode_string ="\u091f\u094d\u0920";
-			       break;
+			//case 221:
+			//       unicode_string ="\u091f\u094d\u0920";
+			//       break;
 			case 223:
 			       unicode_string ="\u0926\u094d\u092e";
 			       break;
@@ -1352,6 +1346,10 @@ public class Preeti extends NonUnicodeFont
 			case 247:
 			       unicode_string ="\u002f";
 			       break;
+			case 248:
+					unicode_string="\u092f\u094d";
+					break;
+
 			 default:
 				unicode_string = Character.toString((char)ascii_value);//Integer.toString(ascii_value );
 				problemsInLastConversion.add(new IllegalArgumentException("Unhandled ascii_value "+Integer.toString(ascii_value)));

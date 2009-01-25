@@ -1,4 +1,4 @@
-package np.org.mpp.conv4.old_ui;
+package np.org.mpp.old.old_ui;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -7,7 +7,7 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.*;
 
-import np.org.mpp.conv4.old_ui.WidgetFactory;
+import np.org.mpp.old.old_ui.WidgetFactory;
 
 public class MenuBar extends JMenuBar {
     private static final long serialVersionUID = -5440154862431565251L;
