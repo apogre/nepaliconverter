@@ -12,7 +12,7 @@ import javax.swing.JComponent;
 import javax.swing.AbstractButton;
 import javax.swing.*;
 
-public class MainFrame extends JFrame implements ActionListener {
+public class OldMainFrame extends JFrame implements ActionListener {
 
     private static final long serialVersionUID = 1588375492735364352L;
 
@@ -41,7 +41,7 @@ public class MainFrame extends JFrame implements ActionListener {
     static final String MODE_U2F = "u2f";
     static final String MODE_TRANS = "trans";
 
-    public MainFrame() {
+    public OldMainFrame() {
 	super("Conversion Tools");
 	widgetFactory = WidgetFactory.getInstance();
 	setLayout(new BorderLayout(20, 2));

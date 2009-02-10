@@ -297,6 +297,9 @@ public class Font2UnicodeMapping {
             String keyToLookFor = input.substring(i - 1, i + 1);
             F2Uelement e = fontLetter_to_F2UElement.get(keyToLookFor); // TODO also 3, 4 chars
             if (e == null) {
+                // XXX xxx BUG, infinite loop if
+                // input = "o; cg'dltkqsf] k'/f c+z k9\g'';\ htt;://creativemmcoons.org/licenses/by-nc-sa/3.0/deed.eo"
+
               // it wasnt in thge mapping! We need to backscan!
               input = input.substring(0, i - 1)
                       + input.charAt(i) + input.charAt(i - 1)

@@ -16,7 +16,7 @@ public class StatusBar extends JToolBar {
     StatusBar() {
 	// setLayout(new BorderLayout());
 	setFloatable(false);
-	setPreferredSize(new Dimension(MainFrame.WIDTH - 20, 25));
+	setPreferredSize(new Dimension(OldMainFrame.WIDTH - 20, 25));
 	initComponents();
     }
 

@@ -103,7 +103,7 @@ public class ConversionPanelTrans extends ConversionPanel {
 
     JComboBox cmbTrans = null; // Reference to instance from toolbar
 
-    public void confgureGui(MainFrame mainFrame) {
+    public void confgureGui(OldMainFrame mainFrame) {
 
         if (cmbTrans == null) {
           // delayed first time initialization

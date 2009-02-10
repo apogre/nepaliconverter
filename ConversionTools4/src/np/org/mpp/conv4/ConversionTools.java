@@ -1,6 +1,6 @@
 package np.org.mpp.conv4;
 
-import np.org.mpp.old.old_ui.MainFrame;
+import np.org.mpp.old.old_ui.OldMainFrame;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
@@ -9,6 +9,7 @@ import javax.swing.UIManager;
 
 import java.io.*;
 import np.org.mpp.conv4.translit.NepaliTransliterationJacob;
+import np.org.mpp.conv4.ui.ConversionToolsFrame;
 
 /*
  */
@@ -19,20 +20,17 @@ public class ConversionTools {
     /**
      * Construct and show the application.
      */
-    public static MainFrame frame;
+    public static OldMainFrame frame;
 
     // static WidgetFactory widgetFactory;
 
     public ConversionTools() {
       
           
-          
-	frame = new MainFrame();
+                new ConversionToolsFrame().setVisible(true);
+/*
+	frame = new OldMainFrame();
 	// widgetFactory = WidgetFactory.getInstance();
-	/*
-	 * Validate frames that have preset sizes. Pack frames that have useful
-	 * preferred size info, e.g. from their layout
-	 */
 	if (packFrame) {
 	    frame.pack();
 	} else {
@@ -51,7 +49,8 @@ public class ConversionTools {
 	frame.setLocation((screenSize.width - frameSize.width) / 2,
 		(screenSize.height - frameSize.height) / 2);
 	frame.setVisible(true);
-    }
+*/
+ }
 
     /**
      * Application entry point.
