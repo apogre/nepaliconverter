@@ -20,7 +20,7 @@ public class ConversionPanelU2F extends ConversionPanel {
 
     private final String[] fonts = { "Preeti", "Kantipur" };
 
-    public void confgureGui(MainFrame mainFrame) {
+    public void confgureGui(OldMainFrame mainFrame) {
 
         if (mainFrame.toolBar.cmbFont.getModel().getSize() == 0) {
             // first time init

@@ -167,7 +167,7 @@ public class ConversionPanelF2U extends ConversionPanel {
         appendLog("this is the F 2 U");
     }
 
-    public void confgureGui(MainFrame mainFrame) {
+    public void confgureGui(OldMainFrame mainFrame) {
         mainFrame.toolBar.cmbFont.setVisible(false);
         mainFrame.toolBar.cmbTrans.setVisible(false);
     }

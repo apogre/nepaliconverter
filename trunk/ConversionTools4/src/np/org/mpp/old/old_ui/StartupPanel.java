@@ -36,7 +36,7 @@ public class StartupPanel extends JPanel {
 	    .getResource("exit.png"));
 
     public StartupPanel() {
-	setPreferredSize(new Dimension(MainFrame.WIDTH, MainFrame.HEIGHT));
+	setPreferredSize(new Dimension(OldMainFrame.WIDTH, OldMainFrame.HEIGHT));
 	setLayout(new FlowLayout(FlowLayout.LEADING));
 	initComponents();
     }

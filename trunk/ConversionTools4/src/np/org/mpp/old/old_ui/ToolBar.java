@@ -28,7 +28,7 @@ public class ToolBar extends JToolBar {
 
 	// super(SwingConstants.HORIZONTAL);
 	setLayout(new FlowLayout(FlowLayout.LEADING, 5, 0));
-	setPreferredSize(new Dimension(MainFrame.WIDTH - 20, 30));
+	setPreferredSize(new Dimension(OldMainFrame.WIDTH - 20, 30));
 	widgetFactory = WidgetFactory.getInstance();
 
 	btnBack = widgetFactory.createJButton("back", "back.png",

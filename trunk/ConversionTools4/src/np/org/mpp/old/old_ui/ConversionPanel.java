@@ -55,11 +55,11 @@ public abstract class ConversionPanel extends JPanel {
       ex.printStackTrace();
     }
 
-    scroller.setPreferredSize(new Dimension(MainFrame.WIDTH - 10,
-                                            MainFrame.HEIGHT - 75));
+    scroller.setPreferredSize(new Dimension(OldMainFrame.WIDTH - 10,
+                                            OldMainFrame.HEIGHT - 75));
 
-    console.setPreferredSize(new Dimension(MainFrame.WIDTH - 10,
-                                           MainFrame.HEIGHT - 75));
+    console.setPreferredSize(new Dimension(OldMainFrame.WIDTH - 10,
+                                           OldMainFrame.HEIGHT - 75));
     console.setBorder(new EtchedBorder(2));
 
     // setBorder(new EmptyBorder(2, 2, 2, 2));
@@ -83,9 +83,9 @@ public abstract class ConversionPanel extends JPanel {
   /**
    * This method is called just before the panel gets visible.
    * Costly initialization which can be delayed can therefore be put here
-   * @param mainFrame MainFrame
+   * @param mainFrame OldMainFrame
    */
-  public abstract void confgureGui(MainFrame mainFrame);
+  public abstract void confgureGui(OldMainFrame mainFrame);
 
 
   public void openFileSelection() {
