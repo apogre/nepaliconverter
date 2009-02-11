@@ -14,5 +14,4 @@ run 'run.bat'
 MAKING A RELEASE
 ant clean
 ant jar
-zip -9r ../ConversionTools4-2008-12-04.zip run.bat dist res
-
+zip -9r ../ConversionTools4-2009-02-11.zip run.bat dist res README* -x .svn -x res/.svn

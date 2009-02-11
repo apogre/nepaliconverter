@@ -42,8 +42,10 @@ public class ConversionToolsFrame extends javax.swing.JFrame {
     jButton2 = new javax.swing.JButton();
     jButton3 = new javax.swing.JButton();
     jButton4 = new javax.swing.JButton();
+    jLabel3 = new javax.swing.JLabel();
     conversionPanelF2U1 = new np.org.mpp.conv4.ui.ConversionPanelF2U();
     conversionPanelTrans1 = new np.org.mpp.conv4.ui.ConversionPanelTrans();
+    conversionPanelDevelopment1 = new np.org.mpp.conv4.ui.ConversionPanelDevelopment();
     jMenuBar1 = new javax.swing.JMenuBar();
     jMenu1 = new javax.swing.JMenu();
     jMenuItem1 = new javax.swing.JMenuItem();
@@ -90,6 +92,8 @@ public class ConversionToolsFrame extends javax.swing.JFrame {
     });
     jPanel2.add(jButton4);
 
+    jLabel3.setText("<html><body>Author: Jacob Nordfalk<br>\nअन्तराष्त्रिय भाषल Esperanto सिकौ  ...  संसार भरी साथी बनाऔ  !!<br><br>\nThanks to: Heidel Press, Dilibazaar, Kathmandu for font conversion tables<br>");
+
     javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
     jPanel1.setLayout(jPanel1Layout);
     jPanel1Layout.setHorizontalGroup(
@@ -99,8 +103,9 @@ public class ConversionToolsFrame extends javax.swing.JFrame {
         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addComponent(jLabel1)
           .addComponent(jLabel2)
-          .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 610, javax.swing.GroupLayout.PREFERRED_SIZE))
-        .addContainerGap(193, Short.MAX_VALUE))
+          .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 610, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(jLabel3))
+        .addContainerGap(149, Short.MAX_VALUE))
     );
     jPanel1Layout.setVerticalGroup(
       jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -111,12 +116,15 @@ public class ConversionToolsFrame extends javax.swing.JFrame {
         .addComponent(jLabel2)
         .addGap(18, 18, 18)
         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addContainerGap(242, Short.MAX_VALUE))
+        .addGap(18, 18, 18)
+        .addComponent(jLabel3)
+        .addContainerGap(110, Short.MAX_VALUE))
     );
 
     jTabbedPane1.addTab("Welcome", jPanel1);
     jTabbedPane1.addTab("Font to Unicode", new javax.swing.ImageIcon(getClass().getResource("/np/org/mpp/conv4/ui/f2u.png")), conversionPanelF2U1); // NOI18N
     jTabbedPane1.addTab("Transliterator", new javax.swing.ImageIcon(getClass().getResource("/np/org/mpp/conv4/ui/trans.png")), conversionPanelTrans1); // NOI18N
+    jTabbedPane1.addTab("Development", conversionPanelDevelopment1);
 
     jMenu1.setText("File");
 
@@ -188,6 +196,7 @@ private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     
     
   // Variables declaration - do not modify//GEN-BEGIN:variables
+  private np.org.mpp.conv4.ui.ConversionPanelDevelopment conversionPanelDevelopment1;
   private np.org.mpp.conv4.ui.ConversionPanelF2U conversionPanelF2U1;
   private np.org.mpp.conv4.ui.ConversionPanelTrans conversionPanelTrans1;
   private javax.swing.JButton jButton1;
@@ -196,6 +205,7 @@ private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
   private javax.swing.JButton jButton4;
   private javax.swing.JLabel jLabel1;
   private javax.swing.JLabel jLabel2;
+  private javax.swing.JLabel jLabel3;
   private javax.swing.JMenu jMenu1;
   private javax.swing.JMenu jMenu2;
   private javax.swing.JMenuBar jMenuBar1;

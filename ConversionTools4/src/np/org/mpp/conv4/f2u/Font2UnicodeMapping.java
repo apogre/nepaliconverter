@@ -1,5 +1,6 @@
 package np.org.mpp.conv4.f2u;
 
+import java.awt.Font;
 import java.util.*;
 
 import np.org.mpp.conv4.utils.Devanagari;
@@ -83,14 +84,22 @@ public class Font2UnicodeMapping {
 	 * Check table for and fix obvious errors, like missing and totally
 	 * overruled entries and
 	 */
-	private void checkConsistency() {
-		for (char c = 33; c < 255; c++) {
-			if (fontLetter_to_F2UElement.get("" + c) == null) {
-        System.out.println("WARNING: Character missing in table: \t" + c + "\t"
-                           + c + "\tChar " + c + " " + hex(c));
-        addLetter("" + c, "MISSING CHARACTER " + hex(c));
-			}
-		}
+	public void checkConsistency(Font font) {
+    if (font != null) {
+        // Clear usage bit for one-letter mapping chars
+       	for (F2Uelement e : fontLetter_to_F2UElement.values()) e.used = (e.fontLetter.length()!=1);
+
+        for (char c = 33; c < 256*256-1; c++) if (font.canDisplay(c)) {
+          F2Uelement e = fontLetter_to_F2UElement.get("" + c);
+          if (e == null) {
+            System.out.println("WARNING: Character missing in table: \t" + c + "\t"
+                               + c + "\tChar " + c + " " + hex(c));
+            //addLetter("" + c, "MISSING CHARACTER " + hex(c));
+          } else e.used = true;
+        }
+
+        printUsage();
+    }
 
 		for (F2Uelement e : fontLetter_to_F2UElement.values()) {
 			if (e.fontLetter.length() > 1) {
@@ -130,6 +139,7 @@ public class Font2UnicodeMapping {
         if (!e.used) {
           System.out.println("This element was not used during test: " + e);
         }
+        e.used = false;
       }
   }
 
@@ -140,7 +150,7 @@ public class Font2UnicodeMapping {
   String BACKSCAN_MARKS = "";
 
   public void init() {
-    checkConsistency();
+    checkConsistency(null);
 
     // Pre-processinhg of BACKSCAN directive: ensure a place for the char to match
     for (F2Uelement e : fontLetter_to_F2UElement.values()) {
