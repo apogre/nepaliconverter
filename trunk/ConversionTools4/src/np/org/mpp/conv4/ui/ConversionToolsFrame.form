@@ -41,6 +41,7 @@
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
     <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
@@ -78,14 +79,15 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jPanel2" alignment="0" min="-2" pref="610" max="-2" attributes="0"/>
+                          <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="193" max="32767" attributes="0"/>
+                      <EmptySpace pref="149" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -98,7 +100,9 @@
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jPanel2" min="-2" pref="196" max="-2" attributes="0"/>
-                      <EmptySpace pref="242" max="32767" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="110" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -172,6 +176,11 @@
                 </Component>
               </SubComponents>
             </Container>
+            <Component class="javax.swing.JLabel" name="jLabel3">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;body&gt;Author: Jacob Nordfalk&lt;br&gt;&#xa;&#x905;&#x928;&#x94d;&#x924;&#x930;&#x93e;&#x937;&#x94d;&#x924;&#x94d;&#x930;&#x93f;&#x92f; &#x92d;&#x93e;&#x937;&#x932; Esperanto &#x938;&#x93f;&#x915;&#x94c;  ...  &#x938;&#x902;&#x938;&#x93e;&#x930; &#x92d;&#x930;&#x940; &#x938;&#x93e;&#x925;&#x940; &#x92c;&#x928;&#x93e;&#x914;  !!&lt;br&gt;&lt;br&gt;&#xa;Thanks to: Heidel Press, Dilibazaar, Kathmandu for font conversion tables&lt;br&gt;"/>
+              </Properties>
+            </Component>
           </SubComponents>
         </Container>
         <Component class="np.org.mpp.conv4.ui.ConversionPanelF2U" name="conversionPanelF2U1">
@@ -194,6 +203,15 @@
                 <Property name="tabIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/np/org/mpp/conv4/ui/trans.png"/>
                 </Property>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="np.org.mpp.conv4.ui.ConversionPanelDevelopment" name="conversionPanelDevelopment1">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="Development">
+                <Property name="tabTitle" type="java.lang.String" value="Development"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
