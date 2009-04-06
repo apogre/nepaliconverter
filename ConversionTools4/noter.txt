@@ -1,0 +1,32 @@
+Heidel Press, Dilibazaar, Katmando
+
+Bishnu Hari Dhakal <bishnuhari_dhakal@hotmail.com>
+subhash@newatech.com
+
+
+foss-nepal@googlegroups.com,
+Hempal Shrestha <hempalshrestha@gmail.com>,
+Bal Krishna Bal <balkrishna7bal@gmail.com>,
+Shankar Pokharel <memshankar@gmail.com>,
+Bibek Paudel <eternalyouth@gmail.com>,
+qSubir Pradhanang <subirbp@gmail.com>,
+Jitendra kumar <implements.java@gmail.com>,
+Basanta shrestha <basanta.shrestha@gmail.com>,
+Saroj Dhakal <lotusnagarkot@gmail.com>,
+Abhishek Shrestha <shresthabhishek@gmail.com>,
+sulabh10x@gmail.com,
+Ravi Adhikari <cymbaline@ranendra.com.np>
+
+
+niraj shrestha <nirajshrestha@gmail.com>,
+manoj@ku.edu.np
+
+
+Bal Krishna Bal <bal@mpp.org.np>, subhash@newatech.com, niraj shrestha <nirajshrestha@gmail.com>, eternalyouth@gmail.com, Bal Krishna Bal <balkrishna7bal@gmail.com>, Amar Gurung <amargurung@gmail.com>, Subir Pradhanang <subirbp@gmail.com>, Jitendra kumar <implements.java@gmail.com>, Basanta shrestha <basanta.shrestha@gmail.com>, bista.sanat@gmail.com, rabindrapachhai@yahoo.it, Shankar Pokharel <memshankar@gmail.com>, Saroj Dhakal <lotusnagarkot@gmail.com>
+
+ * As for the font-to-Unicode, it would be a good to have a tab similar to that of the transliterator for conversion on keypress event.
+
+
+Conv ersion that strips/inserts non-combining characters?
+
+

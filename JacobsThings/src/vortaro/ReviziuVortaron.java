@@ -9,14 +9,13 @@ import javax.xml.parsers.*;
 
 import org.apache.xml.serialize.*;
 import org.w3c.dom.*;
-import np.org.mpp.conv4.translit.*;
+import np.esperanto.conv4.translit.*;
 import java.awt.*;
-import javax.swing.*;
-import np.org.mpp.conv4.utils.*;
+import np.esperanto.vortaro.Devanagari;
 
 public class ReviziuVortaron {
 
-	String dosiero = "versio118-finita";
+	String dosiero = "versio205";
 	public static boolean faruAnkauxInternajnLigojn = false;
 
 	public static void main(String[] args) throws Exception {
@@ -24,25 +23,24 @@ public class ReviziuVortaron {
 
 		ReviziuVortaron r;
 		r = new ReviziuVortaron();
-		//r.faruLigojn = false;
-		r.enmetuRomanizigon = false;
-    r.ordigu = true;
-    r.akceptuProponojn = true;
-		r.reviziu();
+		r.faruLigojn = false;
+		r.enmetuRomanizigon = true;
+    r.ordigu = false;
+    //r.akceptuProponojn = false;
+		//r.reviziu();
 
-/*
 		r = new ReviziuVortaron();
-		r.ordigu = true;
+		r.faruEoNeDirekto = true;
+    r.akceptuProponojn = true;
+    r.tenuNepalanVortklason = false;
+    r.faruLigojn = false;
+    r.transliterumoEnKrampoj = true;
+    r.metuOblikvanStrekonCxeRadiko = true;
+    r.disiguNepalajVortojKunOblikvaStreko = true;
+    r.aldonuAlApertium = true;
 		//r.akceptuProponojn = true;
-    r.enmetuRomanizigon = false;
 		r.reviziu();
-    r = new ReviziuVortaron();
-    r.nurProblemaj = true;
-    r.reviziu();
-		r = new ReviziuVortaron();
-		r.ordigu = r.ordiguLauxRom = true;
-		r.akceptuProponojn = true;
-		r.reviziu();
+    /*
 
 		r = new ReviziuVortaron();
 		r.akceptuProponojn = true;
@@ -54,12 +52,17 @@ public class ReviziuVortaron {
 
 	boolean faruLigojn = true;
 	boolean enmetuRomanizigon = true;
+  boolean tenuNepalanVortklason = true;
 	boolean ordigu = false;
 	boolean ordiguLauxRom = false;
 	boolean faruEoNeDirekto = false;
 	boolean nurProblemaj = false;
 	boolean akceptuProponojn = false;
 	boolean startuOoo = false;
+  boolean transliterumoEnKrampoj = false;
+  boolean metuOblikvanStrekonCxeRadiko = false;
+  boolean disiguNepalajVortojKunOblikvaStreko = false;
+  boolean aldonuAlApertium = false;
 
 	public void reviziu() throws Exception {
     String dosierNomo = "/home/j/esperanto/nepala vortaro/" + dosiero + ".odt";
@@ -163,7 +166,7 @@ jỹaanendriy	ज्ञानेन्द्रिय (ना)	sentumo r v XXXfo
 
 	static Collator anglaCollator = Iloj.usCollator; //.getInstance(new Locale("en"));
 
-	private String convertStylesAndContent(Document content) throws Exception {
+  private String convertStylesAndContent(Document content) throws Exception {
 		//final Map<String,OpenDocumentConverter.Style> styleNameToNode = OpenDocumentConverter.Style.findStyleNodes(content);
 
 		OutputFormat format = new OutputFormat(content);
@@ -179,9 +182,9 @@ jỹaanendriy	ज्ञानेन्द्रिय (ना)	sentumo r v XXXfo
 		StringBuffer rezulto = new StringBuffer(3*tuto.length()/2);
 		int pos = 0;
 
-		ArrayList ne_eo = new ArrayList();
+		ArrayList<String[]> ne_eo = new ArrayList<String[]>();
 		HashSet ne_aro = new HashSet();
-		ArrayList eo_ne = new ArrayList(); //new TreeMap(Iloj.eocomparator);
+		ArrayList<String[]> eo_ne = new ArrayList<String[]>(); //new TreeMap(Iloj.eocomparator);
 
 //     "<text:p text:style-name=\"Vortaro\">अकाल (ना)<text:tab/>sekego, senpluveco</text:p>"
 //    Matcher m = Pattern.compile("(<text:p text:style-name=\"(\\w+)\">(.*?)</text:p>)").matcher(tuto);
@@ -195,8 +198,9 @@ jỹaanendriy	ज्ञानेन्द्रिय (ना)	sentumo r v XXXfo
 		int traktis = 0;
 
     String linio, esp, dev; linio =esp= dev= null;
+    int x = 0;
 
-		while (m.find()) try {
+    while (m.find()) try {
 			linio = m.group(2);
 /*
 			if (m.group(1).contains("Vortaro4")) {
@@ -231,10 +235,11 @@ jỹaanendriy	ज्ञानेन्द्रिय (ना)	sentumo r v XXXfo
 			String rom = "ROM" + dev + "MOR";
 
 			if (header) {
-				esp = "HEADER";
+        if (faruEoNeDirekto) esp = dev;
+        else esp = "HEADER";
 			}
 
-			esp = foriguLigojnKajSpacojn(esp);
+			esp = Iloj.foriguLigojnKajSpacojn(esp);
 
 			if (akceptuProponojn) {
 				esp = akceptuProponojn(esp);
@@ -244,17 +249,18 @@ jỹaanendriy	ज्ञानेन्द्रिय (ना)	sentumo r v XXXfo
 			if (faruLigojn)
 				esp = FaruLigojn.faruLigojn(esp);
 
-			dev = foriguLigojnKajSpacojn(dev);
+      String devx = dev;
+			dev = Iloj.foriguLigojnKajSpacojn(dev);
+      //System.out.println(devx + "  ->  "+dev);
+      //System.out.println(dev);
 
 			if (!header && dev.trim().length()>0) traktis++;
 
-			//rom = devAlRomana.alRomana(dev);
-			//rom = rom.replaceAll("\\(.*?\\)","").trim();
-			String devSenPara = dev.replaceAll("\\(.*?\\)", "").trim();
+			String devSenVortklaso = dev.replaceAll("\\(.*?\\)", "").trim();
 
-			//rom = devAlRomana.alRomana(devSenPara).trim();
-			if (enmetuRomanizigon)
-				rom = mppdevAlRomana.convertText(null, devSenPara).trim();
+      String neVortklaso = devSenVortklaso.equals(dev)? "" : dev.substring(dev.indexOf('(')+1, dev.indexOf(')'));
+
+
 
       int n = esp.indexOf(' ');
       if (n==-1) n = esp.length();
@@ -268,11 +274,14 @@ jỹaanendriy	ज्ञानेन्द्रिय (ना)	sentumo r v XXXfo
         eoVortklaso = esp.substring(n-1, n);
       }
 
-      if (!dev.matches(".*\\(.*\\).*")) {
+
+
+
+      if (!tenuNepalanVortklason) dev = devSenVortklaso;
+      else if (!dev.matches(".*\\(.*\\).*")) {
        if (dev.length()>1) System.out.println("Mankas vortklaso: "+dev+"   "+esp+" ...."+eoVortklaso+" ..?");
       } else {
         //System.out.println(dev.charAt('(') + "  "+ dev.charAt(')'));
-        String neVortklaso = dev.substring(dev.indexOf('(')+1, dev.indexOf(')'));
         boolean malgxusta = false;
         if (neVortklaso.equals("ना")) malgxusta = "iea".indexOf(eoVortklaso)!=-1;
         else if (neVortklaso.equals("वि")) malgxusta = "ieo".indexOf(eoVortklaso)!=-1;
@@ -293,27 +302,73 @@ jỹaanendriy	ज्ञानेन्द्रिय (ना)	sentumo r v XXXfo
 
         //if (malgxusta)
         //  System.out.println("KONFLIKTAJ Vortklasoj "+eoVortklaso+" kaj "+neVortklaso+" "+dev+"   "+esp);
+
       }
       if (esp.matches(".*\\(["+Devanagari.ALL+"]+\\).*")) System.out.println("Ekstra nagaria vortklaso en esp parto: "+rom+" "+dev+"   "+esp);
 
 			//System.out.println(rom + " / " + dev + " / " + esp + "   / "+m.start(2)+" " +m.end(2));
-			if (faruLigojn)
-				dev = FaruLigojn.faruNepalajnLigojn(dev);
 
 			boolean forjetuLinion = !header && nurProblemaj && (linio.toLowerCase().indexOf("xx") == -1 || esp.trim().length()==0);
 
 			if (!forjetuLinion) {
-				String[] tuplo = new String[] {rom, dev, esp};
-				ne_eo.add(tuplo);
 
-				if (ne_aro.add(dev)==false) {
-					System.out.println("AVERTO: La vorto "+dev+" aperas plurfoje! "+esp);
-				}
+        String[] devSenParaArr;
+        if (disiguNepalajVortojKunOblikvaStreko) {
+          devSenParaArr = devSenVortklaso.split(" *"+"/ *");
+          //if (devSenParaArr.length>=2) System.out.println(devSenVortklaso + " devSenParaArr = " + devSenParaArr.length);
+        } else {
+          devSenParaArr = new String[] { devSenVortklaso };
+        }
 
-				for (String eo : esp.split(",;")) {
-					String[] tuploEo = new String[] {rom, dev, eo};
-					eo_ne.add(tuploEo);
-				}
+        for (String devSenPara : devSenParaArr) {
+          if (enmetuRomanizigon)
+            rom = mppdevAlRomana.convertText(null, devSenPara).trim();
+
+          String devSenParaSenLigoj = devSenPara;
+
+          if (faruLigojn)
+            devSenPara = FaruLigojn.faruNepalajnLigojn(devSenPara);
+
+          dev = devSenPara + (!tenuNepalanVortklason || devSenVortklaso.isEmpty()? "": " ("+neVortklaso+")");
+
+
+          String[] tuplo = new String[] {rom, dev, esp};
+          ne_eo.add(tuplo);
+
+          if (ne_aro.add(dev)==false && tenuNepalanVortklason) {
+            System.out.println("AVERTO: La vorto "+dev+" aperas plurfoje! "+esp);
+          }
+
+
+          /*        *
+                  for (String eo : esp.split("[,;]")) {
+                    String[] tuploEo = new String[] {rom, dev, eo.trim()};
+                    eo_ne.add(tuploEo);
+                  }
+          */
+          int i=0,j=-1;
+          boolean parentezo = false;
+          while (++j<esp.length()) {
+            char ch = esp.charAt(j);
+            if (ch=='(') parentezo = true;
+            if (ch==')') parentezo = false;
+            if (!parentezo && (ch==';' || ch==',')) {
+              String[] tuploEo = new String[] {rom, dev, esp.substring(i,j).trim()};
+              //if (++x<100) System.out.println(esp.substring(i,j).trim());
+              eo_ne.add(tuploEo);
+              if (aldonuAlApertium && !header) AldonuAlApertium.inst().aldonu(
+                  devSenParaSenLigoj, neVortklaso, rom, esp.substring(i,j).trim());
+              i=j+1;
+            }
+          }
+          String[] tuploEo = new String[] {rom, dev, esp.substring(i,j).trim()};
+          eo_ne.add(tuploEo);
+          if (aldonuAlApertium && !header) AldonuAlApertium.inst().aldonu(
+              devSenParaSenLigoj, neVortklaso, rom, esp.substring(i,j).trim());
+          //if (++x<100) System.out.println(orgEoxxx + " -> \n"+ partoj+"\n"+Arrays.asList(esp.split("[,;]")));
+          /**/
+
+        }
 			}
 
 			if (!ordigu && !forjetuLinion) {
@@ -337,7 +392,11 @@ jỹaanendriy	ज्ञानेन्द्रिय (ना)	sentumo r v XXXfo
       System.err.println(e + " por linio "+linio);
       System.err.println(e + esp + "  "+dev);
       e.printStackTrace();
+      System.exit(-1);
     }
+    //System.exit(0);
+
+    if (aldonuAlApertium) AldonuAlApertium.inst().finalize();
 
 		if (ordigu) {
 
@@ -368,8 +427,7 @@ jỹaanendriy	ज्ञानेन्द्रिय (ना)	sentumo r v XXXfo
 					}
 				});
 
-				for (Object o : ne_eo) {
-					String[] t = (String[]) o;
+				for (String[] t : ne_eo) {
 					boolean header = t[2].equals("HEADER");
 
 					if (header) {
@@ -403,14 +461,58 @@ jỹaanendriy	ज्ञानेन्द्रिय (ना)	sentumo r v XXXfo
 					}
 				});
 
-				for (Object o : eo_ne) {
-					String[] t = (String[]) o;
-					rezulto.append("<text:p text:style-name=\"Vortaro\">");
-					if (enmetuRomanizigon)
-						rezulto.append(t[2] + "<text:tab/>" + t[1] + "<text:tab/>" + t[0]);
-					else
-						rezulto.append(t[2] + "<text:tab/>" + t[1]);
-					rezulto.append("</text:p>");
+        Iterator<String[]> it = eo_ne.iterator();
+        String[] lasta = it.next();
+        //int x2=0;
+        while (it.hasNext()) {
+          String[] t = it.next();
+          //if (x2++<100) System.out.println(lasta[2]+".equalsIgnoreCase("+t[2]);
+          if (lasta[2].equalsIgnoreCase(t[2])) {
+            //if (x2++<100) System.out.println("Kunmetas "+t[2]+" "+lasta[0] + ", "+t[0]+"  -  "+lasta[1] + ", "+t[1]);
+            if (transliterumoEnKrampoj) {
+              lasta[1] += ", " + t[1] + " [" + t[0]  + "]";
+              lasta[0] = "";
+            } else {
+              lasta[0] += ", " + t[0];
+              lasta[1] += ", " + t[1];
+            }
+            it.remove();
+          } else {
+            lasta = t;
+            if (transliterumoEnKrampoj) {
+              lasta[1] = t[1] + " [" + t[0]  + "]";
+              lasta[0] = "";
+            }
+          }
+        }
+
+        //int x3=0;
+        for (String[] t : eo_ne) {
+          // se finigxas per a, e, i aux o, oni devas enmeti oblikvan strekon /
+          if (metuOblikvanStrekonCxeRadiko && t[2].length()>1 && "aeio".contains(t[2].substring(t[2].length()-1))) {
+            //if (x3++<100) System.out.println(t[2]);
+
+            t[2] = t[2].substring(0, t[2].length()-1) + "/" + t[2].substring(t[2].length()-1);
+            //if (x3++<100) System.out.println(t[2]);
+          }
+
+          boolean header = t[2].equals("HEADER") || t[2].equals(t[1]);
+               if (header) {
+
+                 rezulto.append("<text:h text:outline-level=\"4\" text:style-name=\"Vortaro4\">");
+                   rezulto.append(t[1]);
+                 rezulto.append("</text:h>");
+
+               } else {
+
+                 rezulto.append("<text:p text:style-name=\"Vortaro\">");
+                 if (enmetuRomanizigon)
+                   rezulto.append(t[2] + "<text:tab/>" + t[1] + "<text:tab/>" + t[0]);
+                 else
+                   rezulto.append(t[2] + "<text:tab/>" + t[1]);
+                 rezulto.append("</text:p>");
+               }
+
 				}
 
 			}
@@ -434,7 +536,7 @@ jỹaanendriy	ज्ञानेन्द्रिय (ना)	sentumo r v XXXfo
 			esp = esp.substring(0,i).trim();
 		}
     while ( (i=esp.indexOf("YYY")) >= 0) {
-      esp = esp.substring(0,i).trim();
+      esp = esp.substring(0,i)+esp.substring(i+3);
     }
 		if (!esp.equals(orgEsp)) {
 			esp = esp.replaceAll(" ;",";").trim();
@@ -450,13 +552,5 @@ jỹaanendriy	ज्ञानेन्द्रिय (ना)	sentumo r v XXXfo
 		return esp;
 	}
 
-	private static String foriguLigojnKajSpacojn(String esp) {
-		//dev = dev.replaceAll("<text:a [^>]*> *\\w</text:a>",""); // forigu cxiuj unuliterajn ligojn
-		//dev = dev.replaceAll("<text:span text:style-name=\"\\w\">(\\s)</text:span>","$1"); // forigu tipojn kiu nur kosideras spacojn
-		esp = esp.replaceAll("\\s?<text:a [^>]*>\\s*\\w</text:a>", ""); // forigu cxiuj unuliterajn ligojn kaj evt spaco antauxe
-		esp = esp.replaceAll("<text:span text:style-name=\"\\w\">(\\s)*</text:span>", "$1"); // forigu tipojn kiu nur kosideras spacojn
-		esp = esp.replaceAll("<text:soft-page-break/>", "");
-		return esp;
-	}
 
 }

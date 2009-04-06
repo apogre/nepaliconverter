@@ -56,7 +56,17 @@ public static void main(String[] args) throws IOException {
 	public static Collator usCollator = Collator.getInstance(Locale.US);
 
 	public static Comparator eocomparator = new Comparator<String>() {
+    int xx;
 			public int compare(String o1, String o2) {
+        o1 = foriguLigojnKajSpacojn(o1);
+        o2 = foriguLigojnKajSpacojn(o2);
+//        if (xx++<500) System.err.println(o1+" ------- "+o2);
+        if (o1.startsWith("(")) o1 = o1.substring(o1.indexOf(")")+1);
+        if (o2.startsWith("(")) o2 = o2.substring(o2.indexOf(")")+1);
+        while (o1.length()>0 && !Character.isLetter(o1.charAt(0))) o1 = o1.substring(1);
+        while (o2.length()>0 && !Character.isLetter(o2.charAt(0))) o2 = o2.substring(1);
+//        if (xx++<500) System.err.println(o1+" ------- "+o2);
+
 		return usCollator.compare(deCxapeloj(o1).toLowerCase(), deCxapeloj(o2).toLowerCase());
 			}
 	};
@@ -81,5 +91,13 @@ public static void main(String[] args) throws IOException {
 		return dev;
 	}
 
+  public static String foriguLigojnKajSpacojn(String esp) {
+    //dev = dev.replaceAll("<text:a [^>]*> *\\w</text:a>",""); // forigu cxiuj unuliterajn ligojn
+    //dev = dev.replaceAll("<text:span text:style-name=\"\\w\">(\\s)</text:span>","$1"); // forigu tipojn kiu nur kosideras spacojn
+    esp = esp.replaceAll("\\s?<text:a [^>]*>\\s*\\w</text:a>", ""); // forigu cxiuj unuliterajn ligojn kaj evt spaco antauxe
+    esp = esp.replaceAll("<text:span text:style-name=\"\\w\">(\\s)*</text:span>", "$1"); // forigu tipojn kiu nur kosideras spacojn
+    esp = esp.replaceAll("<text:soft-page-break/>", "");
+    return esp;
+  }
 
 }

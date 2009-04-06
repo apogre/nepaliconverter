@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.5" maxVersion="1.5" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jLabelInfo" alignment="0" pref="923" max="32767" attributes="0"/>
+                  <Component id="jButtonOpenFile" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabelSelectedFiles" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonRunConversion" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel3" alignment="0" min="-2" pref="887" max="-2" attributes="0"/>
+                  <Component id="jLabel1" alignment="0" min="-2" pref="799" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jLabelInfo" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jButtonOpenFile" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jLabelSelectedFiles" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="jButtonRunConversion" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="171" max="-2" attributes="0"/>
+              <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="107" max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Component class="javax.swing.JLabel" name="jLabelInfo">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;body&gt;Convert files with non-Unicode (Preeti, Kantipur ...) font to Unicode.&lt;br&gt;&lt;b&gt;Note:&lt;/b&gt; Only &lt;a href=&quot;http://OpenOffice.org&quot;&gt;OpenOffice.org&lt;/a&gt; (ODT) files are currently supported. &lt;br&gt;For other formats, you must install OpenOffice, open the files and save them in OpenOffice format."/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonOpenFile">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Choose file to convert..."/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonOpenFileActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabelSelectedFiles">
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonRunConversion">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Do conversion"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonRunConversionActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel3">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;body&gt; A&#x16d;toro: Jacob Nordfalk,  Nepala Esperanto-Asocio&lt;br&gt; &lt;font size=&quot;+2&quot;&gt;&#x905;&#x928;&#x94d;&#x924;&#x930;&#x93e;&#x937;&#x94d;&#x924;&#x94d;&#x930;&#x93f;&#x92f; &#x92d;&#x93e;&#x937;&#x932; &#x90f;&#x938;&#x94d;&#x92a;&#x947;&#x930;&#x93e;&#x928;&#x94d;&#x924;&#x94b; &#x938;&#x93f;&#x915;&#x94c;  ...  &#x938;&#x902;&#x938;&#x93e;&#x930; &#x92d;&#x930;&#x940; &#x938;&#x93e;&#x925;&#x940; &#x92c;&#x928;&#x93e;&#x914; &lt;/font&gt;&lt;br&gt; http://www.esperanto.org.np/ "/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.editors2.FontEditor">
+          <FontInfo relative="true">
+            <Font bold="true" component="jLabel1" property="font" relativeSize="true" size="6"/>
+          </FontInfo>
+        </Property>
+        <Property name="text" type="java.lang.String" value="&#x928;&#x947;&#x92a;&#x93e;&#x932; &#x90f;&#x938;&#x94d;&#x92a;&#x947;&#x930;&#x93e;&#x928;&#x94d;&#x924;&#x94b; &#x938;&#x902;&#x918;&#x915;&#x94b; Conversions Tools"/>
+      </Properties>
+    </Component>
+  </SubComponents>
+</Form>
