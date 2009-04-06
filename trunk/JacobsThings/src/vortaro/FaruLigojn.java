@@ -3,7 +3,7 @@ package vortaro;
 import java.util.*;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
-import np.org.mpp.conv4.utils.Devanagari;
+import np.esperanto.vortaro.Devanagari;
 
 public class FaruLigojn {
 
@@ -41,7 +41,8 @@ static String[] tst= {
 			//System.out.println("vorto="+ vorto);
 			vorto = vorto.toLowerCase();
 
-			if (vorto.length()>=4 || vorto.length()>=3 && tuto.trim().length()<5) {
+      //if (vorto.length()>=4 || vorto.length()>=3 && tuto.trim().length()<5) {
+			if (vorto.length()>=3) {
 
 				String revo = sercxuVortaron(vorto, AliajVortaroj.revoext);
 				if (revo != null) {
