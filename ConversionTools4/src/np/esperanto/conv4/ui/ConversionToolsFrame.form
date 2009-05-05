@@ -11,9 +11,6 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
               <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/np/esperanto/conv4/ui/exit.png"/>
-                </Property>
                 <Property name="mnemonic" type="int" value="88"/>
                 <Property name="text" type="java.lang.String" value="Exit"/>
               </Properties>
@@ -135,7 +132,7 @@
                 <Component class="javax.swing.JButton" name="jButton1">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/np/esperanto/conv4/ui/f2u.png"/>
+                      <Image iconType="3" name="/np/org/mpp/conv4/ui/f2u.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;body&gt;Convert from non-Unicode font to &lt;b&gt;Unicode&lt;/b&gt;"/>
                   </Properties>
@@ -146,7 +143,7 @@
                 <Component class="javax.swing.JButton" name="jButton2">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/np/esperanto/conv4/ui/u2f.png"/>
+                      <Image iconType="3" name="/np/org/mpp/conv4/ui/u2f.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;body&gt;Convert from Unicode to non-Unicode &lt;b&gt;Font&lt;/b&gt; (like Preeti)"/>
                     <Property name="enabled" type="boolean" value="false"/>
@@ -155,7 +152,7 @@
                 <Component class="javax.swing.JButton" name="jButton3">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/np/esperanto/conv4/ui/trans.png"/>
+                      <Image iconType="3" name="/np/org/mpp/conv4/ui/trans.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;body&gt;Convert from Devanagari to &lt;br&gt;&lt;b&gt;Roman&lt;/b&gt; transliteration"/>
                   </Properties>
@@ -166,7 +163,7 @@
                 <Component class="javax.swing.JButton" name="jButton4">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/np/esperanto/conv4/ui/exit.png"/>
+                      <Image iconType="3" name="/np/org/mpp/conv4/ui/exit.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;body&gt;&lt;b&gt;Exit&lt;/b&gt; from the Application"/>
                   </Properties>
@@ -192,7 +189,7 @@
               <JTabbedPaneConstraints tabName="Font to Unicode">
                 <Property name="tabTitle" type="java.lang.String" value="Font to Unicode"/>
                 <Property name="tabIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/np/esperanto/conv4/ui/f2u.png"/>
+                  <Image iconType="3" name="/np/org/mpp/conv4/ui/f2u.png"/>
                 </Property>
               </JTabbedPaneConstraints>
             </Constraint>
@@ -204,7 +201,7 @@
               <JTabbedPaneConstraints tabName="Transliterator">
                 <Property name="tabTitle" type="java.lang.String" value="Transliterator"/>
                 <Property name="tabIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/np/esperanto/conv4/ui/trans.png"/>
+                  <Image iconType="3" name="/np/org/mpp/conv4/ui/trans.png"/>
                 </Property>
               </JTabbedPaneConstraints>
             </Constraint>
