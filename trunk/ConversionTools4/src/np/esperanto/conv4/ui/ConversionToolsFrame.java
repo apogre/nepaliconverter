@@ -79,7 +79,7 @@ public class ConversionToolsFrame extends javax.swing.JFrame {
 
     jPanel2.setLayout(new java.awt.GridLayout(2, 2, 20, 20));
 
-    jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/np/esperanto/conv4/ui/f2u.png"))); // NOI18N
+    jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/np/org/mpp/conv4/ui/f2u.png"))); // NOI18N
     jButton1.setText("<html><body>Convert from non-Unicode font to <b>Unicode</b>");
     jButton1.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -88,12 +88,12 @@ public class ConversionToolsFrame extends javax.swing.JFrame {
     });
     jPanel2.add(jButton1);
 
-    jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/np/esperanto/conv4/ui/u2f.png"))); // NOI18N
+    jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/np/org/mpp/conv4/ui/u2f.png"))); // NOI18N
     jButton2.setText("<html><body>Convert from Unicode to non-Unicode <b>Font</b> (like Preeti)");
     jButton2.setEnabled(false);
     jPanel2.add(jButton2);
 
-    jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/np/esperanto/conv4/ui/trans.png"))); // NOI18N
+    jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/np/org/mpp/conv4/ui/trans.png"))); // NOI18N
     jButton3.setText("<html><body>Convert from Devanagari to <br><b>Roman</b> transliteration");
     jButton3.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -102,7 +102,7 @@ public class ConversionToolsFrame extends javax.swing.JFrame {
     });
     jPanel2.add(jButton3);
 
-    jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/np/esperanto/conv4/ui/exit.png"))); // NOI18N
+    jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/np/org/mpp/conv4/ui/exit.png"))); // NOI18N
     jButton4.setText("<html><body><b>Exit</b> from the Application");
     jButton4.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -120,13 +120,11 @@ public class ConversionToolsFrame extends javax.swing.JFrame {
       .addGroup(jPanel1Layout.createSequentialGroup()
         .addContainerGap()
         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addGroup(jPanel1Layout.createSequentialGroup()
-            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 887, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(340, 340, 340))
+          .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 887, javax.swing.GroupLayout.PREFERRED_SIZE)
           .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 799, javax.swing.GroupLayout.PREFERRED_SIZE)
           .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 799, javax.swing.GroupLayout.PREFERRED_SIZE)
           .addComponent(jLabel2))
-        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        .addContainerGap(340, Short.MAX_VALUE))
     );
     jPanel1Layout.setVerticalGroup(
       jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -145,13 +143,12 @@ public class ConversionToolsFrame extends javax.swing.JFrame {
     jLabel3.getAccessibleContext().setAccessibleName("<html><body>Author: Jacob Nordfalk, Nepala Esperanto-Asocio<br>\n<font size=\"+3\">अन्तराष्त्रिय भाषल एस्पेरान्तो सिकौ <br> संसार भरी साथी बनाऔ </font><br><br>\nThanks to: Heidel Press, Dilibazaar, Kathmandu for<br>\n- press of नेपाली-एस्पेरान्तो शब्दकोश Nepali-Esperanto-vortaro<br>\n- font conversion tables for this tool<br>");
 
     jTabbedPane1.addTab("Welcome", jPanel1);
-    jTabbedPane1.addTab("Font to Unicode", new javax.swing.ImageIcon(getClass().getResource("/np/esperanto/conv4/ui/f2u.png")), conversionPanelF2U1); // NOI18N
-    jTabbedPane1.addTab("Transliterator", new javax.swing.ImageIcon(getClass().getResource("/np/esperanto/conv4/ui/trans.png")), conversionPanelTrans1); // NOI18N
+    jTabbedPane1.addTab("Font to Unicode", new javax.swing.ImageIcon(getClass().getResource("/np/org/mpp/conv4/ui/f2u.png")), conversionPanelF2U1); // NOI18N
+    jTabbedPane1.addTab("Transliterator", new javax.swing.ImageIcon(getClass().getResource("/np/org/mpp/conv4/ui/trans.png")), conversionPanelTrans1); // NOI18N
     jTabbedPane1.addTab("Development", conversionPanelDevelopment1);
 
     jMenu1.setText("File");
 
-    jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/np/esperanto/conv4/ui/exit.png"))); // NOI18N
     jMenuItem1.setMnemonic('X');
     jMenuItem1.setText("Exit");
     jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
